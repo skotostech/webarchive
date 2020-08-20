@@ -1,0 +1,84 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #64:</b></font></p>
+							<h2>Combat, Part 6: <i>Battle Stances</i></h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										August 1, 2003</b></i></p>
+							<p>
+Last time, we started considering how combat systems relate to user interfaces; in particular, how a user interface can make certain elements easier or harder to work into a combat system.
+
+<p>One idea that some games implement is that of different combat &quot;stances&quot; &#151; offensive, defensive, and so on. The Eternal City here at Skotos does this, with [check and insert] as the different stances available. This set of stances forms a continuum, from fully defensive to fully offensive. Seen this way, they've equivalent to setting a slider &#151; and in a game with a GUI, a setting like that could be substituted with a slider.
+<p>
+Using a slider could also easily allow for a more finely-grained division between attack and defense.  The paper RPG Rolemaster uses a "percentile" system for skills, with skill ratings generally ranging from 0 to 100.  In combat, players decide how to divide their character's combat skill between attack and defense, giving a very finely-grained possible division.  In a computer game, such a calculation could easily be performed based on the setting of a slider.
+
+<p>
+However, this is another sort of setting for combat stances, which can't be represented as a simple continuum from attack to defense.  Namely, stances with regard to the desired outcome of combat.  On the offensive side, killing, knocking out, or capturing might be the desired outcome. On the defensive side, one might wish to restrain an opponent to stop him/her attacking, to get away, to knock out... or even still to kill. Most online games only have combat with the intent to kill, but adding other options to a combat system can add many possible setting elements.
+
+<p>
+For example, if it's possible to engage in combat for more limited purposes than killing an opponent, then certain kinds of character conceptions become easier (or, in some cases, possible).  For example, a bounty hunter ought to be able to capture a target and bring him/her back. A non-violent sneak thief who, if confronted, simply tries to escape or to tie up opponents is another example.
+
+							<p>
+On the reverse side of things, a classic element of many stories is for some or all of the heroes to be captured at some point, then have to escape or be rescued by the non-captured heroes.  Sometimes heroes in stories allow themselves to be captured, so they will be taken somewhere. Without a combat system which allows for capturing, these things aren't possible.
+
+							<h3>Text-based Advantages</h3>
+							<p>
+So, far, it's looking like a GUI (even a text-based 'GUI', like those of the Rogue-like games) has a lot of advantages over a text-based system. So, since a lot of Skotos' games are text-based, and since text-based games are generally easier for those without large budgets to set up, let's look at some things that text-based games do better.
+
+							<p>The use of text instead of artwork can make adding certain sorts of features much easier. For example, consider adding the ability for a character to get knocked down in combat. In a GUI, you'd want to add some depiction of a knocked-down combatant. Note that this might require a lot of artwork &#151; a &quot;knocked-down&quot; version of each creature in the game, for example. In a fully-animated GUI, you might want to add animations for falling down and standing up &#151; and again, this might have to be done for each creature in the game. (Of course, there are ways to reduce this effort &#151; for example, making each creature be an articulated 3-D model means you don't need new artwork &#151; you just have to tell it how to move. However, that raises the requirements for your user's systems.)
+<p>In contrast, in a text-based system, a simple &quot;X is knocked down&quot; and &quot;X stands up&quot; takes the place of all that. The creatures' descriptions might have a tag added to them as well &#151; e.g., (knocked down). The simplicity of such notifications and &quot;status displays&quot; can free the game's designers and implementors to focus on other aspects, such as the underlying systems.
+<p>
+This isn't the only case where a seeming lack in one area can make things easier in another.  For example, consider a swashbuckling game in the vein of The Three Musketeers and the like.  In an environment which attempts to show exact positioning, implementing a "swing on the chandelier" command and making it even somewhat believable is going to require giving the chandelier a location, then having swinging on the chandelier change the character's location.  Further, how swinging changes the character's location will need to make some degree of sense.
+
+							<p>Without positioning (e.g., in a &quot;room-based&quot; environment), all of this can be ignored. You want to swing on the chandelier and hit Cardinal's Guard #3? Go ahead and try it &#151; without positioning, there's no reason to even worry about where the two of you are relative to the chandelier.
+							<h3>Player/Character Split</h3>
+							<p>Such abstraction can feed into something else &#151; the split between player skill and character skill. In theory in an RPG, one should be able to play a <I>character</I> who is an expert at combat without having to be an expert at combat yourself &#151; either at real-life combat or at the game's combat system.
+							<p>The more detailed positioning and such is, the more players are going to expect it to make a difference &#151; and their suspension of disbelief will be disturbed if it doesn't. For example, in a room-based system, it's accepted that any character in a &quot;room&quot; can attack any other character in the same &quot;room&quot;. Once positioning is added, however, players are going to expect that someone will not be able to punch a character who's standing on the other side of a large room.
+<p>It may seem that not having detailed positions limits the factors one can add to combat greatly, but there really are quite a few ways that one can get around it. In the forums for this column, one reader mentioned the idea of forming a shield wall, and stated that this could only be done with exact positioning. However, that's not true &#151; in a room-based game, one could simply add commands for characters to form a shield wall &#151; e.g., &quot;form shield wall with X&quot;. Whether this can be done successfully could depend on skills (e.g., on a &quot;group tactics&quot; skill and/or a &quot;shield use&quot; skill) and could be modified by the relative number of allies and opponents. More generally, one could instead have a &quot;stand with X&quot; command.
+<p>
+Such a command could interact with others.  For example, if someone uses a "guard" command to guard an exit, and then someone else used "stand with" to stand with the character doing the guarding, then the system could note this and require defeating or slipping past both of them before being able to get to the door.
+
+<p>Choosing a room-based interface doesn't have to require getting rid of things which seem to require positioning &#151; it just means that the ability to successfully do them will become more dependent on character skill rather than the player's ability to maneuver. (Indeed, one could add a generic &quot;maneuvering&quot; skill to represent how good the character is at getting around in combat. In a text-based environment, one could easily change messages for this to add to a game's flavor &#151; e.g., for Hong Kong-style combat, print descriptions of the character jumping over foes and the like.)
+
+<p>Next time, I'm going to talk about D&amp;D-style combat &#151; what it is, what it's good for, and ways to get away from it. See you in 14!
+						</div>
+						<div align="left">
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

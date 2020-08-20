@@ -1,0 +1,94 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #29:</b></font></p>
+							<h2>Planning and Quest Generation</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>October 10, 2002</i></b></p>
+							<div class="Section1">
+								<p>All sentient-presenting mobiles can have goals, and can figure out how to achieve them.<br>
+									<br>
+									Some of these goals might be due to the mobile&#146;s job (eg. wanting to catch criminals, needing raw materials). Some are due to interruptions from the emotional system because of the current state of the world (eg. screeching cats keep the mobile awake at nights, the mobile&#146;s life is in danger). Some are more general consequences of its emotional make-up (eg. a raging hatred of spell-casters, a crush on the gorgeous pouting babe dwarf who just moved in next door). Others are simply random quirks, perhaps sprinkled around by members of the design team (eg. a hobby of collecting antiques, an interest in genealogy). Some will be for different reasons entirely.<br>
+									<br>
+									Goals are represented by sets of statements about the world. There are two types: <i>verifiable</i> goals, that the computer can check have succeeded; <i>unverifiable</i> goals, that it can&#146;t. An example of the former might be, &#147;The triptych of the ancients is once again in the temple sanctum&#148;; an example of the latter might be, &#147;The elves of the south are avenged&#148;.</p>
+								<h3><b>An example</b></h3>
+								<p>Suppose that a mobile&#146;s goal was to have power. There might be four actions with <i>have power</i> as an effect: <i>acquire military power</i>; <i>acquire political power</i>; <i>acquire religious power</i>; <i>acquire economic power</i>. These would constitute the mobile&#146;s initial consideration set. Let&#146;s say the mobile randomly selected <i>acquire religious power</i> to try first. There might be two actions that achieved this: <i>lead an existing religion</i>; <i>form your own religion</i>. Again selecting randomly, the mobile considers <i>lead an existing religion</i>. To achieve this, it can attempt its general<i> assume position in organisation </i>action, which has three preconditions: <i>be in a lower position in the organisation</i>; <i>be the best candidate; there&#146;s a vacancy for the target position</i>. Taking these in order, the mobile discovers that the action <i>join a religion</i> puts it in a lower position than that occupied by the religion&#146;s leader. The mobile&#146;s plan at this point is therefore:</p>
+								<blockquote>
+									<p>[<i>join a religion</i>, <i>be the best candidate for leader of the religion</i>, <i>await a vacancy for leader of the religion</i>, <i>assume the position of leader of the religion</i>]</p>
+								</blockquote>
+								<p>Doing this will give the mobile religious power, thereby satisfying its original goal. Note that although the overall goal is unverifiable, not all the sub-goals are: the game can check when there is a vacancy for leader of a religion and when the player has filled it, for example; it might even be able to measure the &#147;best&#148; candidate, given a reasonable set of criteria. Although the second step of the plan needs a great deal more work to bring to fruition (applying the generic <i>assume position in organisation</i> action repeatedly to rise the mobile up through the ranks), the first step can be expanded into something the mobile can actually do: <i>go to the temple of the ancients</i>; <i>sign up</i>.<br>
+									<br>
+									Aside: the term <i>expanding</i> an (unexecutable) action means substituting it with other actions that achieve its preconditions. This can be done by backward chaining, as usual, or (in more sophisticated planners) by using plan fragments that the mobile has generated before to do similar tasks (or has had directly programmed into it).</p>
+								<h3><b>The Key Point</b></h3>
+								<p>All a mobile&#146;s verifiable goals can be used as quests.<br>
+									<br>
+									If a player (or, indeed, a mobile) goes up to a sentient-presenting mobile and presses its quest button, that mobile can consult its current plan (or generate one, if currently planless) and look for a goal that the player is capable of achieving given the current situation. In the above example, this might mean something fairly easy for newbies (&#147;sign me up at the temple of the ancients&#148;) or more complex for higher-level players (&#147;I&#146;m going to sign up at the temple of the ancients. I want you to make me the best candidate for a more senior position, should one arise&#148;).<br>
+									<br>
+									From the player&#146;s point of view, the situation gets suddenly more interesting when they achieve the task set out for them. Having made their mobile be the best candidate for temple head, for example, it naturally follows that the player could then be asked to create a vacancy for temple head. If the player declined this task, the mobile could expand that part of its plan itself &#150; perhaps by bribery or blackmail. It could then offer a seemingly unrelated task to the player (&#147;deliver this sealed envelope to the temple head&#148;) that was actually part of its grander scheme (as a curious player would doubtless discover upon unsealing the envelope...).<br>
+									<br>
+									There are many advantages to this approach, but the main ones are:</p>
+								<ul>
+									<li type="disc">Goals can themselves be sub-goals of some greater goal, which gives them a purpose. &#147;I want you to rescue my cat from the tree because it&#146;s wearing my <i>ring of teleporting orcs away</i> on a chain round its neck!&#148;.<br>
+									<li type="disc">Goals can, within reason, be measured in terms of how difficult they are to achieve. Characters can therefore be given quests appropriate to their experience. &#147;I did mention the tree was guarded by a dryad, didn&#146;t I?&#148;<br>
+									<li type="disc">Most mobiles that represent intelligent creatures can immediately be called upon to generate <i>some</i> goal that a player could strive to achieve, even if the reward isn&#146;t going to be up to much.<br>
+									<li type="disc">Mobiles can have multiple goals. If you don&#146;t like one, you can ask for another. &#147;If you won&#146;t help me avenge the death of my brother, perhaps you&#146;ll help me hit on his widow?&#148;.<br>
+									<li type="disc">Detecting the success (or failure after a time limit) of a verifiable goal doesn&#146;t unduly burden the system. You don&#146;t have to check continually whether a goal has been achieved or not: you only have to do it when the player returns.<br>
+									<li type="disc">Original quests can be churned out in vast numbers without using up horrendous quantities of computational oomph.
+									
+								</ul>
+								The primary disadvantages are:
+								<ul>
+									<li type="disc">There have to be many goals and ways of achieving them. It&#146;s not a good idea to have one in four mobiles trying to head up a religion.<br>
+									<li type="disc">Actions have to be programmed consistently, using a common formalism. If someone makes a programming error, the results could appear bizarre. Using the wrong variable name could mean a mobile asks you to murder her boyfriend instead of his stand-in-the-way-of-marriage parents.<br>
+								</ul>
+								<p>
+Next time, we&#146;ll start to look under the hood a bit more, and see what&#146;s there.</p>
+							</div>
+						</div>
+						<div align="left">
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+									</tr>
+								</table>
+								<p></P>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

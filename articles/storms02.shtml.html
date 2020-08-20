@@ -1,0 +1,190 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Storms on Cloud 9</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_storms.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="storms.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><b><a href="storms.shtml.html"><img src="nav/snav_storms.gif" width="137" height="368" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a>Storms on Cloud Nine #2:</b></font></p>
+							<h2>The Rock Test</h2>
+							<p><i><b>by Scott Holliday<br>
+										January 24, 2003</b></i></p>
+						</div>
+						<p>Last time, I introduced myself and Orphan Crown. At this point, I think 
+it's fair to start talking about more general topics in online game 
+design. I was thinking of branching directly into influencing good player 
+interactions, but decided to instead focus first on the  basic of 
+basics... the rock test.
+<br><br>
+Here I have to give credit to one of the members of the Orphan Crown team, 
+Bob Strawn. I originally learned the rock test from him while we were 
+discussing play mechanics for tabletop RPG systems. The rock test concerns 
+design philosophy of any kind, although the metaphor is related to 
+building paper airplanes. It goes something like this:
+<ol>
+<li>Obtain two pieces of paper</li>
+<li>With first, build a paper airplane</li>
+<li>With second, wad it up into a ball (the "rock")</li>
+<li>Throw the airplane</li>
+<li>Throw the rock</li>
+<li>Compare</li>
+</ol>
+The idea here: if your airplane doesn't fly better than the rock, you 
+should kick yourself. Of course "better" has many qualifiers. Some 
+airplanes do flips. Some spin. Some dip up and down. Some glide at leisure 
+for long distances. Some are just pretty. However, rocks are quick and 
+very easy to make. If your airplane failed the rock test, you should 
+probably rethink the design.
+<br><br>
+I'm assuming that at least part of my audience is either building a game 
+or hoping to do so in the future. As I build Orphan Crown, one of my 
+constant questions has become, "is this better than a rock?" Since it's a 
+text-based game, my rock for comparison could be a simple chat room with 
+no mechanics. However, I could also consider any of the MUDs that came 
+before or even the previous Skotos games. At some point, I'm talking about 
+big expectations. But unless I plan to exceed the quality of what came 
+before, what's the point?
+<br><br>
+How do I compare? All I have is my ideas, maps, charts, notes on paper, 
+and some preliminary code. Thinking about the airplane metaphor, I need to 
+test the flight pattern before the paper is even folded. Well, to be 
+totally frank, I can't. The game is designed to have enough simultaneous 
+players (variables) that there is no way to tell how it will come across. 
+So, I have to simplify the question and take it one piece at a time.
+<br><br>
+One method is to look at each game system individually. Story items, 
+puzzles, quests, crafting, economics, market-interaction, housing, food, 
+the list goes on. Each system is scrutinized by itself. Sometimes I 
+compare to other games I've played. Sometimes I compare to other mechanics 
+that I've made in the past.
+<br><br>
+						Another method is to try it out from the point of view of a player. So, I sit down and write a day in the life of myself as a future Skotos gamer. I watch as my imaginary self logs in...
+						<p><code>(log in blarg) ... Welcome to Orphan Crown<br>
+								
+							You are at the Alley of the Renderers.
+<br>
+								
+							><b>examine here</b><br>
+								
+							You see nothing unusual about of Alley of the Renderers.
+<br>
+								
+							At this location you may shop_[buy/price/retrieve/sell] or 
+task_[build/teach/work].
+<br>
+								
+							><b>shopbuy</b><br>
+								
+							Syntax: shopbuy [item] [quality] ['#]
+<br>
+								
+							At this location, you may buy: candle oil soap wax
+<br>
+								
+							><b>shopbuy candle good</b><br>
+								
+							Qualities: common normal professional adept expert master dream
+<br>
+								
+							><b>shopbuy candle normal</b><br>
+								
+							You may buy:
+<br>
+								
+							1: Candle (normal) : 3 coins
+<br>
+								
+							2: Candle (normal) : 4 coins
+<br>
+								
+							3: Candle (normal) : 4 coins
+<br>
+								
+							4: Candle (normal) : 5 coins
+<br>
+								
+							5: Candle (normal) : 5 coins
+<br>
+								
+							><b>shopbuy '1</b><br>
+								You have purchased a candle for 3 coins. </code></p>
+						<p>And so on... I've got a notebook full of this stuff with notes on the side for changes I want to make.<br>
+							<br>
+							
+								
+What does it prove? Actually, quite a lot. By reading through it, I can 
+make an early assessment of the intrinsic entertainment value in the 
+various game systems. Equally important, it helps me plan how new player 
+commands/functions would be the most intuitive/exciting and the least 
+annoying. For instance, the bit above quickly proved that the market 
+interface needs something to spice it up. Haven't figured out what yet...
+<br>
+							<br>
+							
+								
+In addition, by purposefully testing the design with several different 
+play-styles, I quickly discover the areas that need more planning. For 
+instance, what if I was in the mood to socialize today? What if I'm a 
+loner and want to mess around with some of the puzzles by myself? What if 
+I just want some combat excitement?
+<br>
+							<br>
+							
+								
+I'm sure every game developer has done this same process, though perhaps 
+not using the same philosophy. From my experience, doing an  imaginary 
+run-through as soon as possible (using the rock test) is important. If you 
+find issues or elements that need to be changed, earlier is obviously 
+better. Even if everything works perfectly (and it won't), it will help to 
+solidify your vision of the game and help you get started on the next 
+step. This seems perhaps a bit too basic, but maybe it will encourage 
+those of you who want to build a game someday but don't know where to 
+start. For my own part, when I was writing up the proposal for Orphan 
+Crown, I did a LOT of this on paper. I highly recommend it no matter where 
+(or what) you are designing.
+<br>
+							<br>
+							
+								
+Next time, I plan to talk about "winning" and how it effects the dynamics 
+of an online RPG.
+<br>
+							<br>
+						</p>
+						<font size=1><font size=3><font size=1>
+									<table width="100%">
+										<tr>
+											<td align="center" valign="middle">
+												<p><b>Recent Discussions on <i>Storms on Cloud 9</i>:</b></p>
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="middle">
+												<p><!--#include file="storms-last10.php"-->
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=59"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=59"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+										</tr>
+									</table>
+								</font></font></font>
+						<p></p>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Engines of Creation</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav-engines.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/strategy.shtml.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/graphical.shtml.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/prose.shtml.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="engines.shtml.html"><area shape="rect" coords="349,6,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><b><a href="engines.shtml.html"><img src="nav/snav_engines.gif" width="137" height="368" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a>Engines of Creation #1:</b></font></p>
+							<h2>Let the Gears Begin</h2>
+							<p><i><b>by Dave Rickey<br>
+										June 3, 2003</b></i></p>
+							<p><i>&quot;How many developers does it take to change a light-bulb?&quot;</i></p>
+							<p><i>&quot;Well, let's talk about that for a while....&quot;</i></p>
+							Okay, it was funny at the MUD-Dev Conference. Get 3 game developers into the
+same room, and they'll immediately have 4 different opinions on how games
+should be built. Which they will gladly spend the next few hours arguing
+over. Often the side that wins is the one who talks loudest and keeps it up
+the longest, which is why the opportunity to step into Jessica Mulligan's
+shoes with this column during her absence is one I'm glad to get. I'd like
+to thank both Christopher Allen (President of Skotos) and Jessica, and I
+hope I can justify their confidence.<P>It's also a somewhat daunting prospect. I don't have much trouble expressing myself in text, but most of my ponitification has occurred on message boards and mailing lists, where it was just one of many transient viewpoints, sure to quickly succumb to web-rot and vanish. A column requires an awareness that the things you say now will be archived and presented for your embarrassment years later. But I seem to be fairly immune to embarrassment, 11 years on the Internet has left my psyche with enough scarring to amount to armor plating.<P>
+
+But first, allow me to introduce myself: Dave Rickey, former business
+applications programmer turned online games fanatic, and styling myself as
+an "Online Game Designer". After years of doing work that at best presented
+an "interesting technical challenge", I chucked it and took a job for Verant
+as the Assistant Head Game Master for EverQuest at launch (for less than 1/3
+the pay). In-game customer support is an incredibly stressful job,
+especially when you're having to make it up as you go along (for a month I
+slept under my desk, going home twice a week for a shower whether I needed
+it or not), and after 6 months I left Verant. Then I went to work on Dark
+Age of Camelot for Mythic Entertainment as a world builder and the designer
+for the economy-related systems. For about a year, I was the wielder of the
+Nerf Bat, working on class balance and culminating in the 6 classes of the
+Shrouded Isles expansion. I left Mythic in March of this year, and as of
+writing this I am within a week or two of deciding where I am going to go
+next.<P>
+
+I've done other things along the way (more detail would just get boring),
+but in my opinion the most important thing I've done in my 5 years of
+association with the industry is <b>study</b> it, watch carefully as it has
+grown, examined what has worked and what has failed and tried to figure out
+why. Those of you who have seen my writing on various sites out there will
+know that it tends to have two recurring themes: The importance of theory in
+making these games, and the reluctance of the industry to embrace theory.
+Rest assured, Engines of Creation will follow the same themes.<P>
+
+But just as in the joke that leads this column, the industry is not short on
+opinions of what constitutes good game design. If the industry is reluctant
+to place emphasis on theory in the design process, it's because the
+theorists have not done a very good job of creating cohesive, useful
+theories, or at explaining the implications of those theories in ways that
+lends itself to being turned into the hard numbers and working code of an
+operating game. So another theme of this column is going to be how to turn
+the ivory tower abstractions of theory into nuts-and-bolts of workable
+systems. As my colleague Scott Jennings has pointed out to me, in the end
+Online Game design is the "art of the possible", so theory must bend to
+reality or it is just so many words.<P>
+
+On that note, and in keeping with my reputation, I am going to tell my
+colleagues what kinds of games they've been making, and present a
+theoretical framework to categorize them. Along the way, I'm going to
+explain how one of the leading theorists in the business got it wrong. Hey,
+I gotta be me.<P>
+
+The first thing a game design team has to do is decide what kind of game
+they are going to make, what they feel constitutes a good game. This is 
+generally an extremely subjective opinion, frequently driven by one or two
+people but at any rate eventually becoming the common "Vision" of the team
+as a whole. After 5 years, I have come to the conclusion that there are
+basically 4 areas of focus that make a workable focus for an online game:<P>
+
+<B>Game as Puzzle</B><BR>Characterized by an emphasis on character development, with complex rules for virtually everything a player can do, and with an avowed intent of making all of these character development choices equal, the Game as Puzzle approach is probably the most mature. Decades of pencil and paper RPG's have created an incredibly rich tapestry of capabilities and proven systems, and the approach seems to tap directly into the behavioristic reward-assessment centers of our brains, creating a compelling treadmill that keeps players for months or even years. Game as Puzzle designers look to mathematics, game theory, and formal logic for ideas on how to make a better game. EQ and Anarchy Online are at their core Game as Puzzle.<P>
+
+<B>Game as Simulation</B><BR>These games have a focus on realism, on creating life-like systems through faithful re-creation of the essence of the underlying reality in the systems of the game. If there was enough computing power, these games would recreate the ballistic flight of a projectile though a molecular-level modelling of the inertia, friction, and gyroscopic motion involved. The implication is that if the system is thoroughly realistic, the player will have less need to &quot;suspend disbelief&quot; and will find it easier to immerse themselves in the world. This doesn't necessarily restrict itself to strict realism, if the AI of a game conducts behind-the-scenes artificial life simulations to decide how many and where to create monsters, the system is &quot;Game as Simulation&quot; in nature. Game as Simulation designs look to the physical sciences (physics, geology, ecology, biology) for inspiration. World War II Online is clearly &quot;Game as Simulation&quot;, as was the original conception of Ultima Online (with the plan for ecological simulations of sheep, wolves, deer, and dragons).<P>
+
+<B>Game as Story</B><BR>
+
+Here the focus is on drama, on creating a story in which to embed the
+players and make them feel like they are part of something larger, something
+grand. These designs focus on the perception of games as a new
+communications medium, like movies or books, but not as yet understood. Game
+as Story designers tend to think of themselves as authors, and look to the
+dramatic arts (cinema, novels, plays) for ideas. Majestic and Asheron's Call
+1 are examples of Game as Story.<P>
+
+<B>Game as Society</B><BR>
+
+In these games, the emphasis is on the communities that form within the
+game, and the relationships within and between them. Sometimes the social
+structures are entirely player directed (either deliberately or by default),
+sometimes they are pre-defined and the player organizations are molded to
+fit. Game as Society designers look to the "soft" sciences and humanities
+(psychology, sociology, anthropology). A Tale in the Desert and The Sims
+Online are examples of Game as Society.
+							<P>
+
+After I had come up with this structure (inspired by the writings of E.O.
+Wilson, who in Consilience argues for an "Ultimate Synthesis" that
+integrates all of the areas of academic work into one cohesive framework), I
+realized that the Math/Physics/Arts/Humanities correspondence was not the
+only framework in which to map these game design approaches. Dr. Richard
+Bartle's <a href="http://www.mud.co.uk/richard/hcds.htm">Hearts, Clubs,
+Diamonds, Spades: Players Who Suit MUDs</a> describes a 2 axis graph of
+Acting vs. Interacting and Players vs. World to break the players into four
+types:
+							<pre>                           <b>ACTING</b>
+          Killers            |                  Achievers
+                             |
+                             |
+                             |
+                             |
+                             |
+  <b>PLAYERS</b> -------------------+------------------- <b>WORLD</b>
+                             |
+                             |
+                             |
+                             |
+                             |
+          Socialisers        |                  Explorers
+                        <b>INTERACTING</b>
+</pre>
+							<P>
+
+This framework was generally accepted by theorists (and by the players with
+an interest in theory), its elegance was so obvious and compelling there
+seemed to be little doubt that it was correct. And it is, but not as a
+taxonomy of players. In addition to the fact that the "Killers" (who Bartle
+characterized as synonymous with what is now known as "griefer") are far too
+common in the results of the <a
+href="http://www.andreasen.org/bartle/" target="_blank">Bartle Test</a> for any game to hope
+to survive the onslaught (not to mention their presence in games such as
+Furcadia, which lacks even so much as a combat system), <a
+href="http://www.nickyee.com/hub/home.html" target="_blank">Nick Yee's</a> surveys of 
+psychological
+motivations of online gamers failed to find any trace of the "Explorer" type
+at all.
+							<P>
+
+However, you can use the same axii and map like this:
+							<pre>                           <b>ACTING</b>
+          Story              |                  Puzzle
+                             |
+                             |
+                             |
+                             |
+                             |
+  <b>PLAYERS</b> -------------------+------------------- <b>WORLD</b>
+                             |
+                             |
+                             |
+                             |
+                             |
+          Society            |                  Simulation
+                        <b>INTERACTING</b></pre>
+							<P>
+
+The results show that each player in Bartle's structure is actually the
+mirror of a designer in mine, the Socializer trying to foster community
+formation, the Explorer moving through all of the emergent possibilities of
+the simulation, the Achiever weaving the threads of the puzzle the players
+will attempt to unravel, and the Killer (who I have long preferred to refer
+to as a "Controller") imposing a story on the players, whether they want it
+or not.<P>
+
+However, in fairness I have to say that I can't really characterize Dr.
+Bartle's paper as wrong, but simply incomplete. He was, after all, trying to
+create a structure to be used by <b>designers</b>, his error was one of
+projecting into the players the desires of designers. The largest problem
+with it was that by presenting the approaches as things the <b>players</b>
+wanted in games they encouraged a form of extremism in design, since it is
+intuitively impossible to bring a broad spectrum of "single issue" player
+motivations held by such large numbers of people into the same environment
+and and satisfy anyone with the compromise.<P>
+
+For most of this column, many people have probably had an objection to the
+games I assigned to the types above. Yes, EQ is a treadmill-oriented game
+with complex character-development systems, <b>but</B> it is also a social
+environment of guilds and uberguilds, <b>and</b> it contains a limited
+amount of simulation in the form of trade skills, swimming, etc., <b>and</b>
+it has an extensive back story (many thousands of words, I've read it) as
+well as an ongoing episodic story in the form of expansions. Yes, WW2O is
+primarily a simulation, but it has an extensive social environment of
+squadrons and chains of command, and it has simplified (but highly
+competitive) character development in the form of ranks, and it has an
+extensive "story" in the form of the actual history of World War II it is
+intended to simulate the battles of.<P>And even if the characterizations are accepted as generalities, what about the player in EQ who never levels a character or stops well before maximum level and instead plays with trade skills, or the wife of a WW2O squadron leader who spends hours upon hours in the game chatting, fills a vital administrative role in keeping the squad going, but never runs a mission? To <i>them</i> the game they are playing clearly isn't of the type I'm assigning, yet it's equally obvious they consider it one worth playing and paying for.<P>Not only is this true, but it is the point of this column. Games that started out with a focus on only one of the types of game design were, in one way or another, developed in other directions as well. Those that did not (Majestic as purely Game as Story, Motor City Online as pure Game as Simulation) failed in spite of very high initial interest and even flawless technical implementation.<P>The problem comes from thinking of the players of being a <i>specific</i> type of player, only interested in a specific type of gameplay. This simply isn't accurate; the same player may play in entirely different ways at different times. He may simply be following a whim to do something different (checking out Tradeskills because she can't find any of her friends), or doing one thing in order to make it possible to do another (playing a passive character on a raid so she can participate with the group and be part of what they are doing), or simply see the two as integral parts of some other project (doing tradeskills to make the money to pay for the guildhall so the guild has a place to display the trophies that come from the battles that are the &quot;real&quot; reason for playing). Players get different things from the games at different times, and need to be able to gradually shift their activities without having to leave the game entirely.
+
+							<P>
+
+What is needed is a more wholistic approach, what I would call "Game as
+World" (a term I'm stealing from Raph Koster and redefining for my own
+purpose), where the players are presented with a spectrum of activities in
+which they can partake. Game designers need to take a cold-blooded look at
+their own work and recognize where they are leaving holes, because it is
+through those holes the game will leak subscribers. Do not ignore the
+balance of advancement systems in your game because "Our players aren't here
+for treadmills, they like our story." Don't fail to provide a social
+environment because "What our players want is to race cars, not talk about
+it."  Yes, if you get 3 game developers in the same room you'll have 4
+opinions on what makes a good game, and you need to listen to all 5 of them
+and understand how they do or do not fit into the world you're creating.
+Players want it all, and if you don't give it to them someone else will.
+
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Engines of Creation</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="engines-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=78"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=78"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+							<p></p>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

@@ -1,0 +1,223 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Tech Paper</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<p><img src="nav/tnav_generic.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_generic"><map name="tnav_generic"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="bulksystem.html#"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			</p>
+			<p>
+				<table border="0" cellpadding="2" width="90%" height="90">
+					<tr>
+						<td valign="top">
+							<h2><font face="Verdana,Arial,Helvetica"><img src="../artwork/filler_foodstuffs.gif" width="90" height="525" align="right" border="2" hspace="10" vspace="10">The Skotos Bulk System</font></h2>
+							<p><font face="Verdana,Arial,Helvetica"><b>Models of a Physical World</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">All multiplayer interactive fiction games model the physical world in simplified ways. These models prohibit character actions that should not be possible. Without such prohibitions players' suspension of disbelief would be broken.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Most of these systems have a model for bulk. These models might have a variety of results from limiting item storage (i.e., limiting character inventory) to modifying character abilities (i.e., reducing stamina).</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Some systems also model dimensionality, allowing objects to have a size. These models determine whether items can fit in containers (or rooms) or describe the size of items relative to one another.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Approaches</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Many multiplayer interactive fiction systems take a minimalist approach to modeling the physical world.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">In the simplest model of bulk, items are given a mass and containers are given a maximum mass. This is easy for players to understand. However, differing densities cause paradoxes such as a feather pillow taking up the same amount of space in a container as a gold coin.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Most systems extend this model to give items a bulk and containers a maximum bulk. Again, this is easy for players to understand. It also doesn't require much extra work by the world builder. However inconsistencies still crop up that undercut the realism of the simulated world.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">A few systems have drastically increased the number of physical attributes of an item. This results in more realistic physics but also produces a very complex model. World builders must put more effort into each item. Inconsistencies and errors are common.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Problems Solved by the Skotos Bulk System</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">A chatroom wouldn't require a complex bulk system. However in a fully featured game players will inevitably encounter complex situations involving bulk. The Skotos Bulk System models tricky situations such as:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Large winged dragons trying to get into houses. The dragon would not fit through a small door (without destroying it and, possibly, the house).</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Multiple swords being shoved into a scabbard. A scabbard would be designed to fit a specific variety and size of sword. And, a player could stuff a scabbard with cotton in order to fit a smaller weapon like a dirk (or a banana).</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Objects being pushed through small holes. A rope could be fed through a small hole into a large cave. Sadly an elephant would not fit through the same hole.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">People of different size contesting for seating room. A particular oak bench might be able to seat two ogres, four humans, or six dwarves.</font>
+							</ul>
+							<h2><font face="Verdana,Arial,Helvetica">Summary of the Skotos Bulk System</font></h2>
+							<p><font face="Verdana,Arial,Helvetica" size="2">The Skotos Bulk System is built on ten attributes based on physical values and one attribute which is used for relative dimensionality. Three of the physical values are calculated.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">The three basic physical values are:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Mass ( kilograms [kg] )</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Density ( 1000 * kg/m^3 )</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Longest Dimension ( meters [m] )</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Four additional values are used primarily for containers:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Capacity ( cubic meters [m^3])</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Max Weight ( kilograms [kg])</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Max Depth ( meters [m])</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Max Entrance Area ( square meters [m^2])</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2">The three derived physical values are:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Minimum Volume ( cubic meters [m^3])</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Actual Volume ( cubic meters [m^3])</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Minimum Frontal Area ( square meters [m^2])</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2">It should be noted that the derived values can produce approximations that aren't quite correct. The idea is to arrive at a good compromise between data entry and realism.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">In addition there is one special purpose attribute:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Relative Size ( percentage )</font>
+							</ul>
+							<h3><font face="Verdana,Arial,Helvetica">Basic Attributes</font></h3>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Mass</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: kilograms [kg]</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Mass measures the amount of matter in an object. It's the simplest physical measurement.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>A huge iron kettle will have a mass of 30 kg.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>A wooden staff would have a mass of 1 kg.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Density</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: 1000 * kg/m^3</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Density affects the compactness of an object. World builders choose density from a list of materials.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">The densities of some common materials are:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Wood 0.7</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Water 1.0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Iron 7.8</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The iron kettle has a density of 7.8.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The wooden staff has a density of 0.7.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">A commonly used alternative to density is _specific gravity_, the dimensionless ratio of an object's density to that of water. Thanks to of our choice of units, where one cubic meter of water weighs 1000 kg, density and specific gravity are equal in value.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Longest Dimension</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: meters [m]</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Longest Dimension is the greatest of the object's x, y, and z dimensions.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The cauldron is a hemisphere with a 0.5 meter radius. Its longest dimension is its width (or diameter); 1 meter.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The wooden staff has a longest dimension of 2 meters (its length).</em></font></p>
+							<h3><font face="Verdana,Arial,Helvetica">Basic Container Attributes</font></h3>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Capacity</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: cubic meters</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Capacity is the total volume an item can hold or carry; containers are the object which most often use this value. A non-container may list capacity to denote &quot;dead space&quot; inside an object.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Capacity</strong> limits the <strong>Actual Volume</strong> that may be put in a container.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The huge iron cauldron has a capacity of 0.26 cubic meters. (This figure was actually derived because of our understanding of the cauldron's shape. The volume of a sphere = 4/3 * pi * r^3 = 4/3 * 3.14 * .125 = .52. The cauldron is only half a sphere, so the capacity is determined to be .26 cubic meters. Other calculations, guesses or real examples would be required for other types of objects.)</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The wooden staff has a capacity of 0.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Max Weight</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: kilograms [kg]</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Maximum weight is how much a container can hold until it bursts, rips, cracks, or whatever. (The Skotos system currently assumes common sense and will stop all attempts to overflow a container.)</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Max Weight</strong> limits the <strong>Mass</strong> that may be put in a container.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The huge iron kettle could hold a great deal of weight (500 kg).</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The wooden staff can hold nothing (0 kg).</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Max Depth</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: meters [m]</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">The maximum depth measures how big of an item can fit inside of a container.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Max Depth</strong> limits the <strong>Longest Dimension</strong> of what may be put in a container.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The huge iron kettle would have a max depth the same as its height, .5 meter.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The wooden staff has 0 max depth.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Max Entrance Area</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: square meters [m^2]</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Usually this value defines the opening of a bag or chest, but it also works when describing sizes of doors or openings to other areas. Max entrance area is actually an attribute of a detail which belongs to an object. This makes it simple to model an object with multiple entrance: there are multiple entrance details, each with max entrance area defined.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Max Entrance Area</strong> limits the <strong>Minimum Frontal Area</strong> of what may be put in a container.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The iron cauldron has a circular entrance with a diameter of 1 meter. The max entrance area is thus equal to area of the circle, which is = pi * r^2 = 3.14 * .5^2 = 3.14 * .25 = .79 square meters. We could compute this figure precisely because we knew the cauldron's shape; other objects would vary.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The wooden staff is not a container and has no entrances.</em></font></p>
+							<h3><font face="Verdana,Arial,Helvetica">Derived Attributes</font></h3>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Minimum Volume</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: cubic meters [m^3] Calculation: mass in kg / (1000 * density)</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">This value is the volume of the item in its most compressed form.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The minimum volume of a huge iron kettle = 30 kg / (1000 * 7.8) = 30 kg / 7800 = .00385 cubic meters.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The minimum volume of a wooden staff = 1 kg / (1000 * 0.7) = 1 kg / 700 = .00143 cubic meters.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Actual Volume</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: cubic meters [m^3] Calculation: capacity in cubic meters + minimum volume in cubic meters</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">This values define the normal volume when the object is not in its most compressed form.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The actual volume of the huge iron kettle = .26 m^3 + .00385 m^3 = .264 m^3.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The actual volume of the wooden staff = 0 m^3 + .00143 m^3 = .00143 m^3.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Minimum Frontal Area</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: square meters [m^2] Calculation: actual volume in cubic meters / longest dimension in meters</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Minimum Frontal Area is more commonly known as the smallest face of the item. It helps define what an object can fit into.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The smallest face of a huge iron kettle = .264 m^3 / 1 m = .264 m^2.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The smallest face of a wooden staff = .00143 m^3 / 2 m = .00072 m^2.</em></font></p>
+							<h3><font face="Verdana,Arial,Helvetica">Other Attributes</font></h3>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Relative Size</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Unit: percentage of &quot;expected&quot; size</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">This is the scale of an object. A relative size of 100(%) means that the object is average size when compared to the expectations of a normal, knowledgeable human. Thus relative size is independent of actual bulk: a ring, a chair, and a bed could each be relative size 100(%) if each was normal human size. The relative size system, being subjective and perceptual, is not directly derived from any of the objective attributes.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">If the relative size of an object is 0(%), then it is assumed that the average human has no ability to measure the scale of the object. Some new or unusual objects might be given a relative size of 0(%) until they become common enough for characters to compare them, at which time they would get actual size values.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">For more information on Relative Size, see &quot;Relative Size - Technical Concept&quot;</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The .5 meter tall cauldron is a little shorter than most cauldrons. Its relative size is 90%.</em></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><em>The 2 meter tall staff is about normal human size. Its relative size is 100%.</em></font></p>
+							<h3><font face="Verdana,Arial,Helvetica">Estimating Physical Attributes</font></h3>
+							<p><font face="Verdana,Arial,Helvetica" size="2">The Skotos Bulk System offers a good compromise between data entry and realism. However Skotos StoryBuilders may want to option to enter even fewer values. This might be particularly important if the StoryBuilder doesn't have particularly good ideas about all of the physical values. The Skotos Bulk System accommodates this:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">A few values are absolutely required.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">The Skotos Bulk System will guess other values.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">The Skotos Bulk System permanently stores the knowledge of which values are guessed and which have been entered.</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Entering the Required Values</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Two of the three basic physical values must be entered for the Skotos Bulk System to guess the others. <strong>Density</strong> is required. The StoryBuilder will be able to choose from a list of materials. The StoryBuilder must also enter either <b>Mass</b> or <b>Longest Dimension</b>.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">The StoryBuilder must also declare whether an object is a container or not.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">After the StoryBuilder has entered these values, The Skotos Bulk System can guess everything else.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Guessing the Other Values</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">In order to estimate physical attributes of an object based on limited information the Skotos Bulk System has to make some crude approximations.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">For a non-container the Skotos Bulk System approximates the object as a square.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">If density and longest dimension have been supplied and the object&lt;/tt&gt; is not a container:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">capacity = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max weight = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max depth = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max entrance area = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum volume = longest dimension^3</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">mass = minimum volume * 1000 * density</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">actual volume = capacity + minimum volume</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum frontal area = actual volume / longest dimension</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">relative size = 100</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2">If density and mass have been supplied and the object is not a container:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">capacity = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max weight = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max depth = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max entrance area = 0</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum volume = mass / 1000 * density</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">actual volume = capacity + minimum volume</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">longest dimension = cube root of actual volume</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum front area = actual volume / longest dimension</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">relative size = 100</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2">For a container the Skotos Bulk System has to guess how much of the actual volume is the minimum volume (i.e., the volume of the container material) and how much of the actual volume is the capacity (i.e., the volume of space inside the container material). It is presumed that capacity is typically 90% of the actual volume. In addition it is estimated that there is one entrance and it takes up all of one side of the cube.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">If density and longest dimension have been supplied and the object is a container:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max weight = based on the material given in density</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max depth = longest dimension</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max entrance area = longest dimension^2</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">actual volume = longest dimension^3</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum volume = .1 * actual volume</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">capacity = actual volume - minimum volume</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">mass = minimum volume * 1000 * density</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum frontal area = actual volume / longest dimension</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">relative size = 100</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2">If density and mass have been supplied and the object is a container:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max weight = based on the material given in density</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum volume = mass / (1000 * density)</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">actual volume = minimum volume * 10</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">capacity = actual volume - minimum volume</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">longest dimension = cube root of actual volume</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max depth = longest dimension</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">max entrance area = longest dimension^2</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">minimum frontal area = actual volume / longest dimension</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">relative size = 100</font>
+							</ul>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Labeling the Estimated Values</b></font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2">ManyStoryBuilderwill look at the estimated values and then enter their own values. The Skotos Bulk System includes features to make this simple:</font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">All estimated values are clearly labeled as such.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Whenever a new value is entered by hand, all of the estimated values are recalculated, as appropriate.</font>
+							</ul>
+							<h3><font face="Verdana,Arial,Helvetica">State of Development</font></h3>
+							<p><font face="Verdana,Arial,Helvetica" size="2">Development on the basic logic of the bulk system is nearly complete. The developer interface functionality is currently at a proof-of-concept level. Attributes such as strength and tentacle length will determine how individual characters relate to the bulk system; these checks will need to be implemented on a per game basis.</font></p>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><b>Open Issues</b></font></p>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Maximum depth defines the longest dimension of an item that can be fully inside a container. However there are many cases where it is acceptable for an item to not be fully in its container. Swords are not totally inside scabbards. Pencils do not go all the way into pencil sharpeners.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Liquids, gases, and squishy or foldable items are not yet modeled by this system. The addition of some boolean values could possibly remedy this.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">When you pick something up, should we give some additional info about it such as: &quot;It's heavy,&quot; &quot;It's unwieldy,&quot; &quot;It flops around,&quot; etc.? How about throwing in the &quot;Touch&quot; info automatically for the object?</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">In particular games, we will want to display non-metric units.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Entering additional information such as the rough shape of an object could allow for better estimations. This might be worth doing at some point.</font>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Exactly how to recalculate the estimated values when one new value is entered by hand is not clear. An algorithm tree to allow for every possibility would be complex. Currently, as many of the formulas as possible are written in a way that they will automatically recalculate correctly.</font>
+							</ul>
+						</td>
+						<td valign="top"></td>
+					</tr>
+				</table>
+			</p>
+			<p></p>
+		</center>
+	</body>
+
+</html>

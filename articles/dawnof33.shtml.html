@@ -1,0 +1,78 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #33:</b></font></p>
+							<h2>Spawning</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>December 4, 2002</i></b></p>
+							<div>
+								<div>
+									<p><i>Spawning</i> is the automated process of adding content to a game on-the-fly, in response to player needs. Typically, it is used to replace objects that have gone out of circulation (eg. mobiles that have been killed) and as an adjunct to quests.</p>
+									<p>At its most basic, it occurs simply when the game designers believe that the players <i>should</i> need it, regular as clockwork. Actually, this isn't as dumb as it sounds, because if players can safely predict when and where content is to be added then the system tends towards self-balance: spawns that are &quot;too common&quot; will attract more players to them, reducing the goodies available for each individual; spawns that are &quot;too rare&quot; will mean less competition, so more of a chance you'll get something if you do show up at the appointed hour.</p>
+									<p>This kind of designer-decreed spawning isn't exactly satisfying for players in the long run, though. Players prefer it if the game is responsive to their needs, rather than their having to be responsible to the game's.</p>
+									<p>The planning-based quest system I've outlined thus far in this series of articles doesn't, in theory, need any kind of spawning. However, in practice spawning can greatly increase the range of quests available and the time taken to set them up.</p>
+									<p>For example, a couple of articles ago I looked at how Doris the dwarf could have set up her own business. One of the preconditions to doing this was that she had more than 1,000 gold pieces. Now it's possible for the game to keep track of every single monetary transaction between non-players and therefore be able to figure out whether she has 1,000 GP or not. If this is too much work, then an alternative would be to make a general assessment of how much money she would have saved up, based on her circumstances and personality, and give her that. A third option would be simply to give her the money, on the basis that if she didn't have it there's no way that the players would accept &quot;get me 1,000 GP&quot; as a quest.</p>
+									<p>Keeping track of what money she actually has involves no spawning; giving her an estimate of what money she has does involve spawning, but only of what she implicitly has anyway; giving her the money whether she's entitled to it or not is out-and-out spawning.</p>
+									<p>In the game world, implementing spawning to make implicit information explicit is defensible. If no-one has been in this neck of the woods before, then maintaining a population of mobiles for the several weeks beforehand would have been a waste of computer resources. Keeping track of which goblins are pregnant, when they give birth and when their offspring reach maturity is also a waste of time: it's far better simply to hide all this behind the scenes and produce goblins approximately when they would have appeared had the full system been implemented.</p>
+									<p>Spawning objects simply to make a quest exist is less defensible in terms of consistency of the game world, although it can often be justified from the point of view of improving gameplay. If &quot;my daughter has been kidnapped by bandits&quot; then this had better be bandit country rather than a sleepy heartland farming community, and the bandits had better be somewhere the player hasn't just walked past and seen no signs of life in.</p>
+									<p>The way this is implemented in terms of quests is via a hardwired action. The mobile needs to satisfy a precondition of perhaps <code><i>X </i>has been captured by <i>Y</i></code>, which it could do by executing a <code>spawn <i>X</i> captured by <i>Y</i></code><i> </i>action. Being hardwired, it can have flavour text hardwired alongside it, in case awkward players ask &quot;how did bandits capture your daughter?&quot;. Another way to do it would be to spawn daughter and bandits separately in response to separate preconditions concerning what has been taken and who has taken it.</p>
+									<h3>A problem with spawning</h3>
+									<p>There is a major difficulty with this kind of spawning.</p>
+									<p>People can go around pressing quest-dispensers' buttons and accepting quests, but not actually complete them. This can either be deliberate or accidental - you may decide that the quest is too hard, or you may be killed attempting it, for example. In order to stop the game from becoming choked with quests, there has to be some kind of clean-up mechanism for ones that are abandoned. This entails their having a time limit (so the game knows when they're formally finished) and that everything that has been spawned can be unspawned.</p>
+									<p>Unspawning isn't easy. A player desperately trying to kill a pack of wolves in order to finish a quest on time would to notice were the pack suddenly to evaporate when the clock struck midnight. They'd also be cross if the sword they'd won fair and square in an earlier part of the quest were to disappear the moment no-one was looking at it.</p>
+									<p>In simple worlds, the problem is tractable. Objects to be kept can be given a property of resistance to unspawning, and objects to be unspawned can be flagged to do so on the next &quot;get rid of useless objects if no-one can see them&quot; pass of the database.</p>
+									<p>In more sophisticated worlds with a better idea of physics, there may be knock-on effects that cannot reasonably be undone. If a dragon starts a forest fire and the player bursts a dam to try to extinguish the flames, then when the quest ends the dragon can be removed but what about the forest fire? Or the flood? Or the secondary fires that started when the forest fire reached the village? Or the mobiles that were trapped in the forest and burned to death?</p>
+									<p>If you've spawned an asteroid to hit the game world, unspawning it is going to be impossible...</p>
+									<p>Next article, I finish this series on quests by examining how human designers can use automated quests as tools to help them design bigger and better quests themselves.</p>
+								</div>
+							</div>
+						</div>
+						<div align="left">
+							<div class="Section1">
+								
+							</div>
+						</div>
+						<div align="left">
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+									</tr>
+								</table>
+								<p></P>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

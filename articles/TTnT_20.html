@@ -1,0 +1,127 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="../artwork/articles_TTnTlogo.gif" width="215" height="50" align="BOTTOM" alt="masthead" border="0">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<h2><font face="Verdana,Helvetica,Arial"><a href="TTnT.shtml.html"><img src="nav/snav_ttnt.gif" width="137" height="371" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#20: Hobgoblins, Part Two</b></font></h2>
+						<p><font face="Verdana,Helvetica,Arial" size="2"><i><b>by <a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></font>
+						<p><font face="Verdana,Helvetica,Arial" size="2"><b>February 8, 2001 &#150;</b> &quot;Lack of consistency is the hobgoblin of online games.&quot; That's the conclusion that I came to last week, and you can put it in your quotes dictionary right next to Emerson.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Though I have some other things that I'm dying to write about (including dreams, plots, change, self-sacrifice, identity, and redemption), I'm going to be good and follow my mantra. I'm going to talk about consistency again this week, consistently staying to the course I laid out. We'll get to that other stuff in seven days, I promise.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">So, <i>consistency</i>. If you haven't already read my <a href="TTnT_19.html">last article</a> go do so now, to get the ground work on this topic. As a quick reminder, last week I talked about the weird implementation of verbs in online prose and how it can lead to inconsistency. There's another place where consistency really matters in online prose games, and that's in <i>inheritance</i>. This week I'm going to explain exactly what inheritance is, how it works, and how we can be inconsistent in its use. I hope the whole exercise will be eye opening for potential StoryBuilders and interesting for everyone else, because I'm going to expose a little bit of the guts of our system.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">If you're bored by the technical details, go ahead and skip to my <a href="TTnT_20.html#general">general thoughts</a>. And then, next week I'll be back to substantially less techie topics.</font>
+						<p><b><font face="Verdana,Helvetica,Arial" size="2">The Problem with Definitions</font></b>
+						<p><font face="Verdana,Helvetica,Arial" size="2">So what is inheritance? It's a creation method that's related to <i>objects</i>. Which I'll need to take a step back and explain.</font>
+						<p><i><font face="Verdana,Helvetica,Arial" size="2">(For the tech heads out there, let me say that the objects I'm referring to here aren't quite the same thing as the objects you'd find in OOP.)</font></i>
+						<p><font face="Verdana,Helvetica,Arial" size="2">In the Skotos StoryBuilder Server every discrete <i>thing</i> is an object. That's to say each thing is an individual unit that's defined in certain, common terms and can be interacted with by certain, common methods.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Everything you see in Castle Marrach is an object. A sword, a pin, a dress &#150; all objects. A cat, a rat, a shadow &#150; all objects. The Dining Hall, the Grand Hall, your Guest Room &#150; all objects. Sir Launfal, the Queen, you &#150; all objects.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Beyond these physical objects, we have a lot of intangible objects too. Social verbs like hug, kiss, and cry are objects. So are adverbs such as slyly, happily, and merrily. So are the help files and the tip files and even the error messages for action verbs.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Each object is made up of certain individual attributes. A sword, for example, has a look description and a brief description and a weight and a length. It has details too, like a guard and a hilt and a pommel.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Making everything in the world into an object lets us view things in a much more abstract way. We can now look at two objects, say Sir Launfal and Sir Boreas, and see that they actually have a lot of attributes in common. They both have feet and legs and knees, for example. And, the descriptions of those particular details might be identical for these two characters.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">When considering how much similar objects have in common, we begin to realize that its pretty silly to rewrite all of those common details every time you create a new object (in this case, every time we create a new person). So, we try and figure out a way to link together similar objects.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">And <i>that</i> is where inheritance comes in.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">With inheritance, we would create a parent object that's used by all &quot;Men&quot; (maybe; there's variations as we'll see below). We'd put all of the common information in that parent object. Then, we'd create children objects which inherit from that object. In our above example we'd create Launfal and Boreas as children of our &quot;Men&quot; object. They inherit all of the common information from the parent object. If &quot;Man&quot; has &quot;ordinary&quot; knees, then both Boreas and Launfal have &quot;ordinary&quot; knees. A little restrictive it seems. What is Launfal or Boreas should have &quot;unordinary&quot; knees? There's more. Each child object can &quot;overload&quot; data it inherits from its parent. This means the child can replace some specific information with its own local data. Say Boreas had &quot;hairy&quot; knees. We'd put the &quot;hairy knees&quot; attribute in Boreas, the child object, and that would overload the &quot;ordinary knees&quot; in the &quot;Man&quot; object.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Easy. We get all of the standard information from the parent, then we change any information we want in the child.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Much of what we've talked about so far is called &quot;data inheritance&quot;. This is when you inherit some attribute or other information from a parent. In our games, you might inherit a description or a detail.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">There's another type of inheritance too: &quot;method inheritance&quot;. This is when you inherit <i>how</i> to do something. In a prose game like ours, an object could inherit how to do something via method inheritance (a person might inherit the &quot;walk&quot; and &quot;talk&quot; methods; a frying pan might inherit the &quot;cook&quot; method) or how to react to something via method inheritance (a log could inherit the how-to-react-to-burning method; a trombone could inherit the how-to-react-to-playing method).</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Whew. Summary:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Two types of inheritance. Data and Method.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Via inheritance children objects can get data or methods from parent objects.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Data inheritance means an object inherits specific information, such as a description, a weight, or some other attribute.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Method inheritances means an object inherits how to do something, such as a verb or reaction to external stimuli.</font>
+						</ul>
+						<p><font face="Verdana,Helvetica,Arial" size="2">So, how can inheritance cause inconsistency?</font>
+						<p><b><font face="Verdana,Helvetica,Arial" size="2">The Problem with Inheritance</font></b>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Before I try and answer this question, I want to talk about how inheritance has been done in MUDs. The problems will quickly become obvious.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Traditionally there have been two inheritance methods in MUDs: none and chaotic. I'll briefly run through each of these, then talk about how we're doing it at Skotos and what challenges we still face.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">The oldest MUD, including MUD <sup>(<a href="TTnT_20.html#footnote">1</a>)</sup> and AberMUD, didn't do inheritance at all. Each object was totally separate. If you wanted to make two similar objects you'd do it by copying the attributes and methods from a similar object and changing them ... or more likely you'd just ignore older objects all together and just create what made sense to you.</font>
+						<div align="center">
+							<p><img src="artwork/TTnT20_emud.gif" width="385" height="68" border="0" alt="diagram">
+						</div>
+						<p><font face="Verdana,Helvetica,Arial" size="2">This way of doing things provided for zero consistency. Players would have no guarantees that similar items would look or work the same. You might be able to cook with frying pans but not pots. Likewise, since the correlation between items was so poor, you had no guarantee that similar items would be related in the correction proportions. Daggers might be more damaging than swords (And, in fact, when I used to play AberMUD this was a noticeable issue.).</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">C++ and OOP started becoming popular among programmers in the 1980s and they brought with them the whole idea of objects and inheritance. Thus later MUDs, starting with LPMUD, started to make good use of inheritance. In fact, they dove headfirst into inheritance without looking back. You could build trees of objects, with each object inheriting appropriate methods and attributes from its parents.</font>
+						<div align="center">
+							<p><img src="artwork/TTnT20_lmud.gif" width="549" height="159" border="0" alt="diagram">
+						</div>
+						<p><font face="Verdana,Helvetica,Arial" size="2">As you can, huge trees would developed, and they'd offer a lot of very useful correlation. It makes sense that Ham and Bacon are very closely related and that Ham and Hamburger are fairly closely related and that Hamburger and Cereal have some features in common. That's all represented by this tree and thus by the methods and attributes inherited.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">But, unfortunately, the structure of the tree is <i>totally</i> arbitrary. We gain some consistency because similar objects will usually have similar attributes and methods, but we don't resolve the issue totally, because similar objects might actually end up far apart on our inheritance tree &#150; just by chance or by people thinking about things in different ways.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">In my example above, <b>Weapons</b> is a class that describes what its children do (hurt people) and <b>Smithery</b> is a class that describes what its children are made of (metal). The classes were probably created by different people with different ideas of how the world works ... and we ended up with a situation where swords could be found in two locations. Because they're far apart in the inheritance tree, a longsword and a broadsword may actually be very different items. And, they may work in very different ways. The inheritance of both data and methods begin to fall apart as our inheritance tree increases in size.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">This isn't just a terrible example that I'm demonstrating. This <i>always</i> happens in inheritance trees of objects, particularly when you have a bunch of designers all working together on the same tree. In a real inheritance tree for a real game you might end up with weapons in a half-dozen places, with most people not knowing where most of the weapons are. Thus, not only do you end up with massive inconsistency, but you also end up with lots of redundant work.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">In Skotos games, we've done our best to start resolving the issue of inconsistent inheritance while still maintaining the power of the concept.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Our first attempt to fix the consistency problems with inheritance isn't particularly inventive. We did two things:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">We restricted data inheritance to one level.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">We largely got rid of method inheritance. We defined huge classes of objects (e.g., all physical objects, all help files, etc.) and determined that all objects in that class would use the same methods.</font>
+						</ul>
+						<div align="center">
+							<p><img src="artwork/TTnT20_1d.gif" width="333" height="87" border="0" alt="diagram">
+						</div>
+						<p><font face="Verdana,Helvetica,Arial" size="2">This resolves several problems.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">First, it allows us to use the global verbs that I mentioned last week. Methods are global (to a very large class of objects) and thus verbs for interacting with objects are global. Even better, all objects will react to all stimuli. You could use a teapot as a weapon (though an ineffective one). You could try and burn your dirk (unlikely) or eat your longsword (ouch!).</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Restricting data inheritance to one level resolved much of the problem of inconsistent trees &#150 because those inconsistencies usually happen when you get a few levels into a tree. However, it also creates inconsistencies because we have to constantly remake items. Sure, our longsword and broadsword will be guaranteed similar because they both descend from <b>Sword</b>, and sure all of our weapons will have the same methods for reacting to combat, but our Broadsword and Dirk <i>aren't</i> guaranteed to be consistent in detail because they don't have a common parent.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Let me offer an in-game example. All male characters have the same parent that they inherit from. It's called the UrMale (&quot;Ur&quot; is a word meaning generic; it's kind of like a platonic ideal). Likewise, all the female characters have the same parent that they inherit from. It's (cleverly) called UrFemale. All characters of both sexes can do the same things, because verbs are global, and they can all react to the same things, because methods are global.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">But there's no link between the attributes and details of UrMale and UrFemale.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Just because a man has a waist doesn't mean a woman will have a waist (or an arm, or a head, or an eye.).</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Oh, we're very careful to keep the UrMale and the UrFemale synced, but there's no system that enforces it. And I know that we've already gotten sloppy with some of our others parallel Ur objects, such as the UrOutside and UrInside objects that we use as parent objects for some of our rooms in Marrach. (Want to know why you can almost always find the &quot;center&quot; or a room inside or why you can almost always interact with the &quot;wind&quot; outside? It's because they're built into Ur rooms.) These two Ur objects should be very similar because they both represent rooms ... but again there's no guarantee that they'll stay synced.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">To better resolve some of these issues we're in the process of expanding our data inheritance system into two-dimensional inheritance, or property-based inheritance. The idea is that all inheritance is only one-level deep, as in the diagram above, but that we inherit the basic form of the object from an Ur object &quot;above&quot; and that we inherit certain properties of the object &#150; like color, substance, and quality &#150; from attribute descriptions &quot;to the left&quot;. (In a certain sense, an object can have lots of different parents that it inherits from, each offering attributes of very specific types).</font>
+						<div align="center">
+							<p><img src="artwork/TTnT20_2d.gif" width="177" height="144" border="0" alt="diagram">
+						</div>
+						<p><font face="Verdana,Helvetica,Arial" size="2">It's a little more complicated then the one-dimensional inheritance tree, but it allows for some more complex possibilities.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">So, looking at our earlier problems:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">We have no problems with methods inheritance because we make those method global.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">We can maintain a high level of data consistency by carefully inheriting the shape and important attributes of an object.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">By keeping inheritance to one-level we avoid complex structures that hurt consistency.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">But we still have some problems with maintaining relationships between our objects. There's no guarantee that a longsword will be better than a dirk.</font>
+						</ul>
+						<p><font face="Verdana,Helvetica,Arial" size="2">So again I have to offer the same advice I did to StoryBuilders last week: <b><i>Be aware of consistency problems (regarding inheritance) and try and keep your inheritance clean and consistent.</i></b></font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">And <i>that</i> is the end of my delving into highly technical issues in order to make a point ... for now at least.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2"><a name="general"></a><b>The Problems with StoryBuilding</b></font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Over the last two weeks I've investigated two systems that interested me &#150; verbs and inheritance. In each case the systems highlighted consistency problems. In truth there can be consistency problems in <i>anything</i> you do with online game design, so it's a problem that you have to be constantly aware of.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Here's a few more places where inconsistency can hamper your online games:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>Room descriptions.</b> Is everything written in the same voice? Is the level of description the same for all briefs / looks / examines?</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>Language.</b> Is your use of language the same throughout or do armor and gray mix with armour and grey?</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>Danger level.</b> Is similar warning always given for similar danger? Or, might an ancient red dragon be a pussycat in part of your world and a deadly opponent in another?</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>Reward level.</b> Within reason, does similar danger usually result in similar reward? Or, can killing a cow give you 100 gold while killing that ancient red dragon (the mean one) only gives you a few coppers?</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>StoryTelling.</b> Do different StoryTellers have the same criteria for doing things? Do some StoryTellers give out tons of help to players while others ask them to get along on their own?</font>
+						</ul>
+						<p><font face="Verdana,Helvetica,Arial" size="2">The list goes on. Some may even be worthy of future columns on their own.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">Just be aware of the basic maxim which I already suggested last week: <b><i>Consistency matters.</i></b></font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">See you in 7 when I'll tell you about my second dream of Castle Marrach ... and what it got me thinking about.</font>
+						<hr>
+						<ol>
+							<li><font face="Times New Roman,Georgia,Times"><a name="footnote"></a></font><font size="2" face="Times New Roman,Georgia,Times">8/15/01. I've since learned that the original MUD <i>did</i> do inheritance. Richard Bartle says, &quot;It did have a very limited form [of inheritance], which happens to coincide exactly with the Skotos Mark 1 Data Inheritance model, ie. inheriting data at one level deep. I could (and did) define a class such as GOBLIN and then have GOBLIN1 through GOBLIN10 as instantiations of that class.&quot; I'll still stand by my &quot;Early MUD Inheritance&quot; diagram as an example of the simplest form of (non)inheritance, in general... and it matches my memory of messing around with AberMUD in the late 1980s. <i>&#150; SA</i></font>
+						</ol>
+						<p></p>
+						<div align="center">
+							<table border="0" cellpadding="0" cellspacing="2" width="90%">
+								<tr>
+									<td valign="middle"><a href="http://www.skotos.net/forum/showthread.php?threadid=297"><img height="59" width="224" src="../artwork/youropinion_btn_alt.gif" border="0" alt="your opinion..."></a></td>
+									<td valign="middle">
+										<p><font face="Verdana,Arial,Helvetica" size="1"><a href="http://www.skotos.net/forum/showthread.php?threadid=297"><b>Are you interested in TT&amp;T articles like this one which discuss how we do things technically in Castle Marrach? </b></a></font></p>
+									</td>
+								</tr>
+							</table>
+							<p>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

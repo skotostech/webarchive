@@ -1,0 +1,382 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Tech Paper</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_generic.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_generic"><map name="tnav_generic"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="XMLCore.html#"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="98%">
+				<tr>
+					<td valign="top">
+						<h2><font face="Verdana,Arial,Helvetica"><img src="../artwork/filler_nightwalls.gif" width="106" height="522" align="right" border="2" hspace="10" vspace="10">XML: The Core of the Skotos StoryBuilder Server</font></h2>
+						<p><font face="Verdana,Arial,sans-serif" size="2"><b>Whys, Hows, and Wherefors</b></font></p>
+						<p><font face="Verdana,Arial,sans-serif" size="2">There's a new buzz word going around the Internet community right now. It's XML, which is short for the eXtensible Markup Language. It's a close cousin to HTML, the markup language at the heart of most Internet web pages.<br>
+								<br>
+								The Skotos StoryBuilder Server is built upon XML. Whenever a StoryBuilder creates anything &#150; be it an object, like a person, place or thing, or a part of speech, like a verb or an adverb, or even a help file &#150; an XML file is created. StoryBuilders can choose to edit the raw XML files or they can choose to use slightly prettier web-based interfaces &#150; but in either case, it's always there.<br>
+								<br>
+								
+								There are a number of documents available on XML &#150; from books to websites. <a href="http://dir.yahoo.com/Computers_and_Internet/Data_Formats/XML/" target="_blank">http://dir.yahoo.com/Computers_and_Internet/Data_Formats/XML/</a> offers a good starting point. Rather than trying to explain the format, this article talks about our reasons for adopting it and how we've modified the basic ideas, and also give an example of our usage.<br>
+								<br>
+								<b>XML: Why</b><br>
+								<br>
+								
+								
+							Skotos Tech isn't using XML because it's sexy, nor because it will allow us to communicate with other companies running XML, nor because it might help us getting funding. These factors aren't particularly relevent to the online gaming industry.<br>
+								<br>
+								Instead, we are using XML because it precisely meets our goals as a company. We want to make the creation of online games very accessible to game designers who aren't programmers. By the end of 2001, we want to become a GeoCities or an EditThisPage, but for online games. We want to empower users who couldn't otherwise create massively multiplayer online games by providing them with a simple method to do so &#150; and XML allows that.<br>
+								<br>
+								
+								
+							With our XML-backed StoryBuilder Server, game designers will be able to create very complex objects and add additional behaviors to objects without engineering assistance. However, we feel that the advantages of XML don't stop there. It offers us numerous other perks:</font>
+						<ul>
+							<li><font face="Verdana,Arial,sans-serif" size="2">XML will allow consistency. Everything in our games is an object, and every object can be represented in XML.</font>
+							<li><font face="Verdana,Arial,sans-serif" size="2">XML can easily be parsed and then output via web forms. This gives designers an even simpler way to develop their game.</font>
+							<li><font face="Verdana,Arial,sans-serif" size="2">XML objects can be exported from one game server and imported to another. This is crucial because we expect to have tens of games sharing the same core libraries.</font>
+							<li><font face="Verdana,Arial,sans-serif" size="2">XML can be edited offline. Thus, a constant, high-speed connection to the net is not required for our game designers.</font>
+							<li><font face="Verdana,Arial,sans-serif" size="2">XML is ... extensible. We've already created a very simple programming language in XML that we call Active Markup; it supports &lt;if&gt;&lt;/if&gt;, &lt;foreach&gt;&lt;/foreach&gt; and other simple commands. We've also begun to implement XML-RPC, which will allow one game server to talk to another directly.</font>
+						</ul>
+						<p><font face="Verdana,Arial,sans-serif" size="2"><b>XML: How<br>
+								</b><br>
+								
+								
+							Though we have used XML as a general model, we haven't stuck rigidly to the XML specifications. Instead, we've struck a middle ground which we think is ideal for our games. A few notes on how our XML differs from the specs:<br>
+								<br>
+								<i>Headers &amp; DTD.</i> We don't at this point do all the proper header things for the top of a standard XML file, such as xmlns:edi='http://www.skotos.net/schema'.<br>
+								<br>
+								
+								
+							In addition, we don't use proper DTDs internally. We didn't like DTDs when we started because they themselves could not be described in XML, so instead we created something we call the SID (State Information Database).<br>
+								<br>
+								The SID <i>is</i> in XML and serves a similar purpose to DTDs. SID is an explicitly objectstate-oriented expansion of the DTD concept. It include a variety of useful information, including what functions are called to populate the data tags. Now that some schema proposals are reaching maturity we'll consider switching out SID at some point and using one of them instead.<br>
+								<br>
+								<i>Attributes</i>. Since we have a lot of people editing the XML by hand, we use attributes more than seems to be the norm with XML.<br>
+								<br>
+								
+								For example, a fairly standard XML tag in our system would be:</font></p>
+						<pre><font size="-1">&lt;description type=&quot;brief&quot;&gt;
+    frog
+&lt;/description&gt;</font></pre>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The standard approach seems to be:</font></p>
+						<pre><font size="-1">&lt;description&gt; 
+  &lt;type&gt;
+      brief
+  &lt;/type&gt; 
+  &lt;content&gt;
+      frog
+  &lt;/content&gt; 
+&lt;/description&gt; </font></pre>
+						<p><font face="Verdana,Arial,Helvetica" size="2">To be honest, we're not precisely sure why others do things the latter way.<br>
+								<br>
+								<i>And Other Stuff</i>. Though we're using the basic ideas of XML, we haven't poured over the XML specs in ultimate detail. We don't actually <i>need</i> to comply to the XML specs. Thus there may well be other things we do in our system that's off-spec.<br>
+								<br>
+								<b>XML: An Example<br>
+								</b><br>
+								Our first online game, <a href="../games/marrach.html" target="_top">Castle Marrach</a>, had its beta launch on September 21, 2000. It includes over 10,000 XML-described objects and ultimately may handle 100,000 or more objects.<br>
+								<br>
+								Below is the XML of a fairly simple item in Castle Marrach &#150; a sword. Other objects, especially rooms and players, can be much more complex. This sword is a fairly accessible example.<br>
+								<br>
+								Note that the sword contains descriptions for a number of different &quot;details&quot; that the players can investigate. Besides the prime detail (the sword), there's a blade, a grip, a guard, and a pommel. In addition, a number of names and adjectives are supported for each detail. There's also information on allowable prepositions (other objects may be put &quot;near&quot; the sword, but not &quot;under&quot; it), weight, combat stats, and much more.<br>
+								<br>
+								And the whole thing is readable to a non-programmer, especially if parsed into web forms, which was the whole point of the exercise.<br>
+								<br>
+							</font></p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<pre>
+<font size="-1">&lt;object id=&quot;OBJ(Marrach:Props:sword-solaris)&quot;&gt;
+&lt;context/&gt;
+&lt;Base:Thing&gt;
+  &lt;Ur:UrObject/&gt;
+  &lt;Base:Misc gender=&quot;neuter&quot; volition=&quot;false&quot; weapon=&quot;true&quot;&gt;
+    &lt;Base:Edible value=&quot;false&quot;/&gt;
+    &lt;Base:Potable value=&quot;false&quot;/&gt;
+    &lt;Base:ClothesExpected value=&quot;false&quot;/&gt;
+    &lt;Base:DieMessageFirst/&gt;
+    &lt;Base:DieMessageThird/&gt;
+  &lt;/Base:Misc&gt;
+  &lt;Base:Events/&gt;
+  &lt;Base:Details&gt;
+    &lt;Base:Detail id=&quot;sword-solaris&quot; prime=&quot;true&quot; def=&quot;false&quot; abstract=&quot;false&quot;
+hush=&quot;0&quot;&gt;
+      &lt;Base:Preposition close=&quot;true&quot; against=&quot;true&quot; under=&quot;false&quot; on=&quot;true&quot;
+inside=&quot;false&quot; near=&quot;true&quot; over=&quot;false&quot; behind=&quot;false&quot; before=&quot;true&quot;
+beside=&quot;true&quot;/&gt;
+      &lt;Base:Names&gt;
+        &lt;Base:Name sname=&quot;sword&quot; pname=&quot;swords&quot;/&gt;
+        &lt;Base:Name sname=&quot;weapon&quot; pname=&quot;weapons&quot;/&gt;
+      &lt;/Base:Names&gt;
+      &lt;Base:Adjectives&gt;
+        &lt;Base:Adjective adjective=&quot;broad&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;huge&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;long&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;straight&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hand&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-handed&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hander&quot;/&gt;
+      &lt;/Base:Adjectives&gt;
+      &lt;Base:Descriptions&gt;
+        &lt;Base:Description type=&quot;brief&quot;&gt;
+             huge two-handed sword
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;examine&quot;&gt;
+             This is a huge, straight-bladed two-handed sword, with a leather
+wrapped grip, spherical pommel, and straight guard. It is about 59 inches long
+overall. There is something inscribed on the rusty blade.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;look&quot;&gt;
+             You look at the rusty two-handed sword.
+        &lt;/Base:Description&gt;
+      &lt;/Base:Descriptions&gt;
+      &lt;Base:Exit door=&quot;false&quot;/&gt;
+    &lt;/Base:Detail&gt;
+    &lt;Base:Detail id=&quot;blade&quot; prime=&quot;false&quot; def=&quot;false&quot; abstract=&quot;false&quot;
+hush=&quot;0&quot;&gt;
+      &lt;Base:Preposition close=&quot;true&quot; against=&quot;true&quot; under=&quot;false&quot; on=&quot;true&quot;
+inside=&quot;false&quot; near=&quot;true&quot; over=&quot;false&quot; behind=&quot;false&quot; before=&quot;true&quot;
+beside=&quot;true&quot;/&gt;
+      &lt;Base:Names&gt;
+        &lt;Base:Name sname=&quot;blade&quot; pname=&quot;blades&quot;/&gt;
+        &lt;Base:Name sname=&quot;edge&quot; pname=&quot;edges&quot;/&gt;
+        &lt;Base:Name sname=&quot;tip&quot; pname=&quot;tips&quot;/&gt;
+        &lt;Base:Name sname=&quot;point&quot; pname=&quot;points&quot;/&gt;
+        &lt;Base:Name sname=&quot;inscription&quot; pname=&quot;inscriptions&quot;/&gt;
+      &lt;/Base:Names&gt;
+      &lt;Base:Adjectives&gt;
+        &lt;Base:Adjective adjective=&quot;dented&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;dinged&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;huge&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;rust-covered&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;rusted&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;rusty&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;sharp&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;steel&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;straight&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;sword&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;tapered&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;tapering&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hand&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-handed&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hander&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;weapon&quot;/&gt;
+      &lt;/Base:Adjectives&gt;
+      &lt;Base:Descriptions&gt;
+        &lt;Base:Description type=&quot;brief&quot;&gt;
+             two-hand sword blade
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;examine&quot;&gt;
+             The rusty, dinged, dented steel blade of this two-handed sword is
+about 46 inches long; it has, however, been kept sharp on both edges. It has a
+flat diamond cross section without taper, and comes rapidly to a point in the
+final three inches or so. The word 'Solaris' is inscribed in archaic letters on
+the blade.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;look&quot;&gt;
+             You look at the long, rusty steel blade of the two-handed sword.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;taste&quot;&gt;
+             The blade tastes rusty and sharp!
+        &lt;/Base:Description&gt;
+      &lt;/Base:Descriptions&gt;
+      &lt;Base:Exit door=&quot;false&quot;/&gt;
+    &lt;/Base:Detail&gt;
+    &lt;Base:Detail id=&quot;grip&quot; prime=&quot;false&quot; def=&quot;false&quot; abstract=&quot;false&quot; hush=&quot;0&quot;&gt;
+      &lt;Base:Preposition close=&quot;true&quot; against=&quot;true&quot; under=&quot;false&quot; on=&quot;true&quot;
+inside=&quot;false&quot; near=&quot;true&quot; over=&quot;false&quot; behind=&quot;false&quot; before=&quot;true&quot;
+beside=&quot;true&quot;/&gt;
+      &lt;Base:Names&gt;
+        &lt;Base:Name sname=&quot;grip&quot; pname=&quot;grips&quot;/&gt;
+        &lt;Base:Name sname=&quot;handle&quot; pname=&quot;handles&quot;/&gt;
+        &lt;Base:Name sname=&quot;leather&quot; pname=&quot;leathers&quot;/&gt;
+        &lt;Base:Name sname=&quot;wrapping&quot; pname=&quot;wrappings&quot;/&gt;
+      &lt;/Base:Names&gt;
+      &lt;Base:Adjectives&gt;
+        &lt;Base:Adjective adjective=&quot;huge&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;leather&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;leather-wrapped&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;stained&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;sword&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;tight&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;tightly-wrapped&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-handed&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hander&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;weapon&quot;/&gt;
+      &lt;/Base:Adjectives&gt;
+      &lt;Base:Descriptions&gt;
+        &lt;Base:Description type=&quot;brief&quot;&gt;
+             sword grip
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;examine&quot;&gt;
+             The grip of the two-handed sword (between the guard and the
+pommel) is about ten inches long, and tightly wrapped with stained leather.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;look&quot;&gt;
+             You look at the leather-wrapped grip of the two-handed sword.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;taste&quot;&gt;
+             The grip tastes of sweat and leather.
+        &lt;/Base:Description&gt;
+      &lt;/Base:Descriptions&gt;
+      &lt;Base:Exit door=&quot;false&quot;/&gt;
+    &lt;/Base:Detail&gt;
+    &lt;Base:Detail id=&quot;guard&quot; prime=&quot;false&quot; def=&quot;false&quot; abstract=&quot;false&quot;
+hush=&quot;0&quot;&gt;
+      &lt;Base:Preposition close=&quot;false&quot; against=&quot;false&quot; under=&quot;false&quot; on=&quot;false&quot;
+inside=&quot;false&quot; near=&quot;false&quot; over=&quot;false&quot; behind=&quot;false&quot; before=&quot;false&quot;
+beside=&quot;false&quot;/&gt;
+      &lt;Base:Names&gt;
+        &lt;Base:Name sname=&quot;guard&quot; pname=&quot;guards&quot;/&gt;
+        &lt;Base:Name sname=&quot;bar&quot; pname=&quot;bars&quot;/&gt;
+      &lt;/Base:Names&gt;
+      &lt;Base:Adjectives&gt;
+        &lt;Base:Adjective adjective=&quot;dented&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;dinged&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;huge&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;rusted&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;rusty&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;square&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;steel&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;straight&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;sword&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-handed&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hander&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;weapon&quot;/&gt;
+      &lt;/Base:Adjectives&gt;
+      &lt;Base:Descriptions&gt;
+        &lt;Base:Description type=&quot;brief&quot;&gt;
+             sword guard
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;examine&quot;&gt;
+             The guard of the sword is a rusty, dinged and dented square steel
+bar about thirteen inches long, at right angles to and between the grip and the
+blade itself.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;look&quot;&gt;
+             You look at the straight steel guard of the two-handed sword.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;taste&quot;&gt;
+             The guard tastes rusty.
+        &lt;/Base:Description&gt;
+      &lt;/Base:Descriptions&gt;
+      &lt;Base:Exit door=&quot;false&quot;/&gt;
+    &lt;/Base:Detail&gt;
+    &lt;Base:Detail id=&quot;hilt&quot; prime=&quot;false&quot; def=&quot;false&quot; abstract=&quot;false&quot; hush=&quot;0&quot;&gt;
+      &lt;Base:Preposition close=&quot;true&quot; against=&quot;true&quot; under=&quot;false&quot; on=&quot;true&quot;
+inside=&quot;false&quot; near=&quot;true&quot; over=&quot;false&quot; behind=&quot;false&quot; before=&quot;true&quot;
+beside=&quot;true&quot;/&gt;
+      &lt;Base:Names&gt;
+        &lt;Base:Name sname=&quot;hilt&quot; pname=&quot;hilts&quot;/&gt;
+      &lt;/Base:Names&gt;
+      &lt;Base:Adjectives&gt;
+        &lt;Base:Adjective adjective=&quot;dented&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;dinged&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;huge&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;rusted&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;rusty&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;simple&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;sword&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-handed&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hander&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;weapon&quot;/&gt;
+      &lt;/Base:Adjectives&gt;
+      &lt;Base:Descriptions&gt;
+        &lt;Base:Description type=&quot;brief&quot;&gt;
+             two-handed sword hilt
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;examine&quot;&gt;
+             The hilt of this two-handed sword consists of a leather-wrapped
+grip, a straight guard (between the grip and the blade) and a spherical pommel.
+The leather is stained, the metal is rusty, dinged and dented.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;look&quot;&gt;
+             You look at the simple hilt of the two-handed sword.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;taste&quot;&gt;
+             The sword hilt tastes rusty and sweaty.
+        &lt;/Base:Description&gt;
+      &lt;/Base:Descriptions&gt;
+      &lt;Base:Exit door=&quot;false&quot;/&gt;
+    &lt;/Base:Detail&gt;
+    &lt;Base:Detail id=&quot;pommel&quot; prime=&quot;false&quot; def=&quot;false&quot; abstract=&quot;false&quot;
+hush=&quot;0&quot;&gt;
+      &lt;Base:Preposition close=&quot;true&quot; against=&quot;true&quot; under=&quot;false&quot; on=&quot;true&quot;
+inside=&quot;false&quot; near=&quot;true&quot; over=&quot;false&quot; behind=&quot;false&quot; before=&quot;true&quot;
+beside=&quot;true&quot;/&gt;
+      &lt;Base:Names&gt;
+        &lt;Base:Name sname=&quot;pommel&quot; pname=&quot;pommels&quot;/&gt;
+        &lt;Base:Name sname=&quot;sphere&quot; pname=&quot;spheres&quot;/&gt;
+      &lt;/Base:Names&gt;
+      &lt;Base:Adjectives&gt;
+        &lt;Base:Adjective adjective=&quot;huge&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;plain&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;round&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;spherical&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;steel&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;sword&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-handed&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;two-hander&quot;/&gt;
+        &lt;Base:Adjective adjective=&quot;weapon&quot;/&gt;
+      &lt;/Base:Adjectives&gt;
+      &lt;Base:Descriptions&gt;
+        &lt;Base:Description type=&quot;brief&quot;&gt;
+             two-handed sword pommel
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;examine&quot;&gt;
+             The pommel of this two-handed sword is a rusty, dented steel
+sphere, about an inch across.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;look&quot;&gt;
+             You look at the spherical steel pommel of the two-handed sword.
+        &lt;/Base:Description&gt;
+        &lt;Base:Description type=&quot;taste&quot;&gt;
+             The pommel tastes rusty.
+        &lt;/Base:Description&gt;
+      &lt;/Base:Descriptions&gt;
+      &lt;Base:Exit door=&quot;false&quot;/&gt;
+    &lt;/Base:Detail&gt;
+  &lt;/Base:Details&gt;
+  &lt;Base:Bulk&gt;
+    &lt;Base:Mass value=&quot;2.3&quot;/&gt;
+    &lt;Base:Density value=&quot;7.8&quot;/&gt;
+    &lt;Base:Capacity value=&quot;0&quot;/&gt;
+    &lt;Base:LDim value=&quot;1.5&quot;/&gt;
+    &lt;Base:MaxWeight value=&quot;0&quot;/&gt;
+    &lt;Base:MaxFA value=&quot;0&quot;/&gt;
+    &lt;Base:MaxDepth value=&quot;0&quot;/&gt;
+  &lt;/Base:Bulk&gt;
+  &lt;Base:Combat&gt;
+    &lt;Base:Strength value=&quot;1&quot;/&gt;
+    &lt;Base:MaxFatigue value=&quot;100&quot;/&gt;
+  &lt;/Base:Combat&gt;
+  &lt;Base:Clothing&gt;
+    &lt;Base:Covered value=&quot;right-hand&quot;/&gt;
+    &lt;Base:SingleWear value=&quot;false&quot;/&gt;
+  &lt;/Base:Clothing&gt;
+  &lt;Base:Container&gt;
+    &lt;Base:ContainerVerbSecond/&gt;
+    &lt;Base:ContainerVerbThird/&gt;
+  &lt;/Base:Container&gt;
+  &lt;Notes:Notes/&gt;
+  &lt;Ur:UrChildren&gt;
+    &lt;Ur:UrChild urchild=&quot;OBJ(/base/obj/thing#5371)&quot;/&gt;
+  &lt;/Ur:UrChildren&gt;
+&lt;/Base:Thing&gt;
+&lt;/object&gt;</font></pre>
+					</td>
+				</tr>
+<tr><td>
+						<div align="center">
+							<a href="http://www.skotos.net/forum/showthread.php?threadid=306" target="contentframe"><img height="59" width="156" src="../artwork/youropinion_btn.gif" border="0" alt="your opinion..."></a></div>
+					</td></tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

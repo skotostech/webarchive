@@ -1,0 +1,106 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #48:</b></font></p>
+							<h2>Thinking Mechanically, Part 6: Scales and Resolution</h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										December 6, 2002</b></i></p>
+							<p>Last time, I started to talk about scaling &#151; in particular, about linear and nonlinear scales. However, whether and how a scale should be curved isn't the only issue in setting up a scale.
+<p>
+Another issue is that of centering the scale.  What should be the "average" rating in a given trait?  And, in particular, should it be possible to have a negative rating?
+
+<p>
+One answer that several paper RPGs have used is the zero-centered scale. In such a scale, zero is "average" in a trait.  Most commonly, positive scores indicate being better than average, and negative scores being worse than average.  This can work well with a resolution system in which the scores themselves are used as modifiers to a die roll.
+
+<p>Zero-centered scales are also commonly used in games which have implied traits. When all abilities are zero-centered, then one can assume that any trait which isn't recorded on a character sheet is zero &#151; that the character is average at that. Of course, one doesn't have to use a zero-centered scale for this &#151; you could assume that any trait that isn't recorded is 10, for example. But the two do often go together.
+<p>
+One question that comes up with any scale which allows negative numbers is what to put down for a character/being/whatever which has absolutely no ability in an area.  What's the strength of a ghost who can't pick <EM>anything</EM> up?  Or the agility of a sentient computer which doesn't have a robot body?
+
+							<p>
+One answer is to arbitrarily set a lower limit on scores, and use that lower limit for things which have no score in an area.  Older versions of the Champions RPG did this.  Another is to simply step outside of the rating system, and record "not applicable" or an equivalent.  In a computer system, of course, this would be a flag set on the trait.
+
+							<h3>Getting Passive</h3>
+							<p>A related problem is that of passive-only scores. This comes up in relation to opposed trait checks &#151; you can't do anything to a ghost with your strength, since you can't touch it, so there's no need to ever do a strength vs. strength check on a ghost &#151; and that's OK, since a ghost doesn't have strength.
+							<p>However, there are objects in games which may not be able to actively use certain traits, but for which you may want to give them a rating in a trait. For example, one might give a strength score to a door, so a strength vs. strength check can be made to try to break it down. But of course, the door's strength is purely passive; it can only use it to resist attempts to open it, not to actively do things. Another example is a table. It can't pick up anything, but it can hold things that someone has placed on it &#151; so it may be useful to assign it a strength score.
+							<p>
+One RPG that I've read indicated passive-only scores by placing the score in brackets, so that a human might have:
+
+							<blockquote>
+								<p><code>
+Strength:  7
+</code>
+							</blockquote>
+							<p>
+while a table might have:
+
+							<blockquote>
+								<p><code>
+Strength:  [7]
+</code>
+							</blockquote>
+							<p>I'm embarrassed to admit that I don't remember the name of the system that did this; if anyone out there knows, please remind me!
+							<p>In a computerized system, this concept of passive abilities may be even more useful than in a paper system. After all, a human GM knows that a door can't use its strength to try to knock someone down or to lift something &#151; but a computer doesn't know these things unless we tell it.
+<p>
+This setup also has a nice orthogonality to it:  things which have a trait can be acted on by that trait.  Things which do not have a trait cannot be acted on with that trait.  Things which have a trait with a passive rating can be acted on by that trait, but cannot act with that trait.  This is conceptually simple, but can actually be used to encode a fair amount of world knowledge.
+
+							<p>So far, I've been talking about scaling as if you should pick one scale, and just use it. However, that's not what most games do &#151; most have multiple scales that they use. So let's examine why one would use multiple scales for a moment.
+							<h3>Fish &amp; Lizards</h3>
+							<p>You may want to have different scales for different types of things. For example, most RPGs make a distinction between traits that almost all characters have to some extent &#151; strength, agility, intelligence, and the like &#151; and those that many people don't have at all &#151; knowledge of nuclear physics, how to play a violin, and similar things. Generally, the first type are termed &quot;attributes&quot; or &quot;abilities&quot;, and the second type &quot;skills&quot;.
+							<p>One immediate difference here is that the meaning of an average score is different. One can have strength, agility, or intelligence that's significantly above or below average. When it comes to knowledge of nuclear physics, however, the average person has essentially no knowledge &#151; they may know what it is and a few terms, but their ability to actually <EM>do</EM> anything related to nuclear physics is zero. Therefore, there's already a difference in the scale here &#151; &quot;average&quot; knowledge of nuclear physics is slight enough that there's no real meaning to having &quot;significantly less than average&quot;.
+<p>In many games, therefore, attributes and skills are rated on different scales. Attributes might be rated on a D&amp;D-style scale, with zero being &quot;no ability&quot;, 10 being &quot;average&quot;, and 18 &quot;human maximum&quot;. Skills, on the other hand, might be rated on a scale with zero being &quot;no knowledge&quot;, ten being &quot;one of the best at that skill&quot;, and with the &quot;average&quot; differing for different skills.
+							<p>
+Now, let's remember that the ultimate purpose of all these numbers is to feed into an action resolution system.  Therefore, the numbers that we use to describe traits should have some relation to how much more able they make a character to do things with that trait.  More on that later, when I get to talking about resolution systems again.
+
+							<h3>Ants &amp; Elephants</h3>
+							<p>Another reason to have different scales is when dealing with things that don't really interact directly with each other. For example, one might well want to use two different scales for measuring the running speeds of people and the interstellar flight speeds of starships. Both are measuring the same thing &#151; speed &#151; but there's no real need to compare how fast a character can run to how fast a starship can fly. (At least, usually. It might come up in a superhero game...)
+							<p>Some games simply create two different scales to do this, but there are a couple of other approaches. One is to use a single type of scale &#151; say, a logarithmic scale &#151; but to apply a &quot;hidden adjustment&quot;. That's probably best explained with an example.
+<p>
+Let's take our runner and our ship.  Say we're using a logarithmic scale, where each +10 to the speed trait means one can go ten times as fast.  (Which means that a +1 is about 1.26 times as fast.)  We might want to use a zero-centered scale, so the rating can be used as a modifier to a die roll for resolving races and the like.  So, the typical human has Speed 0.  A cheetah, able to run somewhere in the neighborhood of five times as fast, has Speed +7.  For starships, we do the same thing, but take on (ship) to indicate we're dealing with a different scale.  So an average starship has Speed 0 (ship), while a very fast one might have Speed +4 (ship).
+
+<p>
+What is that (ship), really, though?  They're both using the same logarithmic scale... which means that (ship) can be thought of as a convenient shorthand for saying, "we're subtracting some number from this speed so you don't have to deal with really big numbers."  If the average starship can go, say, 125 times the speed of light, then with the logarithmic scale we've established above, it would have a character speed rating of around 97.
+
+<p>We can, if we want, have several of these scales &#151; speed (ship), speed (car), speed (airplane), etc. And we can have a master table which indicates how they relate to one another &#151; that (ship) plus 97 is character speed, and (car) plus 8 is character speed, and so on. This helps in dealing with borderline cases; we can feel pretty safe assuming that a person isn't going to win a race against a car, but what about a gazelle? It may be useful to be able to score a gazelle's speed against both humans and cars &#151; and this sort of scaling mechanism allows you to do that when you need to.
+
+<p>
+Well, that's all on scaling.  Join me again in two weeks, for another swipe at resolution systems, as we move on through mechanics!
+
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

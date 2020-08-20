@@ -1,0 +1,119 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #28:</b></font></p>
+							<h2>Problems with Planning</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>September 25, 2002</i></b></p>
+							<div class="Section1">
+								<p>Last time, I described the basic approach used in simple AI planning systems: <i>backward chaining of goals</i>. A mobile figured out that to get a loaf of bread from a stall to a cart, it had to pick the bread up, walk to the cart, and put it down.<br>
+									<br>
+									It&#146;s simple, but it&#146;s not <i>that</i> simple...<br>
+									<br>
+									For a planning engine as I have described it, there are four main difficulties:</p>
+								<ol>
+									<li type="1">it makes a <i>linearity assumption</i> (i.e. that actions&#146; preconditions can be solved independently);<br>
+									<li type="1">it assumes the world is <i>static</i> (i.e. it won&#146;t be changed by others while the plan is being executed);<br>
+									<li type="1">it assumes no multiple, <i>conflicting goals</i>;<br>
+									<li type="1">it can be inefficient.
+								</ol>
+								For the small plans we&#146;re going to be using for generating quests, these difficulties are all tractable.<br>
+								<br>
+								As an example of where the linearity assumption fails, consider the example presented last time. The order in which the <i>conjunctive</i> goals of carrying bread and being at the cart are solved is important. It&#146;s possible for the mobile to decide it needs to go to the cart <i>before</i> it realizes it has to pick up the bread. If it did that, it would have to walk back to the stall to pick up the bread, leading to a <i>sub-optimal</i> plan:
+								<blockquote>
+									<p><code>walk from stall to cart<br>
+											walk from cart to stall<br>
+											pick up bread at stall<br>
+											walk from stall to cart<br>
+											put down bread at cart</code></p>
+								</blockquote>
+								<p>This issue can be addressed using a number of techniques, for example goal re-ordering, precondition protection or plan post-processing. I don&#146;t envisage that in practice it would happen all that often in a quest generation system, though, because the goals and actions are so wide and varied. Besides, people make this kind of mistake all the time anyway. As far as handling the linearity assumption is concerned, therefore, a reasonable solution is probably not to worry too much about it..!<br>
+									<br>
+									Ah, yes, I did say &#147;I don&#146;t envisage&#148; back there. I guess I should fess up and admit that I haven&#146;t ever actually implemented any of this as a quest-generation system. I&#146;ve written AI planning systems before, and I&#146;ve integrated them into a MUD, but I haven&#146;t ever used one for quest generation. What you&#146;re reading is therefore speculation &#150; informed speculation, but nevertheless speculation. Your actual mileage may vary.</p>
+								<h3><b>Interference and conflict</b></h3>
+								<p>If the world changes during execution, then when the time comes for a mobile attempts to perform some action it might discover that it can&#146;t. Maybe someone else locked a door that used to be unlocked, or perhaps a rock fall blocked off a passageway. What happens in this event is that the planner re-plans: it creates another plan to get it to a point where it can pick up its original plan again. Industrial strength AI planning systems would have contingency plans already in place, but we don&#146;t have to work under the same kind of robustness constraints. All we want are quests, and re-planning won&#146;t prevent our getting them.<br>
+									<br>
+									Multiple goals are principally an issue because they can conflict. I want to impress the high priest and I want to impress the prince. Do I wear the blue gown to show my piety, or the red gown to show my honour? For a quest generation system, again, this isn&#146;t too bad: we can have the mobile&#146;s emotional system decide which goal is more important (or simply pick one at random).<br>
+									<br>
+									Note that some goals are &#147;background&#148; ones that exist to preserve the status quo. For these, the emotional system can be called upon for conflict resolution. &#147;I&#146;m so thirsty, maybe I should drink this seawater? Whoa! That will drive me nuts! Is my desire not to be thirsty greater than my desire not to be nuts?&#148;</p>
+								<h3><b>Inefficiency</b></h3>
+								<p>Suppose the mobile from last time knew a fourth action:<br>
+								</p>
+								<blockquote>
+									<table border="0" cellspacing="6" cellpadding="6">
+										<tr>
+											<td><b>Action</b>:</td>
+											<td><code>teleport <i>X</i> from <i>Y</i> to <i>Z</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td><b>Preconditions</b>:</td>
+											<td><code>I am a mage<br>
+													<i>X</i> is at <i>Y<br>
+													</i></code></td>
+										</tr>
+										<tr>
+											<td><b>Effects</b>:</td>
+											<td><code>not (<i>X</i> is at <i>Y</i>)<br>
+													<i>X</i> is at <i>Z</i><br>
+												</code></td>
+										</tr>
+									</table>
+								</blockquote>
+								<p>The mobile might want to try <code>teleport bread from stall to cart</code> as its first (and only) step in the plan. Unfortunately, it knows no actions that can make <code>I am a mage</code> true, therefore it would have to give up and select the other action in its consideration set, <code>put down bread at cart</code> as before. Discarding an action and trying another is called <i>backtracking</i>.<br>
+									<br>
+									For a single-step backtrack, there isn&#146;t anything to worry about. However, what if the plan was 8 steps deep? And what if the root cause of the failure was a bad selection for the second step? The planner could spend ages wasting its time exhausting all possibilities multiple times over before concluding that it had made a mistake early on.<br>
+									<br>
+									There are two ways to address this: limit the length a plan can be; provide so many actions that a solution can usually be found no matter what circuitous path is taken.<br>
+									<br>
+									Alternatively, you can just ignore it. If our system is only going to invoke the planner when someone presses a quest button, that&#146;s not going to happen so often that it&#146;ll cause major slowdowns. A little inefficiency here and there isn&#146;t going to be much more than a drop in the ocean. That said, having a wide variety of actions available to a mobile is a good idea anyway, to add to the variety of quests that can be generated. It makes sense, therefore, to provide lots of actions even if you don&#146;t give a hoot about inefficiencies due to backtracking.<br>
+									<br>
+									And next time, yes, I promise, I finally <i>will</i> show you how all this tackle can be used for creating novel, self-consistent and meaningful plans.</p>
+							</div>
+						</div>
+						<div align="left">
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

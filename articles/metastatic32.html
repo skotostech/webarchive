@@ -1,0 +1,100 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>MetaStatic</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_metastatic.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_metastatic"><map name="tnav_metastatic"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="METASTATIC.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="../artwork/articles_metastatic_bnr.gif" width="266" height="74" align="BOTTOM" alt="masthead" border="0">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><font face="Verdana,Helvetica,Arial"><a href="METASTATIC.shtml.html"><img src="nav/snav_metastatic.gif" width="137" height="385" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>I'll Be Back</b></font></h2>
+							<h2><font face="Verdana,Helvetica,Arial" size="2"><i><b>by Sam Witt<br>
+											July 4, 2001</b></i></font></h2>
+							<p>
+								<P><font face="Verdana,Helvetica,Arial" size="2">It's been around eight months, give or take, since I started working on 
+this weekly column.  I've put quite a few words up that I hope some of yhou 
+have found interesting, and in doing so I've learned a few things about 
+games that I otherwise might have ignored.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Having said all that, it's time to (temporarily!) put MetaStatic on 
+hiatus.  I'm getting close to releasing the first stage of <I>Horizon 
+Station</I>, and I need to focus my creative energies solely on that task.  
+It's not going to be the finished game, but it will be there to give those 
+of you that are interested a taste of things to come.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Once the first few runs of <I>Parts</I>, the initial stage for HS, are 
+over, I'll start writing MetaStatic again.  Phase Two of this column will be 
+much more tightly focused on the problems and challenges encountered in 
+implementing Horizon Station, and will serve, I hope, as a sort of guidebook 
+for future storybuilders.  Skotos has given us some powerful tools, and I 
+think a look into the process of their use will be useful for all 
+concerned.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">That said, I'll give you a short list of the challenges that myself, and 
+the Horizon volunteers, are going to face.  Brace yourself, this could get 
+ugly.</font></P>
+								<H4><font face="Verdana,Helvetica,Arial" size="2">The Environment</font></H4>
+								<P><font face="Verdana,Helvetica,Arial" size="2">There are, at last count, more than eighty types of room in Horizon 
+Station.  This does not include the miles of corridor necessary to link all 
+those rooms together.  Or the fact that each room will have to appear more 
+than once, and that each time the room will have to be slightly different, 
+so as not bore the audience.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">On average, each type of room will have five elements that can provide 
+interaction.  A well-designed room will also have another <I>ten or 
+twenty</I> details that are there for only for flavor.  So we're up to, 
+let's see, at least 400 interactive elements, and at least 800 descriptive 
+elements.  But wait, there's more.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Because the entire game environment is built to be repaired (and to break 
+down) each of the 400 interactive elements I've discussed above will be 
+constructed out of even smaller pieces.  To be conservative, I'd say there 
+are going to be at least a thousand of these, and perhaps as many as twice 
+that number.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">And that's just the core environment.</font></P>
+								<H4><font face="Verdana,Helvetica,Arial" size="2">The Game</font></H4>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Into this detailed environment I'm going to have to build the game rules. 
+  Most of this is going to be constructed out of scripts that are embedded 
+in the various objects of the game.  Which means one mistake in a 'parent' 
+object, can quickly become a thousand mistakes scattered across many 'child' 
+objects.  Kinda spooky.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">This is not rocket science, but it is going to involve some fairly tricky 
+scripting and a lot of planning to make sure things work right.  It's going 
+to be a challenge.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Fortunately, I am planning on deploying the game in a number of phases, 
+each of which will add another gameplay element to those that have gone 
+before.  The first phase will involve repairing the station, and phases 
+after that will cover combat, space exploration, and whatever other wacky 
+ideas cross my mind in the dark of the night.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Putting the game into the environment is the hardest task, and one that 
+I'm as excited about as I am nervous.  Mainly because of all the happy 
+players that I'm likely to irritate.  Which brings me to ...</font></P>
+								<H4><font face="Verdana,Helvetica,Arial" size="2">The Audience</font></H4>
+								<P><font face="Verdana,Helvetica,Arial" size="2">The environment and the game are difficult, no two ways about that.  They 
+both involve a lot of work, a lot of trial and error, and a lot of 
+troubleshooting.  But these two things are nothing compared to what will 
+happen when the players appear on the scene.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Players have it easy.  They show up and have a good time.  And if they 
+don't, they break out the flamethrowers and start lighting up the screaming 
+developers.  Developers hate flamethrowers, they sting.  And I don't have 
+that much bactine.</font></P>
+								<P><font face="Verdana,Helvetica,Arial" size="2">Which is why I spend days and nights thinking about what players do, what 
+kinds of things they look for, and how much they love to break games.  It's 
+an exhausting exercise, but it's the only way to get things done.</font></P>
+							<P><font face="Verdana,Helvetica,Arial" size="2">And with that said, I leave you for now, to go and put together the first 
+stage for your enjoyment.  See you in a few weeks.  I'll still be checking 
+the forums, of course, so feel free to click that little link  below.</font></P>
+						</div>
+						<div align="center">
+							<a href="http://www.skotos.net/forum/showthread.php?threadid=1439"><font face="Verdana,Helvetica,Arial" size="2"><img height="59" width="156" src="../artwork/youropinion_btn.gif" border="0" alt="your opinion..."></font></a></div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

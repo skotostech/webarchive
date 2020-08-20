@@ -1,0 +1,158 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #18:</b></font></p>
+							<h2>The Parse Tree</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>May 8, 2002</i></b></p>
+							<div class="Section1">
+								<p>
+									So you&#146;ve stayed up until the small hours, night after night, and you finally have yourself a parser. Players can type in complicated imperative sentences and your program will accept them or generate a stream of expletives. How do you <i>use</i> it, though?<br>
+									<br>
+									Well, what does it produce? It&#146;s fairly trivial to get it to record what parts of speech were assigned to a token &#150; you just write the successful ones into a separate array during the parse() stack unwinding. You can do more, though: you can create a <i>parse tree</i>.<br>
+									<br>
+									A parse tree is a data structure that represents not only what the tokens in an input line mean, but how they were generated. It&#146;s where the earlier decision of what to make into the &#147;rules&#148; of your BNF grammar finally becomes important.<br>
+									<br>
+									Here&#146;s an outline example of what a parse tree looks like:</p>
+<pre>
+                   &lt;input line&gt;
+                           |
+                   &lt;sentence&gt;
+                           |
+                   &lt;command&gt;
+                           |
+                   &lt;command 2&gt;
+                           |
++-----------------+--------+--------+-----------------+
+|                 |                 |                 |
+|           &lt;noun phrase&gt;           |           &lt;noun phrase&gt;
+|                 |                 |                 |
+|           &lt;noun group&gt;            |           &lt;noun group&gt;
+|                 |                 |                 |
+|           +-----+-----+           |           +-----+-----+
+|           |           |           |           |           |
+WITH        THE         DIAMOND     RING        THE         BELL
+preposition article     noun        verb        article     noun
+</pre>
+								WITH THE DIAMOND RING THE BELL<br>
+								preposition article noun verb article noun<br>
+								<br>
+								From this data structure (which you can build up piecemeal on the unwind of the recursion &#150; a tiresome but not time-consuming exercise) it&#146;s possible to identify not only what the individual <i>words</i> refer to, but what the individual <i>rules</i> do. Thus, if you want to find out what the second noun group of a command is, you really can just &#147;read it off&#148; the data structure.<br>
+								<br>If you prefer a brute-force approach, then you don&#146;t strictly need the data structure &#150; you can rip elements out of the token array by relying on what you know about your grammar (e.g. anything between a preposition and either a verb, preposition or end of sentence is a noun phrase &#150; if you ignore the adverbs and hack your way round conjunctions). In the case where your parser is only partially backtracking, like <i>MUD2</i>&#146;s, you&#146;ll pretty well have to do it this way.
+								<h3><b>Making meaning</b></h3>
+								<p>
+								So it&#146;s possible to group tokens together into meaningful grammatical units. Now you have to figure out what they mean in <i>game</i> terms.<br>
+									<br>
+									
+								This is where the vocabulary comes in. I described the vocabulary way back in column 11 as a set of triples: &lt;word, part of speech, atom&gt;. Tokenisation used the first two of these &#150; it converted the words that players entered into tokens. Now we use the second two &#150; we convert the tokens into atoms. Atoms are things the game can <i>use</i>; they refer unambiguously to a single concept (although not necessarily to a single referent of that concept, as we shall see when we discuss the binder).<br>
+									<br>
+									
+								MUDs are focussed on <i>commands</i>. These are unitary instructions telling the game to do something. The parse tree lets us see how the input line was split into sentences, and how sentences were split into commands, so we know what each individual command consists of in terms of tokens (and therefore atoms). How does that give us a handle on what the sentence <i>means</i>, though?<br>
+									<br>
+									
+								OK, this next bit comes from AI computational linguistics. It&#146;s is pretty obvious anyway, so I&#146;m just going to say it and not explain the rationale...<br>
+									<br>
+									
+								The verb of a command is the function in a function call. The first noun group (if it has one) is the call&#146;s first parameter; the second noun group (if it has one) is its second parameter. Adverbs and prepositions are functions that modify the verb; adjectives are functions that modify what the noun refers to; pronouns are dynamically assigned nouns.<br>
+									<br>
+									
+								So what you need to produce from your parse tree is a data structure of atoms that reflect this information, and which is implemented in a form directly acceptable by your game engine. How you decide to do this is up to you, but for the sake of simplicity I&#146;ll assume it to be a list with nested sublists:
+</p>
+								<p><code>[ verb [verb modifiers] [noun phrases] ]</code></p>
+								<p>The verb modifiers are just the adverbs and prepositions that the command contains. The noun phrases themselves have their own particular format:</p>
+								<p><code>[ noun [noun modifiers] ]</code></p>
+								<p>where the noun modifiers are the adjectives and qualifying noun phrases associated with the noun.</p>
+								<h3><b>Examples</b></h3>
+								<p>
+									Here&#146;s are a couple of examples I&#146;ve used before in this series of articles:<br>
+									<br>
+									
+									WITH THE DIAMOND RING THE BELL<br>
+									<code>[ ring, [with], [ [diamond, [the]], [bell, [the]] ] ]</code><br>
+									<br>
+									
+									TAKE THE GREEN APPLE FROM THE BOX THEN HIT IT WITH MY SWORD<br>
+									<code>[take, [from], [ [apple, [the, green]], [box, [the]] ] ]<br>
+										
+										[hit, [with], [ [it, []], [sword, [my]] ] ]<br>
+									</code><br>
+									
+									Here&#146;s a big, meaty example to show you the kind of thing you&#146;ll be able to boast your parser can handle. I&#146;ll write out its list in a more structured fashion so you can see how it&#146;s made up without having to count brackets:<br>
+									<br>
+									
+									VERY QUICKLY DROP THE TREASURE EXCEPT THE EMERALD AND THE SMALL WHITE STONE INSIDE THE OPEN MUSIC BOX SECRETIVELY</p>
+								<pre>
+[   drop,
+    [inside, very, quickly, secretively],
+    [   [treasure,
+            [the,
+                [except,
+                    [and,
+    [   [emerald,
+                            [the]
+                            ],
+                            [stone,
+                                [the, small, white]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ],
+        [box,
+[the, open, music]
+        ]
+    ],
+]
+</pre>
+								<p>This list is the result of the parsing module, and it&#146;s passed on to the binder. The binder has to take the list, and use its own knowledge of the game world&#146;s state to derive individual function calls. You don&#146;t <i>have </i>to write the binder in your game world&#146;s definition language, but it&#146;s a darned sight easier if you do (<i>MUD2</i>&#146;s is written in <i>MUDDLE</i> like the rest of the game &#150; now; I learned the hard way...). The binder is the final step of the whole parsing process, but it can be among the most tortuous and frustrating of them all because there are so many special cases involved.<br>
+									<br>
+									I&#146;ll begin my discussion of the binder next time...</p>
+								
+							</div>
+							<div align="left">
+
+												<table width="100%">
+													<tr>
+														<td align="center" valign="middle">
+															<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle">
+															<p><!--#include file="dawnof-last10.php"-->
+															</p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+													</tr>
+												</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

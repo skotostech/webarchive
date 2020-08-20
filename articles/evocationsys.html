@@ -1,0 +1,114 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>The Evocation System</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_generic.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_generic"><map name="tnav_generic"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="evocationsys.html#"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<h2><font face="Verdana,Helvetica,Arial"><img src="../artwork/filler_nightwalls.gif" width="106" height="522" align="right" border="2" hspace="10" vspace="10">The Evocation System</font></h2>
+						<p><font face="Verdana,Helvetica,Arial" size="2">How do you express yourself in an online game? Most of the time it's through what you say. In almost any online medium &#150; from EverQuest to a chat room &#150; you can transmit words to other participants, but if that's all you can do you're missing numerous emotional subleties.</font></p>
+						<h3><font face="Verdana,Helvetica,Arial">More Then Just Say</font></h3>
+						<font face="Verdana,Helvetica,Arial" size="2">Speaking (&quot;Evoking&quot;) isn't just about using words. Whenever you converse with another person, you convey much more information &#150; both in context and in emotion &#150; than that expressed by the words themselves. Text games have a natural advantage over graphical games in the area of evocation because they actually <i>can</i> express context and emotions &#150; along with the words that make up speech.</font>
+						<h3><font face="Verdana,Helvetica,Arial">Existing Approaches</font></h3>
+						<font face="Verdana,Helvetica,Arial" size="2">Traditionally, MUDs have implemented a limited set of evocations supplemented by a freeform emote system. All MUDs implement &quot;say&quot;, usually aliased to a quote ' or doublequote &quot;.</font>
+						<pre>
+   &gt; &quot;I'm here&quot;
+   Mindy says, &quot;I'm here&quot;
+</pre>
+						<font face="Verdana,Helvetica,Arial" size="2">In some MUDs, if you put a question mark (&quot;?&quot;) within the quotes, it will change the verb &quot;say&quot; into &quot;ask&quot;. Thus:</font>
+						<pre>
+   &gt; &quot;Are you there?&quot;
+   Mindy asks, &quot;Are you there?&quot;
+</pre>
+						<font face="Verdana,Helvetica,Arial" size="2">Also, in some Muds, if you put an exclamation mark (&quot;!&quot;) within the quotes, it will change the verb &quot;say&quot; into &quot;exclaim&quot;.</font>
+						<pre>
+   &gt; &quot;Is anyone out there!&quot;
+   Mindy exclaims, &quot;Is anyone out there!&quot;
+</pre>
+						<font face="Verdana,Helvetica,Arial" size="2">Two special evocations are supported by many MUDs. Shout is a special evocation that carries into multiple nearby rooms. Whisper is an evocation that can only be heard by the person whispered to. In MUSHes (and many MUDs), the freeform emote mechanism allows players to create arbitrary text evocations. Most experienced MUSHers will create elaborate emotes &#150; sometimes a paragraph long &#150; which can include poses and gestures.</font>
+						<h3><font face="Verdana,Helvetica,Arial">Problems Solved by Skotos Evocation System</font></h3>
+						<font face="Verdana,Helvetica,Arial" size="2">In creating the Skotos Evocation System we decided to specifically forbid freeform emotes. It is our belief that emotes have four serious probems:</font>
+						<ol>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Arbitrary expressions rely on extensive creativy on the part of the players and thus are quite intimidating to new players.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Arbitrary expressions can be abused in a game context. They can refer to object that don't exist or include actions that aren't possible.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Arbitrary expressions can be abusive to other players and even can be harassing</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Arbitrary expressions are largely opaque to NPCs and to the game, and thus they are unable to respond appropriately.</font>
+						</ol>
+						<font face="Verdana,Helvetica,Arial" size="2">To compensate for the lack of freeform emotes, the Skotos Evocation System allows a broad set of verbs that can be used as alternatives to say. These verbs can provide context or emotion:</font>
+						<pre>
+   &gt; add &quot;I'm here now.&quot;
+   Mindy adds, &quot;I'm here now.&quot;
+
+   &gt; sigh &quot;Where is everyone?&quot;
+   Mindy sighs, &quot;Where is everyone?&quot;
+</pre>
+						<font face="Verdana,Helvetica,Arial" size="2">The Skotos Evocation System allows for adverbs, either before or after the verb, which provides for even more context and emotion.</font>
+						<pre>
+   &gt; sadly whimper &quot;No one likes me anymore.&quot;
+   Mindy sadly whimpers, &quot;No one likes me anymore.&quot;
+</pre>
+						<font size="2" face="Verdana,Helvetica,Arial">Prepositions may be used to refer to objects or to people.</font>
+						<pre>
+   &gt; joyfully reply to Vlad &quot;You are finally here!&quot;
+   Mindy joyfully replies to Vlad, &quot;You are finally here!&quot;
+</pre>
+						<font size="2" face="Verdana,Helvetica,Arial">Besides providing players with a large set of predefined verbs and adverbs, the Skotos Evocation System also provides the game with information on exactly what a player means by his evocations. The intensity of sound is determined by the verb used, modified by various adverbs. By calculating this sound intensity, the game is able to calculate the proper propogation of speech, either broadcasting it further of limiting it to a smaller group of people. Emotional content of speech is also determined by the verbs and adverbs that are used. In the future NPCs will be able to react to the context and emotions of a player's evocations. These features allow for a powerful evocation system in the textual environment. It is a considerable advancement when compared with graphical game systems and possibly even voice chat systems.</font>
+						<h2><font face="Verdana,Helvetica,Arial">Summary of the Skotos Evocation System</font></h2>
+						<h3><font face="Verdana,Helvetica,Arial">Evocations</font></h3>
+						<font face="Verdana,Helvetica,Arial" size="2">Evocations are verbs used by players to communicate within game. They always make some type of sound (usually speech). Evocations generally relate speech with a certain verb, providing emotional context; adverbs may provide additional context. Evocations need not refer to objects in the player's environment, but they often do. Some gestures are in fact evocations &#150; they make sounds without speech &#150; and the rules of evocations should apply to them.</font>
+						<h3><font face="Verdana,Helvetica,Arial">Allowed Forms</font></h3>
+						<font face="Verdana,Helvetica,Arial" size="2">All expressive verbs, including evocations, have a list of allowable forms describing how the verb may be used. These allowable forms are made up of the following parts of speech:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">V - verb</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">A - adverb</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">P - preposition</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">O - any object</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">B - an object belonging to you or a body part</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">E - evocation</font>
+						</ul>
+						<font face="Verdana,Helvetica,Arial" size="2">A list of allowable forms for a verb is created by listing out all of the legal combinations of these parts of speech. For example, some of the allowable forms for the &quot;shout&quot; verb are:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">VE - shout &quot;Hello!&quot;</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">AVE - loudly shout &quot;Hello!&quot;</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">VAE - shout loudly &quot;Hello!&quot;</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">AVPOE - loudly shout to guard &quot;Hello!&quot;</font>
+						</ul>
+						<font face="Verdana,Helvetica,Arial" size="2">The entire list of allowable forms can be quite extensive for any one verb. Thus, verbs tend to inherit the list of allowable forms from UrVerbs, with similar verbs all inheriting from the same UrVerb. Clearly, not all patterns should be made available to all verbs.</font>
+						<h3><font face="Verdana,Helvetica,Arial">Types of Verbs and Adverbs</font></h3>
+						<font face="Verdana,Helvetica,Arial" size="2">Both verbs and adverbs may be classified in a number of ways &#150; to determine sound intensity, emotional context, or anything else desired by a game designer. This is done by putting verbs and adverbs into broad categories. Each verb or adverb may be placed in multiple categories.</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Categories that indicate sound intensity include aural (for anything that makes sound), loud, and quiet.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Categories that show emotional context are numerous. Possibilities include erudite (for intellectual adverbs), polite, sexy, and disrespectful.</font>
+						</ul>
+						<font face="Verdana,Helvetica,Arial" size="2">Based on these categories, a number of actions may be taken:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>Forbidding combinations.</b> Some categories of adverb and verb may not be combinable, e.g. loud verbs (shout) and quiet adverbs (quietly).</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>Propogating sound.</b> Based on the sound categories of verbs and adverbs, the Skotos Sound System can correctly propogate loud sounds better than quiet sounds.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2"><b>Expressing emotions.</b> The categories of verbs and adverbs can be used to allow NPCs in the game to react to a wide variety of stimuli. Rather than listing a set of verbs which an NPC reacts to, certain reactions can be specified for entire categories of verbs and adverbs. For example, the Queen will probably react poorly to anything in the disrespectful category.</font>
+						</ul>
+						<h2><font face="Verdana,Helvetica,Arial">State of Development</font></h2>
+						<font face="Verdana,Helvetica,Arial" size="2">The parser now uses the allowed form pattern lists for all social verbs, allowing for very complex expressions like AVPOE. The number of expressive verbs and adverbs is continually growing, though the complete list of possibilities is very long. Not all verbs have been limited to the correct set of allowed forms due to the advantages of leaving verb forms more open. Only a proof of concept for sound intensity of verbs and adverbs is complete. Further integration into the prox system and ambient sound is required. We anticipate that a number of QA issues will crop up, and there are still some doubts about the correct design for a sound system. At this time we can place arbitrary tags for emotional context on verbs and adverbs, and have done so for most adverbs. We do not yet try and parse the emotional context of an evocation. We do not yet ban categories of adverbs from use with certain verbs.</font>
+						<h3><font face="Verdana,Helvetica,Arial">Open Issues in the Evocation System</font></h3>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">We need to allow proper use of commas, just before evocations. Example: Michael says, &quot;How are you?&quot; This used to work and making it work again is a fairly minor tweak.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">The B form of belonging objects should probably allow reference to any body part. Rather then having every volitional have a detail for every body part, this could possibly be a reference to items in the shape file of the ShapeAndRaceSystem.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">How to easily maintain lists for sound intensity and emotional context is still an open issue. Our current lists for emotional context for adverbs are cumbersome.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Some forms of speech are currently forbidden due to the implementation of our parser. For example, &quot;E&quot; must always be the last element in a speech form, making the simple form VEA (verb evocation adverb) illegal.</font>
+						</ul>
+					</td>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

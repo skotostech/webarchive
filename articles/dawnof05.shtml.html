@@ -1,0 +1,97 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="artwork/dawntime_lg.gif" width="282" height="59" align="BOTTOM" alt="masthead" border="0" hspace="8" vspace="8">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#5: The Tragedy of Objects</b></h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>October 31, 2001</i></b></p>
+							<p>
+							Inheritance as a software tool gained its popularity as part of the Object-Oriented Programming (OOP) drive of the 1980s. OOP is great for large projects involving many programmers, because it allows whoever codes a class to define its functionality separate from that of the rest of the system, presenting only a set of interface routines for other classes to use for access. This stops programmers from stomping all over each other&#146;s code, and makes modifying existing code easy.
+</p>
+							<p>Well that&#146;s the theory. In practice, well, I&#146;ll talk about that shortly...</p>
+							<p>OOP is a methodology in which data and code fragments are attached to <i>objects</i> that are instances of <i>classes</i>. Each object comes with a set of <i>data members</i> and <i>member functions</i> (or <i>methods</i>). A principle of good practice known as <i>encapsulation</i> states that access to the data members should only occur through the member functions, so therefore to all intents and purposes we can consider methods as the Big Thing as far as OOP is concerned.</p>
+							<p>Methods are pieces of code defined for individual classes. They can be inherited by sub-classes, and will be attached to specific instances when their classes are created as objects in the program. How methods are implemented is unimportant; what matters is how they are called.</p>
+							<p>In the Microsoft Foundation Class library, for example, to stop a particular window from being overlapped by any other a programmer could invoke <code><i>window</i>.BringWindowToTop()</code>. This would work for any instance of <i><code>window</code></i>. Whether the BringWindowToTop method is programmed the same way for pop-up windows, dialogue boxes and splitter windows, who cares? It does the job transparently to the programmer who issued the call, using whatever method is appropriate for the <i><code>window</code></i> concerned.</p>
+							<p>That&#146;s the good news, now the bad...</p>
+							<h3><b>Fragility</b></h3>
+							<p>OOP is design-critical. If you set about programming a system and your object tree is specified wrongly, correcting it can be a horrendous task. For example, a model of the human body using organs as objects, each with its own specific functionality, might do 95% of what you wanted it to do. That&#146;s still only 95%, though. A model based on the central nervous system might do 100% of what you wanted. If you didn&#146;t find this out until late, however, then reprogramming all the organs code you&#146;ve written as methods for nerve pathway objects would be... well let&#146;s just say you&#146;d be clenching your teeth awhile.</p>
+							<p>OK, so back to MUDs. Because it comes with inheritance, you want to write a MUD using an object-oriented approach. That&#146;s fine by me, there&#146;s nothing wrong with that at all. So what are your objects? <b>Most MUD designers don&#146;t give this a moment&#146;s thought.</b> Why, the objects in the game, of course! It has treasure and swords and doors and boxes and rooms and mobiles and players &#151; those are all objects, it&#146;s obvious.</p>
+							<p>Well they are &quot;objects&quot;, yes, but they don&#146;t have to be <i>OOP objects</i>. They get you 95% of what you <i>can</i> have, but not 100%. The fact that people call both concepts &quot;objects&quot; is the cause of a major dead-end in MUD programming.</p>
+							<h3><b>Alternative Objects</b></h3>
+							<p>Let&#146;s say we want to implement a HIT command. If you hit a creature (i.e. a player or mobile) then a message is generated and a fight starts. That would be a simple method, invoked by <code>creature.hit()</code>. How about a PUNCH command? That would be the same as HIT, but with a different message (&quot;<i>name</i> punches you&quot; instead of &quot;<i>name</i> hits you&quot;). OK, so we need a <code>creature.punch()</code>, which would probably call some generic <code>creature.hit(&quot;punches&quot;)</code> routine. The same applies when we decide to add SLAP, THUMP, WHACK, SMITE and anything else the players might try (my not particularly good thesaurus offers 22 fairly non-contentious alternatives).</p>
+							<p>Now what if hitting something other than a creature had a different effect? HIT HARDOBJECT (e.g. an anvil) might hurt you, HIT SOFTOBJECT (e.g. a cake) might damage what you hit, HIT DOOR might transmit a knocking sound to the other side and HIT BAG might generate some suggestion of what&#146;s inside it. OK, well we can write special methods for <code>hardobject.hit()</code>, <code>softobject.hit()</code>, <code>door.hit()</code>, <code>bag.hit()</code> and any other classes we want.</p>
+							<p>Then we have to add <code>hardobject.punch()</code>, <code>hardobject.slap()</code>, <code>hardobject.thump()</code>,... <code>bag.smite()</code>. That&#146;s an awful lot of repetition.</p>
+							<p>The problem is that although game objects are OOP objects, their methods aren&#146;t. We&#146;re back to the old enumeration days again, when I was writing the same line of code over and over again saying that when the goat came across something it wanted to eat it would eat it. What we need here is to be able to quantify over methods, i.e. define a class HIT of which PUNCH, SLAP, THUMP etc. are instances. We can&#146;t, though, because functions aren&#146;t OOP objects. Making them be OOP objects would entail a complete rewrite.</p>
+							<p>That&#146;s why I&#146;m telling you this: so you know the score before you start.</p>
+							<h3><b>Commands</b></h3>
+							<p>The real OOP objects in a MUD are the <i>commands</i>. It isn&#146;t a property of objects of class CREATURE that when you hit them a message is generated and a fight begins. Neither, incidentally, is it a property of objects of class HIT that if a CREATURE is the victim then that happens. Rather, it is a property of the command {&nbsp;HIT&nbsp;CREATURE&nbsp;} that there&#146;s a message and a fight. It&#146;s {&nbsp;HIT&nbsp;CREATURE&nbsp;} that has the method &#151; not CREATURE, not HIT.</p>
+							<p>This simple observation completely opens up a MUD&#146;s design. You can use it for all kinds of things. You don&#146;t have to philosophize whether OPEN DOOR WITH KEY means <code>door.open(key)</code> or <code>key.open(door)</code> &#151; it means {&nbsp;OPEN&nbsp;DOOR&nbsp;KEY&nbsp;}.code().</p>
+							<p>Unfortunately, I&#146;m all out of space right now, so I can&#146;t give examples of how versatile this formalism is. That comes in the article to follow.</p>
+							<p>You&#146;re on the edge of your seat with expectation, I can tell...</p>
+							<div align="left">
+								<div align="left">
+								<div align="left">
+										<table width="100%">
+										<tr>
+											<td align="center" valign="middle">
+												<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="middle">
+												<p><!--#include file="dawnof-last10.php"--></p>
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+										</tr>
+									</table>
+									</div>
+							</div>
+							</div>
+						
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

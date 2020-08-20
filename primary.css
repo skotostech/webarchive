@@ -1,0 +1,37 @@
+/* FroggyCSS. */
+
+/* Links. */
+
+	A:active    { color: #990066; text-decoration: none }
+	A:link      { color: #006633; text-decoration: none }
+	A:visited    { color: #cc3300; text-decoration: none }
+	A:hover     { color: #990066; text-decoration: underline }
+	
+/* Headers. */
+
+	H1         { font: 24px Verdana, Helvetica, Arial, sans-serif; text-decoration: bold }
+	H2         { font: 18px Verdana, Helvetica, Arial, sans-serif; text-decoration: bold }
+	H3         { font: 14px Verdana, Helvetica, Arial, sans-serif; text-decoration: bold }
+	H4         { font: 12px Verdana, Helvetica, Arial, sans-serif; text-decoration: bold }
+
+/* General. */
+
+	P          { font: 10px Verdana, Helvetica, Arial, sans-serif }
+	TH         { font: 10px Verdana, Helvetica, Arial, sans-serif }
+	TD         { font: 10px Verdana, Helvetica, Arial, sans-serif }
+	UL          { font: 10px Verdana, Helvetica, Arial, sans-serif }
+	OL         { font: 10px Verdana, Helvetica, Arial, sans-serif }
+	LI          { font: 10px Verdana, Helvetica, Arial, sans-serif }
+	DD         { font: 10px Verdana, Helvetica, Arial, sans-serif }
+	.smaller    { font-size: 9px }
+	.larger     { font-size: 12px }
+	blockquote {font: 10px Verdana, Helvetica, Arial, sans-serif }
+	PRE        {font: 10px Monaco, Courier New, monospace }
+	CODE         { font: 10px Monaco, "Courier New", monospace }
+
+/* Other styles in use. */
+
+	B            { font-weight: bold }
+	I            { font-style: italic }
+    U            { text-decoration: underline }
+e }

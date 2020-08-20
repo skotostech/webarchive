@@ -1,0 +1,134 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Notes from the Dawn of Time #13:</b></font>
+							<h2>Parsing</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>February 27, 2002</i></b></p>
+							<p>It&#146;s finally time for the interesting part: how the parsing process works. I&#146;ll explain this informally, first, talking about implementation later.<font face="Times"> </font>
+							<p>The basic idea is to split an input line into self-contained, grammatical chunks until you reach a level where the chunks are individual tokens. While so doing, you build a structure to represent an input; from this structure you can then read the data required to determine the actual commands that are to be executed (or, more properly, for the final, binder phase to determine them). I won&#146;t worry about the data structure part just yet; rather, I&#146;ll concentrate on the way input lines can be broken down.
+							<p>You&#146;ll notice I keep saying &quot;input lines&quot; and not &quot;sentences&quot;. This is because people can type lines that contain several sentences: E. OPEN DOOR. IN. CLOSE DOOR. KILL ZOMBIE WITH AXE. The first thing to do, therefore, is to partition the input line up into individual sentences. That&#146;s fairly easy, as sentences can only end in full stops, question marks, exclamation marks and end-of-lines (again, I apologize to American readers for my use of standard English terms here).							<p>So now we have sentences, but we still don&#146;t have commands. Commands are unitary actions &#151; they have one verb, and one verb only. Sentences can have several verbs: OPEN DOOR THEN THROW AXE THROUGH DOOR THEN CLOSE DOOR has three (OPEN, THROW, CLOSE). Such a sentence needs to be split into commands (or <i>verb phrases</i>) at its conjunctions.
+
+							<p>Whereas with punctuation there was no ambiguity, with conjunctions there is. The word &quot;but&quot;, for example, can function as a conjunction (GO WEST BUT STAY ON THE PATH), a preposition (DROP ALL BUT THE GOLD) or archaically as an adverb (OPEN THE DOOR BUT SLOWLY). OK, well, never mind, let&#146;s assume that we&#146;ll figure out some way of dealing with that later and carry on.
+
+							<h3><b>Commands</b></h3>
+							<p>We have now reached the level where we&#146;re looking at commands. At this point, it&#146;s a good idea to write out a long command and see what we might want to do with it. I&#146;ll go with QUICKLY OPEN THE LITTLE CHEST ON THE ROUND TABLE USING MY SMALLEST SKELETON KEY.
+
+							<p>OK, well the first thing to notice is that the adverb could equally well go after the verb (OPEN QUICKLY), before the main preposition (QUICKLY USING) and at the end (KEY QUICKLY). With the adverb removed, the structure is basically a verb
+							<p>followed by a <i>noun phrase</i> followed by a preposition followed by another noun phrase. In other words, you want to do something, you want to do it to something, and you want to use something else to affect how you do it. Note that we can shuffle the modules around a little: &lt;preposition&gt; &lt;noun phrase&gt; &lt;verb&gt; &lt;noun phrase&gt; would work, as in USING MY SMALLEST SKELETON KEY QUICKLY OPEN THE LITTLE CHEST ON THE ROUND TABLE.
+							<p>Aside: although a maximum of two noun phrases is ample for most MUDs, in theory you can allow more. GIVE THE COAL TO THE TROLL USING THE TONGS, for example, has three (THE COAL, THE TROLL and THE TONGS). The problem with this comes later, during the execution phase: the second and subsequent noun phrases can appear in any order (GIVE THE COAL USING THE TONGS TO THE TROLL) and this is something of a bother when it comes to matching function calls to definitions.
+							<p>Anyway, pressing on, we&#146;re now at the point of being able to parse as far as the noun phrase level. So what <i>is</i> a noun phrase?
+
+							<p>A noun phrase is a form of words that identifies an object or a set of objects. There are two in the example sentence: THE LITTLE CHEST ON THE ROUND TABLE and MY SMALLEST KEY. You&#146;ll notice that the first of these itself contains two noun phrases, separated by &#151; eek! &#151; a preposition. Let&#146;s call the smaller versions <i>noun groups</i>. A noun group looks like it can have an article first (but it doesn&#146;t have to) then any number of adjectives (and I guess we could put integers here, too) then a noun (or presumably a pronoun). At this point, we&#146;re down to the level of individual words, so we can&#146;t do any more.
+
+							<h3><b>A Grammar</b></h3>
+							<p>Believe it or not, using this informal approach we&#146;ve actually achieved quite a lot! We&#146;ve defined a grammar for a line of input:
+
+							<ul>
+								<li>An input is a sentence, optionally followed by a full stop (or question mark or exclamation mark) and another input, eventually terminating in an end-of-line.
+								<li>A sentence is a command, optionally followed by a conjunction and another sentence.
+								<li>A command is a verb, optionally followed by a noun phrase, which, if present, is optionally followed by a preposition and another noun phrase. Alternatively, it&#146;s a preposition followed by a noun phrase, then a verb, then another noun phrase.
+								<li>A noun phrase is a noun group optionally followed by a preposition and another noun phrase.
+								<li>A noun group is an optional article followed by an optional integer followed by any number of adjectives followed by either a noun, a pronoun or a string.
+							</ul>
+							<p>You&#146;ll have spotted that this is <i>recursive</i>, in that a definition can contain a reference to itself. If you know about these things, you may also have noticed that it&#146;s right-recursive (or <i>tail recursive</i>), in that the recursive reference is on the right of a definition (X::= Y z X) rather than on the left (X::= X z Y); this is because expressing the idea using right recursion makes implementing such a grammar easier than using left recursion (you don&#146;t get stuck in recursive loops!).
+
+							<p>Yes, I know, I missed the adverbs out. The reason for that is because it was just too tortuous to explain where they could go. This happens often in describing grammars, so computer scientists have adopted a standard notation to help them. This is <i>BNF</i> (Backus-Naur Form), and it&#146;s been in use since 1960.
+
+							<h3><b>A BNF Grammar</b></h3>
+							<p>BNF isn&#146;t hard to follow, especially as I&#146;ve already been introducing it surreptitiously during these articles...
+
+							<p>Everything in BNF is either a <i>category</i> (in which case it appears in &lt;angle brackets&gt;) or a <i>terminal symbol</i> (in which case it doesn&#146;t). Categories are things like &lt;noun phrase&gt; and &lt;sentence&gt;, that you want to explain in more detail; terminal symbols are things like noun and verb, that you don&#146;t (although you could, by enumerating all the nouns and verbs you were planning on accepting &#151; not usually a good idea!). Every category used appears on the left hand of a ::= symbol in a rule that describes the ways by which it can be composed. The | symbol is used to mean &quot;or&quot; for alternative definitions, and it can call on (round brackets) to show exactly what is being ored with what.
+							<p>Additionally, anything in [square brackets] is optional, and anything in {curly brackets} can be repeated any number of times (including 0). That&#146;s all there is to it!
+
+							<p>Here, then, is the BNF version of the grammar I gave above, with the inclusion of adverbs (although I&#146;ll mainly miss these out again when it comes to giving implementation examples, as they get in the way somewhat). I&#146;ve also replaced some of the recursive definitions by iterative (repetitive) ones, as right-recursion allows this - the two are equivalent:
+
+							<pre>&lt;input&gt; ::= &lt;sentence&gt; { end_of_sentence &lt;sentence&gt; } end_of_line
+&lt;sentence&gt; ::= &lt;command&gt; { conjunction &lt;command&gt; }
+&lt;command&gt; ::= { adverb } verb { adverb }
+                [ &lt;noun phrase&gt; { adverb }
+                    [ preposition &lt;noun phrase&gt; { adverb } ]
+                ]
+            |
+                { adverb } preposition &lt;noun phrase&gt; { adverb } verb
+                    { adverb } &lt;noun phrase&gt; { adverb }
+&lt;noun phrase&gt; ::= &lt;noun group&gt; { preposition &lt;noun group&gt; }
+&lt;noun group&gt; ::= [ article ] [ integer ] { adjective } ( noun | pronoun | string)
+</pre>
+							<p>This is a fairly short but surprisingly powerful grammar that describes something akin to a subset of English that you could use for a MUD. I say &quot;akin to a subset&quot; because it accepts things that aren&#146;t English such as OPEN DOOR (as an imperative command, English requires an article &#151; OPEN THE DOOR) or GET RED &quot;HELP&quot; (English doesn&#146;t apply adjectives to strings). As features for MUDs, these beyond-English extras are either good or neutral; they&#146;re never problematical. If players like them, they&#146;ll use them; if they don&#146;t then they won&#146;t.
+
+							<p>Other grammars are possible, of course, for more complicated pseudo-English languages. <i>MUD2</i>&#146;s goes into more detail over the parts of speech, so for example it distinguishes between relative pronouns and simple pronouns and it can handle possessives (GET FRED&#146;S SWORD); basically, though, it&#146;s the same as the above. Obviously, you can tinker with a grammar as much as you like, so long as you remember that it&#146;s you who&#146;s going to have to implement it.
+							<p>Ah, yes, implementation. I&#146;ll begin to describe how to go about that next time... 
+							<div align="left">
+								<div align="left">
+								<div align="left">
+									<div align="left">
+										<div align="left">
+											<table width="100%">
+												<tr>
+													<td align="center" valign="middle">
+														<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle">
+														<p><!--#include file="dawnof-last10.php"--></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+						
+						
+						
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

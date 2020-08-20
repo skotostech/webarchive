@@ -1,0 +1,246 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #30:</b></font></p>
+							<h2>Ways to Look at Plans: Part 1</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>October 23, 2002</i></b></p>
+							<div class="Section1">
+								<p>I shall now embark on an extended example to illustrate what I&#146;ve described about quest generation so far. Hopefully, this will highlight some issues that might not be apparent from reading a mere description of how such a system <i>ought</i> to function. It&#146;s a little long, so it cuts across 2 articles.<br>
+									<br>
+									Suppose Doris is a dwarf with a variety of skills, in none of which she particularly excels. Her days are spent standing on a stool, milking her parents&#146; cows. A player approaches her and engages her in conversation (ie. presses her quest-dispenser button).<br>
+									<br>
+									Up until now, she has no plan: she&#146;s just a regular, run-of-the-mill piece of wallpaper. In response to the player&#146;s request, though, she creates one. Of the many overall goals available to her, she picks that of having a career. Of the many careers available, a random choice from a selection based on her personality and skills throws up that of childcare. She chooses the option of working in a nursery, but there are none in the area so she backtracks and decides to set up her own nursery. To do this, she needs capital (which the computer can instantly provide &#150; &#147;she&#146;s been saving up&#148;), she needs premises, and she needs customers. To get the customers she can knock on doors, advertise in the local newspaper or stick fliers on walls. She decides (randomly) to use the bill-sticking approach.<br>
+									<br>
+									The actions involved up until this point might look as follows:</p>
+								<blockquote>
+								<table border="0" cellspacing="0" cellpadding="6">
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Action</b>:</td>
+										<td align="left" valign="top"><code>Career Quest<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Preconditions</b>:</td>
+										<td align="left" valign="top"><code>I have a career, <i>X</i><br>
+												I have a job doing <i>X<br>
+												</i></code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Effects</b>:</td>
+										<td align="left" valign="top"><code>I have a quest<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><br>
+										</td>
+										<td align="left" valign="top"></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Action</b>:</td>
+										<td align="left" valign="top"><code>elect career, <i>X</i><br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Preconditions</b>:</td>
+										<td align="left" valign="top"><code>not (I have a career, <i>any</i>)<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Effects</b>:</td>
+										<td align="left" valign="top"><code>I have a career, <i>X</i><br>
+												[Hardwired: selects a career reasonable for this mobile&#146;s personality and skill set, <i>X</i>]<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><br>
+										</td>
+										<td align="left" valign="top"></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Action</b>:</td>
+										<td align="left" valign="top"><code>work for <i>X</i> doing <i>Y</i><br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Preconditions</b>:</td>
+										<td align="left" valign="top"><code><i>X</i> isn&#146;t me<br>
+												I have a career, <i>Y</i><br>
+												<i>X</i> has a job doing <i>Y</i><br>
+												<i>X</i> has a vacancy<br>
+												I pass interview with <i>X</i><br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Effects</b>:</td>
+										<td align="left" valign="top"><code>I have a job doing <i>Y</i><br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><br>
+										</td>
+										<td align="left" valign="top"></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Action</b>:</td>
+										<td align="left" valign="top"><code>set up business doing <i>X</i><br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Preconditions</b>:</td>
+										<td align="left" valign="top"><code>I have a career, <i>X</i><br>
+												I have &gt;= 1000 GP<br>
+												I have premises<br>
+												I have customers<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Effects</b>:</td>
+										<td align="left" valign="top"><code>I have a job doing <i>X</i><br>
+												I have a vacancy<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><br>
+										</td>
+										<td align="left" valign="top"></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Action</b>:</td>
+										<td align="left" valign="top"><code>advertise in <i>X</i><br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Preconditions</b>:</td>
+										<td align="left" valign="top"><code>I have &gt;= 25GP<br>
+												I have premises<br>
+												I have advertisement text<br>
+												I have a local newspaper, <i>X</i><br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Effects</b>:</td>
+										<td align="left" valign="top"><code>I have 25GP less<br>
+												<i>X</i> has advertisement<br>
+												I have customers<br>
+												[Hardwired: places an ad in newspaper <i>X</i>]<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><br>
+										</td>
+										<td align="left" valign="top"></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Action</b>:</td>
+										<td align="left" valign="top"><code>leaflet the neighborhood<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Preconditions</b>:</td>
+										<td align="left" valign="top"><code>I have fliers<br>
+												I have premises<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Effects</b>:</td>
+										<td align="left" valign="top"><code>not (I have fliers)<br>
+												public places have fliers<br>
+												I have customers<br>
+												[Hardwired: sticks fliers on walls in public places]<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><br>
+										</td>
+										<td align="left" valign="top"></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Action</b>:</td>
+										<td align="left" valign="top"><code>doorstep<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Preconditions</b>:</td>
+										<td align="left" valign="top"><code>I have premises<br>
+											</code></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top" bgcolor="#ffffcc"><b>Effects</b>:</td>
+										<td align="left" valign="top"><code>I have customers<br>
+												I have enemies<br>
+												[Hardwired: knocks on doors, annoying some people]</code></td>
+									</tr>
+								</table>
+</blockquote>
+
+								<p>So far, then, Doris has selected the goal <code>Career Quest</code>. In order to satisfy its first precondition, <code>I have a career, <i>X</i></code>, she has performed the directly-executable (ie. hardwired) action <code>select career, <i>X</i></code>, which has instantiated <i>X</i> and thus given her a career choice of <code>I have a career, childcare</code>. Moving on to the second precondition of <code>Career Quest</code>, she discovered she needed to satisfy the requirement <code>I have a job doing childcare</code>. The first approach she tried, <code>work for <i>X</i> doing childcare</code>, failed because (as far as she knows) there is no possible instantiation for <i><code>X</code></i>.<br>
+									<br>
+									Now it may be that she knows some way of getting someone to set up a nursery so she can ask them for a job. Being a feisty, go-getting dwarf, however, this doesn&#146;t enter into consideration because her emotional system rejects the possibility. A lazy, sneaky dwarf might have tried it, though (eg. by asking a player to do it).<br>
+									<br>Doris, though, backtracked and tried a different tack: going into business herself. She has the money, but she still needs the premises and the customers. Choosing to tackle the customer option first, she chooses to leaflet the neighborhood. This also requires that she has premises, though (you can&#146;t tell people to come to your shop until you have a shop). She also needs some leaflets.<br>
+									<br>
+									Her current plan is therefore:</p>
+								<blockquote>
+									<table border="0" cellspacing="0" cellpadding="6">
+										<tr>
+											<td align="left" valign="top" bgcolor="#ffffcc"><b>solve goal:</b></td>
+											<td align="left" valign="top"><code>I have premises<br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top" bgcolor="#ffffcc"><b>solve goal:</b></td>
+											<td align="left" valign="top"><code>I have fliers<br>leaflet the neighborhood</code></td>
+										</tr>
+									</table>
+								</blockquote>
+								<p>Once she&#146;s done this, it will give her customers, which in turn will mean she&#146;s set up a business, giving her a job in childcare and therefore a career.<br>
+									<br>
+									All because a player asked her, &#147;need anything doing?&#148;.<br>
+									<br>
+									Next time, we&#146;ll look at what her answer could be.</p>
+							</div>
+						</div>
+						<div align="left">
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+									</tr>
+								</table>
+								<p></P>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

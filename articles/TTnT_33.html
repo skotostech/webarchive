@@ -1,0 +1,99 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="../artwork/articles_TTnTlogo.gif" width="215" height="50" align="BOTTOM" alt="masthead" border="0">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><font face="Verdana,Helvetica,Arial"><a href="TTnT.shtml.html"><img src="nav/snav_ttnt.gif" width="137" height="371" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#33: What a StoryBuilder Can <i>Do</i></b></font></h2>
+							<p><font face="Verdana,Helvetica,Arial" size="2"><i><b>by </b></i><i><b><a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></font></p>
+							<p><font face="Verdana,Helvetica,Arial" size="2"><b>May 10, 2001 -</b> When Gareth decided to bow out of the Skotos Several, as he discussed in <a href="signals15.html">"Fading Signal"</a>, he listed one of his reasons as the fact that some programming was required to produce a game, contrary to his beliefs when he initiated the project.</font>
+								<p><font face="Verdana,Helvetica,Arial" size="2">The concern was a valid one and, coupled with a request I received just days later which asked me to explain what exactly you can <i>do</i> with our StoryBuilder Toolkit, led me to this column. I'm going to take this week out to explain the approximate shape of what StoryBuilders can currently do at Skotos in the hope that it'll provide people considering proposals with a good understanding of needs and abilities.</font></p>
+								<p><font face="Verdana,Helvetica,Arial" size="2">And, I plan to revisit this column once or twice a year, to keep you all appraised of how we're doing on our Toolkit goals.</font>
+								<p><font face="Verdana,Helvetica,Arial" size="2">Before I get going, though, I want to define my terms. I'm going to be talking about our four major tools for StoryBuilders. The first is our web-based interface called The Tree of Woe. The second is SAM, which is a mark-up language primarily used for descriptions. Finally, I'll be talking about BILBO, a simple programming language, and LPC, a complex one.</font>
+								<p><font face="Verdana,Helvetica,Arial" size="2">And with that...</font>
+								<p><font face="Verdana,Helvetica,Arial" size="2"><b>The Web-based Interface</b></font>
+								<p><font face="Verdana,Helvetica,Arial" size="2">The core of the Skotos StoryBuilder Toolkit is a web-based interface. It's called the Tree of Woe, both because its clunkiness made us sad in earlier versions and because it tended to slow the actual game down when it was used (Whoaaa!). It's getting better!</font>
+								<p><font face="Verdana,Helvetica,Arial" size="2">Woe contains a listing of all the objects in a game. This includes the things you'd expect to see, like people, objects, monsters, and room. It can also include somewhat abstract things like tip files, help files, and even our bug logs. There are also a number of &quot;Generic&quot; and &quot;Ur&quot; objects in Woe &#150; these are objects that represent Platonic ideals; you use them as templates when you create your own objects, modifying them to suit the very specific instance you're creating. For example, you might take an Ur oaken table and then create a specific oaken table that has a carving on it.</font>
+								<p><font face="Verdana,Helvetica,Arial" size="2">When you call up an object in Woe, you have the ability to edit a wide variety of information in the object. In general, you don't have to know any programming to do this. You just check the right boxes, type in the appropriate beautiful text, or, in a few cases, enter pointers to other objects.</font>
+								<p><font face="Verdana,Helvetica,Arial" size="2">Here's the general attributes that you can currently set in Woe, for a concrete object:</font>
+							
+								
+							
+							<ul>
+								<li><font face="Verdana,Helvetica,Arial" size="2">What &quot;Ur&quot; or &quot;Generic&quot; object your object is descended from.</font>
+								<li><font face="Verdana,Helvetica,Arial" size="2">A number of miscellaneous properties like &quot;edibility&quot;, &quot;potability&quot;, &quot;transparency&quot;, etc.</font>
+								<li><font face="Verdana,Helvetica,Arial" size="2">Specific information related to bulk.</font>
+								<li><font face="Verdana,Helvetica,Arial" size="2">Specific information related to our combat, clothing, and container systems.</font>
+								<li><font face="Verdana,Helvetica,Arial" size="2">Specific information related to our unreleased crafting system.</font>
+								<li><font face="Verdana,Helvetica,Arial" size="2">Initial properties.</font>
+								<li><font face="Verdana,Helvetica,Arial" size="2">Notes for other developers.</font>
+							</ul>
+							<p><font face="Verdana,Helvetica,Arial" size="2">(I'll explain properties more in a minute... they're important.)</font>
+							<p><font face="Verdana,Helvetica,Arial" size="2">In addition to all of that general information, you can also enter information on specific details in an object. Each object has a &quot;prime&quot; detail, which is the general description of the object, but descriptions of numerous other details are also possible. For example, if you have a sword, the prime detail would describe that sword overall, while other details might describe the hilt, the blade, and the pommel.</font>
+							<p><font face="Verdana,Helvetica,Arial" size="2">The following attributes can be set for details of concrete objects:</font>
+							<ul>
+<li><font face="Verdana,Helvetica,Arial" size="2">Names (nouns) and adjectives for the detail.</font><li><font face="Verdana,Helvetica,Arial" size="2">Prepositions that may be used with the detail, for our prox system.</font><li><font face="Verdana,Helvetica,Arial" size="2">Brief, glance, look, and examine descriptions for the detail.</font><li><font face="Verdana,Helvetica,Arial" size="2">Exits in the detail which lead to other rooms.</font><li><font face="Verdana,Helvetica,Arial" size="2">Keys which are required to use the exits in the detail.</font><li><font face="Verdana,Helvetica,Arial" size="2">The map image that appears when you enter the detail (used only on prime details of rooms)</font></ul>
+							<p><font face="Verdana,Helvetica,Arial" size="2">And that's it!</font><p><font face="Verdana,Helvetica,Arial" size="2">However, it's quite a bit of information. If you use the developer interface you'll find that you can very easily describe a fairly normal room, person, or object that doesn't necessarily do anything interesting.</font><p><font face="Verdana,Helvetica,Arial" size="2">(Abstract objects, like those aforementioned help files can also be edited by simple text forms... they just have different values for you to set.)</font><p><font face="Verdana,Helvetica,Arial" size="2"><b>Properties:</b> I promised I'd take a moment to explain properties, so let me do that before I move on. Properties are quite simply variables that you set to specific values. The only catch is that they live inside objects. Thus, for example, all of the players have skills which are stored as properties. Likewise, each players has a &quot;virtual room&quot; property which defines where he appears when he opens the appropriate guest room door. The follow command, the Marrach Watchmen's drag command, and the precedence system for honored guests are all other examples of uses of properties.</font>
+
+<p><font face="Verdana,Helvetica,Arial" size="2">Properties have two purposes: to link in to existing systems and to link in with SAM or BILBO code which a StoryBuilder might have created.</font><p>
+
+<b><font face="Verdana,Helvetica,Arial" size="2">Web-based Systems</font></b><p><font face="Verdana,Helvetica,Arial" size="2">If you've read our StoryBuilder documentation you'll know that it's our eventual goal to allow a non-programmer to produce a very interesting game without resorting to coding. We're not there yet, but we're definitely on our way.</font><p><font face="Verdana,Helvetica,Arial" size="2">We expect first implementations of powerful in-game systems to be done in LPC or BILBO, but as they reach maturity we plan to link them into our web-based developer system. StoryBuilders will then be able to dynamically choose which systems they want to include in their game and modify basic variables inside the developer interface to set up these systems as they desire.</font><p><font face="Verdana,Helvetica,Arial" size="2">Systems which already have links to our StoryBuilder Toolkit include: the Grand Theatre (Marrach) combat system; our recently released skill system; our unreleased influence system; our alteration system; and our unreleased crafting system.</font><p><font face="Verdana,Helvetica,Arial" size="2">The skill system offers a pretty good example of how we're integrating systems into the StoryBuilder Toolkit. On a single page you can: modify the times required for study and &quot;study recovery&quot;; change the default names of the ten levels for skills; add new categories of skills; and add new skills within those categories.</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+Really, I suppose, you can modify the <i>teaching</i> system right now, because what those skills actually do is embedded in other parts of the game. But, it's an excellent start. As we develop more games and have more external developers working we'll continue expanding these hook-ins to our systems. An external developer will <i>never</i> be able to access our most advanced systems in innovative ways without programming, but in the next year or two he'll be able to do a <i>lot</i>.</font><p>
+
+<b><font face="Verdana,Helvetica,Arial" size="2">SAM Tags</font></b><p><font face="Verdana,Helvetica,Arial" size="2">Even before we get into true programming there's one way to really spice up the descriptions and other information that you might be entering into the Tree of Woe. It's SAM, short for Skotos Active Markup. With SAM you can make text dynamic.</font>
+							<p><font face="Verdana,Helvetica,Arial" size="2">At the simplest level, you can make text slightly random like this:</font>
+							<pre><font face="Verdana,Helvetica,Arial" size="2">
+</font>  You see a {red|fearsome|scary} Bug-blatter Beast of Traal.
+</pre>
+							<p><font face="Verdana,Helvetica,Arial" size="2">At different times this could produce different messages:</font>
+							<pre>
+  You see a fearsome Bug-blatter Beast of Traal.
+  You see a red Bug-blatter Beast of Traal.
+  You see a scary Bug-blatter Beast of Traal.
+</pre>
+							<p><font face="Verdana,Helvetica,Arial" size="2">SAM gets much more interesting when you use true-false tests. For example, you could put SAM into the description of a plant to check whether a viewer had the healer skill. If they did they might get the additional information: &quot;This plant is very poisonous&quot;. Or you could write secret messages on houses, only available to people who know the Hobo code. Or you could only provide street names to people familiar with a town (or those who have read the signposts!) Or you could give different descriptions of a mug of beer depending on how much has been drunk.</font><p><font face="Verdana,Helvetica,Arial" size="2">But wait, there's more. SAM not only slices and dices, but you can also use it to set properties. Thus, you might set a &quot;cursed&quot; property on a player who looks upon a sacred idol that they're not supposed to. (Then, in other places, you could check for that cursed property, and have players see weird things as a result.)</font><p><font face="Verdana,Helvetica,Arial" size="2">The basic idea of SAM remains the same, however. You can use it to produce dynamic text based on either random or arbitrary reasons. You can also use it to set properties which may later influence other dynamic descriptions (or other systems within the game).</font><p>
+
+<b><font face="Verdana,Helvetica,Arial" size="2">The BILBO Language</font></b><p><font face="Verdana,Helvetica,Arial" size="2">
+
+SAM on top of the developer interface can allow you to, fairly simply, create semi-dynamic text, detailing people, places, and things in interesting ways. And, you'll have the ability to easily access our more mature systems. But, what if you want to do <i>more</i>? That's where our programming languages come in</font><p><font face="Verdana,Helvetica,Arial" size="2">BILBO stands for the Built-In Language Between Objects. It's the simple programming language that we make available to all StoryBuilders. We've tried to give BILBO a simple and intuitive syntax. It uses line numbers, kind of like BASIC.</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+As you might guess from the name, BILBO is a language that allows objects to do neat things. You build BILBO scripts <i>into</i> objects and then make then respond to certain verbs. For example, the gifts given out around the Winter Ball &#150; such as goblets that filled when you tapped them or cloaks that changed colors when you rubbed a clasp &#150; were built using BILBO.</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+BILBO <i>isn't</i> intended to be used for complex systems. (We actually built the Alteration System using it, but it's inefficient.) BILBO <i>is</i> intended to give objects unique and interesting behaviors. We've built magic items with BILBO. We've used it to create our second generation of CNPCs over in Galactic Emperor: Succession. We even used it for that kissing curse that circulated around the Castle many moons ago.</font><p><font face="Verdana,Helvetica,Arial" size="2">(BILBO, you see, has some neat features. It's built into the properties of an object, and it can actually infect other objects with the same or different code. The kissing curse wrote BILBO code into the kissee whenever the &quot;kiss&quot; verb was used.)</font><p><font face="Verdana,Helvetica,Arial" size="2">So, overall, BILBO is limited for the big stuff, but cool for individual quirks.</font><p>
+
+<b><font face="Verdana,Helvetica,Arial" size="2">The LPC Programming Language</font></b><p><font face="Verdana,Helvetica,Arial" size="2">And that's really all we intend to offer to most StoryBuilders: the Dev Interface + SAM + BILBO. It'll be enough to produce games with the same general systems as our existing games, full of dynamic descriptions and interesting objects.</font><p><font face="Verdana,Helvetica,Arial" size="2">But, we realize that the occasional star programmer might want the ability to do a little more. We actually have another language called LPC which is the core upon which all of our games are built. You can do pretty much anything in LPC, but you'd need to be a very skilled C programmer to do so (mostly because you'd have to understand our entire code base).</font><p><font face="Verdana,Helvetica,Arial" size="2">Eventually we'll be opening up some LPC functionality to StorySmiths, a super-class of StoryBuilders, but for not it's by invitation only.</font><p>
+
+<b><font face="Verdana,Helvetica,Arial" size="2">The Current State of the Art</font></b><p><font face="Verdana,Helvetica,Arial" size="2">
+
+So, you're getting ready to write a proposal...  and, please note, we <i>are</i> taking proposals again and would love to hear from you...  and you're trying to figure out <i>what</i> exactly this all means.</font><p><font face="Verdana,Helvetica,Arial" size="2">Right now, you could easily create the following types of game at Skotos without needing to program at all:</font><ul>
+<li><font face="Verdana,Helvetica,Arial" size="2">A plot-driven game like Castle Marrach.</font><li><font face="Verdana,Helvetica,Arial" size="2">A game centered around player interaction or conflict.</font><li><font face="Verdana,Helvetica,Arial" size="2">A Stage which depended on StoryTeller oversight.</font></ul><p><font face="Verdana,Helvetica,Arial" size="2">Moving toward a game with less emphasis on socialization and more emphasis on independent play would take some doing, but currently a programmer could:</font><ul>
+<li><font face="Verdana,Helvetica,Arial" size="2">Implement puzzles using some combination of SAM and BILBO.</font><li><font face="Verdana,Helvetica,Arial" size="2">Implements CNPCs of low-to-medium sophistication.</font><li><font face="Verdana,Helvetica,Arial" size="2">Use the Grand Theatre dueling system and use BILBO scripts to determine what happens for victory or loss.</font><li><font face="Verdana,Helvetica,Arial" size="2">Create an arbitrary list of skills to be learned and taught.</font><li><font face="Verdana,Helvetica,Arial" size="2">Use BILBO scripts or SAM to create simple responses to skills.</font><li><font face="Verdana,Helvetica,Arial" size="2">Use BILBO scripts to create neat and interesting objects.</font><li><font face="Verdana,Helvetica,Arial" size="2">And lost of other things that depend upon the creation of variables (properties), the analysis of those variables or other factors (BILBO), and the dynamic output of data (SAM).</font></ul><p><font face="Verdana,Helvetica,Arial" size="2">We're currently working on some important systems which will dramatically increase the number of things that StoryBuilders can take advantage of, among them crafting, influence, and new combat systems. As the year proceeds we'll be getting this linked in better, I'm sure.</font><p><font face="Verdana,Helvetica,Arial" size="2">So that's the state of things on 5/10/01. We'll revisit this in 6 or 12 months.</font>
+							<p><font face="Verdana,Helvetica,Arial" size="2">But I'll be back here in 7 days!</font>
+						</div>
+						<div align="center">
+							<table border="0" cellpadding="0" cellspacing="2">
+								<tr>
+									<td valign="middle"><a href="http://www.skotos.net/forum/showthread.php?threadid=297"><img height="59" width="156" src="../artwork/youropinion_btn.gif" border="0" alt="your opinion..."></a></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

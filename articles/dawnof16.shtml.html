@@ -1,0 +1,259 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2" height="3455">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #16:</b></font></p>
+							<h2>Backtracking that Works</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>April 10, 2002</i></b></p>
+							<div class="Section1">
+								<p>Last time, I showed you how one-symbol-lookahead parser would fail to handle a sentence like WITH THE DIAMOND RING THE BELL. These are the kind of parsers generally created by compiler-compilers such as Unix&#146;s <i>yacc</i> (although some of these can be quite sophisticated nowadays and allow more flexibility).</p>
+								<p>Before I continue, I ought to mention that it&#146;s perfectly possible to get away with this kind of parser in a MUD, with only minor alterations. Backtracking that&#146;s all done within a single rule can still be done. For example, consider the rule fragment:</p>
+								<blockquote>
+									<p>{ adjective } noun</p>
+								</blockquote>
+								<p>In the case where the noun can also be an adjective, the implementation of parse(r_noun_group) could easily gobble up a noun believing it to be an adjective, then fail when looking for a following noun. Within that rule itself, backtracking a word and trying to see if <i>that</i> is the noun is a valid option (although in practice it would probably check for the noun case <i>before</i> the adjective case).</p>
+								<p>I know this is feasible because it&#146;s how I do it in <i>MUD2</i>. <i>MUD2</i>, however, can&#146;t handle backtracking across rules. In the rule fragment</p>
+								<blockquote>
+									<p>preposition &lt;noun phrase&gt; verb</p>
+								</blockquote>
+								<p>it would not be able to backtrack into the &lt;noun phrase&gt; if it failed at the verb stage.</p>
+								<p>I&#146;m about to present the algorithm for something that can.</p>
+								<p><b><font size=2>A Fully Backtracking Parser</font></b></p>
+								<p>&nbsp;The principle for this is the same as for the parse() function I gave in my previous column, but with one major difference: the function&#146;s parameter is a list that carries the backtracking points. Whereas parse(rule) succeeds if the parser is looking at something that matches the rule, parse(rule_list) succeeds if the parser is looking at something that matches the rule <i>and</i> it can get from there to the end of the line.</p>
+								<p>I&#146;ll strip out the token advance() stuff from this to make it even clearer what&#146;s going on (but don&#146;t worry, I&#146;ll go into detail about token management in my next article). I&#146;ll use a right-associative operator &quot;.&quot; to mean &quot;put this at the head of this list&quot;, so 0.1.[2, 3, 4] would give [0, 1, 2, 3, 4].</p>
+								<p>OK, deep breath, here goes:</p>
+								<pre><font size="-1">function parse(rule_list)
+begin
+   if null(rule_list) return true
+   switch head_of(rule_list) into
+   begin
+   case r_input:
+      ...
+   case r_sentence:
+      ...
+   case r_command:
+      if parse(r_command1 . tail_of(rule_list)) then
+         return true
+      else if parse(r_command2 . tail_of(rule_list)) then
+         return true
+      else
+         return false
+   case r_command1:
+      ...
+   case r_command2:
+      if current(adverb) then
+         if parse(rule_list) then
+return true
+      if parse(r_cmd2a . tail_of(rule_list)) then
+         return true
+      else
+         return false
+   case r_cmd2a:
+   if current(preposition) then
+      if parse(r_noun_phrase . r_cmd2b . tail_of(rule_list)) then
+         return true
+   return false
+case r_cmd2b:
+      if current(adverb) then
+         if parse(rule_list) then
+return true
+      if parse(r_cmd2c . tail_of(rule_list)) then
+         return true
+      else
+         return false
+   case r_cmd2c:
+   if current(verb) then
+      if parse(r_cmd2d . tail_of(rule_list)) then
+         return true
+   return false
+   case r_cmd2d:
+      if current(adverb) then
+         if parse(rule_list) then
+return true
+      if parse(r_cmd2e . tail_of(rule_list)) then
+         return true
+      else
+         return false
+case r_cmd2e:
+if parse(r_noun_phrase . r_cmd2f . tail_of(rule_list)) then
+         return true
+   return false
+case r_cmd2f:
+      if current(adverb) then
+         if parse(rule_list) then
+return true
+      if parse(tailof(rule_list)) then
+         return true
+      else
+         return false
+   case r_noun_phrase:
+      ...
+   case r_noun_group:
+      ...
+   end
+end
+</font></pre>
+								<p>So what&#146;s going on here?</p>
+								<p>What&#146;s going on is that rules are split up into their individual components, and each step is handled separately. When there&#146;s a need to invoke a new rule, the continuation (i.e. what to do when the rule has finished) is also passed. This way, if the continuation fails then the backtracking will go through all stages of all intermediate rules.</p>
+								<p>This is best shown by the trace (adverb clutter removed again):</p>
+								<pre><font size="-1">                                                            current:
+                                                            WITH
++ parse([r_input])
+| + parse([r_sentence, r_inpa])
+| | + parse([r_command, r_snta, r_inpa])
+| | | + parse([r_command1, r_snta, r_inpa])
+| | | | + current(verb)
+| | | | - current(verb) =false
+| | | - parse([r_command1, r_snta, r_inpa]) =false
+| | | + parse([r_command2, r_snta, r_inpa])
+| | | | + parse([r_cmd2a, r_snta, r_inpa])
+| | | | | + current(preposition)
+| | | | | - current(preposition) =true                      THE
+| | | | | + parse([r_noun_phrase, r_cmd2b, r_snta, r_inpa])
+| | | | | | + parse([r_noun_group, r_npa, r_cmd2b, r_snta, r_inpa])
+| | | | | | | + current(article)
+| | | | | | | - current(article) =true                      DIAMOND
+| | | | | | | + parse([r_nga, r_npa, r_cmd2b, ...])
+| | | | | | | | + current(integer)
+| | | | | | | | - current(integer) =false
+| | | | | | | | + parse([r_ngb, r_npa, r_cmd2b, ...])
+| | | | | | | | | + current(adjective)
+| | | | | | | | | - current(adjective) =true                RING
+| | | | | | | | | + parse([r_ngb, r_npa, r_cmd2b, ...])
+| | | | | | | | | | + current(adjective)
+| | | | | | | | | | - current(adjective) =false
+| | | | | | | | | - parse([r_ngb, r_npa, r_cmd2b, ...])
+| | | | | | | | | + parse([r_ngc, r_npa, r_cmd2b, ...])
+| | | | | | | | | | + current(noun)
+| | | | | | | | | | - current(noun) =true                   THE
+| | | | | | | | | | + parse([r_npa, r_cmd2b, ...])
+| | | | | | | | | | | + current(preposition)
+| | | | | | | | | | | - current(preposition) =false
+| | | | | | | | | | | + parse([r_cmd2b, r_snta, r_inpa])
+| | | | | | | | | | | | + parse([r_cmd2c, r_snta, r_inpa])
+| | | | | | | | | | | | | + current(verb)
+| | | | | | | | | | | | | - current(verb) =false
+| | | | | | | | | | | | - parse([r_cmd2c, r_snta, r_inpa]) =false
+| | | | | | | | | | | - parse([r_cmd2b, r_snta, r_inpa]) =false
+| | | | | | | | | | - parse([r_npa, r_cmd2b, ...])          RING
+| | | | | | | | | - parse([r_ngc, r_npa, r_cmd2b, ...])     DIAMOND
+| | | | | | | | - parse([r_ngb, r_npa, r_cmd2b, r_snta, r_inpa]) 
+| | | | | | | | + parse([r_ngc, r_npa, r_cmd2b, ...])
+| | | | | | | | | + current(noun)
+| | | | | | | | | - current(noun) =true                     RING
+| | | | | | | | | + parse([r_npa, r_cmd2b, ...])
+| | | | | | | | | | + current(preposition)
+| | | | | | | | | | - current(preposition) =false
+| | | | | | | | | | + parse([r_cmd2b, r_snta, r_inpa])
+| | | | | | | | | | | + parse([r_cmd2c, r_snta, r_inpa])
+| | | | | | | | | | | | + current(verb)
+| | | | | | | | | | | | - current(verb) =true               THE
+| | | | | | | | | | | | + parse([r_cmd2d, r_snta, r_inpa])
+| | | | | | | | | | | | | + current(adverb)
+| | | | | | | | | | | | | - current(adverb) =false
+| | | | | | | | | | | | | + parse([r_cmd2e, r_snta, r_inpa])
+| | | | | | | | | | | | | | + parse([r_noun_phrase, r_cmd2f, ...])
+...                                                         BELL
+...                                                         EOL
+| | | | | | | | | | | | | | | + parse([r_cmd2f, r_snta, r_inpa])
+| | | | | | | | | | | | | | | | + current(adverb)
+| | | | | | | | | | | | | | | | - current(adverb) =false
+| | | | | | | | | | | | | | | | + parse([r_snta, r_inpa])
+| | | | | | | | | | | | | | | | | + current(eos)
+| | | | | | | | | | | | | | | | | - current(end_of_snt) =false
+| | | | | | | | | | | | | | | | | + parse([r_inpa])
+| | | | | | | | | | | | | | | | | | + current(eos)
+| | | | | | | | | | | | | | | | | | - current(eos) =false
+| | | | | | | | | | | | | | | | | | + parse([r_inpb])
+| | | | | | | | | | | | | | | | | | | + current(eol)
+| | | | | | | | | | | | | | | | | | | - current(eol) =true
+| | | | | | | | | | | | | | | | | | - parse([r_inpb]) =true
+| | | | | | | | | | | | | | | | | - parse([r_inpa]) =true
+| | | | | | | | | | | | | | | | - parse([r_snta, r_inpa]) =true
+| | | | | | | | | | | | | | | - parse([r_cmd2f, ...]) =true
+| | | | | | | | | | | | | | - parse([r_noun_phrase, ...]) =true
+| | | | | | | | | | | | | - parse([r_cmd2e, ...]) =true
+| | | | | | | | | | | | - parse([r_cmd2d, ...]) =true
+| | | | | | | | | | | - parse([r_cmd2c, ...]) =true
+| | | | | | | | | | - parse([r_cmd2b, ...]) =true
+| | | | | | | | | - parse([r_npa, r_cmd2b, ...]) =true
+| | | | | | | | - parse([r_ngc, r_npa, r_cmd2b, ...]) =true
+| | | | | | | - parse([r_nga, r_npa, r_cmd2b, ...]) =true
+| | | | | | - parse([r_noun_group, r_npa, r_cmd2b, ...]) =true
+| | | | | - parse([r_noun_phrase, r_cmd2b, ...]) =true
+| | | | - parse([r_cmd2a, r_snta, r_inpa]) =true
+| | | - parse([r_command2, r_snta, r_inpa]) =true
+| | - parse([r_command, r_snta, r_inpa]) =true
+| - parse([r_sentence, r_inpa]) =true
+- parse([r_input]) =true
+</font></pre>
+								<p>You will be relieved to know that this is about as complicated as these articles on parsing are going to get!</p>
+								<p>(Not as relieved as I am &#151; I refuse to believe I haven&#146;t made any mistakes manually generating this lot!).</p>
+								<p>The key point is during parse([r_ngb, r_npa, r_cmd2b, r_snta, r_inpa]). The parser is looking at the third component of a noun group, which is a list of adjectives. It tries DIAMOND/adjective and then proceeds to finish the noun group off and go on to r_npa. After a quick check for a (non-present) preposition, r_npa is happy and passes control to r_cmd2b. Now r_cmd2b fails, but because it was invoked by r_npa it backtracks there (by the unwinding of the recursive call). Similarly, r_npa backtracks to r_ngb, where there&#146;s another choice point. The pseudocode for r_ngb, which I didn&#146;t show earlier but will do now, is:</p>
+								<pre><font size="-1">case r_ngb:
+      if current(adjective) then
+         if parse(rule_list) then
+return true
+      if parse(r_ngc . tail_of(rule_list)) then
+         return true
+      else
+         return false
+</font></pre>
+								<p>The first time, r_ngb assigns DIAMOND as an adjective then calls r_ngb again to see if the next word is an adjective. It isn&#146;t, so it then calls r_ngc looking for a noun. Ultimately, the subsequent parse fails. The recursion unwinds back to the point where it decided what to do if DIAMOND was an adjective, i.e. the if&nbsp;parse(rule_list) clause. That returns false, so control passes to parse(r_ngc&nbsp;.&nbsp;tail_of(rule_list)), which ultimately succeeds.</p>
+								<p>You can now see why I did this as a switch statement rather than as function calls &#151; it&#146;s easier to pass around a list of integer constants than it is a list of functors. Modern languages (indeed, some old ones like LISP) have no problems doing this, of course, but I might have problems explaining it..!</p>
+								<p>You can program this up using an explicit grammar quite well, and I wouldn&#146;t even get cross with you if you did. It would cut out a lot of the near-identical lines of code and wouldn&#146;t run appreciably slower. The difference is that you can&#146;t hack at it very easily if you want to handle special cases, and the odds are you <i>will</i> want some special cases...</p>
+								<p>OK, this has all been very exhausting so I&#146;ll stop here. Next article, I&#146;ll give the low-down on the token stream management that I&#146;ve been studiously avoiding up until now. After that, we can think about how to <i>use</i> what this parsing process produces.</p>
+							</div>
+							<div align="left">
+								<div align="left">
+									<div align="left">
+										<div align="left">
+											<div align="left">
+												<table width="100%">
+													<tr>
+														<td align="center" valign="middle">
+															<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle">
+															<p><!--#include file="dawnof-last10.php"-->
+															</p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

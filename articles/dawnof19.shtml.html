@@ -1,0 +1,143 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #19:</b></font></p>
+							<h2>The Binder</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>May 29, 2002</i></b></p>
+							<div class="Section1">
+								<p>In this series of articles about parsing, we&#146;re now at the point where the input has been broken down into a nested list of atoms which is passed to the final phase of the parsing process, the binder. What is it, and why is it called &#147;the binder&#148;?<br>
+									<br>
+									Well what it is is a collection of routines that make sense of commands in the context of the game world. As for why it&#146;s called the binder, well, OK, a confession: that&#146;s just what <i>I</i> call it. I&#146;ve no idea what other people call things that do similar tasks for non-MUD applications, but I call it the binder as it binds atoms that represent classes to atoms that represent instances. Hey, if I can get the word &#147;mobiles&#148; into common currency among MUD players, &#147;binder&#148; is worth a shot!</p>
+								<h3><b>Verbs</b></h3>
+								<p>I&#146;ll start with the easy stuff: verbs.<br>
+									<br>
+									Consider the sentences GET THE SAND WITH THE BUCKET and GET THE SAND FROM THE BUCKET. In the first, there&#146;s some sand lying around on the ground and you want to move it to the bucket; in the second, there&#146;s some sand in the bucket and you want to move it to your hands. If you&#146;re standing in a room where there&#146;s sand on the floor and you&#146;re holding a bucket half-full of sand, the parser had better be able to figure out which one you mean. Both commands use the same verb, though: GET.<br>
+									<br>
+									You could avoid the problem by forcing players to use different words. SCOOP THE SAND WITH THE BUCKET and REMOVE THE SAND FROM THE BUCKET would be fine. Your players wouldn&#146;t necessarily think so (especially newbies), but your parser would be happy.<br>
+									<br>
+									Alternatively, you could use the fact that the pronouns are different to generate the appropriate verbs yourself. This is where the binder comes in. The binder takes verb modifiers and applies each one in turn to the verb to get a new verb.<br>
+									<br>
+									To demonstrate, first, I&#146;ll define the atoms:</p>
+								<table border="0" cellspacing="4" cellpadding="4">
+									<tr>
+										<td>adverb:</td>
+										<td>*+ [ ?? ] +*</td>
+										<td>//ADVERB is a subclass of root.</td>
+									</tr>
+									<tr>
+										<td>with:</td>
+										<td>*+ [ adverb ] +*</td>
+										<td>//WITH is a subclass of ADVERB.</td>
+									</tr>
+									<tr>
+										<td>from:</td>
+										<td>*+ [ adverb ] +*</td>
+										<td>//FROM is a subclass of ADVERB.</td>
+									</tr>
+								</table>
+								<p>Now I&#146;ll define the functions:</p>
+								<table border="0" cellspacing="4" cellpadding="4">
+									<tr>
+										<td>{ adverb ?? }:</td>
+										<td>first</td>
+										<td>//ADVERB applied to anything returns it</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td>//unchanged</td>
+									</tr>
+									<tr>
+										<td>{ with get }:</td>
+										<td>scoop</td>
+										<td>//GET x WITH y =&gt; SCOOP x WITH y</td>
+									</tr>
+									<tr>
+										<td>{ from get }:</td>
+										<td>remove</td>
+										<td>//GET x FROM y =&gt; REMOVE x FROM y</td>
+									</tr>
+								</table>
+								<p>The binder will take the verb and the list of modifiers and apply each in turn. For [get,&nbsp;[with]] it would call with(get) and find scoop. For [get, [from]] it would call from(get) and find remove. For other verbs and prepositions it would return the verb unaltered, as eg. both with(tickle) and to(get) would match only the pattern for {&nbsp;adverb&nbsp;??&nbsp;}.<br>
+									<br>
+									A more complicated verb modification list such as [inside, very, quickly, secretively] would be handled the same way. Applying it to DROP, this particular list might first call inside(drop) to generate INSERT, then very(insert) would do nothing, then quickly(insert) which might convert it to INSERT_FAST. If you really wanted to be flash you could note that VERY is an adverb that modifies adverbs, and use it to change QUICKLY into VERY_FAST before applying very_fast(insert), but I wouldn&#146;t bother; although the players may occasionally want to make this kind of fine distinction, the game itself is unlikely to have the necessary physics in place to handle it any differently.<br>
+									<br>
+									Note that although I&#146;ve said here that handling verbs is easy, it&#146;s impossible if you can&#146;t quantify over them (ie. can&#146;t treat them as objects in their own right). This is precisely the case with most of the object-oriented MUDs out there. &#147;Object over-oriented&#148; might be a better way of describing them...</p>
+								<h3><b>Nouns</b></h3>
+								<p>Nouns are harder to bind than verbs, but not <i>that</i> much harder. I&#146;ll start by explaining the theory.<br>
+									<br>
+									If you were to issue the command PICK UP THE INGOTS in a room containing 3 ingots, how should the game handle it? First it would convert up(pick) into GET, which I&#146;ve just described how to do. Then it would have to apply GET to the ingots. The na&iuml;ve way to approach this is to pass the noun phrase as a parameter to GET, but whereas this might work if the most complicated thing a noun phrase can be is a single noun, it&#146;s not going to work here. You might have said PICK UP 2 INGOTS, for example.<br>
+									<br>
+									No, the way to do it is to find all possible referents for the noun phrase in the context of the verb, and apply the verb to each one in turn. In this manner, PICK UP THE INGOTS will convert into three separate function calls &#150; one for each ingot. These would be, say: get(ingot1), get(ingot4), get(ingot7). Thus, by the time the code for GET is given control, there&#146;s only ever one object to be got.<br>
+									<br>
+									I said &#147;in the context of the verb&#148; there because different verbs will want to refer to different objects. If you were carrying an axe in a room containing an axe, GET THE AXE would pick up the axe from the floor whereas DROP THE AXE would drop the axe you were holding. When binding AXE to an object for GET, you look in the room before you look on the character; for DROP, you look on the character before you look in the room. Fortunately, most verbs follow similar search patterns when binding objects, so you can group them together as a class and write the necessary routines only once. GET and DROP are likely to be among the most complicated, and will probably need their own individual binding strategies, but the rest will tend to be one of the following:</p>
+								<ul>
+									<li type="disc"><i>Local command</i> &#150; bind noun to objects held, then objects in room. Most commands are of this kind, eg. OPEN, KISS, KILL, SMELL.<br>
+									<li type="disc"><i>Global command</i> &#150; bind noun to objects wherever they are. Spells often tend to use these, eg. SUMMON, DEAFEN, GLOW.<br>
+									<li type="disc"><i>No bind</i> &#150; the concept the noun describes is wanted, not the objects to which it refers. Useful for admin commands such as ones to print out parent/child relationships from the atom hierarchy, but also a good idea to bypass binding for commands you know don&#146;t need it (eg. ones that take strings as parameters).<br>
+									
+								</ul>
+								
+								Note that commands can bind differently for each parameter. THROW DART AT PHOTO would want to bind DART to some dart you were holding and PHOTO to some photograph you weren&#146;t!
+								<h3><b>Rebinding</b></h3>
+								<p>
+								The beauty of having the binder written in your game definition language is that the commands of the game can call the binder directly. If you&#146;re really keen, you can implement an operator to call the parser on an arbitrary string, too. Thus, if you have some truly horrible command that you don&#146;t know right up until execution time how to parse it, your game will still be OK.<br>
+									<br>
+									
+								The archetypal example of this is HELP, which must perforce be an enquoting string because people will type things like HELP ME, I DON&#146;T KNOW WHAT TO DO that wouldn&#146;t parse otherwise. However, people will also type things like HELP JACK &#150; a command to assist someone else (it might take 2 people to open a door, for example). In binding terms, HELP would be a &#147;no bind&#148; command that always took a string as a parameter. When help(&lt;string&gt;) was called, it would have to check to see if &lt;string&gt; were parsable first; if so, it would do the necessary help-a-person stuff, and if not then it would invoke the general context-sensitive help system.<br>
+									<br>
+									
+								If binding individual verbs and nouns were all there was to it, I wouldn&#146;t have to explain the binder further. You&#146;d use adverbs and prepositions to modify the verb, then use the context of the verb to determines a search strategy for the noun. Then you&#146;d go through all objects in the search space, recording those that were instances of the class that the noun represents (or, strictly speaking, that the atom representing the noun represents). This would give you a set of bindings for the noun, and you&#146;d call the verb on each one in turn as a separate command invocation.<br>
+									<br>
+									
+								This isn&#146;t all there is to it, though. The binder has to bind <i>noun phrases</i>, not just nouns. Next time, I&#146;ll describe the principles involved in this.
+</p>
+								<p></p>
+							</div>
+							<div align="left">
+
+												<table width="100%">
+													<tr>
+														<td align="center" valign="middle">
+															<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle">
+															<p><!--#include file="dawnof-last10.php"-->
+															</p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+													</tr>
+												</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

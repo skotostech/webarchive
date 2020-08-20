@@ -1,0 +1,137 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #20:</b></font></p>
+							<h2>Binding Noun Phrases</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>June 12, 2002</i></b></p>
+							<div class="Section1">
+								<p>The issue with binding noun phrases is how to get from something like<BR>
+									<BR>
+									<code>
+[treasure, [the, [except, [and, [[emerald, [the]], [stone, [the, small, white]]]]]]</code><BR>
+									<BR>
+									
+to something like<BR>
+									<BR>
+									<code>
+[ruby2, goblet0, tapestry1].</code><BR>
+									<BR>
+									
+The former is a binding for a noun phrase, whereas the latter is a list of those objects that satisfy the noun phrase.<BR>
+									<BR>
+									
+Well, it&#146;s all done using <I>sets</I>. Sets are mathematical entities that are either empty or consist of a finite (in our case) number of objects with no repetitions. What we want is a set of those objects that satisfy the noun phrase.<BR>
+									<BR>
+									
+To get a set from an atom representing a noun is no problem &#150; I explained how to do it last time. Briefly, you regard the &#147;contains&#148; hierarchy of objects in the vicinity as if it were a tree, and you search through it (in an order determined by the verb) to pull out all those objects that are &#147;a kind of&#148; the atom that the noun represents. If you find none, it&#146;s an error &#150; &#147;There is no elephant here&#148;. If you find one or more, it&#146;s a set.</p>
+								<h3><b>Adjectives</b></h3>
+								<p>
+Adjectives act as filters on a set. If binding the noun had given the set [obj1, obj2, obj3], of which obj2 and obj3 were small, then applying the adjective [small] to the set would result in [obj2, obj3] &#150; because they&#146;re the only small ones. This new set would then be filtered by later adjectives to pare it down further.<BR>
+									<BR>
+									
+Articles are linked to the idea of plurals. THE SMALL WHITE STONE means one such stone, whereas THE SMALL WHITE STONES means all of them. A SMALL WHITE STONE also means just one, and A SMALL WHITE STONES will either be flagged as an error because it doesn&#146;t fit your grammar or it will be let through as an act of compassion for illiterate players. Players tend to miss out articles anyway for reasons of speed, so most of the time you&#146;ll be replying on some default (eg. assume THE is present).<BR>
+									<BR>
+									In pseudocode, adjective processing would be:</p>
+
+<pre>
+{ adjective list }:
+begin
+    S is an empty list
+    for each element E in the list,
+        if adjective(E) is true then
+            if E isn't a member of S then
+                insert E into S
+    return S
+end
+</pre>
+								<h3><b>Articles</b></h3>
+								<p>
+To apply the binding for an article, all the remaining noun modifiers must be applied first and the atom representing the noun must be recognisable as being singular or plural (words like EVERYTHING and TREASURE count as plural). For THE with a plural noun, the set produced is untouched; in all other cases, the set is reduced to one in length. You could be picky and in the case of THE complain if the set contained more than one element &#150; GET THE NAIL when there are 50 present doesn&#146;t actually make sense, but treating it like GET A NAIL and choosing one at random is fine (and kind to your players). Numerals work the same way, but they select more than one: GET 20 NAILS truncates the set of possible nails to 20 in length,<BR>
+									<BR>
+									
+The code for articles and numerals (which I&#146;m not going to give here &#150; write it yourself!) is messier than for adjectives because it needs to know not only the binding achieved for the noun phrase thus far, but also the status of the governing noun (plural or singular) and the remaining work to be done on this noun phrase (so it can do it before truncating the set).</p>
+								<h3><b>Conjunctions</b></h3>
+								<p>
+There are two basic kinds of conjunction: inclusive and exclusive. <BR>
+									<BR>
+									
+AND is an inclusive conjunction. Normally in set theory, AND would equate to the intersection of two sets, but here it means their union. If you say DROP BATS AND BALLS you mean drop the bats and drop the balls, not drop those things that are both a bat and a ball. <BR>
+									<BR>
+									
+BUT is an exclusive conjunction. It works as a filter: anything that appears in the second set is removed from the first. DROP TREASURE BUT GEMS takes the set of objects that are bound to TREASURE, the set of objects that are bound to GEMS, and removes all elements present in the latter from the former.<BR>
+									<BR>
+									
+OF is another exclusive conjunction. This one works as a straight intersection. GET CROCK OF GOLD means get the intersection of all those items present that are crocks and all those that are gold. It&#146;s good for implementing playing cards: GET QUEEN OF SPADES.<BR>
+									<BR>
+									
+You <I>can</I> have other conjunctions; in particular, players may try OR. Although DROP TREASURE OR GEMS <I>really</I> ought to choose randomly between the two lists (ie. just the treasure or just the gems), you can make OR a synonym of AND and get away with it.</p>
+								<h3><b>Pronouns</b></h3>
+								<p>
+Pronouns are notoriously tricky to get right in English, so the solution is to accept this and to be methodical about them instead . That way, the players will know what to expect even if it&#146;s not the full extent of what English allows.<BR>
+									<BR>
+									
+In MUD terms, pronouns are of two types: <I>bound</I> and u<I>nbound</I>. A bound pronoun is one which is defined earlier in the input line, as in PICK UP THE ARROW AND PUT IT IN THE QUIVER. An unbound pronoun is one that isn&#146;t, as in GET IT. For the former, you have to keep track of the last possible binding for every pronoun (IT, HIM, HER, THEM, ME etc.), which is yet another layer of tiresome complexity for the binder. For the latter, well you <I>could </I>do it by tracking objects mentioned in room descriptions if your system is good enough. Alternatively, you can simply bind it to a general class, eg. IT is treated like it was EVERYTHING and THEM is treated like it was EVERYONE. This isn&#146;t so accurate, but it&#146;s a reasonable hack that players will come to know and love, such that if you ever decide to change it they&#146;ll moan at you...<BR>
+									<BR>
+									
+HIM and HER border on being dynamically assigned. If you have one class for all the male characters and another for all the female characters, that&#146;s fine. If not, though, then you need to use the class of all characters (EVERYONE), then apply male or female as an adjective to it. This would mean the binding involved some functionality, hence the term <I>dynamically assigned</I>.<BR>
+									<BR>
+									
+In practice, any part of speech can be dynamically assigned if its meaning changes depending on who uses it. Examples: ME (pronoun), MY (adjective), FOE (noun &#150; the person you&#146;re fighting), SPEAKER (noun - the person who last spoke to you). Again, these are not difficult to implement in themselves, but they add further special cases to the binding process that complicate it still further.</p>
+								<h3><b>Other Parts of Speech</b></h3>
+								<p>
+How far you want to go with this is up to you. In <I>MUD2</I> I handle comparatives and superlatives, so you can GET THE BIGGEST BOX. It does this by having an adjective associated with the superlative (SIZE, in this example) which produces an integer as an answer. The list is ordered by the integer results, and the first one is taken. GET THE BIGGEST 2 BOXES works too, as does GET THE LEAST BIGGEST BOX. <BR>
+									<BR>
+									
+The job of the binder is, when it comes down to it, fairly simple. It has to find a functor (from the verb plus its modifiers) and a set of parameters (from the noun phrases plus their modifiers) and apply the functor to each parameter in turn. There are many special cases, which can complicate things hideously, but overall the core algorithm isn&#146;t all that hard.<BR>
+									<BR>
+									
+Next time, I&#146;ll talk about how to make things a little simpler than they might otherwise become.<BR>
+								</p>
+							</div>
+							<div align="left">
+
+												<table width="100%">
+													<tr>
+														<td align="center" valign="middle">
+															<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle">
+															<p><!--#include file="dawnof-last10.php"-->
+															</p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+													</tr>
+												</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

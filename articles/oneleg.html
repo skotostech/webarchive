@@ -1,0 +1,58 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_generic.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_generic"><map name="tnav_generic"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="oneleg.html#"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<h2><font face="Verdana,Arial,Helvetica"><b><img src="../artwork/filler_gnarltree.gif" width="162" height="532" align="right" border="2" hspace="10" vspace="10"></b>Putting on Your Pants One Leg at a Time</font></h2>
+						<p><font size="2" face="Verdana,Arial,Helvetica">Okay, sounds easy, we all know how to do it. Of course, computers don&#146;t. Most computers don&#146;t have legs, fewer wear pants, and those that do, probably had to be told how to put them on. That&#146;s where we find ourselves, having to worry about how to wear pants&#133; for starters.<br>
+						<br>
+						Our ultimate goal is to allow players to use all objects they find in any way they can conceive to use them. That includes wearing pants on your head and boots on your hands. It annoys us, but if you want to do it, we strive to let you.<br>
+						<br>
+						On the surface, sure you can wear pants on your head, and boots on your hands. No problem, we&#146;ll let you do it. Unfortunately, the computer has no idea that when you put pants over your head, you can no longer see, or that when you wear boots on your hands, you cannot pick anything else up. And frankly, worn this way, these articles are not really considered worn clothes. Indeed, the description, &#147;Maurice is wearing trousers on his head,&#148; is likely the first, and maybe only thing you notice about him on a short description. Of course, Maurice could as easily wear a bucket or a lampshade on his head and get the same effect. So, in effect, clothing not worn on the intended location becomes an ordinary object. Anything not intended to be worn on the head will probably obscure vision, while anything not intended to be worn on the hands will probably make manipulation difficult. That&#146;s settled.<br>
+						<br>
+						But what about other clothing? Why can&#146;t I wear a sweater over a shirt?<br>
+						<br>
+						You can.<br>
+						<br>
+						Why can&#146;t I wear thirty sweaters over a shirt?<br>
+						<br>
+						Stop that! Because&#133; because&#133; well we all know why, but&#133;<br>
+						<br>
+						Here&#146;s where the mechanics [we&#146;re considering &#150; and will eventually implement] come in.<br>
+						<br>
+						It&#146;s because the material has to have a thickness [how much area does it displace], and an inner and outer radius [how much can be worn under it, and over it], and flexibility [how much it compresses, how much it can stretch]; finally, we also have insulation [usually referring to how hot you get wearing an article of clothing]. Here are some sample numbers:<br>
+						<br>
+						Sweater: Thickness = 1; Inner/Outer Radius = 12.5/13; Flexibility = .5 to 1.5; Insulation = 2<br>
+						Player&#146;s radius at largest point [around chest for this example] = 12<br>
+						<br>
+						You put on the sweater; it&#146;s a radius 12.5/13, just a little loose, comfortable.<br>
+						<br>
+						You put on another, identical sweater, it&#146;s radius is also 13, the first sweater compresses to 12.5 because it&#146;s flexible enough to compress a little. It&#146;s getting snug [since skin tight for you is at 12], but you are not yet uncomfortable. The outer sweater stretches a little since it&#146;s thickness 1, to be a radius 13.5. You are now up to Insulation 4, and in an average environment, warm.<br>
+						<br>
+						Okay. You put on another, identical sweater. This one compresses the outer sweater you&#146;re wearing, that sweater, drops to Radius 13, the one underneath it gets very snug, against your body, compressed to 12., as close as it can get. And the outer sweater stretches over the 13 radius sweater, and sits, uncompressed, but stretched to an outer radius 14, because of its thickness of 1. You are now uncomfortable and getting quite warm with an insulation of 6.<br>
+						<br>
+						Thinking back fondly of your college days, when you successfully stuffed eleven people into a phone booth, you don, yet another sweater.<br>
+						<br>
+						Again the outermost sweater compresses a little to 13.5, and the sweater stretches 1 radium to be 13.5 on the inside, and 14.5 on the outside. You are mighty warm [at insulation 8], and uncomfortable, and can only wave your arms around enough to get one more sweater over your head.<br>
+						<br>
+						&#133;which the designers say is your last sweater, because the maximum the sweater can stretch is 1.5 [that&#146;s 14 radius on the inside of the sweater], and the most your outer sweater can compress to is .5 radius. You&#146;ve had enough; at five sweaters, its time to cut you off.<br>
+						<br>
+						We think about this stuff, here at Skotos, so you don&#146;t have to. And nope, you will never see all these numbers when you are playing, you just won&#146;t be able to put that tiny sock over your boot. And now you know why.</font></td>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>Manipulation: The Basics</title>
+		<link href="marrach.css" rel="stylesheet" media="screen">
+		<csactions>
+			<csaction name="B90037881" class="Open Window" type="onevent" val0="tutpop.shtml" val1="_blank" val2="300" val3="450" val4="true" val5="true" val6="false" val7="false" val8="false" val9="false" val10="false" urlparams="1"></csaction>
+		</csactions>
+		<csscriptdict import>
+			<script type="text/javascript" src="java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script type="text/javascript"><!--
+CSAct[/*CMP*/ 'B90037881'] = new Array(CSOpenWindow,/*URL*/ 'tutpop.shtml','_blank',300,450,true,true,false,false,false,false,false);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="artwork/cm-backgd.gif" bgcolor="#FCFCE4" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<table border="0" cellpadding="0" cellspacing="0" width="675">
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+					<p><img src="artwork/cm-masthd.jpg" alt="Castle Marrach - The Forever Winter" height="78" width="675" border="0"></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+				<!--#include virtual="snav-guide.incl"-->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+					<table width="90%" border="0" cellspacing="4" cellpadding="4">
+						<tr>
+							<td valign="top"><img src="artwork/hdr-tutorial.gif" alt="Tutorial" height="33" width="250" border="0"></td>
+							<td valign="top" width="200">
+								
+							</td>
+							<td rowspan="2" valign="top" width="80">
+							<!--#include virtual="character.incl"-->
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<div align="left">
+									<h2><a name="manipulation-1"></a>6) Manipulation: The Basics</h2>
+									<p>Castle Marrach is full of objects--many of them movable--but thus far you haven't actually tried to pick up and use anything.</p>
+									<p><b>Contents:</b></p>
+									<ul>
+										<li><a href="Tutorial06.shtml.html#manipulation-1-1">6.1. Taking Objects</a>
+										<li><a href="Tutorial06.shtml.html#manipulation-1-2">6.2. Using Conjunctions</a>
+										<li><a href="Tutorial06.shtml.html#manipulation-1-3">6.3. Dropping Objects</a>
+										<li><a href="Tutorial06.shtml.html#manipulation-1-4">6.4. Wearing and Wielding Objects</a>
+										<li><a href="Tutorial06.shtml.html#manipulation-1-5">6.5. Managing Objects</a>
+										<li><a href="Tutorial06.shtml.html#manipulation-1-6">6.6. Using Pronouns</a>
+									</ul>
+									<p><a name="manipulation-1-1"></a></p>
+									<h3>Taking Objects</h3>
+									<p>The easiest thing to do with an object is to pick it up. This is done with the &quot;take&quot; (or &quot;get&quot; or &quot;pick up&quot;).</p>
+									<pre>      &gt; <b>whistle sharply</b>
+      You whistle sharply.
+
+      &gt; <b>quietly state, &quot;This is quite a cornucopia, m'lady.&quot;</b>
+      You quietly state, &quot;This is quite a cornucopia, m'lady.&quot;
+
+      &gt; <b>take wand and sword and hat and ring</b>
+      You take an onyx wand, a black sword, a black felt hat and a 
+      diamond ring</pre>
+									<p>Note that the descriptions of all the objects included adjectives, but that the player just typed in the bare noun (ie, &quot;hat&quot;, not &quot;black felt hat&quot;). As was discussed earlier, it is only necessary to use the adjectives when an object is not uniquely identified.</p>
+									<p><a name="manipulation-1-2"></a></p>
+									<h3>Using Conjunctions</h3>
+									<p>Also of note is the fact that the character used a conjunction (&quot;and&quot;). You can usually join together a list of nouns with ands... if you want to take multiple objects or drop multiple objects or even look at multiple objects. If the character had not used &quot;and&quot; he would have had to type four different take commands.</p>
+									<p>He also could have used the adjective and noun for each object, just to make sure that he was getting the right things. This would have taken a lot longer to type (&quot;take onyx wand&quot;; &quot;take black sword&quot;; &quot;take black felt hat&quot;; &quot;take diamond ring&quot;).</p>
+									<p><i>You can not yet use conjunctions to put verbs together.</i></p>
+									<p><a name="manipulation-1-3"></a></p>
+									<h3>Dropping Objects</h3>
+									<p>To drop an object, just use the &quot;drop&quot; command.</p>
+									<pre>      &gt;
+      Camille frowns angrily at you.
+      Camille states harshly, &quot;That diamond ring is not for you.&quot;
+
+      &gt; <b>drop ring</b>
+      You drop a diamond ring.
+
+      &gt; <b>apologize quietly &quot;My apologies, m'lady.&quot;</b>
+      You apologize quietly, &quot;My apologies, m'lady.&quot;</pre>
+									<p><a name="manipulation-1-4"></a></p>
+									<h3>Wearing and Wielding Objects</h3>
+									<p>Objects can be used in a variety of ways. In particular, clothes are worn and weapons are wielded.</p>
+									<pre>      &gt;
+      Camille nods sagely.
+      Camille replies to you, &quot;It is forgotten.&quot;
+
+      &gt;
+      Camille says, &quot;The wand is magical and can be used to summon
+      my onyxes if you are near enough, but you must wear the hat
+      lest your mind be risked as well.
+
+      &gt; <b>wear hat</b>
+      You wear a black felt hat.
+
+      &gt;
+      Camille continues, &quot;In addition, there is one who is not dear
+      to me who may try to halt your mission. I would suggest you
+      have your sword at the ready.&quot;
+
+      &gt; <b>wield sword</b>
+      You wield a black sword.
+
+      &gt; <b>bow gracefully</b>
+      You bow gracefully.
+
+      &gt; <b>thank camille &quot;You are very kind, m'lady.&quot;</b>
+      You thank Camille, &quot;You are very kind, m'lady.&quot;
+
+      &gt;</pre>
+									<p><a name="manipulation-1-5"></a></p>
+									<h3>Managing Inventories</h3>
+									<p>You're probably not going to be able to keep track of all the items that you're picking up and dropping. Fortunately, there is an inventory command which you can type to get a listing of what you're currently holding. Just type &quot;inventory&quot;, or &quot;i&quot; for short.</p>
+									<pre>      &gt; <b>inventory</b>
+      You are carrying an onyx wand. You are wielding a black sword.
+      You are wearing a tunic, a pair of sandals, a white gold 
+      earring and a black felt hat.
+
+      &gt;</pre>
+									<p>We are pleased to see that the character wasn't naked when he came in to see Camille.</p>
+									<p><a name="manipulation-1-6"></a></p>
+									<h3>Using Pronouns</h3>
+									<p>The command &quot;look at me&quot; gives similar information, but also includes a little information about your character.</p>
+									<pre>      &gt; <b>look at me</b>
+      A fearless adventurer. You are carrying an onyx wand. You are
+      wielding a black sword. You are wearing a tunic, a pair of
+      sandals, a white gold earring and a black felt hat.
+
+      &gt;</pre>
+									<p>&quot;me&quot; is one of a few pronouns you can use. You can also use &quot;him&quot; or &quot;her&quot; to refer to the last male or female person that you've interacted with. &quot;It&quot; refers to the last non-living object you interacted with.</p>
+									<p>These pronouns can be used in many situations beyond just looking. For example &quot;say to her&quot; or &quot;approach him&quot; or &quot;take it&quot; (more on some of these commands later).</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right" valign="top"><a onclick="CSAction(new Array(/*CMP*/'B90037881'));return CSClickReturn();" href="Tutorial06.shtml.html#" csclick="B90037881"><img src="artwork/btn-contents.gif" alt="toc" height="21" width="72" border="0"></a> <a href="Tutorial07.shtml.html"><img src="artwork/btn-more.gif" alt="more" height="21" width="72" border="0"></a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+				<!--#include virtual="footer.incl"-->
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

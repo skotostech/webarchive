@@ -1,0 +1,363 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Tech Paper</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_generic.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_generic"><map name="tnav_generic"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="proximitysystem.html#"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<h2><font face="Verdana,Arial,Helvetica"><img src="../artwork/filler_doorways.gif" width="139" height="522" align="right" border="2" hspace="10" vspace="10">The Skotos Proximity System</font></h2>
+						<p><font face="Verdana,Arial,Helvetica" size="1">(See also article <a href="chezskoot.html" target="contentframe">http://www.skotos.net/articles/chezskoot.html</a>)</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">A Sense of Place</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Characterization and a Sense of Place</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In fiction offering a sense of place is an important part of the author's craft. Most writing instructors suggest giving the reader a distinct sense of place and time in the opening paragraph if not the first sentence. If a writer fails to do so, the reader can be confused. Without a location to anchor him, a reader will be unable to envision either the characters inhabiting that location or the actions they engage in.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">When multiple characters are involved, it is also important to explain how characters are positioned relative to another. This not only gives the reader a better sense of place, but also offers characterization. As an example, notice the sense of place in the opening sentence of Dashiel Hammett's <i>The Thin Man</i>:</font></p>
+						<blockquote>
+							<p><font face="Verdana,Arial,Helvetica" size="2"><i>I was leaning against the bar in a speakeasy on Fifty-second Street, waiting for Nora to finish her Christmas shopping, when a girl got up from the table where she had been sitting with three other people and came over to me.</i></font></p>
+						</blockquote>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In this introduction we discover the protagonist is quite comfortable lounging in an illegal bar, probably in the twenties, in some large urban city in the USA. He has a girlfriend or wife that is wandering elsewhere, and he isn't too worried about being separated from her. A young woman, socializing with others, notices him, though he's doing nothing in particular to attract attention, and goes over to him. You already know that she wants to speak to him.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">This paragraph gives a remarkable sense of place and of characterization in just a few words.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Interactivity and Problems of Place</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In multiplayer interactive fiction, a basic sense of place is easy. Either the player exists in a room that can be examined or the player exists in a scene that will be described as he takes actions. However, multiplayer interactive fiction does a poor job of integrating that sense of place with other players in the game.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">This probably comes from multiplayer interactive fiction's roots in single player games like <em>Adventure</em> and <em>Zork</em> , where there is truly only one significant and realistic character--the player. At Infocom's height, the best NPC were just a notch above a puzzle--not truly a character.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In multiplayer interactive fiction, everyone is significant, and everyone passes the Turing test (well, almost). So we need to find a way to describe a player's interaction with his environment and with other players, in a fashion that is significant to characterization.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The locale has been described, but how does the player fit in? Is he comfortably leaning against a wall, resting at a table with his head in his arms, or nervously standing at the door, waiting for someone? When someone else arrives, how does he react? How does he show his interest or lack of interest?</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Problems solved by the Skotos Proximity System</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Skotos solves some of the problems of characterization and a sense of place through a technique we call &quot;Proximity&quot;. With the Skotos Proximity System, combined with our Skotos Expression System (see the Technical Summary), a player can be near a door, sit at a table, pray before the altar, or kneel in front of his bride.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The proximity system also solves other problems. If someone approaches you to kiss you, you have an opportunity to retreat before the kiss is completed. If you drop something, it is close to you and someone else will have to be just as close before they can pick it up. If you are sitting at a table, you will not notice other people in the room unless they are shouting, or unless you decide to pay particular attention.</font></p>
+						<h2><font face="Verdana,Arial,Helvetica">Summary of the Skotos Proximity System</font></h2>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The Skotos Proximity System creates proxes, or proximities, which qualify associations between objects.</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Proxes are defined by two objects, a vector, and a preposition.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Prox chains describe how an object is linked up to the container it is inside.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Prox trees describe how all of the objects inside of a container are linked.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The categories of adjacent, nearby, vicinity, chamber, and bordering describe how far apart proxes are.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>The Prox</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">A prox (short for proximity) is a distinct association between two objects that describes the spatial relationship between those two objects. It always includes a preposition (on, near, in, etc.) and a vector.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Example:</font></p>
+						<p><tt>spoon-&gt;ON-&gt;table</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In this case the preposition is <em>on</em> and the vector is from the spoon to the table. In this situation, the spoon is described as &quot;The spoon is on the table&quot; and the table is described as &quot;The table has a spoon on it.&quot;</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The spoon is considered to be a &quot;child&quot; of the table, and the table is considered to be the &quot;parent&quot; of the spoon. The vector from the spoon to the table (i.e. child to parent) is considered &quot;up&quot;, and the reverse vector from the table to the spoon (i.e. parent to child) is considered &quot;down&quot;.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Prox Chains</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If you choose an object, find its parent (there can only be one), follow that parent's prox up to another parent, etc., the entire set is known as the &quot;prox chain&quot;.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">For example:</font></p>
+						<p><tt>statue-&gt;ON-&gt;pedestal-&gt;NEAR-&gt;northwall-&gt;IN-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Prox Tree</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If you choose an object, find its children, and discover all the children of every child, all the way to the bottom of every chain, the entire set is known as a &quot;prox tree&quot;.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">For example, this is a prox tree of a room:</font></p>
+						<p><tt>statue-&gt;ON-&gt;pedestal-&gt;NEAR-&gt;northwall-&gt;IN-&gt;room painting-&gt;ON-/ | bowl-&gt;ON-&gt;table-&gt;NEAR-&gt;southwall-&gt;IN-/ spoon-&gt;ON-/ | chair-&gt;NEAR-/ | floor-&gt;IN-/</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Adjacent, Nearby, Vicinity, Chamber, and Bordering Proxes</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Every object is &quot;adjacent&quot; to its parent and children. For instance Alice is sitting next to Carol who is sitting next to the table; Carol is adjacent to both Carol and the table, but Carol is only adjacent to the table.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">By default, unobvious actions and quiet sounds can be heard by all objects that are adjacent. Thus when Alice whispers, Carol can hear her. When Carol whispers, Alice can hear her, and if the table could listen, it would hear her as well.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The &quot;nearby&quot; class of an object is determined by going up the object's tree until the first non-volitional parent is found. All children of that parent, down several levels, are &quot;nearby&quot;. For instance, everyone sitting at a table is nearby to each other, including the Alice who is sitting next to Carol who is sitting at the table, and Bob who is standing on the table.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">By default everyone that is nearby will see all the actions and hear all the sounds of those who are also nearby. Thus everyone speaking in a normal voice will be heard by everyone at the table, and they will see all normal actions.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">&quot;Vicinity&quot; is defined as everything associated with the same detail of a room (or container). The prox chain is traced up until a room/container detail is reached. Then, all children down several levels are considered to be in the &quot;vicinity&quot;. For instance, Carol is sitting at a table in the back corner of a room (a detail of the room). She is in the vicinity of everyone at her table, of everyone to in the back corner of a room, and of everyone sitting at other tables in the back corner of the room.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">By default only significant actions and loud sounds will be seen or heard by all that are in the same vicinity. Thus when Bob shouts and dances on the table, all in the vicinity will see and hear it, but they will not hear the normally voiced complaints of those that are at Bob's table.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Every object that is inside the same room (or container) is considered to be in the same &quot;chamber&quot;. By default, a few very significant actions and very loud sounds can be seen or heard be everyone in the same chamber.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Two rooms (or containers) that share a common entrance/exit pair, are considering to be &quot;bordering&quot; one another. Very loud sounds or a general &quot;din&quot; of noise may also be heard in rooms bordering each other.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Proxes in Practice</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Proxes have a number of visible effects in the game:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">They can change how objects are described.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">They can interact with stances and poses.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2">(How proxes interact with intimate space and sound are described in another section.)</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Level of Description</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In most cases when an object is described, only one level of proximity up and down is detailed.</font></p>
+						<p><tt>spoon-&gt;ON-&gt;plate-&gt;ON-&gt;table-&gt;IN THE MIDDLE OF-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If you &quot;look at room&quot; you'll see &quot;You are in a room with a table in the middle of it.&quot;</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If you &quot;look at table&quot; you'll see &quot;You see a table with a plate on it, in the middle of the room.&quot;</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If you &quot;look at plate&quot; you'll see &quot;You see a plate with a spoon on it, on a table.&quot;</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If you &quot;look at spoon&quot; you'll see &quot;You see a spoon on a plate.&quot;</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Proxes with Stances &amp; Poses</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Prepositions are often combined with stances (i.e. &quot;standing against the wall&quot; or &quot;sitting near the flowers&quot;), or with poses (i.e., &quot;reading in the chair&quot;) or both (i.e. &quot;kneeling and praying before the altar&quot;), as per the Skotos Expression System (see that Technical Summary).</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">However, certain proxes may be disallowed with specific stances or poses; for instance, you can't &quot;kneel above the altar&quot;. Others stances or poses may require specific kinds of proxes, for instance, &quot;with his arm around Carol&quot;.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Creating a Prox</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Proxes are created by examining four values:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">An active object. The active object is placed in relation to some static object which is already part of a prox tree.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">A static object. The static object is already part of a prox tree; an active object is placed in relation to it.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">A vector. This is the relation between the active object and the static object. It defines one of them (usually the active object) as a child and the other (usually the static object) as a parent.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">A preposition. This is a description of how the child and parent are related.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In order to create a prox all four of these values must be known.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Usually a player will issue a command that will make these choices obvious. Take the sample command: &quot;put knife on plate&quot;. Clearly, the active object is the knife and the static object is the plate. A vector leads from the knife (child) to the plate (parent). The preposition is &quot;on&quot;.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Sometimes all of this information will not be obvious. Alternatively, some of the &quot;obvious&quot; values may be changed to create more consistent and interesting descriptions. In particular:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The active object should always be obvious from the command.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The static object will fall back to a default if it is not obvious from the command.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">A default choice of vector is always obvious. However the vector direction may be overridden to improve readability.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The preposition will fall back to a default if it is not obvious from the command. In addition, the vector direction may be overridden to improve readability.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Choosing the Active Object</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The <strong>default</strong> active object is always the object which is being acted on. A ball is dropped or a frisbee is thrown or a rabbit is hidden in a hat.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Choosing the Static Object</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The static object will usually be obvious. A player will choose to put the active object on (or in or under or over) a static object. For example &quot;put screwdriver in toolbox&quot; or &quot;brush dust under rug&quot; or &quot;put paint bucket over doorway&quot;. However there are occasions when a prox will have to be created without this information, such as when the command &quot;drop grenade&quot; or &quot;throw stink bomb through north door&quot; is issued. In these cases, a default static object is chosen.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The <strong>default</strong> static object is usually defined by one of a few special rules:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If an object just entered a room (typically a volitional object like a player or NPC, but possibly a thrown item like a stink bomb) the static object will be the entrance it came from.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If an object is dropped, the static object will be the volitional object that dropped it, i.e. <code>grenade-&gt;CLOSE-&gt;player</code>.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If the static object can not be determined, then the room or container which the active object is in is chosen.</font>
+						</ul>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Choosing the Vector</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The <strong>default</strong> vector selects the active object as the child and the static object as the parent. For example, in the command &quot;put the flowers next to the altar&quot; the flowers, which are the active object, are chosen as the child and the altar, which is the static object, is chosen as the parent: </font><code>flowers-&gt;NEXT&gt;altar</code>.</p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Overriding Default Vectors</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In some cases the default vector will confuse players reading a room description. For instance, if the player puts the altar next the flowers, the following prox would be created by default:</font></p>
+						<p><tt>altar-&gt;NEXT-&gt;flowers</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Clearly &quot;The altar is next to the flowers&quot; is not desirable outcome.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Whenever creating a prox, the distinctiveness of both items is examined. If there is a large difference in distinctiveness between the two objects, the system will override the player's choice of vector.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The general algorithm used to determine the vector is:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If the two objects are within 33% of each other in bulk, then the static object is made the parent.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If the two objects are more then 33% different in bulk, then the item that is larger is selected to be the parent.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2">However a number of other considerations are taken into place, to determine the distinctiveness of an object:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If an object has an adjective, it is more distinctive. For example a silver spoon should be more distinctive then a spoon. A gold spoon would be even more distinctive.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Volitional objects (i.e. living beings) are considered to be somewhat more distinctive then non-volitional objects.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">There is also a &quot;distinctiveness&quot; modifier. This is used for objects that are quite notable. This allows the magic sword Excalibur to be the most distinctive object, or a moving but non-volitional object like a pendulum to be more distinctive.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2">A total distinctiveness value is calculated, and then it is used as a multiplier to bulk for purpose of the vector-determination algorithm.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Choosing the Preposition</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Commands like &quot;drop grenade&quot; or &quot;throw stink bomb through north door&quot; also leave the preposition to use up in the air. In these cases a default preposition is chosen.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The <strong>default</strong> proposition is the relationship that most distinctively describes the relationship between two objects:</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Take the case of these two potential proxes:</font></p>
+						<p><tt>table-&gt;NEAR-&gt;floor table-&gt;ON-&gt;floor</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The table can be &quot;near&quot; the floor, or &quot;on&quot; the floor. &quot;On&quot; is more distinctive, so it is the default prox.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">A number of rules are used for special cases when choosing propositions:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If an object just entered a room (typically a volitional object like a player or NPC, but possibly a thrown item) it will default to be &quot;near&quot; the entrance that it came from, i.e. </font><code>dog-&gt;NEAR-&gt;doggydoor</code>.
+							<li><font face="Verdana,Arial,Helvetica" size="2">If an object is dropped, it will default to be &quot;close&quot; to the volitional that dropped it, i.e.</font> <code>stone-&gt;CLOSE-&gt;player</code>.
+							<li><font face="Verdana,Arial,Helvetica" size="2">If a prox can't be found for an object, and the object that contains it is quite large in relation (for instance a room), the prox default is &quot;near middle of&quot;, i.e. </font><code>grenade-&gt;NEAR MIDDLE OF-&gt;room</code>.
+							<li><font face="Verdana,Arial,Helvetica" size="2">If the container is not too much larger then the object, then it will default to being just &quot;in&quot; the object, i.e. <code>rock-&gt;IN-&gt;chest</code>.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Overriding Preposition Choices</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Sometimes there will be a conflict between multiple propositions, such as when a player puts a paper &quot;below a sofa&quot; when there is already a rock &quot;under a sofa&quot;. Which preposition should be used, below or under?</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">A system of priority decides which prox to use when synonymous proxes such as &quot;under&quot; and &quot;below&quot; conflict. Each synonym is given a different priority.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If a new prox is created with a synonymous preposition to an old prox the higher priority preposition is used for both objects. In our example of a &quot;paper below a sofa&quot; and a &quot;rock under a sofa&quot;, they would become &quot;a paper and rock under a sofa&quot;.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In the lists below the prepositions to the left are given priority (though the choices are somewhat arbitrary).</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Container Proxes</strong> (Inventory Related):</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">in, within<br>
+							(special prox for items in a container that does not close)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">inside<br>
+							(special prox for items in a container that does close)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">enclosed<br>
+							(special prox for things inside a closed container)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">attached, held<br>
+							(special prox for thing that move with the parent object when it is moved, but are not inside.)</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Intimate Proxes</strong> (Deniable Consent)</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">close to, close by, close beside</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">against</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">under, beneath, below</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">on, upon, on top of, across<br>
+							(these may also be container proxes)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">around</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Near Proxes</strong> (Delayable Consent)</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">near, by, nearby</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">over, above</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">behind</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">in front of, before</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">beside, next to</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Other Proxes</strong></font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">with, among<br>
+							(not an actual prox; will join the objects parent's prox)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">in the center of, in the middle of, near middle of<br>
+							(used as part of the leave command, or a default -- the parent must be a room or a detail of a room)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">at the edge of<br>
+							(parent must be non-volitional, a room, or a detail of a room)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">outside of<br>
+							(?)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">beyond<br>
+							(?)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">between<br>
+							(NOTE: Not to be implemented in v1 at it requires two proxes)</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Disallowed Prepositions</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Some kinds of objects may disallow certain prox prepositions. This prevent such actions such as &quot;put paper behind the wall&quot;, or &quot;put paper in the fork&quot;, etc.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Changing Proxes</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Once proxes are created they can be changed in a number of ways:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If an object is removed, it breaks a prox chain and a new one must be formed.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">A player can choose to join an existing prox.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">A player can choose to leave an existing prox.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">A player can choose to approach a volitional, such as a player. He will join the volitional's existing prox, then enter a &quot;near&quot; prox, then enter an &quot;intimate&quot; (or &quot;close&quot;) prox.</font>
+						</ul>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Breaking a Prox</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">When an object is moved, the prox between it and its parent is broken, as well as the proxes between it and its children (except for container proxes.) A new prox will be created for the orphaned children, leading to the moved object's parent.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Take the following example of a prox chain:</font></p>
+						<p><tt>flowers-&gt;IN FRONT OF-&gt;picture-&gt;ON-&gt;table-&gt;NEAR MIDDLE OF-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If you remove the picture, the prox chain for the flowers becomes:</font></p>
+						<p><tt>flowers-&gt;ON-&gt;table-&gt;NEAR MIDDLE OF-&gt;room</tt></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Joining a Prox</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The join command allows a player to move up to another volitional. It causes the player's parent prox to become the same as the parent prox of the volitional that he is trying to join.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">For instance:</font></p>
+						<p><tt>bob-&gt;NEAR-&gt;westdoor-&gt;IN-&gt;westwall-&gt;IN-&gt;room carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Bob types &quot;join carol&quot; and the proxes change:</font></p>
+						<p><tt>bob-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room</tt></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Leaving a Prox</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Another simple player command is &quot;leave&quot; or &quot;leave <em>object</em> &quot; -- this will cause the player's prox to become &quot;near&quot; his parent prox's parent. If the new parent prox is the room that the player is in, it prox will default to &quot;near middle of room&quot;. If the player types leave from &quot;near middle&quot; he will be &quot;at the edge of room&quot;. If the player types leave one more time, if there is a default &quot;out&quot; exit, it will be taken, otherwise, a random exit other then the exit he originally came from used, or if it is the only exit, the exit he arrived from. (NOTE TO ENGINEERING -- we currently are not storing the entrance that a player arrived from.)</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Example of the results from multiple leave commands:</font></p>
+						<p><tt>bob-&gt;NEAR-&gt;door-&gt;IN-&gt;westsideofroom-&gt;IN-&gt;room bob-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room bob-&gt;NEAR MIDDLE OF-&gt;room bob-&gt;AT EDGE OF-&gt;room bob-&gt;NEAR-&gt;door-&gt;IN-&gt;eastwallofnewroom-&gt;IN-&gt;newroom</tt></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Approaching a Prox</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">A more complex way for a player to change his prox is to &quot;approach&quot; another object.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If the player and the object he is approaching have different parents, but are in the same room (or other container), the approach command will change the players' parent prox to be the same as the object he is approaching. If the player and the object he is approaching are not already in the same prox, this has the exact same effect as join.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">As a start of an example:</font></p>
+						<p><tt>bob-&gt;NEAR-&gt;westdoor-&gt;IN-&gt;westwall-&gt;IN-&gt;room carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">After Bob gives the command &quot;approach carol&quot;, and he will receive the message &quot;You begin to approach the table that Carol is at&quot; and then after a short delay: &quot;You are at the table that Carol is at&quot; Others nearby, including Carol, will see only that Bob is approaching the table. The proxes are now as follows:</font></p>
+						<p><tt>bob-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If the player and the object he is approaching already have the same parents, the approach command will change the player's parent prox to be &quot;near&quot; the object he is approaching.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">So if Bob gives the command &quot;approach carol&quot; again, he will receive the message &quot;You begin to approach near to Carol.&quot; If Carol doesn't move, he will receive the message &quot;You have approached near to Carol&quot; after a short delay. Others nearby will see these messages that Bob is trying to be near to Carol. The proxes are now:</font></p>
+						<p><tt>bob-&gt;NEAR-&gt;carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If the player is already &quot;near&quot; an object and gives an approach command a third time, he will move &quot;close to&quot; it (into the intimate proximity).</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">So if Bob gives the command &quot;approach carol&quot; one more time, he will receive the message &quot;You try to approach close to Carol.&quot; After a delay, if he is successful, he will see &quot;You get closer to Carol&quot; -- others may or may not see a message (see &quot;Avoiding Approaches&quot; below).</font></p>
+						<p><tt>bob-&gt;CLOSE TO-&gt;carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room carol-&gt;AT-&gt;table-&gt;NEAR-&gt;westsideofroom-&gt;IN-&gt;room</tt></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Bob could have said &quot;approach near to carol&quot; to skip one step, or &quot;approach close to carol&quot; and skipped two steps; however, all the intermediary messages will still happen as if the commands were separate.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Bob also could have chosen other prepositions other then &quot;near&quot;, for instance &quot;approach next to carol&quot; or &quot;approach in front of carol&quot;.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If Bob is &quot;close to&quot; Carol and types &quot;approach&quot;, the system will say that Bob is as close as he can get to Carol. The prepositions &quot;on&quot;, &quot;against&quot;, and &quot;under&quot; are also considered intimately &quot;close&quot;; thus further approaching isn't allowed.</font></p>
+						<h2><font face="Verdana,Arial,Helvetica">Avoiding Approaches (or Not)</font></h2>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Proxes also affect what players can choose to do to each other. The Skotos Proximity System is consensual, by default it enforces a MUSH-style sensibility. Thus there are opportunities to deny or avoid people who are becoming too intimately close:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The &quot;close&quot; proximity is considered part of a player's intimate space. A player can deny other people from entering it.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The further away &quot;near&quot; proximity isn't private space, but a player still has an opportunity to leave before another player enters it.</font>
+						</ul>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Denying Intimate Proximity</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Volitional objects, such as players, NPCs, and other living creatures, may refuse the close approach of another volitional into an intimate prox.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In the example above when Bob attempts to approach closely to Carol, she will see the message &quot;Bob begins to move close to you -- D)eny, A)ccept, R)eturn, or C)ounter&quot;.</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If Carol D)enies the approach, only Bob will know that the attempt failed. If Carol types nothing, the default is D)eny.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If Carol A)ccepts the approach, everyone will see &quot;Bob gets closer to Carol&quot;.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If Carol R)eturns the approach, everyone will see &quot;Bob and Carol get closer together&quot;.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">If Carol C)ounters the approach, everyone will see that Bob failed to get close.</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2">As any objects that they drop will also be &quot;close&quot;; once Bob is also close to Carol, either of them can pick up any dropped item without getting permission from the other.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Certain commands like kiss, slap, etc. may require that the active player succeed in getting close to the receiving player first.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Repetitive Intimacy &amp; Closeness</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">When someone changes leaves a &quot;close&quot; prox, they have ten seconds to return to it without retriggering consent. This allows for brief changes of stance, pose, or prox for expressive purposes.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Automatic Response</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If Bob persists attempting to get close to Carol, she can put him on her &quot;Deny&quot; list, and all attempts to get close will automatically be denied without delay. Or, she can put him on her &quot;Counter&quot; list and he will automatically be opposed and everyone will see her rejection. She could also put him on her &quot;Accept&quot; or &quot;Return&quot; list, and every time he attempts to get close it will automatically succeed or be returned without delay.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">With each of these lists, she can also specify that they only work with specific commands. For instance, Carol can allow a particular person to kiss her, but disallow other commands that require intimate proxes.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Avoiding Near Proximity</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Players may also avoid approaches by changing prox before the attempt is complete.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In the above example, Bob approaches Carol, then goes &quot;near&quot; her and finally &quot;close&quot;. Carol can deny the &quot;close&quot; approach, but can't do anything when Bob is just coming &quot;near&quot;--except move away. There is a delay before Bob is successful; Carol can &quot;leave&quot; the table, causing Bob's attempt to fail. Bob will remain at the table; he must start all over to try to approach Carol again.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><b>Automatic Avoid</b></font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In most cases, attempts to enter the &quot;near&quot; prox (or other preposition proxes in the delayed category) can't be avoided without the target leaving his or her own prox first.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Though it is an imperfect solution, Carol can put Bob on her &quot;Avoid&quot; list, which will cause Bob's attempts to enter her delayed preposition prox to be denied. Only she and Bob would see this failure. We are considering if a &quot;Strongly Avoid&quot; list will be necessary; if so, it would always allow Carol to publicly reject any of Bob's approaches.</font></p>
+						<h2><font face="Verdana,Arial,Helvetica">Proxes &amp; Psycho-Acoustics</font></h2>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Psycho-acoustics is the study of how sounds are processed by the ear and brain to give the listener useful information about the world outside. The study of how sounds are localized by the brain, how pitch is determined, and how we separate simultaneous similar sounds or pick useful sounds out of a 'noisy' background are all part of psycho-acoustics.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">In a sense this is the study of the 'subjective' perception of sound properties. Important measures used in psycho-acoustics include loudness, sharpness, fluctuation strength, pleasantness, and roughness.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Skotos uses some of the principles of psycho-acoustics to determine how sounds work; it focuses on those factors associated with whether a sound (usually speech) has been perceived, and whether it has been understood.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Psycho-acoustics are used by the SkotOS system, in conjunction with proxes, to determine what can be heard and what can't. In particular:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The subjective measure called 'son' is used to determine how likely it is that a sound will be noticed.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Sounds from more distant proxes are subjectively more quiet.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Ambient noise can decrease the intelligibility of sounds.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Particular rooms or locales can increase or decrease ambient noise values.</font>
+						</ul>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">The Decibel &amp; the Son</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Various measures of sound and loudness are needed to determine the audibility and intelligibility of speech.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The basic decibel (dB) is a logarithmic scale objectively measuring sound intensity; a difference of 10 dB is a ratio of 10:1, and 3 dB is about 2:1. The decibel scale is used because the ear responds to sound in an approximately logarithmic fashion. Depending on the actual frequency, most people will perceive a doubling in loudness for a dB increase of 8 to 10.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Subjective perceived loudness (as opposed to actual sound power) is measured in sons; a 40 dB sound with a frequency of 1 kHz is 1 son, and an increase of 10 dB doubles the son value.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">A sound will, of course, transmit through any material, but walls, floors, etc. will dampen the sound before it emerges on the far side. In order to be perceived, sounds must also be separated from other sounds in the environment; this is greatly affected by relative frequency, repetition, sound level, etc.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The attenuation and decay of sound depends on many factors including the size and shape of the source, the environment, and reflection from walls and other surfaces. An interior wall of an ordinary modern house will reduce son levels to x1/8th as sounds pass through; better sound isolation will produce reductions of x1/16th and x1/32nd son level. A passenger jet's fuselage reduces the son levels by a factor of x1/128, needed to preserve the passengers' comfort.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The intelligibility of a sound will begin to disappear as its son level diminishes, and as the background (ambient) noise increases. Intelligibility begins to disappear if the son level of speech drops below 1/4 son, or to less than x1/4 of the ambient son level (hearing impairments can also affect this). Thus, in a noisy bar you must speak up a bit (to 6 son) to be heard over the chatter (24 son). Actual audibility disappears (for most people) at x1/16th son, or if the sound is less than x1/16th of the ambient level.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2"><strong>Sample Loudness Levels, in sons:</strong></font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1/16 = not audible</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1/8 = breathing</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1/6 = rustling leaves</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1/4 = not intelligible</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1/4 = soft whisper</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1/2 = very soft music, not-so-soft whisper</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1 = average home, library, quiet office, quiet residential outdoors</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">2 = rainfall, loud office</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">4 = human conversation</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">8 = busy street traffic, freeway traffic</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">16 = garbage disposal, doorbell, manual labor with tools</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">24 = handsaw, noisy restaurant/bar, inside soundproof tractor cab</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">32 = train, lawnmower, shop tools, shouted conversation (beginning of hearing loss)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">48 = electric drill</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">64 = jack hammer, power tools, tractor without cab, factory, boom box</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">128 = shouting, crying baby, concert, disco, car horn (hearing loss at 1.5 minutes)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">192 = subway screech, sand blasting, squealing pigs, stereo headset at 11</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">256 = loud rock concert, band concert, basketball game, thunder, jet plane idling, siren</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">384 = loud factory installed auto stereo</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">512 = jackhammer, air raid siren, percussion section of symphony, stock car race</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">1000 = prop engine plane at takeoff, un-muffled 50 HP engine fifty feet away</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">2000 = jet plane at takeoff, cannon (physical pain)</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">3000 = pistols and rifles</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">4000 = shotguns</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">5000 = rocket launch</font>
+						</ul>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Thus some basic evocation (speech related) verbs and adverbs produce:</font></p>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">whisper 1/2</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">say 4</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">shout 32</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">scream 64</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">quietly x1/2</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">loudly x2</font>
+						</ul>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Proxes, Speech &amp; Sons</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Proximity affects how clearly things can be heard. In an average room (ambient sound of 1 son) things are intelligible down to the level of a soft whisper (1 x 1/4 son) for adjacent proxes.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Each additional category of proximity (nearby, vicinity, chamber, bordering) increases the level of infallibility by approximately x4. Thus the minimum intelligible level for nearby objects in a normal room (1 son) is 1 son (1/4 x 4^1 x 1 son). Normal human conversation (4 sons) can be heard in the vicinity (1/4 x 4^2 x 1 son). Quiet shouts (16 sons) can be heard in the chamber (1/4 x 4^3 x 1 son). Screams can be heard in bordering areas (1/4 x 4^4 x 1 son).</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Below these levels, words are increasingly garbled, down to the level of inaudibility (a multiplier of x1/4). Thus the minimum level at which something garbled can be heard in a near prox is 1/4 son. This multiplier could be carried through all the categories: nearby 1 son; vicinity 4 son; chamber 16 son; bordering 32 son.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Other activities can increase these levels, such as paying attention, which is a x4 multiplier. Thus the absolute minimum level at which something garbled can be heard by an attentive listener in a near prox is 1/16 son. This multiplier could be carried through all the categories: nearby 1/4 son; vicinity 1 son; chamber 8 son; bordering 16 son.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Ambient Noise</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">If there is too much ambient noise, whispers will fail or be garbled due to the &quot;din&quot; of noise. With large amounts of ambient noise, even normal speech may become garbled.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The default value for ambient sound is 1 son, as given in the example above. However, objects, room details, and rooms themselves can have intrinsic ambient noise levels. For instance, the area behind a waterfall could have an ambient noise value of 8 sons.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Ambient noise is also a function of speech and the number of volitional objects in a room, so being in the middle of a crowded bar or amidst a herd of bison will be quite noisy.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Attenuation &amp; Amplification of Sons in Proxes</font></h3>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Some objects, room details, and rooms may either attenuate (decrease all sounds), absorb (decrease specific sounds), or even amplify (increase all sounds) coming from a vicinity or chamber, or in some cases even change how sounds that are adjacent are heard.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">For instance, while in a booth in the corner you will hear less of the crowd outside, and they will hear less of you. If you are on a stage, they will hear more of you, but you will hear less of them.</font></p>
+						<p><font face="Verdana,Arial,Helvetica" size="2">Exits of a room may also attenuate or absorb sounds. They may do so in different ways depending on if the exit is open or closed. This allows for huge open city gates that stop few sounds, or a closed magical portal that stops all sound.</font></p>
+						<h2><font face="Verdana,Arial,Helvetica">State of Development</font></h2>
+						<p><font face="Verdana,Arial,Helvetica" size="2">The Skotos Proximity System is partially completed, the proof of concept being quite powerful. Skotos' goal is to have the completed Skotos Proximity System as described here ready for a consensual conflict (i.e. MUSH-style) environment by September for the release in the Castle Marrach game and for Stages shortly after that. After that, Skotos will adapt the Skotos Proximity System to other (i.e. MUD-style) games with non-consensual conflict.</font></p>
+						<h3><font face="Verdana,Arial,Helvetica" size="3">Open Issues with Proxes</font></h3>
+						<ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">It is possible in some situations to accidentally get into a prox circle. These need to be eliminated.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Is the distinction between close and near proxes significant enough for new users?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Will people abuse the near proxes, thus requiring consent for all prox operations rather then just intimate ones? Is a &quot;strongly avoid&quot; list required?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The consent system is probably still open to some abuses that we have not thought of.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">There are a number of issues with proxes between three objects, so we don't allow it. Right now prox chains need to be unique. Thus you can't have two people &quot;next to each other&quot; -- at least one has to have a prox leading up into the room. Similarly, you can't have a between prox (i.e. Bob is between Carol and Alice).</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Describing a room full of objects with proxes associated them with needs to be integrated into the Skotos Crowd &amp; Cluster Systems, and it is unclear what all the issues are.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Distinctiveness is also used by the Skotos Crowd &amp; Cluster Systems -- are there any cases where the logic that works for one does not work for the other?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Proxes between crowds or clusters (i.e. &quot;the crowd moves toward the stadium&quot;) are way beyond our scope right now.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Ambient noise may be not clear enough to players to be worth the trouble. Perhaps we should use a &quot;din&quot; marker rather than adjust the intelligibility of sound? If we do support intelligibility, what method do we wish to use to garble the speech?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">There is a relationship between container proxes (in, inside, enclosed) and some of the intimate proxes (on, attached) with inventory. The parallel of these proxes with inventory is clear, but some of the implications of distinctiveness and order of chaining are not. Many of the details need to still be worked out.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">There is a deep question related to our current haphazard chain-extension approach. Should we try to maintain some of the properties of a tree, such as attempting to keep it to a star shape with more distinctive objects in the middle and least objects distinctive toward the leaves? How much do we override player choices to maintain such a tree?</font>
+							<ul>
+								<li><font face="Verdana,Arial,Helvetica" size="2">Example: When a very distinctive object enters a prox, it will not become the child but the parent of the prox. This switching occurs recursively so that more distinctive objects travel towards a center of the net, which thus becomes star-shaped. In a worst-case scenario, you could have lots of distinctive objects entering and then leaving a long prox chain where each such operation is O(N) where N is the length of the chain.<br>
+								Say a dustmite is next to a fly is next to a bowling ball is next to an anvil is next to a statue, and the highly distinctive David Bowie enters the room and approaches the dustmite. He will recursively be pushed to the head of this prox chain each time he approaches the dustmite. This is not really an O(N^2) scenario though. Currently our implementation of <em>describing</em> prox chains is, but that is purely so that I wouldn't spend lots of time coming up with clever algorithms to do it faster. The problem is not inherently O(N^2).<br>
+								-- Par</font>
+							</ul>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Right now the offer and accept command applies to any transfer between two volitionals. How closely should we integrate into the prox system? For instance should you only be able to offer to someone in a near or intimate prox? Should there be any automatic acceptance? For instance do you need someone to separately accept a gift if they have already accepted an intimate prox? In addition to offer and accept, we may wish to have a &quot;trade&quot; object function -- does that change any interaction with the prox system, such as not only working for close and near, but also nearby?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">Should we have a paranoia flag that automatically puts everyone on your &quot;avoid&quot; list?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">The idea behind return is that if someone approaches you intimately, you could in return respond by doing another intimate action. A kiss could be returned with another kiss or a slap. How restrictive do we want to be as to what actions can be returned? What actions can be returned for each intimate action? How do we prompt the player as to what actions are possible?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">What types of failure messages should people see when you counter different actions? How do the messages differ for the approacher, the counterer, and those nearby?</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">It is possible that some intimate actions should not end with both parties close, especially such casual actions such as shaking hands.</font>
+							<li><font face="Verdana,Arial,Helvetica" size="2">There are some thief related close actions such as jostle, bump, etc. Most of them should wait until we integrate a combat system into the prox system. However, are there any easy things we can do now to prepare for them?</font>
+						</ul>
+					</td>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

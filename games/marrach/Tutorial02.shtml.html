@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>Perception</title>
+		<link href="marrach.css" rel="stylesheet" media="screen">
+		<csactions>
+			<csaction name="B90037881" class="Open Window" type="onevent" val0="tutpop.shtml" val1="_blank" val2="300" val3="450" val4="true" val5="true" val6="false" val7="false" val8="false" val9="false" val10="false" urlparams="1"></csaction>
+		</csactions>
+		<csscriptdict import>
+			<script type="text/javascript" src="java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script type="text/javascript"><!--
+CSAct[/*CMP*/ 'B90037881'] = new Array(CSOpenWindow,/*URL*/ 'tutpop.shtml','_blank',300,450,true,true,false,false,false,false,false);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="artwork/cm-backgd.gif" bgcolor="#FCFCE4" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<table border="0" cellpadding="0" cellspacing="0" width="675">
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+					<p><img src="artwork/cm-masthd.jpg" alt="Castle Marrach - The Forever Winter" height="78" width="675" border="0"></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+				<!--#include virtual="snav-guide.incl"-->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+					<table width="90%" border="0" cellspacing="4" cellpadding="4">
+						<tr>
+							<td valign="top"><img src="artwork/hdr-tutorial.gif" alt="Tutorial" height="33" width="250" border="0"></td>
+							<td valign="top" width="200">
+								
+							</td>
+							<td rowspan="2" valign="top" width="80">
+							<!--#include virtual="character.incl"-->
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<div align="left">
+									<h2><a name="perception-1"></a>2) Perception</h2>
+									<p>When you enter a room, you receive only a very brief description of the area--usually just a sentence or two. In our example, the character just saw:</p>
+									<pre>      You are in a large cavern, lit by eerily glowing gems.
+
+      You are standing in the middle of the cavern.
+
+      &gt;</pre>
+									<p>The first thing you'll probably want to do is examine your surroundings in more detail.</p>
+									<p><b>Contents:</b></p>
+									<ul>
+										<li><a href="Tutorial02.shtml.html#perception-1-1">2.1. Examining Rooms</a>
+										<li><a href="Tutorial02.shtml.html#perception-1-2">2.2. Examining Objects</a>
+										<li><a href="Tutorial02.shtml.html#perception-1-3">2.3. Using Adjectives</a>
+										<li><a href="Tutorial02.shtml.html#perception-1-4">2.4. Finding the Details</a>
+									</ul>
+									<h3><a name="perception-1-1"></a>Examining Rooms</h3>
+									<p>Investigation is done with the &quot;look&quot; and &quot;examine&quot; commands. The &quot;look&quot; command will give you a basic overview of an area. It's quick and efficient. The &quot;examine&quot; command may give you more information. However, it takes more time and other people will see you engaging in this action. (It would thus be a bad idea to examine for a hidden clue while other people were in the same room.)</p>
+									<pre>      You are in a large cavern, lit by eerily glowing gems.
+
+      You are standing in the middle of the cavern.
+
+      &gt; <b>look</b>
+      The cavern of gems is immense. The roof is lost amidst the
+      shadows that cloak the ceiling. The ground is lit by a
+      variety of gems which are imbedded in the ground. To the
+      north gems outline a golden door.
+
+      You are standing in the middle of the cavern.
+
+      &gt; <b>examine</b>
+      You begin to examine your surroundings...
+
+      The cavern of gems is immense. The roof is lost amidst the
+      shadows that cloak the ceiling. The ground is lit by a
+      variety of gems which are imbedded in the ground. To the
+      north gems outline a golden door. Other passages, nearly 
+      hidden by the darkness, can be seen to east and southwest. 
+      A very faint humming can be heard in the cavern.
+
+      You are standing in the middle of the cavern.
+
+      &gt;</pre>
+									<p>In this case, the character actually received more information by using the &quot;examine&quot; command. Quite often, everything in a room will be obvious, and the &quot;look&quot; and &quot;examine&quot; commands will return exactly the same information.</p>
+									<p>As has already been noted, the &quot;examine&quot; command takes extra time. You will see this as a slight delay when you &quot;examine&quot; something. If you try to do something else while you are examaning, you will get the response &quot;You are too busy with something else.&quot;</p>
+									<p>Patience.</p>
+									<h3><a name="perception-1-2"></a>Examining Objects</h3>
+									<p>You can also use the &quot;look&quot; and &quot;examine&quot; commands to investigate specific objects. Again, &quot;look&quot; is very quick but somewhat superficial. &quot;Examine&quot; yields more information, but also takes more time and can be seen by everyone in the room.</p>
+									<pre>      &gt; <b>look at gems</b>
+      The gems come in a variety of colors. There are rubies, 
+      sapphires, emeralds, and topaz. There are clear gems which
+      you think might be diamonds.
+
+      &gt; <b>examine gems</b>
+      You begin to examine the gems...
+
+      The gems come in a variety of colors. There are rubies,
+      sapphires, emeralds, topaz, and diamonds. Looking closely,
+      you see three onyx stones give off no light at all. A very     
+      faint humming seems to be coming from the gems.
+
+      &gt; <b>look at golden door</b>
+      The golden door is surrounded by rubies which glow bright
+      red. The door is plain, without ornamentation of any type.
+
+      The golden door is open.
+
+      &gt;</pre>
+									<p>Again, the character learned more with an examination, as sometimes happens.</p>
+									<h3><a name="perception-1-3"></a>Using Adjectives</h3>
+									<p>Objects are identified by nouns. We've already seen quite a few of these: door, passage, gem, rubies, sapphires, emeralds, topaz, diamonds, and onyx. However sometimes a noun will not be sufficient to uniquely identify an object. If you try and refer to an object without uniquely identifying it, the computer will ask you for more information.</p>
+									<p>Fortunately, most nouns also have adjectives associated with them. You can combine a noun and a related adjective in order to provide unique identification. In our running examples, there are two passages in the current room... one is &quot;eastern&quot; and the other is &quot;southwest&quot;.</p>
+									<pre>      &gt; <b>look at passage</b>
+      Which do you mean, the eastern passage or the southwest passage?
+
+      &gt; <b>look at eastern passage</b>
+      The eastern passage is too dark to make out any details.
+
+      &gt; <b>examine eastern passage</b>
+      You begin to examine the eastern passage...
+
+      The eastern passage is too dark to make out any details.</pre>
+									<p>Note that the character retyped his entire command, rather than just trying to answer the computer's question. This is currently required. Note also that the character found a situation where using the &quot;examine&quot; verb did not return more information.</p>
+									<p>As a final note, adjectives can be used anytime that you are referring to objects, not just when you're looking at them. We'll see adjectives again in the section of Manipulation.</p>
+									<h3><a name="perception-1-4"></a>Finding the Details</h3>
+									<p>When the character landed in the room, all he knew was that he was in a cavern with gems. By looking he found out about the golden door and by examining he found out about the dark passages. This is how you find things in Castle Marrach. You look at the rooms you enter (or the people you meet or the objects you find) and then you look at the details revealed in those rooms, people, or objects; often an ever-deepening hierarchy of details will be revealed.</p>
+									<p>There are actually a number of other things that the character has discovered in his current room but hasn't investigated more carefully yet. These include rubies, sapphires, topazes, diamonds, and onyx. Even though the humming isn't a physical object, it is another detail that the character might be able to investigate.</p>
+									<pre>      &gt; <b>look at onyx</b>
+      The onyx are strangely cold. They are emitting absolutely no
+      light and in fact seem to sit in little pools of darkness.
+      There are only three onyx in the entire room.
+
+      &gt; <b>examine humming</b>
+      You begin to examine the humming...
+
+      It sounds like it is a few bars of some song. You can't quite
+      figure out what the song is, but you feel like you should be able
+      to fake it.
+
+      &gt; <b>examine song</b>
+      You see nosong here.</pre>
+									<p>The character was successfully able to investigate many of the details that he discovered through his initial examinations. However, when he tried to learn more about the song, he was told that the song didn't exist. This is because the song was never detailed by the StoryBuilder; it wasn't important to the story. Whenever you're investigating a locale, you'll eventually find a few details that never got written up.</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right" valign="top"><a onclick="CSAction(new Array(/*CMP*/'B90037881'));return CSClickReturn();" href="Tutorial02.shtml.html#" csclick="B90037881"><img src="artwork/btn-contents.gif" alt="toc" height="21" width="72" border="0"></a> <a href="Tutorial03.shtml.html"><img src="artwork/btn-more.gif" alt="more" height="21" width="72" border="0"></a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+				<!--#include virtual="footer.incl"-->
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

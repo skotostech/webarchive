@@ -1,0 +1,401 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><font color="#006633"><a href="TTnT.shtml.html"><img src="nav/snav_ttnt.gif" width="137" height="371" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Trials, Triumphs &amp; Trivialities #50:</b></font></h2>
+							<h2><b>Building Blocks: Details</b></h2>
+							<p><i><b>by <a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></p>
+							<p><b>November 21, 2001 &#150;</b> Welcome to the fiftieth <i>Trials, Triumphs & Trivialities</i> article. I'd thought about doing something big and fancy to note the anniversary &#151; you know, fireworks, ticker tape parade, the whole shabang &#151; but ultimately decided I'd prefer to return to this <i>Building Blocks</i> series, already a week delayed by my Kaua'ian thoughts. So, let me briefly say, thanks for reading this column for these fifty issues, or whatever fraction thereof you've hopefully enjoyed. And also, Happy Turkey Day. 
+							<p>
+And with that, onward.
+</p>
+							<p>
+Two weeks ago I began a series of <i>Building Blocks</i> articles, intended to talk about some of the most basic ideas in online games in little bite-sized chunks. I started off with <i><a href="TTnT_48.shtml.html">rooms</a></i> and if you haven't already read that piece, you might want to. Now I'm going to be moving on to an element of rooms that I just touched upon last week: <i>details</i>.
+</p>
+
+<table border=1 bgcolor="#ffffcc"><tr><td>
+<b>Detail</b> <i>n.</i><br> 1. <i>Skotos Games.</i> A distinct, non-portable element that may be found within a <i><a href="TTnT_48.shtml.html">room</a></i>. Similar to <i>items</i> or <i>views</i> in older MUDs.
+</td></tr></table>
+
+<p>
+As a game designer, you'll spend a fair amount of time writing descriptions of rooms. Rooms are, after all, the bases of your entire game. As players move through these environments that you create, they'll be guided in how they should interact with your world.
+</p>
+
+<p>
+Two weeks ago I discussed how rooms typically offer multiple levels of descriptions, so that players can see more if they choose to pay more attention. At Skotos, our four levels of room description are: brief, glance, look, and examine.
+</p>
+
+<p>
+To offer a quick example, here's the "look" description I wrote for my home office:
+</p>
+
+<blockquote><font face="courier"><code>
+This cluttered office is approximately ten foot by ten foot. On the far wall a patio door and a large window open up onto opulent greenery beyond. The door is partially blocked by a rocking chair, and the window is somewhat obscured by a cat tree. Some book cases line the other walls, just barely leaving enough space for a work area in the left corner of the room.
+</code></font></blockquote>
+
+<p>
+This is all great and dandy, but what do you do if you want to offer some more information on a particular element in the room? For example, if that patio door mentioned in the room description had ten symmetrical window panes, you might want to note this. How do you do so when you just have your four levels of room description?
+</p>
+							<p>
+The answer, at Skotos, is <i>details</i>, but before I get there I want to look at the historical answer in brief.
+</p>
+							<h3><b>A History of &quot;Details&quot;</b></h3>
+							<p>
+In general, traditional MUDs <i>have</i> dealt with what we call details at Skotos, but they've done so in fairly limited ways. 
+</p>
+							<p>
+The first MUD that I ever programmed on was AberMUD, in about 1990. It didn't include any specific mechanism for describing non-portable sub-elements of a room, but the problem was a well known one, and thus the solution was well-known too. Within any room, you could intercept the commands that a player typed, so if you wanted give a description to a sub-element of a room, or even make it respond to some action, you'd just intercept the appropriate "examine" or "look" command.
+</p>
+							<p>
+In a room that I built for AberMUD many aeons ago, there was a throne, and I wanted to describe how that throne was actually shaped from the wood of the tree that the entire room was situated in. So, I had to do something like this:
+</p>
+							<pre>
+    if ( command = "examine throne" ) {
+        print("The throne actually grows up from the live wood making up the floor");
+        print("of the room. It has been carefully shaped, not carved or cut, and");
+        print("seems to still be alive itself!");
+    }
+</pre>
+							<p>
+Very, very crude.
+</p>
+							<p>LPMUD 2.4.5, as implemented over at Igor MUD, used something called &quot;Items&quot;. This allowed you to easily include descriptions of room elements. For example, in a forest you could &quot;look at tree&quot; and see &quot;The tree is a lovely shade of green.&quot; Igor even expanded the idea a little bit over the core LPMUD distribution by adding a &quot;get message&quot;, which was output if you tried to pick up the item: &quot;You can't get the tree! It's really big and rooted deep in the ground, and so pretty...  why would you want to yank it out of the ground anyway?&quot;</p>
+							<p>Finally, some other MUSHes and MUXes have used an idea called &quot;Views&quot;. Again, these allowed you to simply add sub-descriptions to a room that players could see if they &quot;looked&quot; at the specific sub-element &#151; just like the trees in the forest in the LPMUD example.</p>
+							<h3><b>What a Difference a Detail Makes</b></h3>
+							<p>
+Views and Items were great, but ultimately insufficient. What did you do if you wanted one of these non-portable parts of a room to have multiple descriptions? What if a tree had a secret little nook that you could only see if you "examined" it?
+</p>
+							<p>
+You were stuck.
+</p>
+
+<p>
+And, if you go that far, why stop there? Shouldn't these room sub-elements be able to have all of the physical attributes that any other object in a game could possess?  Why not allow them to be exits or containers? Why couldn't they have smells or make sounds? Why couldn't you stand near them, sit on them, and otherwise interact with them?
+</p>
+
+<p>
+Those possibilities <i>are</i> all allowed with Skotos' details.
+</p>
+
+<p>When we started implementing rooms at Skotos, details were included as a very integral part of them. In actuality, the main description of a room &#151; the one we discussed two weeks ago that allows you to &quot;look&quot; or &quot;examine&quot; a room itself &#151; is a detail. We call it the &quot;prime detail&quot;.</p>
+
+<p>
+That means that anything that you describe for a room itself, you can also describe for each and every one of its details: "look" descriptions, weights, exits, whatever. (Though, in actuality, some of these variables happen to be meaningless for non-prime details right now.)
+</p>
+							<p>
+This allows a developer to create a richly described world.
+</p>
+							<h3><b>So What is a Detail?</b></h3>
+							<p>
+Thus far I've used a lot of fairly abstract phrases when talking about details, like "sub-elements" and "non-portable" elements. What, however, are the real criteria for details in Skotos games?
+</p>
+							<p>
+The easiest answer is this: "Details are distinct items that you don't want to leave a room." More generally, there are three big categories:
+</p>
+
+<ol>
+<li><b>Items integral to a room, and thus impossible to move.</b> For example, a wall, a roof, or a door.
+<li><b>Items too big to be easily moved.</b> For example, a bookshelf or a big oka desk or a huge table.
+<li><b>Items too important to be moved.</b> For example, in a dining room you don't want people to take your dining chairs away.
+</ol>
+							<p>
+The last criteria means that the question of what's a detail and what's not can be sort of vague. Two weeks ago I described my office and I included two items that I said really should be portables: a kitchen chair in front of my desk and a rocking chair by the patio door. Each of these items <i>is</i> pretty easy to move, but they're important enough to my office that I don't want them walking away, so they ended up in the descriptions and would be created as <i>details</i> not <i>portables</i>.
+<font face="Verdana,Helvetica,Arial" size="2"><sup>(<a href="TTnT_50.shtml.html#footnote">1</a>)</sup></font></p>
+							<h3><b>Describing Details</b></h3>
+							<p>
+By now you should hopefully have a good idea of what details are and how we use them at Skotos. You may also have sussed out that you'll spend more time writing up the details of a room than you will writing the basic descriptions of the room itself.
+</p>
+							<p>
+How do you actually figure out what details to write, however? I suggest the following procedure, which should be equally valid for writing "Items", "Views", or any other type of room sub-elements in any other text game.
+</p>
+
+<p>
+<b><i>1. List All the Sub-Elements in the Descriptions of Your Room</i></b>
+</p>
+
+<p>
+The first thing you need to do is look at the longest description of your room and see what sub-elements it includes. The best way to do these is to list all the noun phrases. (These are words or phrases which take the place of nouns.)
+</p>
+
+<p>
+As an example, I'm going to look at the fairly long "examine" description I wrote for my office two weeks ago:
+</p>
+							<blockquote>
+								<p><code>This cluttered office is approximately ten foot by ten foot. The beige walls are slightly lighter in color than the polished hardwood floor. A bare light fixture hangs from the ceiling in the middle of the room, supported only by wires.</code></p>
+								<p><code>On the far wall a patio door and a large window open up onto opulent greenery beyond, all framed by green curtains. The door is partially blocked by a rocking chair, and the window is somewhat obscured by a cat tree. Three pine book cases line the other walls.</code></p>
+								<p><code>There is barely enough room in the corner to the left of the door for a work area, consisting of a walnut desk, a kitchen chair, a pressed wood printer stand, and a metal filing cabinet.</code></p>
+							</blockquote>
+							<p>
+It contains the following noun phrases:
+</p>
+							<ul>
+<li>cluttered office
+<li>beige walls
+<li>polished hardwood floor
+<li>bare light fixture
+<li>room
+<li>wires
+<li>far wall
+<li>patio door
+<li>large window
+<li>opulent greenery
+<li>green curtains
+<li>rocking chair
+<li>cat tree
+<li>pine book cases
+<li>corner
+<li>door
+<li>work area
+<li>walnut desk
+<li>kitchen chair
+<li>pressed wood printer stand
+<li>metal filing cabinet
+</ul>
+
+<p>
+Once you've looked through the "examine" of your Room, it's wise to look at the "look" too, just to make sure you didn't leave anything out. Often you might call things by slightly different names in your "look" and your "examine", and you'll want to include all of the alternative names. Looking at my "look", I find one slightly longer description:
+</p>
+
+<ul>
+<li>left corner
+</ul>
+
+<p>
+<b><i>2. Decide Which Sub-Elements will Be Parts of Other Descriptions</i></b>
+</p>
+
+<p>
+Whew!
+</p>
+
+<p>
+In all honesty the three-paragraph description that I wrote for my home office is a fairly long one. But, it's not totally out of hand. Still, in that three-paragraph description I managed to find twenty-one details! As I've already said, you <i>will</i> spend more time writing details than you do the basic room descriptions. But, you won't have to do <i>quite</i> as much work as you might think right now.
+</p>
+
+<p>
+As you look over your list of details, you should determine which ones <i>don't</i> need their own descriptions. Some will be adequately described in the "prime" detail while others will end up being adequately described by other details that you're going to write up.
+</p>
+
+<p>
+You'll end up making these extra details into "aliases" for the ones you actually do write. Looking through my list, the following details seem superfluous. I've listed aliases for each:
+</p>
+
+<ul>
+<li>cluttered office -> <i>prime detail</i>
+<li>room -> <i>prime detail</i>
+<li>wires -> <i>bare light fixture</i>
+<li>far wall -> <i>beige walls</i>
+<li>patio door -> <i>large window</i>
+<li>green curtains -> <i>large window</i>
+<li>opulent greenery -> <i>large window</i>
+<li>corner -> <i>prime detail</i>
+<li>left corner -> <i>prime detail</i>
+</ul>
+
+<p>
+You might want to alias details for one of three major reasons:
+</p>
+
+
+<ol>
+<li>Some of these sub-elements, such as "cluttered office" and "room" and "wires", will be alternative names for existing details (the prime detail) or for ones you plan to write (the light fixture).
+
+<li>Other sub-elements will not be interesting enough to provide additional information on, such as the "far corner", which is detailed sufficiently in the room description, and the "far wall", which really isn't any different from the other "beige walls".
+
+<li>Some fairly distinct sub-elements can be cleverly combined into the same description, such as "large window", "patio door", "opulent greenery", and "green curtains".
+</ol>  
+
+<p>
+<b><i>3. Figure Out How Inheritance Can Help You Out</i></b>
+</p>
+
+<p>
+This may sound like Greek to you, because <i>inheritance</i> is on my list to discuss in the future. In short: if a detail is shared in common between a number of different rooms you can save yourself time by describing it once, then sharing it out to all the rooms by the magic of "inheritance". At this point you should just identify the common details.
+</p>
+
+<p>
+The one common detail that's immediately obvious to me is the "polished hardwood floor" which is identical throughout most of my house. Depending on how I was structuring my rooms, I could choose for any or all of the walls and ceiling to be inherited details too.
+</p>
+
+<p>More on this in two weeks or so... </p>
+
+<p>
+<b><i>4. Write Details for All Other Sub-Elements</i></b>
+</p>
+
+<p>
+Once you've identified all of your details, you need to start describing them one-by-one. In Skotos games, "glance" descriptions aren't used by details. In addition, you should only include an "examine" if you feel really strongly about hiding some of the information about the detail.
+</p>
+
+<p>
+The brief description of a detail appears whenever you interact with it. For my window/door/greenery/curtains description, I've decided that the brief will be:
+</p>
+
+<blockquote>
+								<code>large window </code></blockquote>
+
+<p>
+And an appropriate "look" is:
+</p>
+							<blockquote>
+								<p><code>The south side of the room is nearly entirely taken up by a patio door and a large window, jointly framed by wide wooden trim that's been painted white. The door has ten glass panels in it, arranged in two rows, while the window is an old craftsman model, split in two. The bottom can be lifted up to open the window.</code></p>
+								<p><code>The curtains framing the window are made out of green cotton cloth, and are hanging from a smooth oak rod.</code></p>
+								<p><code>A stand of trees grows in a neat row about ten feet back from the window, filling it with greenery.</code></p>
+							</blockquote>
+							<p>
+<b><i>5. Figure Out Alternative Names</i></b>
+							<p>
+Just because you call a floor a floor doesn't mean that someone else won't call it the ground, planks, or something else. You'll need to come up with alternative names for each and every object.
+
+
+<p>
+This again, is a topic for the future; watch for it next week.
+
+
+<p>
+<b><i>6. Iterate Through all Detail "Examine" Descriptions</i></b>
+
+
+<p>
+As you finish up each detail description you need to once more run through all the noun phrases, then decide if you want to write more descriptions for <i>these</i> sub-details. The further you dig down, and the more you're considering sub-sub-elements, the more likely you just want to make those sub-sub-elements into aliases for existing details. Here's what I'd probably do for the sub-elements in my window description:
+
+<ul>
+<li>south side -> <i>large window</i>
+<li>patio door -> <b><i>already aliased</i></b>
+<li>large window -> <b><i>existing detail</i></b>
+<li>wide wooden trim -> <i>large window</i>
+<li>ten glass panels -> <i>large window</i>
+<li>(window) bottom -> <i>large window</i>
+<li>curtains -> <b><i>already aliased</i></b>
+<li>green cotton cloth -> <i>large window</i>
+<li>smooth oak rod -> <i>large window</i>
+<li>trees -> <b><i>new detail</i></b>
+<li>greenery -> <i>large window</i>
+</ul>
+
+
+<p>
+All of this aliasing might seem a little pedantic, but the idea is to make sure that players never see the message "There are no trees" here, or whatever, when that item was clearly described by <i>some detail</i>.
+
+<p>As you can see, in my example I've decided to add one more detail, the trees, because I think some more information can be imparted that's missing from the window description...  such as what type of trees they are (and presumably because I also think that imparting that information will in some way be meaningful to players.)
+<p>
+<b><i>7. Note that Some Sub-Elements May Be Multiply Described</i></b>
+
+
+<p>
+As a brief aside, it's useful to note that you might describe the same element in a room multiple times. That's OK.
+
+
+<p>
+For example, I have one detail called "work area", where I'll offer some descriptions of my desk, chair, printer stand, and file cabinet. But, I'll also describe those elements separately in each of their own details.
+
+
+<p>
+The idea is to give players lots of different ways to interact with the things within a room in sensible ways.
+
+
+<p>
+<b><i>8. Add Any Other Details You Want to Include</i></b>
+
+
+<p>
+So, having painstakingly run through ever description and every sub-description <i>ad infinitum</i> you're done, right? Not quite. You should look at your list of details and see if there's anything you <i>forgot</i>
+
+
+<p>
+For example in my office there is a roof that's somewhat notable because on the eastern three feet of the room it starts slanting down at a thirty-degree angle or so. But somehow I never got around to describing it anywhere. (Perhaps I thought it was one of those inherited details that I'll talk about in a few week, but even in that case I'll want a new description here, because the weird slant in my office's roof <i>isn't</i> common throughout the house.)
+
+
+<p>
+Looking back now, I can add it in.
+
+							<p>
+<b><i>9. Connect These Additional Details to Your Detail Tree, if Appropriate</i></b>
+							<p>Finally, you should be able to lay out all of your Details in a tree, based on the &quot;examine&quot; descriptions, starting from the prime detail (the room description). A portion of the tree for my office would look something like this:</p>
+						</div>
+						<div align="center">
+							<p><img src="artwork/TTnT50a.gif" width="334" height="118" border="0" alt="diagram"></p>
+						</div>
+						<div align="left">
+							<p>Some details will actually appear multiple times in your tree. For example, the desk, chair, and printer stand would also appear linked to the prime detail, if I'd completed this chart.</p>
+							<p>You'll find that other details aren't connected at all. For example, my roof, which I'd forgotten until I got to step 7, happens to not appear anywhere. You should <i>usually</i> connect these unlinked details in at this point. Which is to say, make sure they're included in the description of some other detail that <i>is</i> part of the tree.</p>
+							<p>There are two times when you might not want to do this:</p>
+							<ul>
+								<li><b>If a detail is ubiquitous.</b> All inside rooms have roofs. It might not be too important to include this in my tree as a result, because players know to look for it.
+								<li><b>If a detail is secret.</b> If there were a secret carving in my hard wood floor, that really isn't obvious unless you know to look for it, then I might not link it in, not even to the &quot;examine floor&quot; description.
+							</ul>
+							<p>And <i>that's</i> it. Some rooms might actually be very simple, only having a few different details, but some will be very complex. Whenever you're making a room that's going to be central and used a fair amount you probably want to go to the effort to create lots of details, because your effort will be repaid by the players enjoyment.</p>
+							<p><b>Onward!</b></p>
+							<p>As I've been writing this week's article, it's become obvious to me that another two <i>Building Blocks</i>, <i>names</i> and <i>inheritance</i> are both quite important in building rooms. Thus, those are the next two blocks on my list. Talking about names should be short and sweet, but inheritance will take some work.</p>
+							<p>So, for the next few weeks, we'll briefly sidetrack there, before coming back to look at <i>maps</i> &#151; or how rooms link together. And after that, I plan to get a little more specific and describe how <i>exactly</i> rooms, details, and maps are programmed in to the Skotos Developer Interface.</p>
+							<p>See you in 7.</p>
+							<div align="left">
+								<hr>
+								<ol>
+									<li><font face="Times New Roman,Georgia,Times" size="2"><a name="footnote"></a>12/6/01. This article ended up being a little more room-specific than it should have been. Details are the most useful for rooms, but portable objects can also have details that are integral parts of those items. For example, a sword could have a hilt, a blade, and strange runic writing as individual details. This will be discussed more in a future column about <i>portables</i>.<br>
+										</font>
+								</ol>
+							</div>
+							<div align="left">
+								<hr>
+							</div>
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Trials, Triumphs &amp; Trivialities</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="TTnT-last10.php"--></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=36"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=36"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

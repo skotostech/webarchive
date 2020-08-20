@@ -1,0 +1,100 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #49:</b></font></p>
+							<h2>Thinking Mechanically, Part 7: Resolution Mechanics</h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										December 23, 2002</b></i></p>
+							<p>
+A few columns back, I talked about <A HREF="BSTG_45.shtml.html">the "three R's" of mechanics</A>:  Reduction, Resolution, and Representation.  I've been talking about scaling in the last couple of columns -- which ties into the Reduction phase, as it deals with how we come up with the numbers that will be used in Resolution.  The central question in designing the Resolution aspect is "what do we do with the numbers?"  So let's look at some different things that can be done with them.
+
+							<h3>Roll vs. Threshold</h3>
+							<p>The simplest, oldest method is to simply add together the numerical factors that are involved, then roll some sort of die against them, trying to roll either higher or lower. A concrete example is combat rolls in second edition AD&amp;D: the attacking character's THAC0 value is added to the defender's armor class, and that produces a value which a d20 roll must equal or exceed for a successful strike.
+
+							<p>
+(A note here -- games often distinguish between what values are added to the target value, and what values are added to the die roll.  In a system of this sort, both methods are mathematically equivalent except for a change of sign:
+
+						</div>
+						<table border="0" cellpadding="8" cellspacing="2" align="center">
+							<tr>
+								<td>
+									<div align="center">
+										<p><b>roll &nbsp; + &nbsp; modifiers &nbsp; &gt; &nbsp; target</b></p>
+										<p>vs.</p>
+										<p><b>roll &nbsp; &gt; &nbsp; target &nbsp; - &nbsp; modifiers</b></p>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<div align="left">
+							<p>
+That change in sign may be psychologically significant, though -- many people find it "more natural" to have things that make a task easier expressed as positive numbers, and those that make it harder expressed as negative numbers. For a paper system, such a change in where the modifiers are placed in the equation can make a system feel easier to use.)
+
+							<p>There are also systems where one wants to &quot;roll low&quot;, rolling under the target value; for example, most percentile-based systems, including Runequest and the systems based on its &quot;Basic Roleplaying&quot; mechanics (Call of Cthulhu, Stormbringer, etc.). This is basically equivalent to the above, the only mathematical changes being the substitution of &quot;&lt;&quot; for &quot;&gt;&quot; in the above equations and a change of sign for the modifiers.
+							<p>
+A central question for this sort of method is what the roll should be -- in particular, whether it should involve only one die or the sum of multiple dice.  A single die gives a linear probability curve -- each point of a modifier therefore adds or subtracts the same amount from the probability of success, within the limits of the range of the mechanic.
+
+							<p>
+Multiple dice, however, give a sort of "bell curve", where results in the middle of the distribution being more likely than those results at either extreme.  As a side effect, the change in the probability of success caused by a +1 or -1 modifier depends on the point of the curve one is at -- at the very extremes and in the very middle, the change is small, but on the "sides" of the bell, the change can be very large.
+
+							<p>
+Whether or not a bell curve is desirable is a subject of some argument among RPG designers, at times bordering on a religious issue.  To avoid the inevitable flamewar, I'd like to simply say that each has its merits, and that it behooves any game designer to spend some time thinking about the goals of their system, and what sort of mechanic would better serve those goals.
+
+							<h3>Dice Pools</h3>
+							<p>
+Another fairly common method is what's sometimes called a "dice pool".  In this sort of system, multiple dice are rolled and checked independently against a target value.  The number of dice to roll is variable, dependent on factors considered in the Reduction phase.  The classic example here is White Wolf's Storyteller system.  In it, the number of dice to roll is typically the sum of the applicable attribute and skill.  Each die that equals or exceeds the target number is counted as a "success".  Most tasks can be accomplished with a single success, but some tasks may require multiple successes.
+
+							<p>
+A good quality that dice pools can have is that there are two ways to vary the difficulty of a task -- by varying the target value, and by varying the number of successes needed.  Each has somewhat different effects, though, so a game designer needs to carefully consider which way is appropriate for what sort of tasks, and give good guidelines to scenario designers about this.
+
+							<p>
+One common complaint about dice pools is that it is harder to figure probabilities of success with a dice pool system than with a roll vs. threshold system.  This is true, but in the context of systems for a computer RPG, it really doesn't matter that much.  In a paper RPG, the gamemaster often has to make up difficulty values on the fly, and may wish to have a fair idea what chance of success the characters involved would have.  In a computer RPG, however, difficulty values are almost exclusively being assigned well in advance.  Thus, there's more leisure to consult a table or computer program to check on chances of success.
+
+							<p>
+These two systems, between them, dominate the paper RPG landscape.  At a rough estimate, I'd say that 95% or more of paper RPGs use systems of these two types. Why?  Well, one reason is that they're fairly simple and easy to understand. That's added to by the fact that they are in such extensive use -- they're familiar to the existing fan base of paper RPGs, and therefore using one of them doesn't create an extra obstacle to players learning and using the game.
+
+							<p>
+For a computer game system, however, those factors are less important.  Players don't have to use or understand the underlying resolution system -- scenario designers do need to, but as mentioned above, they're not under the same sort of "decide now" time pressure that paper RPG gamemasters are, so a more complex system can be used, or a tool can be used to help with calculating and/or estimating probabilities of success.
+
+							<p>
+The overwhelming majority of computer RPGs, nonetheless, are still based on one of these two systems -- in particular, on a "roll vs. threshold" system. I'd encourage computer RPG designers to think about what other sorts of systems are possible -- and towards that end, the next column will be devoted to "oddball" resolution systems.  Most of them will be drawn from paper RPGs, since I am primarily a paper RPG guy, but I'll have a few thoughts on what sorts of things might be possible in a computer RPG as well.
+
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

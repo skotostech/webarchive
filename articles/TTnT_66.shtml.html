@@ -1,0 +1,183 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top"><a href="TTnT.shtml.html"><img src="nav/snav_ttnt.gif" width="137" height="371" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b><font color="#006633">Trials, Triumphs &amp; Trivialities #66:</font></b>
+						<h2>Fool Me Twice</h2>
+						<p><i><b>by <a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></p>
+						<p>
+<b>April 1, 2002</b> - I love April 1st. After Hallowe'en it's my favorite holiday of the year. As I mentioned last year, in <i>Trials, Triumphs & Trivialities #27</i>, <a href="TTnT_27.html">Fool Me Once</a>, in my halycon undergrad years at Cal I used to play pranks on the web, sending out blatantly false news items to all the corners of the Internet and watching the astounded responses come in.
+
+<p>
+I turned 30 a few days ago, and <i>alas</i> with that age has come responsibility. Since I know that there are now people out there that trust me and have <i>reason</i> to believe what I say, I don't engage in random tomfoolery any more. But, I would like to share a little of the humor and happiness of the holiday. So, for the last year I've been collecting quotes and bugs related to Skotos.
+
+						<p>
+Here's the best.
+
+						<h3><b>Bug: Consensual Dueling</b></h3>
+						<p>
+As you've no doubt heard, we've just upgraded Marrach to what we call our trunk code base. It's the more stable, more advanced, but slightly different, version of our server. Overall, the upgrade has gone fairly well, but we've run into occasional problem.
+
+						<blockquote><code>
+> <b>lunge</b>
+You try to approach Minty. This requires her consent.
+</code></blockquote>
+						<p>
+We always claim that Marrach is consensual, but this little bug just shows us how consensual we could really be if we <i>wanted</i>. May I lunge at you in a duel? May I enter the room with you? May I speak to you?
+
+						<p>
+Sometimes, too much is too much.
+
+						<h3><b>Quotes: Silly Developers</b></h3>
+						<blockquote><i>
+"I smack death."<br>
+"Ngh! Take that death!"
+</i></blockquote>
+						<p>
+Sometimes our developers get a little giddy when they've been working on a problem for too long, as was the case here, when we actually had a physical "Death" CNPC in our first incarnation of Castle Marrach's furnace.
+
+						<blockquote><i>
+"Every day is +slay day for me."
+</i></blockquote>
+						<p>
+And sometimes our developers' heads get just a little too filled with visions of power. +slay is the administrative command which allows a StoryTeller to destroy an object in game. In this case the developer didn't need to be restrained, but just barely.
+
+						<h3><b>Bug: Ghosts in the Castle</b></h3>
+						<p>
+In something as complicated as an virtual online game world, systems sometimes interact with each other in totally confounding ways. Take the example of the Gate Courtyard in Castle Marrach's Outer Bailey. When we first built the Castle, there wasn't anything west of it. We hadn't yet constructed the gatehouse beyond. Because players couldn't get there, there was little need.
+
+						<p>
+But, we knew that doors sometimes accidently got left unlocked. In fact, early versions of the system accidently unlocked doors whenever we rebuilt a room. If anyone ever got outside of the Gate Courtyard's western door we wanted to make sure they didn't end up in the infamous void. So we looped the western exit back to itself. If the door somehow got opened, and you wandered west, you'd ended up right back where you started. A nice solution for a probably non-problem.
+
+<p>
+And then some joker wrote code to allow you to a knock on a door.
+
+<p>
+The implementation was pretty simple. If you knocked on a detail that was an exit, the system looked at the exit's destination and transmitted the knock to that location.
+
+<p>
+By now, you must see where this is going. People knocked on the western door of the Gate Courtyard, and <i>someone on the other side knocked back</i>. Or so it seemed. Ghosts in the Castle? A poor guest stuck outside? Monsters trying to get inside?
+
+						<p>
+Just <i>ghosts in the machine</i>, alas.
+
+						<h3><b>Quotes: The Problems with Clothes</b></h3>
+						<blockquote><i>
+"Why are they nude?"<br>
+"They don't have clothes."
+</i></blockquote>
+						<p>
+Even simple systems can get really complicated when introduced to a complex, intertwining multiplayer gamesystem. Clothes, and the concept of non-clothed <i>people</i> being nude, have caused no end of troubles. 
+						<blockquote><i>
+"You see emptiness. It is nude."
+</i></blockquote>
+						<p>
+Our biggest problem seems to always be with our game systems getting overzealous, and labelling things as nude that shouldn't be.
+
+						<blockquote><i>
+"My clothes don't need to have influence."
+</i></blockquote>
+						<p>
+But in general every time we look into how different systems and different types of objects interact, we see new, bizarre behavior, as shown by the above quote, about how clothing might affect a (never released) influence system.
+
+						<h3><b>Bugs: The Gravity of the Situation</b></h3>
+						<p>
+Over in <i>Horizon Station</i>, Sam Witt has been doing very different things with the Skotos system. For example, he's thinking about physics in a way that we really don't need to for games like <i>Castle Marrach</i> (or even space-operic science fiction games like <i>Galactic Emperor: Hegemony</i>).
+
+						<p>
+One day Sam was doing experiments with gravity over on the Horizon Station stage. To try and simulate an increased gravity, he'd made himself <i>huge</i>. And then everything broke.
+
+<p>
+When our engineers looked at his character, later, they realized he'd made himself too big to fit in any of the Horizon Station rooms.
+
+<p>
+Oops.
+
+						<p>
+<b>Quotes: More Zany Developers</b>
+						<blockquote><i>
+"I think I'm going to have to do a separate legwear catalog."
+</i></blockquote>
+						<p>
+Sometimes our developers get so enmeshed in the games they're working on that they don't realize how funny their tasks might sound.
+
+						<blockquote><i>
+"I just sharpened every sword in the game with one command. Ha!"
+</i></blockquote>
+						<p>
+But, more frequently, they just get overcome with the vast, though virtual, power at the tips of their fingers. Again, no restraint required, but it's always touch and go.
+
+						<blockquote><i>
+"Where the hell did he get an arm?"
+</i></blockquote>
+						<p>
+And sometimes our developers just don't make sense, especially not a year later when looking at their quotes in retrospective.
+
+						<p>
+Where would a character get an arm? From the armwear catalog, one would suppose.
+
+						<h3><b>Bugs: Noun Overload</b></h3>
+						<p>
+One of the biggest problems you can run into in an online game is overloading the same nouns. As a player you run into this every day when you get a message like, "Do you mean a chair, a chair, a chair, or a chair?" All of the items respond to the same noun and you can't necessarily distinguish between them in the same way that you could in real life.
+
+						<p>The problem gets even worse due to the ambiguity of the English language. As we would learn... 
+<p>
+The ambiguous English word that has caused us the most problem is, without a doubt, "chest". When developers use it, they typically mean a container-object, usually wooden, sometimes banded with metal, which may be carried around and used to store objects. But, "chest" is always a detail on every single character, meaning the top, front of the torso.
+
+						<p>
+One day one of our CE staff, playing Petris and trying to get rid of an obnoxious container, typed the following command:
+
+						<blockquote><code>
+> <b>+slay chest</b>
+</code></blockquote>
+						<p>
+As you'll recall +slay is the command used by staff members to destroy objects. Petris' chest, and thus the whole character, went up in a puff of smoke.
+
+<p>
+We sent out the obligatory warning to all of our staff members, and added to our TODO list something to offer better protection for characters, so that they couldn't be destroyed quite so easily.
+
+<p>
+And then a few week's later the developer playing Hetchel did exactly the same thing.
+
+<p>
+Fool me once, shame on you.
+
+<p>Fool me twice... 
+<p>
+That's it for me this week, folks. Happy All Fool's Day.
+						<div align="left">
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Trials, Triumphs &amp; Trivialities</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="TTnT-last10.php"--></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=36"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=36"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p>
+		</center>
+	</body>
+
+</html>

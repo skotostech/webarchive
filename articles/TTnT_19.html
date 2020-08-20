@@ -1,0 +1,92 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="../artwork/articles_TTnTlogo.gif" width="215" height="50" align="BOTTOM" alt="masthead" border="0">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<h2><font face="Verdana,Helvetica,Arial"><a href="TTnT.shtml.html"><img src="nav/snav_ttnt.gif" width="137" height="371" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#19: Hobgoblins, Part One</b></font></h2>
+						<p><font face="Verdana,Helvetica,Arial" size="2"><i><b>by </b></i><i><b><a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></font></p>
+						<p><font face="Verdana,Helvetica,Arial" size="2"><b>February 1, 2001 &#150;</b> "Consistency is the hobgoblin of small minds." It's a well-known quote that derides our attempts to make order from chaos. It's so well-known, in fact, that one can just say the word "hobgoblins" and invoke an entire mood of displeasure toward careful organization, as Windom Earle does in one of my favorite <a href="http://www.twinpeaks.org" target="_blank">television shows</a> of the last decade.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">It's a well-known quote, and it's wrong.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">
+
+What <a href="http://www.cp-tel.net/miller/BilLee/quotes/Emerson.html" target="_blank">Ralph Waldo Emerson</a> actually said was: "A <i>foolish</i> consistency is the hobgoblin of little minds.&quot; What a difference a word makes.</font><p><font face="Verdana,Helvetica,Arial" size="2">And I agree with Emerson. Foolish consistency can just restrict creativity, but a certain amount of consistency is necessary, and I think that's especially true in online games.</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+Once upon a time, in a Silicon Valley far, far away, a single programmer could sit down and write a game <i>en toto</i> by himself. Time went on and games became more complex and soon you needed a team of people working on a project. Two or five or ten or fifty. Recently I read an article on <i>Diablo II</i>, which mentioned how they'd done a year of work <i>beyond</i> the point were they thought they were just about done, and I realized what a big task building games is nowadays.</font><p><font face="Verdana,Helvetica,Arial" size="2">And then there's online games. We had a team of about half-a-dozen people who worked on various parts of the initial design of Castle Marrach. But that wasn't the end of things. We've done considerable more work since the beta release, and if all goes well we'll still be doing work on Marrach five years from now.</font><p><font face="Verdana,Helvetica,Arial" size="2">A single programmer could be sloppy and not worry too much about whether his code was consistent, because he was the only person who'd ever have to look at it. There was a lot more need for consistency in the world of large programming teams, but you could still get away with being a little flaky, because you could wander around and tell people about your latest kludges. But in the world of online games, you have to be consistent enough that five years down the line people you don't know can figure out what you did.</font><p><font face="Verdana,Helvetica,Arial" size="2">That's a new level of need.</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+As a result I want to talk about consistency in the StoryBuilding process of Skotos games. There's two areas where consistency is of special interest: verbs and inheritance. This week I'm going to hit verbs and next week I'll move on to inheritance and expand the discussion into some more general areas of StoryBuilding. I'm going to talk a lot more in-depth about how our system works this week than I usually do. If that bores you, you should skip down to the <a href="TTnT_19.html#bottom">bottom</a> of this article, where I mention how inconsistency has caused real bugs in Castle Marrach.</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+For the rest of you, let me draw back the curtains a little bit and introduce you to <i>The Wizard</i> ...</font><p>
+
+<b><font face="Verdana,Helvetica,Arial" size="2">The Problem with Verbs</font></b><p><font face="Verdana,Helvetica,Arial" size="2">
+
+You're no doubt familiar with verbs in online games. They're those imperatives that you invoke to make your alter ego do things: bow, smile, reply, state, etc. You're probably <i>not</i> familiar with the fact that implementing them in a text-dominant game can be a tricky thing. Traditionally there have been two ways that you could implement verbs in text-dominant games: globally and locally.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">You'd find global verbs in DikuMUDs or Infocom games. As the name suggests, they're implemented at a global level. If you want to introduce a new verb, you dig deep into the code and program it in. Afterward the verb works everywhere, whenever the conditions are right.</font>
+						<blockquote>
+							<font face="Verdana,Helvetica,Arial" size="2"><b><i>How Global Verbs Work:</i></b> Your players have been clamboring for the &quot;sashay&quot; verbs. You implement it and afterward everyone can glide about whenever they want. In addition, you've been quite clever, and you've flagged the new &quot;sashay&quot; verb as an &quot;elegant&quot; type of movement, allowing any NPCs anywhere in the game to react appropriately. The Queen might be impressed, the leader of the thieves' guild less so. Everything works everywhere.</font>
+							<p><font face="Verdana,Helvetica,Arial" size="2"><b><i>How Global Verbs Don't Work:</i></b> In the Maze of the Queen of Hearts there's a giant chessboard. If you "sashay" across the chessboard a tunnel is supposed to open up in the middle of the chessboard, allowing passage to the secret catacombs below. The <i>only</i> way to implement this is to go back to your global &quot;sashay&quot; verb and to write a special case for sashaying in the Maze of the Queen of Hearts. A couple of dozen secret passages later, and your &quot;sashay&quot; verb is a mess.</font>
+
+
+						</blockquote>
+						<font face="Verdana,Helvetica,Arial" size="2">You'd find local verbs in LPMUDs and AberMUDs (though these tended to have a small set of global verbs as well). With a local verb, you implement verbs only where they actually work, as opposed to everywhere in the game.</font>
+						<blockquote>
+							<font face="Verdana,Helvetica,Arial" size="2"><b><i>How Local Verbs Work:</i></b> You create a wall of thorns that's hiding a cave entrance and decide that it can be burned away. You attach the &quot;light&quot; verb to the wall of thorns, so that if someone types &quot;light wall of thorns&quot; and they're carrying a torch, the thorns will be burned away.</font>
+							<p><font face="Verdana,Helvetica,Arial" size="2"><b><i>How Local Verbs Don't Work:</i></b> Another StoryBuilder creates a similar puzzle, where some curtains can be burned away to let light into a room. He attaches the &quot;burn&quot; verb to the curtains, so that if someone types &quot;burn curtains&quot;, and they're carrying a torch, then the curtains will be toast. So now people have to play guess-the-verb to figure out how these two different puzzles work, even though both &quot;light&quot; and &quot;burn&quot; should probably work in both cases.</font>
+
+
+							<p><font face="Verdana,Helvetica,Arial" size="2"><b><i>How Local Verbs</i></b><b> Really </b><b><i>Don't Work:</i></b> As you'll recall, our local verbs don't appear at a global level, so when someone finds a torch in his adventures, he may try and type &quot;light torch&quot; or &quot;burn torch&quot;. He sees &quot;What?&quot; in response. Neither verbs works outside of its very local constraint, yet we've given players the idea that the verb is actually understood by the system, when they're actually only understood in really specific cases. (To light the torch, the player might have to actually type &quot;ignite torch&quot;, when, once more, all the verbs should have been OK.)</font>
+
+
+						</blockquote>
+						<font face="Verdana,Helvetica,Arial" size="2">
+
+The Skotos system actually combines these two traditional types of verbs. All verbs <i>must</i> be defined globally. For all of our "social" verbs (things with minimal game effect, as opposed to "action" verbs like "north" or "duel" or "sign") this is really easy to do. Any non-programmer can add a new verb by defining what <i>type</i> of verb it is. Can the verb be used with an object ("hit wall")? With a preposition and an object ("point at the wall")? With an evocation ("say 'The owls are not what they seem.'")? A non-programmer just enters this information into some web-based forms and ... <i>voila!</i> ... the verb is globally defined.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">
+
+But verbs can also have specific local effects. We have a minor programming language called BILBO which can be used to make objects react to specific verbs.  Remember the goblets from the Winter Ball that fill with <a href="http://retributionsrants.tripod.com/wines.htm" target="_blank">wine</a> if you tap them? That's a BILBO script. A local version of the &quot;tap&quot; verb is built into the glass so that it reacts appropriately, but since &quot;tap&quot; must also be a global verb it has appropriate effects elsewhere.</font><p><font face="Verdana,Helvetica,Arial" size="2">We can actually program verbs into people too, so that the BILBO script goes off whenever the person uses the verb in question. Remember the kissing curse, which caused someone to become mute when he was kissed by someone who was muted by the curse already? That was BILBO too (in an early form). The local definition of the &quot;kiss&quot; verb jumped from person to person.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">So by combining the two systems, we fixed one major problem, but not another.</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Verbs will <i>always</i> work. You'll never get &quot;What?&quot; because verbs have to be created globally if they're to be used locally.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">But, we're still vulnerable to people making similar objects react to different verbs, as in my ignite/burn/light example above.</font>
+						</ul>
+						<font face="Verdana,Helvetica,Arial" size="2">And that's the first place that the question of inconsistency enters our world today. As StoryBuilders, we have to be very careful and:</font>
+						<ul>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Consider whether a local definition of a verb should actually be made global.</font>
+							<li><font face="Verdana,Helvetica,Arial" size="2">Make sure that all of our local definitions match up.</font>
+						</ul>
+						<font face="Verdana,Helvetica,Arial" size="2">In the case of my pyromaniac verbs, I'd probably do best to go to my global definition of &quot;ignite&quot; and use SAM, another minor programming language, to define the verb a little better. I could tell it to have a specific reaction (or maybe a few different reactions) if an item was marked as burnable, and then I'd just need to go to my individual items and note that each indeed was burnable. Afterward, I could set &quot;burn&quot; and &quot;light&quot; to be alternative names for that same burn verb.</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">In other cases, though, I'd just need to be very careful. Tappable wine goblets probably don't belong in the global definition of tap. So, I'd need to make sure that the verb &quot;tap&quot; was used for other similar local actions, and I might also need to allow more verbs than just &quot;tap&quot; to work if I did similar things with different verbs elsewhere (or, really, if any StoryBuilder in Castle Marrach does.)</font>
+						<p><font face="Verdana,Helvetica,Arial" size="2">
+
+As I said earlier, this is a lot more in-depth than much of what I write. However, if you end up StoryBuilding a game at Skotos, this will eventually be of concern for you. Let me offer one quick rule: <b><i>Do generic things with global verbs; do specific things with local verbs, but do it consistently.</i></b> And, let me also offer a more global idea: <b><i>Be consistent in your game design</i></b>.</font><p><font face="Verdana,Helvetica,Arial" size="2">Next week (unless something else gets in my way) I'm going to talk about inheritance, another major consistency problem for StoryBuilders, and try and expand the whole issue of consistency to a few more general concerns.</font><p><font face="Verdana,Helvetica,Arial" size="2">In the meantime, however, I promised a bug.</font><p><a name="bottom"></a><b><font face="Verdana,Helvetica,Arial" size="2">The Problem with Codpieces</font></b><p><font face="Verdana,Helvetica,Arial" size="2">
+
+In designing Castle Marrach we very carefully designed a <a href="bulksystem.html">bulk system</a>. This is a system that sets out how big things are &#150; width, depth, height, weight, etc. &#150; and then takes appropriate actions based upon an item's size. This prevents you from stuffing swords into your belt pouches, and also ensures that fifty people can't jam into a room with a maximum capacity of twenty-two (which is greatly appreciated by the Castle Marrach fire marshalls).</font><p><font face="Verdana,Helvetica,Arial" size="2">We were very clever and created a bunch of formulas so that the system could figure out lots of numbers on its own, reducing the burden on the StoryBuilder, and we used metric, of course.</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+We managed to end up with a system, at least as its currently implemented, that isn't very intuitive. We have some slightly nonintuive variables (like "maximum frontal area") and the metric system is unfortunately nonintuitive to most of us Americans (and to some Europeans, as the recent case of the <a href="http://www.martinrouse.freeuk.com/pages/back.htm" target="_blank">Metric Martyr</a> shows). And this has caused inconsistency.</font><p><font face="Verdana,Helvetica,Arial" size="2">Some of the objects built for Castle Marrach have bulk data that's just plain wrong because a StoryBuilder didn't understand what one of the bulk entry fields really meant. And some have numbers that are way off, either because the StoryBuilder thought things were in English units rather than Metric or because he did his conversion wrong.</font><p><font face="Verdana,Helvetica,Arial" size="2">These errors became really obvious to us a few months ago when Ali Jahib made his first appearance in Castle Marrach. If you were with us then, you'll recall that Ali was a few hours late. Much of this was due to the fact that he was packing his trunk full of goodies just before his visit and he began to have problems fitting items in, because were too big (or too long or too deep or whatever), thanks to our inconsistent use of the bulk system.</font><p><font face="Verdana,Helvetica,Arial" size="2">Poor Ali's player kept having to run back to our developer interface and resize objects to the correct sizes.</font><p><font face="Verdana,Helvetica,Arial" size="2">The worst came when Ali tried to store away a fur codpiece that had been created specially for his visit. It wouldn't fit into his travel chest.</font><p><font face="Verdana,Helvetica,Arial" size="2">So, he went into the developer interface to face the recalcitrant codpiece and discovered ....</font><p><font face="Verdana,Helvetica,Arial" size="2">
+
+... that it was <b>five feet tall.</b></font><p><font face="Verdana,Helvetica,Arial" size="2">Once more, I'll leave you to come up with this week's punch line.</font><p>
+						<div align="center">
+							<table border="0" cellpadding="0" cellspacing="2">
+								<tr>
+									<td valign="middle"><a href="http://www.skotos.net/forum/showthread.php?threadid=297"><img height="59" width="156" src="../artwork/youropinion_btn.gif" border="0" alt="your opinion..."></a></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

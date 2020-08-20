@@ -1,0 +1,5 @@
+A {color: #00cc00; }
+A:hover  { color: #009900; text-decoration: underline }
+P, TH, TD, UL, OL, LI, DD  { font: 10px Verdana, Helvetica, Arial, sans-serif }
+.smaller    { font-size: 80% }
+.larger     { font-size: 120% }

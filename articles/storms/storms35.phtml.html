@@ -1,0 +1,39 @@
+<html>
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+  <title>
+Storms on Cloud 9 #35: Order and Planning  </title>
+<link rel="alternate" type="application/rss+xml" title="Storms on Cloud 9 RSS feed" href="storms.xml">
+  <meta name="Author" content="Skotos Tech Inc.">
+  <link rel="stylesheet" href="http://www.skotos.net/articles/storms/article.css">
+</head>
+
+<body background="../../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+  <center>
+    <br>
+        <br>
+    <img src="../nav/tnav_storms.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../../games/strategy.shtml.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../../games/graphical.shtml.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../../games/prose.shtml.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="../index.xml"><area shape="rect" coords="11,49,181,63" href="storms.xml"><area shape="rect" coords="11,35,181,47" href="../show-column.phtml%3Fcolname=storms.html"><area shape="rect" coords="349,6,517,30" href="../../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="../show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+
+    <table border="0" cellpadding="2" width="90%" height="90">
+      <tr>
+        <td valign="top">
+          <div align="left">
+            <p><font color="#006633"><b><a href="../show-column.phtml%3Fcolname=storms.html"><img src="../nav/snav_storms.gif" width="137" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a>Storms on Cloud 9 #35:</b></font></p>
+            <h2>Order and Planning </h2>
+            <p><i><b>by Scott Holliday<br>
+            2004-08-20</b></i><br><br>
+
+<p>Last time, I delved a bit into the philosophy of coding. Although many of these concepts may be old news to an experienced programmer, for those of you considering game code, it never hurts to take another look. Similarly, the topic would also be helpful to even beginning players in understanding what they have been given. So, picking up from last time… assuming you already have a game in mind and a ready codebase, what next?<BR><BR>When I teach computer science to beginning students, one of the hardest things to convey is just how much time pre-planning saves later on. Often, my assignments require only a diagram of what needs to be accomplished. Although it doesn't teach code, instead it trains students to think logically and to think ahead. Learning the intricacies of a single computer language is ephemeral unless it is your chosen tool. In contrast, learning how to plan out logic, assess future problems, and design an overlying structure for your code to hang from… these sorts of skills continue to be useful no matter what language you end up with.<BR><BR>So, one of the earliest stages of game design must be code planning. My guess is that each hour spent planning before you even start will save you several hours later one. Perhaps for an extremely simple game, it might be easier to just plunge in. However, extensive pre-planning is essential for the larger, internet game ideas most of us are looking at. This is doubly true if you have more than one coder. In order for each person to understand where their work fits in with the whole, their part of the code must be planned to fit with the rest of the puzzle.<BR><BR>Some beginners reading this might think at this point that I am referring to the story elements, the map, or even the game/dice resolution system. Although these might be important parts, the real issue is how you program the computer to understand them all, how they all work together, and in what ways they affect each other. Worse, you have even more basic issues. How does the computer recognize commands by the user? In what order are commands operated? For online games, how are the players kept synced and how is lag handled?<BR><BR>As a basic example, let's look at just a single piece, client-server planning, one of my favorite topics. For the vast majority of online games, the client program is just the tip of the iceberg. The amount of code that the server must handle (and handle well) is often many, many times larger than the client. The reason for this is simple - by definition, the client only sees what the client needs to see. Unless each player has some sort of god-view of the game world, the client must only be allowed to see what is accessible to the player. If you pass additional data to the client, your players will figure out how to use that data against you. Ideally, the server should only pass data concerning the objects which the player is aware of at that moment. In fact, the ideal server/client relationship would bypass the player's computer entirely to go straight to the monitor.<BR><BR>Although server-heavy design is relatively easy for text style games, for graphical games it becomes next to impossible. If the server only sends data on the objects that your character can currently see in their cone of vision, what happens when you turn around too quickly? Worse, the cost of bandwidth to continually load and unload the same objects over and over would be massively prohibitive. Sadly, the coder must find a happy compromise - such as loading all the objects in the near area, but only reporting their positions when they are in the player's sensory range. But even this data can be abused. If the client suddenly loads the data for the hulking monstrosity that is around the corner, the savvy (cheating) player will know what to expect.<BR><BR>So then, how does the coder diagram this client-server interface? Does the client continuously stream position data to each and every player? How does it handle sending/receiving new terrain data as the player moves? What about a secret door? Is it sent one way to some players, but differently to those who know about it? How is latency handled? Given your diagram, will players see other characters moving smoothly, or will players appear to zap from spot to spot? A very complex topic is client level code to predict where players will move so that a moment of lag won't make the world suddenly go still. And this is just the tiniest piece…<BR><BR>The puzzle analogy I used earlier is actually very fitting. Each coder, without knowing exactly how their own piece is meant to be shaped, will not be able to fashion it to combine with the surrounding pieces. What inputs does the piece have? What outputs? How many other pieces must it interface with? Does it need to store information over time for retrieval later?<BR><BR>And even if all proceeds perfectly to plan, from the second coding starts, there is one additional benefit: a constant measure of accomplishment and an estimate of the work remaining to be done…
+<p align="center"><b>[ <a href="storms34.phtml.html">&lt;&#151;&nbsp;#34:&nbsp;The&nbsp;Wheel</a> | <a href="storms36.phtml.html">#36:&nbsp;Cliché&nbsp;Practicality&nbsp;&#151;&gt;</a> ]</b></p>
+              <p></p>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p></p>
+    </center>
+  </body>
+</html>
+</html>

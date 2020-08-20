@@ -1,0 +1,113 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>In the Trenches</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_trenches.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="trenches.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="trenches.shtml.html"><img src="artwork/columns_trenches.gif" width="137" height="396" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>In the Trenches #9:</b></font></p>
+							<h2>What's What 1: Eat, Drink and Play Merry</h2>
+							<p><b><i>by <a href="http://forum.skotos.net/forumdisplay.php?s=55fc31cfb221fe58ae280549c34ba89d&forumid=41">Laurel Stuart</a><br>May 20, 2002</i></b></p>
+							<p>
+Everything in a Chat Theatre is an object, but not all objects are equal.  Some have specific functions or levels of complexity.  The types of objects I'm going to talk about today are common to Chat Theatres regardless of size or genre. They are: food, clothing, weapons, containers and rooms.  Today I'm going to write about creating food objects.
+
+							<h3><b>Food=Consumption</b></h3>
+							<p>
+Food is any object that can be consumed by a character.  Food is divided into edible and potable objects.  A candy bar would be 
+classified as edible; water is potable- its all a matter choosing between eating and drinking. <b>Base:Misc</b> is the Interface field that contains the options.  If the object is edible or potable, there's a box to check off so the parser will react appropriately.  Food is the only kind of object that can be consumed by a character.  In order 
+to consume the food, the player will give some form of consume command to the parser.
+
+							<h3><b>Build Example</b></h3>
+							<p>
+Let me build a candy bar as an illustration.  I decide it will be a plain chocolate bar, without a wrapper for simplicity's sake.  I'll want characters to be able to devour it in four bites. <i>
+									<pre>
+ &lt;Base:Descriptions&gt;
+      &lt;Base:Description type="brief"&gt;candy bar&lt;/Base:Description&gt;
+      &lt;Base:Description type="examine"&gt;
+         The &lt;eaten what="$(this)"/&gt; dark chocolate candy has a delicious flavor.
+      &lt;/Base:Description&gt;
+      &lt;Base:Description type="look"&gt;
+         You look at the &lt;eaten what="$(this)"/&gt;chunk of dark milk chocolate.
+      &lt;/Base:Description&gt;
+      &lt;Base:Description type="taste"&gt;
+         The candy bar has a delicious flavor.
+      &lt;/Base:Description&gt;
+    &lt;/Base:Descriptions&gt;
+</pre>
+								</i>
+							<p>
+When a character tastes the candy bar, they will find out that it has a delicious flavor- and if they look at it again, they will see that its been partially eaten. 
+							<p><code>&lt;eaten what=&quot;$(this)&quot;/&gt;</code> is a simple SAM (Skotos Active Markup) command that expands the object description to provide information regarding how much food has been consumed. So I'll need not just one, but at least two sets of descriptions.
+<p>
+Basic Candy Bar<br>
+brief: the candy bar<br>
+look: You look at the dark chocolate candy bar. <br>
+examine: the dark chocolate candy has a delicious flavor.
+
+							<p>
+Half Eaten Candy Bar<br>
+brief: the candy bar<br>
+look: You look at the half eaten chunk of dark chocolate. <br>
+examine: The half eaten chunk of dark chocolate candy has a delicious flavor. 
+							<h3><b>Description Essentials</b></h3>
+							<p>
+The example before is very simple.  It provides a couple of facts about the food; the candy bar is dark chocolate (visual) and has a delicious flavor (taste).  A more elaborate food object could contain descriptive words accounting for texture or smell as well.  Object details should address as many of the "Five Senses" as seems appropriate.  Ridiculously long details will bore the reader, however.
+
+							<p>
+Writing in a simple but elegant style is probably the best form.
+
+<p>
+With this in mind, I do a little revising on my candy bar to give it a bit more color.
+
+<p>
+Revised Candy Bar<br>
+brief: the candy bar<br>
+look: You look at the dark chocolate candy bar. <br>
+examine: the inch-thick dark chocolate candy has a delicious flavor.  The bar is firm to the touch and smells extremely appetizing. 
+
+<p>
+Conceivably, I could also create a candy bar inside a <i>container</i> called a candy bar wrapper.  In this case, I would work towards an unwrap command that could be used to remove candy bars (and other objects) from the candy bar wrapper before consumption. 
+							<p>
+Lets say I wanted to create a dozen different kinds of candy bars.  To save myself some time, I would take my original object and create candy bar "descendents" from it to save myself time and trouble.  Each candy bar would require its own name and some alterations in details to stand as a unique object.  Working from templates saves time and minimizes Interface problems.
+
+							<h3><b>Developing A Menu</b></h3>
+							<p>
+Man cannot live by candy bar alone.  Every chat theatre will probably want to offer a wide variety of foods appropriate for its time period and genre.  Devil's Cay, being a modern resort in the Bahamas, will have a very different menu than Marrach.  Red Snapper, Shrimp Louie, Callaloo Creole Soup and Phoulorie with spicy chutney or tamarind might be very appropriate in the formal dining room.  A little research into what different foods look and taste like is in order for Storybuilding.  The extra effort will be appreciated by the player base. 
+							<div align="left">
+									<b><b>
+										<table width="100%">
+												<tr>
+													<td align="center" valign="middle">
+														<p><b>Recent Discussions on <i>In the Trenches</i>:</b></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle">
+														<p><!--#include file="trenches-last10.php"-->
+														</p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=41"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=41"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+												</tr>
+											</table>
+									</b></b></div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

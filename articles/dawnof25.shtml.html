@@ -1,0 +1,124 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #25:</b></font></p>
+							<h2>Why Plan?</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>August 14, 2002</i></b></p>
+							<div class="Section1">
+								<p>The mechanism I&#146;ve described so far for mobile AI isn&#146;t actually how most computer game AI works. The trend has been to use the expert system approach, whereby you have ready-written, hard-coded responses ready for each situation. Every time it&#146;s the AI&#146;s turn, it assesses the current situation and decides what to do next there and then.<BR>
+									<BR>
+									
+			
+This isn&#146;t actually a bad idea. Indeed, I do it myself in <I>MUD2</I> for most generic mobile behaviour. If a situation changes rapidly (as it does in a fight, for example), time spent planning ahead is time wasted because by the time you get to execute a planned action your local part of the world has altered too much for it to make sense.<BR>
+									<BR>
+									
+			
+When a situation doesn&#146;t change rapidly, though, planning is a boon. Let&#146;s say someone invited me to give a talk in Vienna. I wouldn&#146;t sit in my chair, figure out everything I needed to do, then stand up and figure it all out again. Once I have my plan, I don&#146;t need to recreate it every time the world changes (although I <I>would</I> have to if it interfered with my plan, eg. I stood up and twisted my knee).<BR>
+									<BR>
+									
+			
+The same applies for mobiles. If your mobile has to go from A to B, you only need to figure out the route once and store it as a plan. Then, when the mobile gets to act, it can move one room and not have to work out the route all over again from its new location &#150; a great saving. Sure, if the door it was expecting to be open is closed, <I>then</I> it would have to re-plan; otherwise, there&#146;s no need. I use planning for my mobiles in <I>MUD2</I> when they have complex behaviours that need to be undertaken over time. It&#146;s especially useful when they&#146;re working together as a group towards a common aim (repelling invading players, mostly!).<BR>
+									<BR>
+									
+			
+Situation/response of the &#147;if you&#146;re attacked, draw a weapon, drop everything heavy you have, and if your stamina is less than 50% then drink your healing potion&#148; variety is fine as a specific response to a specific circumstance. For anything outside its narrow range of expertise, though, it&#146;s useless.<BR>
+									<BR>
+									
+			
+Planning, on the other hand, is very flexible. The programmer provides mobiles with a set of actions, usually described in terms of <I>preconditions</I> and <I>effects</I>. Preconditions are things which have to be true for the action to take place, and effects are things which are true after the action has taken place. The preconditions for opening a door might be that you have a key and that the door is closed; the effect is that the door is open. Thus, if you want a door to be open you can look through all the actions you know that might open it and select one. If its preconditions are satisfied then you can perform the action, otherwise you have to perform some other action or series of actions to satisfy its preconditions first. This <I>backward chaining of goals</I> allows your mobiles to build up working, complex solutions to problems they might never encounter ever again.<BR>
+									<BR>
+									
+			
+I&#146;ve made it sound easier than it actually is, by the way, as we shall see in later articles. Most of the time, though, this is pretty well how things go.</p>
+								<h3><b>Big deal...</b></h3>
+								<p>
+			
+We now have two reasons for wanting to control mobiles using a planning system rather than hard-coding their actions: it&#146;s usually more efficient; it can cover a wider range of activities, including ones that the programmer has not predicted. <BR>
+									
+			
+Both these are OK, but neither of them is exactly compelling. Efficiency gains are OK, but it&#146;s not like planning is going to happen often in the great scheme of things, and its most frequent use (movement planning) can itself be hard-coded fairly easily anyway. Likewise, it doesn&#146;t really make that much of a difference if a pig can figure out how to assassinate a prince if it spends its entire life penned in its sty with no means of escape.<BR>
+									<BR>
+									
+			
+So what does the kind of AI system I&#146;ve proposed give you that makes it worth investing expensive programmer time implementing?<BR>
+									<BR>
+									
+			
+It makes your mobiles <I>look</I> intelligent.<BR>
+									<BR>
+									
+			
+Imagine you engage a human-presenting mobile in conversation. You ask it questions, it replies (passively). Easy.<BR>
+									<BR>
+									
+			
+Now imagine <I>it</I> engages <I>you</I> in conversation. It asks the questions, you provide the answers. It wants to know something, and based on your replies it changes its questions in order to obtain the answers it seeks. <BR>
+									<BR>
+									
+			
+You can implement a passive mobile using a situation/response approach, but it all goes hideously wrong when the mobile has its own agenda. Simple response triggers are fine when you can rely on the intelligence of a player to guide a conversation, but if the mobile is doing the talking then it will rapidly seem truly bizarre. Either the mobile will harp on about the same things, seemingly ignoring your answers, or it&#146;ll flit like a butterfly from concept to concept at the slightest provocation. What&#146;s needed is an approach that allows the mobile to concentrate on getting an answer or to switch tack <I>as the needs of the conversation dictate</I>. This is what a planning-oriented approach delivers.<BR>
+									<BR>
+									
+			
+Here is a mocked-up conversations to illustrate the point:</p>
+								<blockquote>
+									<p><B>Mobile</B>: Have you seen the dagger of Rha?</p>
+									<p><B>Player</B>: Yesterday I met a priest.</p>
+									<p><B>Mobile</B> (butterfly mind): Tell me more about this priest.</p>
+									<p><B>Mobile</B> (paranoid mind): Answer the question! Have you seen the dagger of Rha?</p>
+									<p><B>Mobile</B> (planning mind): Are you saying this priest stole the dagger?</p>
+								</blockquote>
+								<p>Interesting though this is, natural language conversation with mobiles is a topic in its own right and therefore I shan&#146;t be pursuing the subject further right now. Maybe in a later series of articles...<BR>
+									<BR>
+									
+			
+Instead, next time I&#146;ll reveal what this planning-oriented approach <I>really</I> buys you that makes it very exciting indeed.</p>
+							</div>
+						</div>
+						<div align="left">
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

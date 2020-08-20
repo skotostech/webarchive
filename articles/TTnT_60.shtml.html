@@ -1,0 +1,411 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<table border="0" cellpadding="5" cellspacing="5" width="68" align="right">
+							<tr>
+								<td>
+									<h2>
+										<table border="0" cellpadding="0" cellspacing="2">
+											<tr>
+												<td align="center" colspan="2"><a href="TTnT.shtml.html"><img src="artwork/bbttnt_logo.gif" width="108" height="44" border="0" alt="block"></a></td>
+											</tr>
+											<tr>
+												<td align="center"></td>
+												<td align="center"></td>
+											</tr>
+											<tr>
+												<td align="center"><a href="TTnT_54.shtml.html"><img src="artwork/bbzone54.gif" width="65" height="35" border="0" alt="block"></a></td>
+												<td align="center"></td>
+											</tr>
+											<tr>
+												<td align="center"><img src="artwork/bbvertrule.gif" width="65" height="15" border="0" alt="map"></td>
+												<td align="center"></td>
+											</tr>
+											<tr>
+												<td align="center"><a href="TTnT_53.shtml.html"><img src="artwork/bbmap53.gif" width="65" height="35" border="0" alt="block"></a></td>
+												<td align="center"></td>
+											</tr>
+											<tr>
+												<td align="center"><img src="artwork/bbvertrule.gif" width="65" height="15" border="0" alt="map"></td>
+												<td align="center"></td>
+											</tr>
+											<tr>
+												<td align="center"><a href="TTnT_48.shtml.html"><img src="artwork/bbroom48.gif" width="65" height="35" border="0" alt="block"></a></td>
+												<td align="center"><a href="TTnT_59.shtml.html"><img src="artwork/bbportable59.gif" width="65" height="35" border="0" alt="block"></a></td>
+											</tr>
+											<tr>
+												<td align="center"><img src="artwork/bbdiagL.gif" width="65" height="15" border="0" alt="map"></td>
+												<td align="center"><img src="artwork/bbdiagR.gif" width="65" height="15" border="0" alt="map"></td>
+											</tr>
+											<tr>
+												<td align="center" colspan="2"><a href="TTnT_60.shtml.html"><img src="artwork/bbdata60.gif" width="65" height="35" border="0" alt="block"></a></td>
+											</tr>
+											<tr>
+												<td align="center" colspan="2"><img src="artwork/bbvertrule.gif" width="65" height="15" border="0" alt="map"></td>
+											</tr>
+											<tr>
+												<td align="center" colspan="2"><a href="TTnT_50.shtml.html"><img src="artwork/bbdetail50.gif" width="65" height="35" border="0" alt="block"></a></td>
+											</tr>
+											<tr>
+												<td align="center" colspan="2"><img src="artwork/bbvertrule.gif" width="65" height="15" border="0" alt="map"></td>
+											</tr>
+											<tr>
+												<td align="center" colspan="2"><a href="TTnT_51.shtml.html"><img src="artwork/bbname51.gif" width="65" height="35" border="0" alt="block"></a></td>
+											</tr>
+										</table>
+									
+								</td>
+							</tr>
+						</table>
+						<b><font color="#006633">Trials, Triumphs &amp; Trivialities #60:</font></b>
+						<h2>Building Blocks: Data Inheritance</h2>
+						<p><i><b>by <a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></p>
+						<p>
+<b>February 14, 2002 &#151;</b> Welcome folks to the special Valentine's Day edition of TT&amp;T. This time around I'm going to talk about one of the most romantic of all game design topics: data inheritance.
+
+<p>
+Well, OK, it might not actually be that romantic, but data inheritance is, at last, the <i>final</i> topic in this first series of <i>Building Blocks</i> and I <b><i>love</i></b> seeing things through to their conclusion. It's the last discrete topic related to the creation of rooms (and portables). With it in hand, and somewhere over 18,000 words on room and portable creation now immortalized on the web, you have all the tools you need to create the background of a game.
+
+						<p>
+Easy, wasn't it?
+<br>
+							<br>
+						
+						
+						<table border=1 bgcolor="#ffffcc"><tr><td>
+<b>Data Inheritance</b> <i>n.</i><br> 1. <i>Object Oriented Programming.</i> A function that bases the data of a child object upon one or more parent objects.
+2. <i>Online Gaming.</i> The technique of building specific objects, such as daggers, that include the characteristics of more general objects, such as bladed weapons.</td></tr></table>
+						<p>
+The whole idea of data inheritance comes out of C++ (1986) and other object-oriented languages, most famous among them Java (1995). It's even a topic that I've talked about before, almost exactly a year ago, in <i>Trials, Triumphs & Trivialities #20</i>, <a href="TTnT_20.html">Hobgoblins, Part Two</a> (2001). 
+						<p>
+The older article is a great overview, even if it does detail some blue sky stuff that we never quite managed in the Skotos StoryBuilder Server. But I want to overview things in a slightly more organized manner this week, to finish off this part of <i>Building Blocks</i> correctly.
+
+						<h3><b>What's Data Inheritance!?</b></h3>
+						<p>
+In correctly defining data inheritance, it's pretty important to start off with a definition of data. According to my <i>American Heritage Dictionary</i>, definition 2, data is "Numerical or other information represented in a form suitable for processing by computer." That's a pretty good definition for our purposes too. Data is what you get when take some information about some physical <i>thing</i> and put it into a computer program.
+
+						<p>
+We've actually been talking about data for weeks, namely:
+
+<ul>
+<li>Those brief, look, glance, and examine views discussed when talking about <i>rooms</i>.
+<li>That same information for <i>details</i>.
+<li>Adjectives and nouns used to form <i>names</i>.
+<li>Exits in rooms which are used to form <i>maps</i>..
+<li>Those other variables more frequently used in <i>portables</i>, like nutrition value, light value, and usefulness as a weapon.
+</ul>
+
+<p>
+All data.
+
+<p>
+If that's data, though, what's this <i>data inheritance</i> thing? Most simply, it's saying that data in a certain object, called a child, is defined by similar data in another object, called a parent. You're probably familiar with one form of data inheritance, though it's not called such: genetics.
+
+<p>Take, for instance, a simple piece of data like eye color. Your eye color is inherited from two parent objects: your mother and your father. Ignoring irrelevant complexities, like recessive genes and the huge complexity of DNA strands, your eye color is either based on your mother's eye color or your father's eye color.
+<p>
+That's data inheritance.
+
+<p>
+Another good analogy is the system of biological naming: kingdoms, phylums, classes, order, families, genuses, and species. For example, I, a human being, inherit data down the following inheritance tree: Animalia, Chordata, Mammalia, Primates, Hominidae, Homo, sapiens. Animalia provides data on what I need to eat (other organisms). Chordata provides data on my bodily structure (centered on a spinal cord). Mammalia provides data on the temperature of my blood (hot) and whether I have hair (mostly). By the time we get down to Hominidae, we find data on my general size and weight. Sapiens provides data on my intelligence and reasoning structure.
+
+<p>
+And then, at the bottom of the whole structure, is the individual object: <i>me</i>.
+
+<p>
+In this overview of data inheritance I should mention one other concept: overloading. In short, even though I may inherit data from anywhere along my inheritance tree, as an individual I may "overload" some of that data, replacing the generalities with very <i>different</i> specifics, for myself. Some things can be overloaded, and others can't.
+
+<p>
+For example, though the average IQ score for <I>Home sapiens</i> might be 100, I like to think I personally have overloaded that data with a considerably higher number. Conversely, my average cellular density is probably inherited from the fact that I'm a Chordata or a Mammalia, and individual humans don't get much variety there.
+
+						<p>
+We'll get back to kingdoms, phyllums and the rest down the road, because I think they provide a really great metaphor for data inheritance in general.
+
+						<h3><b>An Interlude: Method Inheritance</b></h3>
+						<p>
+In talking about inheritance it's useful to draw a sharp line between data inheritance, which we're talking about today, and method inheritance, which we're not. I tried to be careful in my discussion above, but I know that some method inheritance got muddled into my basic explanations.
+
+						<p>
+Data inheritance is inheriting specific information, like height or luminosity.
+
+<p>
+Method inheritance is inheriting specific ways to do things, like how to photosynthesize or what to do when someone sets you on fire.
+
+						<p>
+Method Inheritance isn't too important for creating basic objects, until you get into the whole question of how to make those objects do interesting things, and that's the core of one of my future sets of <i>Building Block</i> articles &#151; not this one.
+						<h3><b>Data Inheritance in Online Games</b></h3>
+						<p>
+You're probably thinking right now, "Ah, data inheritance, I understand, and that's very nice in a computer geeky sort of way, but what's it's applicability to online games?" The answer is, "Quite a lot." Data inheritance has been used in online games since almost day one, even appearing in a basic form as part of Richard Bartle's first MUD, in 1978.
+
+						<p>
+The thing is, in an online game you're trying to creating a virtual representation of the real world. Or, alternatively, you're trying to create a virtual representation of not-the-real-world, but not-the-real-world's probably got lots in common with the real world due to similar physical laws.
+
+<p>
+That means that you're going to be creating lots of objects, and physical objects tend to be more similar to each other than different. It's why there <i>is</i> a biological classification scheme, because you can look at a Siamese Cat and a Persian cat, and say, "Those are very similar." And you can look at a Siamese Cat and a German Shephard, and say "Those are fairly similar". And you can look at a Siamese Cat and a Kangaroo, and say "Those are somewhat similar". And you can look at a Siamese Cat and a Clam and say "Those have some features in common". And you can look at a Siamese Cat and a Venus Fly Trap and say "Those have a few features in common."
+
+<p>
+And, the similarity of physical objects doesn't apply just to living creatures, but to everything in our world. This similarity occurs because there are only so many types of material and only so many shapes they can be put into. I have at least a half-dozen different types of bookcases at my house: seven-foot pine monstrosities, six-foot cheesy press board book cases, and stubby three-foot foot book cases among them. I've had bookcases made of slats of wood and cinder blocks, and bookcases built into my bed, and they all had characteristics in common. Likewise, all automobiles have some similarities, and cars and trucks are still very similar, and car and buses less so, and car and airplanes even less. But everywhere in the physical worlds, there's more similarity than difference. And that's what you're trying to represent in your virtual world.
+
+<p>
+Because of that, inheritance comes naturally. It's how you make the real world virtual, without driving yourself crazy by duplicating work.
+
+<p>
+Most frequently data inheritance is used to create objects. I make a dagger, so I subclass it off of small bladed weapons, which is subclassed off of bladed weapons, which is subclassed off of weapons, which is subclassed off of handheld objects, which is subclassed off of physical objects.
+
+<p>
+You end up drawing out huge inheritance trees, which are always complex, and sometimes can be inconsistent. Here's how I drew it out last year, when I was talking about both data and method inheritance:
+
+<p>
+<img src="artwork/TTnT20_lmud.gif" width="549" height="159" border="0" alt="diagram">
+
+<p>Although complex and sometimes inconsistent, data inheritance is a beautiful thing because it saves you the work of defining the same thing again and again, and also ensures that similar objects are usually similar to each other ... when you manage to avoid those inconsistencies which I warn against.
+						<p>
+Overall, a cool thing.
+
+						<h3><b>Data Inheritance &amp; Rooms</b></h3>
+						<p>
+Data Inheritance for <I>portables</i> seems pretty good and natural. After all, objects do naturally fall into classifications and subclassifications. We see that all the time in the real world, and there are lots of levels of subcategories, so it's easy to implement within a game.
+
+						<p>
+But, what about <i>rooms</i>?
+
+<p>
+Generally I haven't seen rooms take advantage of data inheritance, though it can be really useful for them too. At the least, all of the rooms in an individual game will probably share some characteristics in common and you might as well note that as a room "kingdom". Below that, rooms will probably fall into a few "phylums", such as inside rooms and outside rooms. And, in a large game you might have other types of rooms (kitchens, bedrooms, bathrooms) which you want to share characteristics, or alternatively rooms in a specific area (the King's quarters, the servants' quarters, the Royal Gardens) which should.
+
+						<p>
+As with <i>portable</i> data inheritance, you'll save time and create consistency.
+
+						<h3><b>The Wild World of Data Inheritance</b></h3>
+						<p>
+Before suggesting how to use data inheritance in your game, I want to offer one last thought: <i>data inheritance can be used for more than just physical objects</i>. If your help files are all objects in your game, they can inherit specific characteristics. Ditto for verbs; not only could verbs consist of a "kingdom" which gets inherited from, but you might have "phylums" of social-verbs or combative-verbs or verbs-that-require-you-to-be-touching-the-other-fellow or whatever.
+
+						<p>
+Whether you can usefully use data inheritance for these other things depends upon the architecture of your game, but if you can, <b><i>don't squander it</i></b>.
+
+						<h3><b>Inheriting Data in Your Games</b></h3>
+						<p>
+Alright, so let's put all of that philosophy to specific use by actually doing some data inheritance. I neglected to talk about data inheritance when I first discussed <i>rooms</i> in <I>Trials, Triumphs & Trivialities #48</i>, <a href="TTnT_48.shtml.html">Building Blocks: Rooms</a>. I did remember to mention it last week, in <I>Trials, Triumphs & Trivialities #59</i>, <a href="TTnT_59.shtml.html">Building Blocks: Portables</a>. Those two sorts of objects will form the bases for our inheritance usage discussion, below.
+
+						<p>
+In using data inheritance, the best method is to create a chain of objects which lead down from the most general possible type of object to the very specific object that you're creating. It might seem a real pain when you just want to create a specific object, and you want to do it <i>now</i>, but I suggest you go ahead and create the chain correctly, because it will pay off the further you get into your world design. 
+
+<p>
+In the past I've suggested using only one level of inheritance, but the further we get into making games here at Skotos, the more it becomes obvious that multiple levels of inheritance are really useful, so what the hell ..
+ 
+<p>
+Though I talk about creating objects throughout this discussion, in actuality, the more you build out an inheritance tree, the more you'll just be linking to already extant objects instead.
+
+<p>
+<b><i>1. Decide Upon a Kingdom: Very General Data Types</i></b>
+
+<p>
+The first thing you need to do is decide the general type of data you're trying to create. For portables and rooms, this will be a physical object data type, but if you were creating help files or verbs, you'd probably link things up to a totally different kingdom of data.
+
+<p>
+This type of object is so low-level that a normal game developer should never have to mess with it. It should be supplied by the game's creators.
+
+<p>
+<b><i>2. Decide Upon a Phylum: Very General Object Types</i></b>
+
+<p>Next you need to figure out the most general possible type of object which your specific object will descend from. For example, if you were creating a high-backed wooden Arts &amp; Crafts chair, you'd probably choose &quot;furniture&quot; as your phylum. Other possible phylums, for different specific objects, might include &quot;food&quot;, &quot;weapons&quot;, and &quot;other handheld items&quot;.
+<p>
+If you're creating a room then your phylum is simply that: "room". Or, most specifically, "the type of room that would appear in your game", as different games will support very different types of virtual reality.
+
+<p>
+When you start creating this first level of inherited object, and when you create all the ones that follow, you should remember one very crucial piece of advice: <b><i>don't fill in all the blanks</i></b>.
+
+<p>
+For example, say you were creating a "food" object. Two bits of data you might want to put in such an inherited object are: how nutritious the food is, and how hard the food is to eat. Those are general bits of data that have to do with food, and that you want to make darned sure are filled in. However, you shouldn't feel the need to fill in how much the food weighs or how big it is or what color it is or whatever. That data isn't specific to the idea of food, and thus would be better filled in by things lower on your inheritance chain or by a specific object itself. For example, a "bread" object might define general size, and a "wheat bread" object might define color.
+
+<p>
+No point in trying to define them now.
+
+<p>
+<b><i>3. Decide Upon a Class: General Object Classifications</i></b>
+
+<p>
+It's at the third rank of the data inheritance ladder that things start to get really subjective. I suggest that your class should be a "General Object Classification", but what <i>exactly</i> does that mean? You should be creating the object classification which most broadly defines the specific type of object you'll be creating, but different creators might take that to mean various things.
+
+<p>If I was trying to create that high-backed wooden Arts &amp; Crafts chair I could choose my class to be &quot;chairs&quot; or (more-broadly) &quot;furniture that you sit in&quot; or (orthogonally) &quot;Arts &amp; Crafts furniture&quot;.
+<p>
+Which is correct?
+
+<p>
+In truth, all of it. Just make sure your decisions about what goes at what level of your inheritance tree are consistent, no matter how many builders  you have.
+
+<p>
+If you're creating inherited rooms, this is probably the level at which you create different room types for inside and outside.
+
+<p>
+<b><i>4. Decide Upon a Species: Platonic Objects</i></b>
+
+<p>
+After you've got your most general classification I suggest jumping all the way down your inheritance tree to the general description of the very specific item that you'll be creating. This is my archetypical high-backed wooden Arts & Crafts chair. Or a silly three-bladed sword. Or whatever. It's your object without any individual characteristics which make it special.
+
+<p>Rooms may skip this step altogether, though some locales with multiple very similar rooms may take advantage of it. For example, in Castle Marrach we have five identical guest rooms, whose only differences are the color of the portal that you use to leave. Those would be good species ... but are fairly rare examples of rooms that aren't each and every one totally unique.
+<p>
+<b><i>5. Connect Up Your Individual: Specific Items</i></b>
+
+<p>
+And, <i>finally</i> you can create your specific item. After step four, creating your platonic object, you might be done. You clone that high-backed wooden Arts & Crafts chair and you have a great specific item. However, you might also want to make a few changes, for example a high-backed wooden Arts & Crafts chair with a carving in the arm. If so, then you need an individual.
+
+<p>
+For rooms, this is where your specific room goes, since they almost all tend to be unique. As I mentioned above, you might have skipped species altogether for rooms.
+
+<p>
+<b><i>6. Decide Whether You Need Orders, Families, and Genuses</i></b>
+
+<p>
+Now you've got an inheritance chain with a bunch of holes in the middle, but you know where you're going from and where you're going to. You should fill in those three (or more) spaces in between if and only if you need to. Again, the biggest question is one of consistency in your overall world development.
+
+<p>
+Consider my example of a high-backed wooden Arts & Crafts chair. If my class was "chair", I'd probably have an order of "wooden chair". Alternatively if my class was "furniture that you sit in" I might have an order of "chairs" and a family of "wooden chairs".
+
+<p>Rooms might fill in these spaces with types of rooms (bedroom, etc.) or locales of rooms (the Royal Garden), as I discussed earlier.
+						<p>
+With all these confusing possibilities discussed, here's a few specific examples of what I think might be good inheritance trees for <i>portables</i> and <i>rooms</i>:
+<br>
+							<br><blockquote>
+						<table border="1" cellpadding="3" cellspacing="0">
+							<tr>
+								<td bgcolor="#90ee90"><b>Kingdom</b></td>
+								<td>physical </td>
+								<td>physical </td>
+								<td>physical </td>
+								<td>physical </td>
+							</tr>
+							<tr>
+								<td bgcolor="#90ee90"><b>Phylum</b></td>
+								<td>furniture </td>
+								<td>weapon </td>
+								<td>room </td>
+								<td>room </td>
+							</tr>
+							<tr>
+								<td bgcolor="#90ee90"><b>Class</b></td>
+								<td>container </td>
+								<td>blade </td>
+								<td>inside </td>
+								<td>outside</td>
+							</tr>
+							<tr>
+								<td bgcolor="#90ee90"><b>Order</b></td>
+								<td>&nbsp;</td>
+								<td>dagger </td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td bgcolor="#90ee90"><b>Family</b></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td bgcolor="#90ee90"><b>Genus</b></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td bgcolor="#90ee90"><b>Species</b></td>
+								<td>armoire </td>
+								<td>stiletto </td>
+								<td>guest room </td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td bgcolor="#90ee90"><b>Individual</b></td>
+								<td>magical armoire</td>
+								<td>a stiletto</td>
+								<td>purple guest room</td>
+								<td>eastern courtyard</td>
+							</tr>
+						</table></blockquote>
+						<p><b><i>7. Finding the Devil in the Details</i></b>
+						<p>
+All this data inheritance is well and good, and you'll probably be set now to use it to inherit simple variables, such as how big something this, how nutritious it is, how much light it gives off, and what not.
+
+						<p>
+However, I've also talked about data inheritance in one other place: <i>Trials, Triumphs & Trivialities #50</i>, <a href="TTnT_50.shtml.html">Building Blocks: Details</a>.
+Let me reiterate what I said then: <b><i>you should use data inheritance to inherit details held in common</i></b>. This lets you describe common details in parent objects without having to write them again and again &#151; and it may be the biggest win in data inheritance.
+<p>
+You should be creating these inheritable details at every level of the inheritance chain. For example, consider my guest room. All rooms would have the detail "middle" or "center" so that you could stand in the center of the room. All inside rooms would have "walls", "ceiling", and "floor". (As opposed to outside rooms which, in <i>Castle Marrach</i> at least, might have "snow" and "wind" details.) Then, hopping down to the guest rooms themselves, they all have a bunch of details in common like "window" and "bed". It's only the "portal" that's different in individual guest rooms.
+
+<p>
+The same ideas clearly apply to portables. All blades are going to have, well, "blades" (and "hilts" and "grips" and "pommels"). All container furniture should have "doors". You get the idea.
+
+						<p>
+And, thanks to the idea of overloading, you can build in those default details, but still change them when required. Does a certain room in your house have "ugly carpet" while the rest is "american oak hardwood"? No problem, just make that "american oak hardwood" a detail in your standard inside room, and overload it with "ugly carpet" where required.
+
+						<h3><b>The Future of Building Blocks</b></h3>
+						<p>
+As I mentioned at the start of this column, this week finishes off my discussion of the <i>Building Blocks</i> underlying the first major category of online game development: physical, non-volitional objects. Which is to say <i>portables</i> and <i>rooms</i>. However, there are other broad categories of development which I plan to also look into, including physical, volitional objects, with <i>Building Blocks</i> of brains, mobiles, CNPCs, and characters; and dynamic objects, with <i>Building Blocks</i> including scripts, events, signals, and method inheritance. We'll get there, probably in March or April.
+
+						<p>
+In the meantime I plan to take the next one to two weeks to make the abstract concepts of the first seven building blocks very concrete by talking about how physical, non-volitional objects are created using the Skotos StoryBuilder Server. I think it'll be a useful example, even for those of you creating your own games.
+
+<p>
+See you in 7.
+						<div align="left">
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Trials, Triumphs &amp; Trivialities</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="TTnT-last10.php"--></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=36"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=36"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

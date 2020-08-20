@@ -1,0 +1,10 @@
+A:active  { color: #CC9900; text-decoration: none }
+A:link  { color: #CC9900; text-decoration: none }
+A:visited  { color: #CC9966; text-decoration: none }
+A:hover  { color: #FFCC33; text-decoration: underline }
+P,T,TD,UL,OL,LI,DD,blockquote     { color: #CC9900; font-size: 12px; font-family: georgia, times news roman, times, serif }
+PRE  { color: #fffacd; font-size: 12px; font-family: monaco, courier new, monospace }
+CODE { color: #fffacd; font-size: 12px; font-family: monaco, courier new, monospace }
+.nav  { font-weight: bold; font-size: 11px; text-align: right }
+.smaller { font-size: 10px }
+.larger { font-size: 14px }

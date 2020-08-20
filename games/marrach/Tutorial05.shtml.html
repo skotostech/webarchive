@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>Movement: Advanced Studies</title>
+		<link href="marrach.css" rel="stylesheet" media="screen">
+		<csactions>
+			<csaction name="B90037881" class="Open Window" type="onevent" val0="tutpop.shtml" val1="_blank" val2="300" val3="450" val4="true" val5="true" val6="false" val7="false" val8="false" val9="false" val10="false" urlparams="1"></csaction>
+		</csactions>
+		<csscriptdict import>
+			<script type="text/javascript" src="java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script type="text/javascript"><!--
+CSAct[/*CMP*/ 'B90037881'] = new Array(CSOpenWindow,/*URL*/ 'tutpop.shtml','_blank',300,450,true,true,false,false,false,false,false);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="artwork/cm-backgd.gif" bgcolor="#FCFCE4" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<table border="0" cellpadding="0" cellspacing="0" width="675">
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+					<p><img src="artwork/cm-masthd.jpg" alt="Castle Marrach - The Forever Winter" height="78" width="675" border="0"></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+				<!--#include virtual="snav-guide.incl"-->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+					<table width="90%" border="0" cellspacing="4" cellpadding="4">
+						<tr>
+							<td valign="top"><img src="artwork/hdr-tutorial.gif" alt="Tutorial" height="33" width="250" border="0"></td>
+							<td valign="top" width="200">
+								
+							</td>
+							<td rowspan="2" valign="top" width="80">
+							<!--#include virtual="character.incl"-->
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<div align="left">
+									<h2><a name="movement-2"></a>5) Movement: Advanced Studies</h2>
+									<p>There's more to movement in Castle Marrach than just going from one room to another. You can also specify certain types of movement and move in relation to objects in a room.</p>
+									<p><b>Contents:</b></p>
+									<ul>
+										<li><a href="Tutorial05.shtml.html#movement-2-1">5.1. Finding Your Way around Rooms</a>
+										<li><a href="Tutorial05.shtml.html#movement-2-2">5.2. Moving around Rooms with Approach</a>
+										<li><a href="Tutorial05.shtml.html#movement-2-3">5.3. Moving into Stances</a>
+									</ul>
+									<p><a name="movement-2-1"></a></p>
+									<h3>Finding Your Way around Rooms</h3>
+									<p>Rooms are full of objects--both details of the room and movable objects. We've met many of these already. The current room that the character is exploring seems to include a few thrones, a few tables, and an onyx door.</p>
+									<pre>      &gt; <b>look</b>
+      The onyx room looks like it has been cut from a single, immense
+      gem. It is lit by a dim, gray light. A few items of furniture
+      have also been cut from the onyx including long tables running
+      along the northern and southern walls and a single throne. The
+      ebony throne is the centerpiece of the room.
+
+      Camille is sitting on an ebony throne.
+
+      You are standing near the onyx door.
+      &gt;</pre>
+									<p>As you may have already noticed, Castle Marrach always tells you where you are in a room. In the onyx room Camille is on an ebony throne and the character is near an onyx door. This is called &quot;proximity&quot; (or &quot;prox&quot;). You are almost always in prox to some object in the room: Camille is in prox to the ebony chair and you are in prox to the onyx door.</p>
+									<p>By default, you tend to appear near the entrance that you arrived from. But, after appearing in a room, you can choose to move around.</p>
+									<p><a name="movement-2-2"></a></p>
+									<h3>Moving around Rooms with Approach</h3>
+									<p>The easiest command for movement in a room is &quot;approach&quot;. You can approach a person or you can approach an object. Approaching an object is easy; you type &quot;approach [object]&quot; and end up &quot;near&quot; the object. Approaching a person a slightly trickier. You type &quot;approach [person]&quot; and are moved to be near the object that the person is near. If you type &quot;approach [person]&quot; a second time, then you try and move near to the actual person... but that person must give consent.</p>
+									<p>Much of Castle Marrach is built around consent. In general, other players can't do things that invade your private space without you agreeing to them. This includes approaching you, standing near you, giving you objects, and engaging in close physical contact.</p>
+									<pre>      &gt; <b>approach northern table</b>
+      You move from the onyx door to the northern table.
+
+      &gt; <b>look at northern table</b>
+      The northern table is made of onyx and seems to be
+      carved out of the floor. Strange oval-shaped impressions
+      outline the edges of the table.
+
+      &gt;
+      Camille frowns grimly.
+      Camille acidly states, &quot;I have no time for games.&quot;
+
+      &gt; <b>approach Camille</b>
+      You move from the northern table to the ebony throne.
+
+      &gt; <b>look at ebony throne</b>
+      The ebony throne has been carved from the ground. Strange
+      oval-shaped impressions run down the arms. It looks very
+      uncomfortable! You are standing near an ebony throne.
+      Camille is sitting on an ebony throne.
+
+      &gt;</pre>
+									<p>In this case, the character did not try and approach Camille a second time, as he suspected that she would refuse her consent--probably in a most rude way.</p>
+									<p><a name="movement-2-3"></a></p>
+									<h3>Moving into Stances</h3>
+									<p>The &quot;approach&quot; command can get you anywhere within a room. But, you can use stances to do so with style. Stances are commands that not only move you to certain objects within a room, but also leave you with a certain posture: you can be sitting on a throne (as Camille is), or standing near an onyx door (as the character was), or crouched under a table, or lying on a bed, or kneeling before an altar... or whatever else you can come up with. Stances tend to convey emotional and physical relations in a way that the simple &quot;approach&quot; command does not.</p>
+									<p>You use a pose by typing the imperative: &quot;[pose] [preposition] [object]&quot;. For example, &quot;sit on throne&quot; or &quot;stand by door&quot;.</p>
+									<pre>      &gt;
+      Camille dreamily asks, &quot;Do you not kneel before your betters?&quot;
+
+      &gt; <b>kneel before throne</b>
+      You kneel in front of the ebony throne.
+
+      &gt;
+      Camille ironically states, &quot;It is so good of you to join me
+      here today, to offer me help in my quest. As you may have
+      noted, my throne room is bereft, empty of the stones which
+      once made it whole. If you find for me my onyxes, I will
+      tell you what you wish to hear.&quot;
+
+      &gt; <b>reply to camille &quot;Thank you m'lady&quot;</b>
+      You reply to Camille, &quot;Thank you m'lady&quot;
+
+      &gt;
+      Camille continues, &quot;Crouch under the southern table and you
+      will find a tool that will help in your task.&quot;
+
+      &gt; <b>stand</b>
+      You stand up.
+
+      &gt; <b>crouch beneath southern table</b>
+      You move from the ebony throne to the southern table.
+      You crouch down beneath the southern table.
+
+      &gt; <b>examine southern table</b>
+      You begin to examine the southern table...
+
+      The southern table is made of onyx and seems to be
+      carved out of the floor. Strange oval-shaped impressions
+      outline the edges of the table. An onyx wand, a black
+      felt hat, a black sword, and a diamond ring are hidden
+      under the table.
+
+      &gt;</pre>
+									<p>Note that you can use the various pose commands without also including prepositions and proximities. It is assumed that you are trying to enter the pose in your current proximity and a default preposition is used. So, when the character choose to &quot;stand&quot;, Marrach Imperative interpreted that as &quot;stand near throne&quot; since the character was already in proximity to the throne. At any time, you can &quot;stand&quot; or &quot;crouch&quot; or &quot;kneel&quot; and the action will automatically be taken in relation to your current prox.</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right" valign="top"><a onclick="CSAction(new Array(/*CMP*/'B90037881'));return CSClickReturn();" href="Tutorial05.shtml.html#" csclick="B90037881"><img src="artwork/btn-contents.gif" alt="toc" height="21" width="72" border="0"></a> <a href="Tutorial06.shtml.html"><img src="artwork/btn-more.gif" alt="more" height="21" width="72" border="0"></a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+				<!--#include virtual="footer.incl"-->
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

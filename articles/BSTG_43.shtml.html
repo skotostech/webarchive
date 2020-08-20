@@ -1,0 +1,86 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #43:</b></font></p>
+							<h2>Thinking Mechanically</h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										September 27, 2002</b></i></p>
+							<p>
+This column starts off a series on rules and game mechanics. Much of the discussion is going to be based off of considerations of paper RPG rules, since I'm very familiar with them, and there's a great deal of active public discussion of the theory and practice behind them. And, of course, most of the existing online multiplayer roleplaying games have rules inspired by or similar to those of paper roleplaying games.
+
+<p>
+However, it must be remembered that online multiplayer games are not exactly the same thing as a paper game with a group of players gathered around a table. Thus, I'm also going to be talking about differences between the types of games, and how those can affect rules and game mechanics.
+
+<p>
+So... let's get started!
+
+<h3>Rules, Rules, Rules</h3>
+
+<p>All games have rules. &nbsp;Some games specify them more formally than others, but all games have them. &nbsp;Roleplaying games, both online and the paper kind, are no exception. &nbsp;Even the most &quot;freeform&quot; roleplaying games have rules &#151; e.g., &quot;You can't make another player's character do anything, unless there's a good in-game reason why one of your characters could control him/her.&quot;
+<p>
+The more traditional roleplaying games tend to have <i>lots</i> of rules. &nbsp;D&amp;D, GURPS, etc. have literally dozens, possibly hundreds, of pages describing their rules. &nbsp;In many people&#146;s views, this is one of the primary reasons for moving roleplaying games onto computers &#151; to automate the complex rule sets being used, so that more people can play these games without having to spend a considerable amount of time and energy in learning and applying the rules.<p>
+Automating the rules so that they work without human intervention creates both problems and opportunities. Being the pessimistic sort, I'll start with the problems:
+
+<p>
+<b>The rules have to work well.</b> A human enforcing rules can override or adjust the rules when they don't work. Because of this, many paper RPGs have managed to work well in spite of broken rules. For example, many older RPGs have rules for determining the reactions of NPCs to PCs. In some games, those rules work passably well. In others, however, the rules are fundamentally broken &#151; for example, in the original <i>Top Secret</i> game, an "average person" cannot ever persuade another "average person" to do anything without a threat of violence or a bribe. However, this broken rule didn't seriously impede games, because people simply ignored it and used their own judgement to decide chances of success for requests.
+
+<p>That brings us to the second problem &#151; <b>rules can't be made up on the fly</b>. A human gamemaster can make up a rule when there are no rules that apply to the situation (or, as above, when the rules that do apply are broken) by generalizing from other rules in the game; short of strong artificial intelligence, we're not going to see computers doing that.
+<p>
+On the plus side, however, <b>rules can require much more calculation without noticeably slowing down the game</b>. Many players in a paper RPG will balk at a set of rules which require more than one or two die rolls, some addition and subtraction, and comparing numbers to resolve an action. Many will refuse to even consider playing a game which requires multiplication, division, or more advanced math during play. (Note that players are generally more tolerant of heavy math in character creation and other systems that are used "outside of play". And, of course, there are some people who don't mind any amount of math.) A computer, on the other hand, can do multiplication, division, power functions, logarithms, and other such operations quickly enough that players may never notice the tiny difference in speed between a system using such things and one based on only "simple" math.
+
+<p>
+In the same vein, <b>rules can require keeping much more data</b>. In a paper system, keeping extra data requires writing it down or remembering it, and actually using that data requires more calculating and/or more steps in a resolution process. Because of this, systems which abstract out individual pieces of data are popular in paper RPGs. The classic example is hit points &#151; keeping individual track of wounds that a character has taken is cumbersome; not only do you have to track the wounds, but if having individual wounds is to make a difference, they have to be able to have different effects (e.g., a leg wound makes it harder for the character to walk, a wound to the weapon arm reduces the chance to hit with an attack), and wounds have to be treated separately in the healing rules (e.g., a character who has a superficial cut on the arm and a serious gash on the leg should have the superficial cut finish healing sooner than the gash).
+<p>Computers excel at keeping track of many pieces of data and using them all in calculations &#151; and doing it quickly. Thus, an &quot;individual wounds&quot; system is more practical in a computer RPG than it would be in a paper one.
+<h3>So Computers Let Us Make Our Systems More Complex?</h3>
+
+<p>Well, yes. But there's an important caveat to add here: just because you can doesn't necessarily mean you should. As I've noted before, it's easy to go overboard in making a game more detailed or more realistic &#151; sometimes abstract is better. Even if players don't have to memorize all the data behind something, or perform the calculations that are involved, more complex systems often increase complexity of the game for the players.
+<p>
+Consider the idea of an individual wound system mentioned above. Implementing such a system is going to raise questions; for example, if my character's right arm is badly injured, but the left arm isn't, can he/she use a weapon in the left hand? And if that's possible, what are the penalties for doing it? Should healing magic apply "evenly" across all wounds, or should it be possible to apply healing to a particular wound? And if wounds are applied to body parts, can a character wear different kinds of armor on different body parts? Or layer armor, like wearing a breastplate over mail armor?
+
+<p>Making one system often logically implies that other things should be made more complex &#151; and can easily add to the decisions that a player has to make in the game. Depending on your goals for your game, this may or may not be a good thing.
+<p>
+And lastly on this topic, note that even if players don't have to understand a system, people adding on to the game probably should understand it. If each attack in combat has its chance of success and possible effects derived from 45 different variables, taking 9 steps to process and requiring 4 tables and the use of transcendental functions, a creator trying to figure out "will this monster be too hard for a beginning character to beat" may have a very hard time. If you do want to go for that kind of complexity, it may be a good idea to create some tools to help game creators with answering those sorts of questions.
+
+<h3>Coming Up...</h3>
+
+<p>
+Next time, we'll be getting into theory and practice in greater specifics, with thoughts on the math behind systems, factors in mechanics, and ways of breaking mechanics down. See you in two weeks!
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

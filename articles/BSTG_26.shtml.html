@@ -1,0 +1,127 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #26:</b></font>
+							<h2>Exploring Genres: Fantasy, part 3</h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>February 1, 2002</b></i></p>
+							<p>
+In the first two parts of this series on fantasy, I talked about "generic fantasy" and its relation to the fantasy subgenres of epic fantasy and swords &  sorcery, and briefly covered some of the other subgenres of fantasy.  This time, the focus is on a pair of questions:  Firstly, <I>What things about other subgenres of fantasy (besides "generic fantasy") make them harder to deal with in online multiplayer RPGs?</I>  And second, <I>How can those problems be worked around or turned around to become opportunities?</I>
+							<h3>Interlude: Problems</h3>
+							<p>First, let's consider problems. In order to understand the problems, though, let's take a few minutes to talk about objects of play &#151; what do you have people do in an online multiplayer game?
+							<p>One possible object is the D&amp;D-style <B>shoot-and-loot</B>: adventurers go out and kill monsters and take their treasure.  That's easy for a programmer to implement, makes it easy to handle long-term play (the orc guard you killed today can easily be replaced by a new one tomorrow), and handles multiple players easily.  There are two basic alternatives to shoot-and-loot: <B>missions</B> and <B>open-ended roleplaying</B>.
+
+<p>
+In a mission-based setup, characters find or are given missions.  A mission has a clear set of goals (not necessarily clear to the players initially, but there's clearly something that has to be accomplished).  There are a lot of possible subtypes, depending on just what the mission is, but there's a strong tendency in computer games to handle any kind of mission as a variant on Gofer.
+
+<p>&quot;Gofer&quot; is a mission where the object is for the character to go get something and bring it to a particular place. A Gofer mission is very easy to program, since there's a &quot;tangible object&quot; within the game that can be used to decide whether or not the character has accomplished the mission. Even when the goal of a mission is not acquiring an object, it's often easiest to program it as if it were &#151; thus, missions get set up so that a character has to go kill the dragon, take its head, and bring the head somewhere to prove that it's dead. This turns &quot;kill X&quot; into a Gofer mission.
+<p>That's not too bad an example, but missions that don't really fit the Gofer paradigm very well also get turned into Gofer. For example, mysteries are solved in some games by finding one or more particular pieces of evidence and getting them to a particular person &#151; mystery turned to Gofer. Missions to persuade people are turned into Gofer, by having the only way to persuade the character being to perform a Gofer-style mission for him/her &#151; and then that character gives you a scroll to take the original person who gave you the mission.
+<p>
+Turning missions into Gofer is easy, and makes them easier to program; unfortunately, players rapidly notice this.  All missions start to feel the same to the players unless the designers are careful to vary them in a lot of other ways.  That's bad enough, but there are worse problems with missions.
+
+<p>The first problem with missions is long-term play. Often a key part of a mission is discovering something &#151; where an object or character is, how to get past a particular obstacle, etc. Having done it once, though, it's often easy to do the mission again. If the mission has a significant reward, this makes the mission lend itself to abuse &#151; do it over and over again to get the reward. This leads to a constant need to make new missions for players. Further, missions are vulnerable to information sharing &#151; if someone starts telling everyone where the Kiboodle is and how to get past the maze in front of it, then the Kiboodle-finding mission becomes very easy. This leads to a need to change old missions, which, of course, takes time that could have been spent creating new missions.
+<p>(One way around that problem is to automatically generate new missions. However, lacking good AI, it's very hard to automatically generate anything more complicated than a Gofer-type mission, and such automatically-generated missions tend to feel hollow &#151; not based in anything in the setting.)
+<p>A second problem is multiple players. I've already mentioned information sharing, which tends to be a natural consequence of having multiple players. A basic mission setup also makes it easy for players to trip each other up, though &#151; if someone goes and gets the Kiboodle, then puts it somewhere other than where it's supposed to be, it may be impossible for anyone to the Kiboodle-finding mission for a while. There are ways to avoid that problem, but they tend to involve making the world less realistic, and it's very hard to completely eliminate the problem.
+<p>The second alternative that I mentioned above is open-ended roleplaying. This is a situation where players spend their time roleplaying with each other and/or with game staff. This has some big pluses &#151; it gets players more involved in the game, the players are generating the content (so the designers don't have to do as much), it can work with long-term play (and can even enhance it, as players form rivalries, alliances, etc.), and the more players you have, the more people there are to play with.
+							<p>There are also drawbacks to open-ended roleplaying, though. First off is that it requires a greater amount of effort from the players, or from staff. Second, it can take time to get started &#151; if you're relying on open-ended roleplaying, plan to have staff doing a lot of the work initially. Once the players get rolling, then you'll be able to cut back. (If the players ever get rolling, that is &#151; there's no absolute guarantee that they will.) Third, players may tend to form cliques who only roleplay with each other. This can lead to more interesting roleplaying, as the characters involve build up histories with each other, but it can also make it very hard for new players to get started in the game.
+							<h3>And Now, Back to Fantasy</h3>
+							<p>
+Historically, most online games rely heavily on shoot-and-loot.  This can work fairly well in a generic fantasy setting, but once you get into other fantasy settings, it starts to break down:  modern fantasy, historical fantasy, mythological fantasy, fairy tales, and even dark fantasy settings aren't very well suited to shoot-and-loot.
+
+							<p>
+Without shoot-and-loot to use as a basis, that leaves missions and open-ended roleplaying.
+
+<p>Again speaking historically, the subgenre of online multiplayer games sometimes called &quot;MUSHes&quot; tends to rely on open-ended roleplaying. These have tended to cover a wider array of genres than shoot-and-loot style games (sometimes grouped as &quot;MUDs&quot;). Another form of multiplayer online RPG is the mailing-list RPG. These cover an even wider variety of genres, with Romance being a major one (many such lists are mimicing the &quot;Dawson's Creek&quot; TV show). It also helps that these lists tend to have much smaller numbers of players &#151; it's much easier to fit 10 or so people into an ongoing romance-centered game than it is to fit a few hundred.
+							<p>Increasing the importance of missions is another tack to take. Many &quot;MUDs&quot; include missions, but they're usually a secondary pursuit, rather than the primary one. A good method of automatically generating missions would be a major boon &#151; I have a few ideas in that direction, but that's fodder for another column.
+							<h3>Individual Observations</h3>
+							<p>
+Not fitting the shoot-and-loot paradigm is the major reason why many genres and subgenres haven't been used much in online games, but there are other problems.  Let's go through some of the fantasy subgenres from last time and see what we can find.
+
+							<p>
+In <B>modern fantasy</B>, one big problem is size. Online multiplayer RPGs of both the &quot;MUD&quot; and &quot;MUSH&quot; varieties have tended to be divided up into &quot;rooms&quot;, which usually represent fairly small portions of space. This can work reasonably well for a village or small town, but trying to represent, say, New York City in such a fashion is hopeless. Mobility can come to the rescue here, though &#151; in generic fantasy, walking is the general way to get from place to place, which makes room-by-room division feel fairly realistic. Driving a car, taking a bus, etc. are much faster, though. A modern city, then, might well be represented better through the mechanisms of abstracted connections and/or macro scale (conveniently discussed in <A HREF="TTnT_57.shtml.html">a recent "Trials, Triumphs, and Trivialities"</A>).
+
+<p>A second problem in modern fantasy is the set of available roles, and how that relates to the feeling of realism. In a generic fantasy game, no one generally bats an eye at the fact that there are hundreds of &quot;adventurers&quot; running around &#151; it's an accepted part of the subgenre. In modern fantasy, though, the vast majority of people are... well, ordinary people, with ordinary jobs. Putting hundreds of characters who all manage to constantly get involved in interesting adventures in such a setting rapidly strains people's ability to suspend disbelief.
+<p>
+<B>Historical fantasy</B> also runs into this same problem &#151; the moreso the more modern the setting. It also runs into realism strains with accuracy; those who are likely to like historical settings want them <I>because</I> of the historical feel.  Change that too much, and you'll lose many of the potential players.
+
+<p>In both modern and historical fantasy, &quot;secret magic&quot; in a setting can be a problem as well &#151; when hundreds of characters know that there's magic in the setting, it's hard to maintain the feeling of secrecy.
+<p>The problems of available roles, historical accuracy, and secret magic can all be mitigated by limiting the number of players and/or the amount of time the game lasts. In Skotos terms, these settings may be better suited for use as Stages. They could also work well in a mailing-list-type roleplaying setup &#151; those themselves are better suited to small numbers of players, and the lack of &quot;rooms&quot; in such a setup eliminates the problem of size.
+<p>
+A <B>fairy tale</B> setting can work especially well for children, since they're already familiar with the concepts.  "Light" style fairly tales may also be seen as a "little kid's" thing by adults and adolescents, which further steers it towards children.  Fairy tales generally have a very strong "mission" orientation, and there's rarely room for more than a few protagonists, so these also may be best suited to Stage-type play.
+
+<p>
+<B>Mythological fantasy</B> can actually work in the shoot-and-loot paradigm &#151; Greek myth is overrun with heroes who seem to be just... well, out heroing. Many games already throw in mythological elements, or are even mythologically based. Just as with fairy tales, though, missions are a natural fit &#151; the Quest is one of the bases of mythology, after all.
+<p>
+Both fairy tales and mythological fantasy (at least in the Quest mode) both lend themselves to the idea of a "mental setting" given in <A HREF="TTnT_57.shtml.html">that same "Trials, Triumphs, and Trivialities"</A> mentioned above.
+
+<p>
+<B>Dark fantasy</B> might also seem like a natural fit to shoot-and-loot, but it's not really. The problem is that constantly going out and killing what are supposed to be terrible monsters quickly drains the terror out of the setting &#151; if player characters can routinely take on monsters and win, they're not going to be terrified of them. And further, terror can't really be sustained constantly over a long term &#151; eventually you get over it, or just become numbed to it. Dark fantasy, then, works best either as an additional ingredient in something that's mostly another genre, or in a limited-time scenario.
+<p>There is the classic dark fantasy setting, like that of Barbara Hambly's Darwath trilogy, but it demands something else that's hard to implement &#151; namely, meaningful change in the setting. The loss of territory to the Dark (or whatever equivalent nasty in other dark fantasy settings) is a major element of the setting. Any long-term dark fantasy game in such a setting needs to be planned with the ability to implement such changes to the game from the start.
+<p>
+The <B>magical apocalypse</B> subgenre also calls out for long-term change &#151; rebuilding civilization in some way is a major component of the genre. Some versions of this subgenre can also accept a fairly large degree of shoot-and-loot &#151; go out, kill mutant/magical monsters, and use them for food/get technological treasures from them/whatever.
+<p>
+In such a setting, team play and opposed play (see <A HREF="TTnT_56.shtml.html">another recent "Trials, Triumphs, and Trivialities"</A>) are natural elements to bring in; cooperation in using scarce resources and competition over those same resources are a major theme.  Lots of opportunities for community-building are present, as characters in such a setting will naturally look for new leaders as they try to rebuild.
+
+<p>
+In closing, it seems to me that getting away from the basic "shoot-and-loot" paradigm that most online games use is the real key to making more genres viable.  I'm still planning on talking about other genres, but coverage of them will be more brief, since many of the same points made here apply. Next time, though, we'll be taking a brief break from the Exploring Genres series with <B>Story Now</B>.  See you in two weeks!
+
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"--></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

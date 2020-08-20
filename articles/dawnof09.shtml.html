@@ -1,0 +1,116 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Notes from the Dawn of Time #9:</b></font></h2>
+							<h2><b>Introduction to Parsing</b></h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>January 2, 2002</i></b></p>
+							<p>In the context of MUDs, parsing is the process by which players&#146; input is converted into action.</p>
+							<p>Well, OK, there is a second use &#151; talking to mobiles &#151; but that&#146;s a separate topic. I&#146;m going to be talking about <i>command parsing</i>: how your typing KILL OGRE eventually gets to initiate a fight between your character and some nearby ogre.</p>
+							<p>Natural Language Understanding is a very large and difficult field of Artificial Intelligence. It isn&#146;t made any easier by the fact that people and computers are good at different things. People excel at bringing all kinds of knowledge to bear in understanding an utterance, and all at the same time; computers do well at following fixed grammatical rules.</p>
+							<ul>
+								<li>Good for people: &quot;The judge jailed the politician because he was corrupt&quot;. A human usually knows automatically from the context whether &quot;he&quot; means the judge or the politician.
+							</ul>
+							<ul>
+								<li>Good for computers: &quot;The mouse the cat the dog chased bit died&quot;. Er, poor mouse?
+							</ul>
+							<p>MUDs have to run on computers. They must parse input as quickly as possible, and do so without the aid of parallel processors. This will doubtless change as AI techniques advance, but it hasn&#146;t changed for the past 15 years and might not for the next 15 either. Under these conditions, how can a simple MUD programmer hope to make a reasonable job of getting their game to accept anything other than the most basic of sentences?</p>
+							<p><b>The Problem Space</b></p>
+							<p>Fortunately, MUDs have a number of things going for them (at least if the mother tongue of their players is English) that general-purpose Natural Language Understanding systems don&#146;t.</p>
+							<ol>
+								<li>Input is mainly in the form of <i>imperative</i> commands (OPEN THE DOOR). These have a very predictable format in most major human languages. There is no requirement to parse indicatives (THE DOOR IS OPEN) or subjunctives (IF THE DOOR IS LOCKED THEN OPEN IT).
+								<li>All commands are in the <i>present simple</i> tense. Don&#146;t worry about STOLEN THE BAG, STEALING THE BAG, HAD BEEN STEALING THE BAG or anything else bizarre: just STEAL THE BAG.
+								<li>All commands are in the <i>active</i> voice: WALK WEST rather than BE WALKED WEST.
+								<li>Because they want to do things quickly, and because they can&#146;t all type very well, players tend to use very short sentences. In my own <i>MUD2</i>, over 60% of input consists of simple one-letter or two-letter movement commands (N, NE, E etc.).
+								<li>Players want to be understood. If DRINK POTION works and DRINK MY POTION doesn&#146;t work, then they&#146;ll quickly learn to omit the MY.
+								<li>Games are allowed to understand nonsense. It doesn&#146;t matter if their world reacts when players type COIN BOX IN PUT because no-one is going to type that anyway unless they&#146;re deliberately testing the parser.
+							</ol>
+							<p>The only other type of input likely to be presented to a MUD is the question. In English, some of these can be can be mapped with minor differences into the same format as commands (WHERE IS THE SWORD), but there can be deeper problems for queries such as IS THE SWORD IN THE SCABBARD. I won&#146;t be going into these in detail, but suffice to say they&#146;re doable.</p>
+							<p>Even given the above constraints, however, MUDs still don&#146;t have a hope of being able to make sense of every command given to them &#151; they can never understand all of English (or whatever). What they <i>can</i> do is understand enough of a subset of the language that players can express their desire for action without having to think too hard about it.</p>
+							<p>In other words, the parser accepts commands in a language which, although not actually English, is enough like it that it doesn&#146;t give players a problem. The more this language resembles English, the more an English-speaker will be able to use it without being inconvenienced.</p>
+							<p><b>Partitioning</b></p>
+							<p>Although human beings can and do perform the entire parsing process in real time on-the-fly, computer games don&#146;t get to do that (not just yet!). Instead, the overall parsing process is partitioned into a number of sub-processes (<i>passes</i>), generally performed sequentially in order:</p>
+							<ol>
+								<li>Command line input.
+								<li>Pre-processing.
+								<li>Tokenisation.
+								<li>Parsing.
+								<li>Binding.
+							</ol>
+							<p>(Execution follows binding).</p>
+							<i>Command line input </i>delivers an ordered set of ASCII characters constructed at the whim of the player. Basically, people type things, they backspace, retype, delete some more, type some more, and so on until they hit the return key. The entire line (which may equate to several commands) is then made available for pre-processing. Pre-processing tidies up what the player typed so that it fits some standard form. This normally involves compacting white space, converting everything to same-case, performing any macro expansions and stripping anything that&#146;s out of range (e.g. control characters). It makes the step that follows run a lot faster. Tokenisation takes the now standard-form input line and splits it into individual units (<i>symbols</i>). These units will typically concern integers, punctuation, quoted strings and words (separated from each other by white space). For the integers and strings, tokenisation creates a record to represent them; for words or punctuation, it looks them up in a table and extracts a predefined record from there. These records represent &quot;tokens&quot; &#151; semantic entities with potentially several meanings, waiting to be attributed to particular parts of speech. The system reports an &quot;unknown word&quot; error if it can&#146;t find a definition for a word (i.e. can&#146;t tokenise it).
+							<p>Pre-processing and tokenisation together comprise the <i>lexical analyser</i> module of the system. It sometimes happens that you need to run them in tandem, rather than in sequence. This is particularly the case if you have verbs that imply that everything following them ought to be a string (e.g. some players prefer SAY HI THERE PEEPS! to SAY &quot;HI THERE PEEPS!&quot;).</p>
+							<i>Parsing</i>, although also applied to the entire process, properly refers only to the specific task of taking a list of tokens and from it creating a meaningful data structure. To do this, it follows a <i>grammar</i> &#151; a set of recursive rules that defines all possible valid input sentences. If the parse fails, the input could not be understood and the player who typed it should be given some indication of where the problem lies; if it succeeds, the parser&#146;s output is a series of individual commands each of which is represented as a tree of elements (in <i>MUD2</i>&#146;s case, from the hierarchy that I described in my opening articles to this series).
+							<p>The final step is <i>binding</i>. This takes the parsed data structure and applies it to the player&#146;s situation in the game world to generate actual commands that can be executed. In many ways, it&#146;s the most challenging part of the whole process. If a player types HIT ELF and there are 20 elves in the game, which one does the player mean? The one in the same room. What if there are several in the same room? What if the input was SUMMON ELF, or some other spell that could apply to any elf wherever it was? Or SUMMON DARK ELF? It&#146;s the binder&#146;s job to decide all this. Once it has done so, parsing is formally over and the resulting world-changing functions are invoked: [SUMMON ELF21]() or whatever.</p>
+							<p>Note that although I&#146;m talking about parsing primarily in the context of text MUDs, the same principles apply to graphical MUDs. The interface differs and the text generated by the interface differs (it&#146;ll be in the more rigid format of a <i>packet</i> rather than a stream of freeform ASCII characters) but the general process is pretty much the same: read data; clean up data; formalise data; structure data; map data to code; execute code.</p>
+							<p>OK, well that&#146;s given you a brief overview of the architecture of a parser. Next time, I&#146;ll begin explaining how the individual components work.</p>
+							<div align="left">
+								<div align="left">
+								<div align="left">
+									<div align="left">
+										<table width="100%">
+											<tr>
+												<td align="center" valign="middle">
+													<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+												</td>
+											</tr>
+											<tr>
+												<td align="center" valign="middle">
+													<p><!--#include file="dawnof-last10.php"--></p>
+												</td>
+											</tr>
+											<tr>
+												<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+							</div>
+						
+						
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

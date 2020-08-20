@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>Movement: The Basics</title>
+		<link href="marrach.css" rel="stylesheet" media="screen">
+		<csactions>
+			<csaction name="B90037881" class="Open Window" type="onevent" val0="tutpop.shtml" val1="_blank" val2="300" val3="450" val4="true" val5="true" val6="false" val7="false" val8="false" val9="false" val10="false" urlparams="1"></csaction>
+		</csactions>
+		<csscriptdict import>
+			<script type="text/javascript" src="java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script type="text/javascript"><!--
+CSAct[/*CMP*/ 'B90037881'] = new Array(CSOpenWindow,/*URL*/ 'tutpop.shtml','_blank',300,450,true,true,false,false,false,false,false);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="artwork/cm-backgd.gif" bgcolor="#FCFCE4" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<table border="0" cellpadding="0" cellspacing="0" width="675">
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+					<p><img src="artwork/cm-masthd.jpg" alt="Castle Marrach - The Forever Winter" height="78" width="675" border="0"></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+				<!--#include virtual="snav-guide.incl"-->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+					<table width="90%" border="0" cellspacing="4" cellpadding="4">
+						<tr>
+							<td valign="top"><img src="artwork/hdr-tutorial.gif" alt="Tutorial" height="33" width="250" border="0"></td>
+							<td valign="top" width="200">
+								
+							</td>
+							<td rowspan="2" valign="top" width="80">
+							<!--#include virtual="character.incl"-->
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<div align="left">
+									<h2><a name="movement-1"></a>3) Movement: The Basics</h2>
+									<p>No matter how intriguing a room that you're in is, you'll eventually want to move on. This is done with a variety of movement commands. The basic movement commands allow you to move from room to room.</p>
+									<p><b>Contents:</b></p>
+									<ul>
+										<li><a href="Tutorial03.shtml.html#movement-1-1">3.1. Finding Exits</a>
+										<li><a href="Tutorial03.shtml.html#movement-1-2">3.2. Moving Between Rooms by Directions</a>
+										<li><a href="Tutorial03.shtml.html#movement-1-3">3.3. Moving Between Rooms with Enter</a>
+									</ul>
+									<p><a name="movement-1-1"></a></p>
+									<h3>Finding Exits</h3>
+									<p>In order to move to another room, the first thing you need to do is figure out how to get out of your current locale.</p>
+									<p>Sometimes it's easy: you've already examined a room, and you know exactly where the exits are. In our running example, the character has learned that the current room has at least three exits: a golden door to the north and dark passages to the east and southwest.</p>
+									<p>The map in the client is often very helpful as well. Doors are usually shown thinner than the walls. Sometimes open passages can be seen as well.</p>
+									<p>There is also a very useful &quot;exits&quot; command.</p>
+									<pre>      &gt; <b>exits</b>
+      You may leave through the golden door (north), the eastern 
+      passage (east) and the southwest passage (southwest).
+
+      &gt;</pre>
+									<p>Note that the &quot;exits&quot; command may not show hidden door or secret passages from a room. Even if you've discovered hidden doors via searching a room, they will not appear in the &quot;exits&quot; command.</p>
+									<p><a name="movement-1-2"></a></p>
+									<h3>Moving Between Rooms by Directions</h3>
+									<p>Once you've learned which directions the exits are located in, you can use the &quot;go&quot; command to head off in that direction. For example &quot;go north&quot; or &quot;go southwest&quot;.</p>
+									<p>This is a very common command, and so there are abbreviations for it. You can type just the direction (&quot;north&quot; or &quot;southwest&quot;) or abbreviate it to just one or two letters (&quot;n&quot; or &quot;sw&quot;).</p>
+									<pre>      &gt; <b>sw</b>
+      It's very dark. If you head in that direction you might be eaten
+      by a ravenous snow beast!
+
+      You are in a large cavern, lit by eerily glowing gems.
+
+      You are standing by the southwest passage.
+
+      &gt; <b>n</b>
+      You begin to move north...
+
+      You are in a narrow passage lined by alternating black and red
+      gems.
+      
+      You are standing near the golden door.
+
+      &gt; <b>look</b>
+      This narrow passage has a row of gems running along either side,
+      with rubies and onyx alternating. A ruby glow suffuses
+      everything. To the south the passage ends in a golden door,
+      while to the north it disappears into the distance. 
+      An onyx door is
+      embedded in the side of the passage.
+
+      You are standing near the gden door.
+
+      &gt;</pre>
+									<p>Sometimes something (like darkness or a closed door) will prevent you from moving in a direction, as occurred when the character tried to move southwest. Sometimes you'll be able to move right through, as occurred here.</p>
+									<p>It's important to note that moving takes time, just like the examine command. You won't be able to do anything else until your movement is complete.</p>
+									<p><a name="movement-1-3"></a></p>
+									<h3>Moving Between Rooms with Enter</h3>
+									<p>Sometimes you won't want to type a direction to leave a room. This may be because multiple exits lie in the same direction. Or, it may be because you don't know which direction an exits lies in. In our continuing example, the character found an onyx door cut in the side of a passage, but he doesn't know whether that's to the east or west.</p>
+									<p>You can directly move through an exit with the &quot;enter&quot; command.</p>
+									<pre>      &gt; <b>enter onyx door</b>
+      You enter the onyx door...
+
+      You are in a room cut entirely from a giant onyx. It is lit
+      with a dim, gray light.
+
+      Camille is sitting on an ebony throne.
+
+      You are standing near the onyx door.
+
+      &gt; <b>look</b>
+      The onyx room looks like it has been cut from a single, immense
+      gem. It is lit by a dim, gray light. A few items of furniture
+      have also been cut from the onyx including long tables running
+      along the northern and southern walls and a pair of thrones. Two  
+      ebony thrones are the centerpiece of the room.
+
+      Camille is sitting on an ebony throne.
+
+      You are standing near the onyx door.
+      &gt;</pre>
+									<p></p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right" valign="top"><a onclick="CSAction(new Array(/*CMP*/'B90037881'));return CSClickReturn();" href="Tutorial03.shtml.html#" csclick="B90037881"><img src="artwork/btn-contents.gif" alt="toc" height="21" width="72" border="0"></a> <a href="Tutorial04.shtml.html"><img src="artwork/btn-more.gif" alt="more" height="21" width="72" border="0"></a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+				<!--#include virtual="footer.incl"-->
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Notes from the Dawn of Time #11:</b></font>
+							<h2>Lexical Analysis</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>January 30, 2002</i></b></p>
+							<p>In my last article, I overviewed command line input &#151; the process by which a series of keystrokes (e.g. SAY HOW T^HDO YOU TYE^HPE SO FAST/^H?) is converted into an input line (e.g. SAY HOW DO YOU TYPE SO FAST?). This time, I&#146;ll be discussing how pre-processing works &#151; how an input line (e.g. steal key^Ifrom *KeWlD00d*) is converted to single-case and stripped of spurious characters so as to fit a standard format (e.g. STEAL KEY FROM KEWLD00D).
+							<p>Nah &#151; it&#146;s clear to any programmer how to do it, you don&#146;t need me to patronize you by stating the blindingly obvious...
+							<p>The only thing I&#146;d say to look out for is handling strings &#151; data contained between two quotation marks (or, more likely, one quotation mark and the end of the line). A MUD can do a lot more fancy stuff if it can accept strings, but you mustn&#146;t over-normalise them. If a player character shouts &quot;I *really* need a BATH&quot; then you don&#146;t want everyone to see &quot;I REALLY NEED A BATH&quot;. Remove control and escape characters so as not to screw up the recipients&#146; screens, but leave case and (non-leading/trailing) white space untouched.
+							<h3>Tokenisation</h3>
+							<p>Parsing actually starts to get interesting with tokenisation. This is where input is finally converted into a form that the players couldn&#146;t have typed in directly.
+							<p>Here&#146;s the gist of it. You take a pre-processed input line and chunk it into units called <i>symbols</i>. A symbol is one of:
+							<ol>
+								<li>Anything between matching quotation marks, or between an unmatched quotation mark and the end of the line. Example: &quot;this is a string&quot;.
+								<li>Any other piece of punctuation. Examples: ? ; , ! .
+								<li>Any series of digits not bounded by alphabetical characters. Examples: 7, 26. Minus signs can count as part of integers too.
+								<li>Any series of alphanumerical characters. Examples: WALK, DRAGON, COIN22.
+								<li>Whatever special characters you use to talk to the tokenisation process directly. I&#146;ll discuss these later.
+							</ol>
+							<p>OK, now what you need from the tokeniser is a list of tokens. These are nodes that represent multiple parts of speech (nouns, verbs etc.), of which the main part of the parser can then attempt to make sense. They usually consist of three elements:
+							<ol>
+								<li>A type identifier, so you know what kind of token it is.
+								<li>Data (for freestyle tokens).
+								<li>A set of parts of speech that the token can take.
+							</ol>
+							<p>For strings, the type will be some predefined constant, such as T_STRING, StringType or whatever your naming convention decrees. The data will be the body of the string, e.g. WHAT?!!. The set of parts of speech will contain some representation for nouns, and maybe also for verbs. I&#146;ll write this as [noun,&nbsp;verb]. Don&#146;t panic, I shall explain parts of speech in detail when I reach the main parsing process in a later article.
+							<p>For integers, the type will be T_INTEGER or IntegerType or whatever, and the data will be a number such as 142857. The set of parts of speech will be at least [noun,&nbsp;adjective], with maybe some others thrown in too.
+							<p>Punctuation marks will have their own predefined nodes. You can look them up in a table, it&#146;s simple enough. If you like, you can point some of them to the same record, e.g. question marks and exclamation marks could be mapped to the same node as a full stop (my apologies to American readers, I know you call these latter two &quot;exclamation points&quot; and &quot;periods&quot;).
+							<p>This brings us to words...
+							<h3>The Vocabulary&nbsp;</h3>
+							<p>Words must be translated into atoms (from the inheritance hierarchy, as I described earlier in this set of articles). The data structure linking the two is the <i>vocabulary</i>. This consists of a <i>symbol table</i> that connects words, parts of speech (PoS) and atoms. Here&#146;s an extract showing what a vocabulary might contain:
+						<div align="center">
+							<table border="0" cellpadding="3" cellspacing="3">
+								<tr>
+									<td><b>Word </b></td>
+									<td><b>PoS</b></td>
+									<td><b>Atom</b></td>
+									<td><b>Comment</b></td>
+								</tr>
+								<tr>
+									<td>&lt;eat</td>
+									<td>verb</td>
+									<td>eat&gt;</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>&lt;egg</td>
+									<td>noun</td>
+									<td>egg&gt;</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>&lt;hit</td>
+									<td>verb</td>
+									<td>hit&gt;</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>&lt;orange colour</td>
+									<td>adjective</td>
+									<td>orange_colour&gt;</td>
+									<td>the colour</td>
+								</tr>
+								<tr>
+									<td>&lt;orange</td>
+									<td>noun</td>
+									<td>orange&gt;</td>
+									<td>the fruit</td>
+								</tr>
+								<tr>
+									<td>&lt;box</td>
+									<td>verb</td>
+									<td>hit&gt;</td>
+									<td>as in the sport of boxing</td>
+								</tr>
+								<tr>
+									<td>&lt;box</td>
+									<td>noun</td>
+									<td>box&gt;</td>
+									<td>the container</td>
+								</tr>
+							</table>
+						</div>
+						<div align="left">
+							<p>If a player typed HIT ORANGE BOX then the tokeniser would need to look up all definitions of each word and the appropriate possible meanings, i.e.:
+						</div>
+						<div align="center">
+							<table border="0" cellpadding="3" cellspacing="3">
+								<tr>
+									<td>HIT</td>
+									<td>
+										<p>&lt;verb hit&gt;
+									</td>
+								</tr>
+								<tr>
+									<td>ORANGE</td>
+									<td>&lt;adjective orange_colour&gt;&lt;noun orange&gt;</td>
+								</tr>
+								<tr>
+									<td>BOX</td>
+									<td>&lt;verb hit&gt;&lt;noun box&gt;</td>
+								</tr>
+							</table>
+						</div>
+						<div align="left">
+							<p>This is done by means of a dictionary mechanism. I&#146;m not going to go into the details of writing one of these &#151; dictionaries are fairly common data structures. If you&#146;re not using one from a library, a hash table with binary tree overflow usually does the business. So long as you have a reasonably efficient mechanism by which a word can be used to retrieve its matching record, that&#146;s enough.
+							<p>There are two further points to consider about vocabularies. Firstly, you might want to add a fourth component to each tuple to represent privilege level. If there are some commands that only admins should have, then there&#146;s no reason these should be in the vocabulary for non-admins &#151; it adds an extra level of security.
+							<p>Secondly, some links need only be unidirectional. In the above example, the verb for BOX is just a synonym that points to the same atom as HIT. If during execution of [hit]() you wished to refer to the issuing command by looking backwards through the vocabulary, you wouldn&#146;t want it to come up with BOX. Therefore, some kind of flag to note that a command is a synonym or an abbreviation is also in order.
+							<p>Aside: if you did want [hit]() to refer to BOX then you would use
+						</div>
+						<div align="center">
+							<table border="0" cellpadding="3" cellspacing="3">
+								<tr>
+									<td>&lt;box</td>
+									<td>verb</td>
+									<td>
+										<p>box_hit&gt;
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div align="left">
+							<p>which when invoked would be [box_hit](). If box_hit were declared as a subclass of hit, then the code which was invoked would be the same as for [hit]() but when the action/verb atom was referred to it would come up as box_hit.
+							<h3>Lookahead</h3>
+							<p>As I&#146;ve described it so far, tokenisation is a breeze. You have an array of characters, which you scan sequentially. Depending on what you see first, you&#146;ll either have a string, an integer, a word or punctuation. You read in the whole unit, create a node for it, ignore white space and move on to the next word. Easy!
+							<p>Well almost, but not quite. There&#146;s a slight blur between integers, punctuation and words. Some pieces of punctuation can map directly onto words (see the discussion on modes which follows), and some words can map directly onto integers (e.g. TEN is 10). OK, I&#146;m sure you can handle that now you know in advance to program for it, but there&#146;s a further problem: it&#146;s possible that some words can carry implicit punctuation effects. When you look up a word, you therefore ought to check whether it affects the remainder of the sentence. In particular, you should look out for <i>enquoting verbs</i>.
+							<p>Enquoting verbs are verbs that implicitly quote the remainder of a sentence. A normal verb is an action, for example LAUGH. Verbs can take parameters (unfortunately called <i>objects</i> in grammatical terms), for example EAT CHEESE. Some verbs can take strings as parameters, for example WRITE &quot;none of the above&quot; ON BALLOT PAPER. Now, for a few of those verbs that take strings as a parameter, you really <i>don&#146;t</i> want to have to put in the quotes every time, for example SAY &quot;hidey hi!&quot;. People would much rather type it without the quotes. If they did that, though, the remainder of the sentence would be taken as regular input, yet sadly SAY HIDEY HI! doesn&#146;t parse &#151; it&#146;s not proper English (or proper anything else!).
+							<p>By making SAY is an enquoting verb, however, the problem disappears. If the next symbol following SAY isn&#146;t a string (i.e. doesn&#146;t begin with a quotation mark), then the tokeniser will assume it&#146;s seen one anyway and enquote the rest of the line. Occasionally you <i>do</i> need to put the marks (e.g. SAY &quot;hello&quot; TO BILL), but if there&#146;s only one parameter you don&#146;t. You can also implement verbs that enquote their second parameter, e.g. TELL BILL TO &quot;go west&quot;; they&#146;re not much harder to do. Apart from their effects on tokenisation, either kind of enquoting verb is otherwise just the same as any normal verb.
+							<p>Because each time you look up a symbol you have to check to see if it affects the remainder of the parse, it&#146;s a <i>one-symbol lookahead</i> system. Computer languages are typically designed so that you can parse a whole program by deciding what to do next at any point solely on the basis of what symbol you&#146;re looking at. As we&#146;ll discover, though, things do get a bit harder for MUDs at the grammatical (rather than the word) level.
+							<h3>Modes</h3>
+							<p>Sometimes, you want to talk directly to the tokeniser to tell it how you want stuff tokenised. If it parsed this input like a normal command, it wouldn&#146;t know it was supposed to do something special as a result. More importantly, it might not be able to parse it at all!
+							<p>What I&#146;ve been describing so far is <i>command mode</i>. This is where what you type is considered to be a command. For MUDs, command mode is the mode in which people spend most of their time.
+							<p>There are, however, other modes you can have. The convention that has evolved is to put special characters at the beginning of a line to tell the tokeniser to operate in a different mode for that line, with a further option to switch into the mode the whole time until further notice. For example, @ might mean &quot;coding mode for this line only&quot; and /@ might mean &quot;coding mode for this and subsequent lines&quot;.
+							<p>Here are some examples of common modes and the start-of-line flags they tend to use (some of which conflict with others):
+						</div>
+						<div align="center">
+							<table border="0" cellpadding="3" cellspacing="3">
+								<tr>
+									<td><b>&gt; / .</b></td>
+									<td>Command mode: input is a direct command to the game.</td>
+								</tr>
+								<tr>
+									<td><b>@</b></td>
+									<td>Coding mode: input is an admin command for programming the game.</td>
+								</tr>
+								<tr>
+									<td><b>&quot; &#145; `</b></td>
+									<td>Conversation mode: input is a parameter to the SAY command.</td>
+								</tr>
+								<tr>
+									<td><b>; :</b></td>
+									<td>Acting mode: input is a parameter to the POSE/EMOTE/ACT command.</td>
+								</tr>
+								<tr>
+									<td><b>?</b></td>
+									<td>Help mode: input is a parameter to the HELP command.</td>
+								</tr>
+								<tr>
+									<td><b>/ \ $</b></td>
+									<td>
+										<p>Switch mode: input is for the tokeniser itself.
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div align="left">
+							<p>Command mode is the default in text MUDs. Conversation mode is the default in graphical MUDs.
+							<p>
+							<div align="left">
+								<div align="left">
+									<div align="left">
+										<div align="left">
+											<table width="100%">
+												<tr>
+													<td align="center" valign="middle">
+														<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle">
+														<p><!--#include file="dawnof-last10.php"--></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<csscriptdict import>
+			<script src="../java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script><!--
+CSAct[/*CMP*/ 'B71DC4A43'] = new Array(CSGoBack1);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="artwork/articles_BSTGlogo.gif" width="217" height="71" align="BOTTOM" alt="masthead" border="0" hspace="8" vspace="8">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><font face="Verdana,Arial,sans-serif"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#10: Building Blocks, Part 4: System</b></font></h2>
+							<h2><font face="Verdana,Arial,sans-serif" size="2"><i><b>by </b></i><i><b><a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a></b></i><i><b><br>
+										</b></i><i><b>June 15, 2001</b></i></font></h2>
+							<P><font face="Verdana,Arial,sans-serif" size="2">Having talked about scenario and setting in the last two columns, that leaves the last leg of our tripod: system.</font>
+							<P><font face="Verdana,Arial,sans-serif" size="2">First, I'd like to make it clear how much territory I'm covering. By system, I mean the rules of the game, and the implementation of those rules &#150; and in a computer game, the latter can be of much greater impact than the former. System is where the rubber meets the road &#150; it's what the players of the game really interact with on a moment-to-moment basis. It includes not only the underlying rules, such as the rules used to figure out whether or not a character hits another in combat, but also the interface that players use to interact with those rules.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2">I could write reams about game system design &#150; and have, in various forums about the Internet. But I've got limited time and space here, so I'm just going to hit a few major points.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2"><BR>
+									<b>Think About Your System</b></font>
+
+
+
+<P><font face="Verdana,Arial,sans-serif" size="2">It's been said that the unexamined life is not worth living. I'd say that an unexamined system is not worth playing &#150; at least, in most cases. The &quot;default&quot; rule system for most MORPGs is a D&amp;D-style system, with classes, levels, and hit points that increase with level. There's nothing intrinsically wrong with that; it works well for many purposes and is already familiar to people. But to use that sort of system (or any other sort, for that matter) just as an automatic, unthinking reaction is bad. You should think about what you want your game to be, and then choose or design a system based on that.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2">The same thing applies to the interface side of systems &#150; instead of using a particular interface because that's what you've always seen, stop and take a few minutes to think about the interface. Could character creation be done through a web forms interface instead of a text-prompt interface? Or through a series of menus? While you're at it, talk to your users or potential users, and get input from them. And don't ignore yourself as a source either &#150; think about the games you've played in the past. What really irks you about them? More importantly, what doesn't really irk you, but is just a bore to have to deal with constantly? Is there a better way?</font>
+<P><font face="Verdana,Arial,sans-serif" size="2"><BR>
+									<b>People Do What You Reward Them For Doing</b></font>
+
+
+
+<P><font face="Verdana,Arial,sans-serif" size="2">This is really just basic psychology; reward someone for doing a thing, and they're more likely to do the same thing again in the future. In an MORPG, the most common forms of rewards are treasure and character advancement (usually in the form of experience points). If you set things up so that the main way to get these things is to have your character go out and kill things, then naturally people are going to have their characters go out and kill things.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2">
+If you want people to engage in a wider variety of things, then, you need to find ways to reward other things. As related in <a href="TTnT_37.html">the last Trials, Triumphs, and Trivialities</a>, the Eternal City is an example of this; in it, characters gain skill points not by killing things, but by practicing their skills. This makes possible other routes of advancement than the traditional &quot;kill monsters&quot; method.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2"><BR>
+									<b>People Usually Take the Easy Way</b><b><BR>
+									</b><b>Carrots Are Better Than Sticks</b></font>
+
+
+
+<P><font face="Verdana,Arial,sans-serif" size="2">
+These two I lump together, because people tend to do things in the easiest way they can, <i>unless</i> the hard way is a lot more fun. If you have more than one way in which to accomplish the same thing in your game, you have to consider this in balancing them.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2">By the same token, it's easier to get people to do something different by giving them a reward than by punishing them for not doing it. Sometimes, in this sort of thing, it's just a choice of how to say something that can make a difference &#150; the same offer can sound like a reward for those who take it, or a punishment for those who don't, depending on how you phrase it.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2"><BR>
+									<b>No One Likes to Be Insulted </b></font>
+
+
+<P><font face="Verdana,Arial,sans-serif" size="2">One thing that's long annoyed me in many of the online RPGs I've played has been their newbie areas. In many of them, players are given the task of doing things like hunting down squirrels &#150; and then their characters get beaten up by the squirrels. In one game I played, new characters could go to a &quot;newbie hall&quot; and get some free equipment &#150; a pot for a helmet and a whiffle bat for a weapon.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2">These sort of setups are simply insulting and humiliating for new players. Would you want to play a game where you're made to feel like a laughingstock just for being new? I didn't, so I left. It would have been a simple matter to set things up so that new characters could take on goblins, kobolds, or other traditional RPG &quot;low-level&quot; opponents. All that would have needed to be changed was descriptions; the actual game mechanical stats of the creatures could have remained the same. But instead, the game's designers chose to make new characters seem incompetent and ridiculous.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2"><BR>
+									<b>Make It Understandable </b></font>
+
+
+<P><font face="Verdana,Arial,sans-serif" size="2">It's possible to make a subsystem of the game too complicated &#150; so complicated that only a few players will be willing to make the effort to learn to use it, even if there are great rewards. You might actually want that, if you're trying to attract a certain kind of player &#150; but as per the first rule above, you need to think about it, and decide if it's what you really want.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2"><BR>
+									<b>Remember Your Builders</b></font>
+
+
+
+<P><font face="Verdana,Arial,sans-serif" size="2">On the flip side, even when all the details of how something works are hidden from the players, it can still be too complicated &#150; for the game builders. Someone designing a scenario for your game needs to be able to make judgements about what the challenge level of the scenario they're creating will be. If the system becomes overly complex, this can become hard to do. In some cases, you can build tools to help with this.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2">A &quot;fiddle factor&quot; also comes in here &#150; if there are too many possible settings to fiddle with, it tends to lower the productivity of builders, as they try to get everything set just right. This is especially true when the system can't or doesn't set reasonable defaults for them.</font>
+<P><font face="Verdana,Arial,sans-serif" size="2"><BR>
+									<b>Nothing Is Perfect</b></font>
+
+
+
+<P><font face="Verdana,Arial,sans-serif" size="2">I've put this last, because in many ways, it's the most important. There's a saying among computer project managers: &quot;In any project, there comes a point when it's time to shoot the programmers and put it into production.&quot; The idea here is that you can spend forever trying to tweak a system to be &quot;just right&quot; &#150; but what's the point of all that effort if no one ever gets to use the system, because it's never finished?</font>
+							<P><font face="Verdana,Arial,sans-serif" size="2">More than that, even if you could build the game that would be perfect for you, there's going to be someone else who won't like it. Remember the types of players &#150; different people want different things from a game, and some of those things conflict. And therefore, you can't make a game that everyone will consider perfect. Decide what you want the game to be up front, and stick to that &#150; otherwise, you may wind up with a patchwork of a game that lots of people like in parts, but no one really loves.</font>
+						</div>
+						<div align="center">
+							<table border="0" cellpadding="0" cellspacing="2">
+								<tr>
+									<td valign="middle"><a href="http://www.skotos.net/forum/showthread.php?threadid=295"><img height="59" width="156" src="../artwork/youropinion_btn.gif" border="0" alt="your opinion..."></a></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

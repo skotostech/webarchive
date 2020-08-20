@@ -1,0 +1,173 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #27:</b></font></p>
+							<h2>How a Planning Engine Works</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>September 11, 2002</i></b></p>
+							<div class="Section1">
+								<p>Some definitions:</p>
+								<ul>
+									<li type="disc">A <i>goal</i> is a statement about the world that a planning agent (ie. a mobile in our case) wishes to pertain.
+									<li type="disc">A <i>plan</i> is a sequence of actions which, if executed in order, will achieve some goal.
+									<li type="disc">An <i>action</i> is a set of preconditions and effects.
+									<li type="disc">A <i>precondition</i> is a statement about the world that must hold true for its associated action to take place.
+									<li type="disc">An <i>effect</i> is a statement about the world that holds true after an action has been executed (that didn&#146;t hold place before).
+								</ul>
+								The core planning engine functions as follows:
+								<ul>
+									<li type="disc">Take a goal.
+									<ul>
+										<li type="disc">If it is satisfied already, stop. Success!
+										
+									</ul>
+									<li type="disc">Look through all actions known to the planner.
+									<li type="disc">Place all actions that have the goal as an effect into a consideration set.
+									<ul>
+										<li type="disc">If the consideration set is empty, stop. Failure!
+										
+									</ul>
+									<li type="disc">Select an action from the consideration set.
+									<li type="disc">Set up all the action&#146;s preconditions as goals.
+									<li type="disc">Recursively attempt to create plans for those goals.
+									<ul>
+										<li type="disc">If it succeeds, stop. Success!
+										
+									</ul>
+									<li type="disc">If it fails, backtrack and try a different action from the consideration set.
+									
+								</ul>
+								Thus, planning can be seen as a search through the space of actions (or goals).<br>
+								<br>
+								This describes an absolutely basic planning engine. There are many planning engines in existence in the field of AI, able to plan at degrees of sophistication far superior to this one. For the purpose of quest generation, though, the above is reasonably adequate.<br>
+								<br>
+								You&#146;ll have to wait a while longer before I demonstrate this, though. First, I really ought to present an example of the basic machinery in action.
+								<h3><b>An Example</b></h3>
+								<p>A mobile is standing next to a market stall, which has a loaf of bread on it that the mobile has just bought. The mobile&#146;s goal is for the loaf to be on the mobile&#146;s nearby cart. It knows three actions:</p>
+								<blockquote>
+									<table border="0" cellspacing="4" cellpadding="4">
+										<tr>
+											<td align="left" valign="top"><b>Action</b>:</td>
+											<td align="left" valign="top"><code>pick up <i>X</i> from <i>Y</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Preconditions</b>:</td>
+											<td align="left" valign="top"><code>X is at <i>Y</i><br>
+													I am at <i>Y</i><br>
+													not (<i>X</i> is heavy)<br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Effects</b>:</td>
+											<td align="left" valign="top"><code>not (<i>X</i> is at <i>Y</i>)<br>
+													I&#146;m carrying <i>X</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"></td>
+											<td align="left" valign="top"></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Action</b>:</td>
+											<td align="left" valign="top"><code>put down <i>X</i> at <i>Y</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Preconditions</b>:</td>
+											<td align="left" valign="top"><code>I&#146;m carrying <i>X</i><br>
+													I am at <i>Y</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Effects</b>:</td>
+											<td align="left" valign="top"><code>not (I&#146;m carrying <i>X</i>)<br>
+													<i>X</i> is at <i>Y</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"></td>
+											<td align="left" valign="top"></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Action</b>:</td>
+											<td align="left" valign="top"><code>walk from <i>X</i> to <i>Y</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Preconditions</b>:</td>
+											<td align="left" valign="top"><code>I am at <i>X</i><br>
+												</code></td>
+										</tr>
+										<tr>
+											<td align="left" valign="top"><b>Effects</b>:</td>
+											<td align="left" valign="top"><code>not (I am at <i>X</i>)<br>
+													I am at <i>Y</i><br>
+												</code></td>
+										</tr>
+									</table>
+								</blockquote>
+								<p>The initial state of the world is:</p>
+								<blockquote>
+									<p><code>I am at stall<br>
+											bread is at stall</code></p>
+								</blockquote>
+								<p>The mobile&#146;s goal is [<code>bread is at cart</code>]. It looks through all the actions it knows, and sees that this can be achieved by <code>put down bread at cart</code>. It replaces its goal by the preconditions of <code>put down <i>X</i> at <i>Y</i></code>, ie. <code>I&#146;m carrying bread </code>and<code> I am at cart</code>. To achieve <code>I&#146;m carrying bread</code>, it looks through its actions again and finds that there&#146;s only one that can do it, <code>pick up <i>X</i> at <i>Y</i></code>. It replaces its goal <code>I&#146;m carrying bread</code> with the preconditions of <code>pick up <i>X</i> at <i>Y</i></code>; these are <code>bread is at stall, I am at stall</code> and <code>not(bread is heavy)</code>. All three are currently satisfied. This means the mobile is able to pick up the bread, thereby leaving the <i>goal stack</i> as [<code>I am at cart</code>]. Only one action will achieve this effect, <code>walk from <i>X</i> to <i>Y</i></code>. The precondition for this,<code> I am at stall,</code> is already true, therefore the mobile can <code>walk from stall to cart</code>. Doing so empties the goal stack (ie. enables the second precondition of <code>put down bread at cart</code>), the execution of which satisfies the original goal. The final plan is therefore:</p>
+								<blockquote>
+									<p><code>pick up bread at stall<br>
+											walk from stall to cart<br>
+											put down bread at cart</code></p>
+								</blockquote>
+								<p>From the mobile&#146;s point of view, this can be paraphrased as:<br>
+									<br>
+									&#147;I want the bread to be at the cart, so what action, out of all the actions I know, can I undertake to cause that? Well I could put down the bread, that would work, but to do so I&#146;d have to be carrying the bread, which I&#146;m not. Also, I&#146;d have to be at the cart, which I&#146;m not. OK, so what can I do that will leave me carrying the bread? I could pick it up &#150; and what&#146;s more, I can do that right now! Is there any way I can get to the cart? Yes, I could walk there &#150; something else I can do right now. OK, so my plan is: pick up the bread, walk to the cart, put down the bread.&#148;.<br>
+									<br>
+									That&#146;s the basic planning machinery. Next time, I&#146;ll point out some problems with it.</p>
+							</div>
+						</div>
+						<div align="left">
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

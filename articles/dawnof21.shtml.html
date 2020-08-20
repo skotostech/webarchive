@@ -1,0 +1,88 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #21:</b></font></p>
+							<h2>Lightening the Load</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>June 19, 2002</i></b></p>
+							<div class="Section1">
+								<p>There are a number of tricks you can play on your binder to stop it from getting even more bloated than necessary. This column, I&#146;ll be going through some of these, so you can pick and choose from among any that interest you. I&#146;ll also be suggesting some painless ways of helping the players by tinkering with the parser.<br>
+									<br>
+									Firstly, there&#146;s the problem of what to do with commands like DROP 6 BALLS IN 2 BAGS. Does it mean drop 6 balls in one bag and another 6 in the other bag? Or does it mean drop the same 6 balls, once in each bag? Hmm, well the thing to bear in mind here is that the command as given <i>doesn&#146;t</i> actually make sense, therefore so long as you&#146;re consistent you&#146;re at liberty to do what you like with it! I would bind the 6 BALLS, bind the 2 BAGS, then ignore the second bag and drop all the balls in the first one. Only if in the process of doing that the bag was destroyed would I then go on to the second one.<br>
+									<br>
+									Destruction of objects by commands can be a problem. Let&#146;s say that as a prank you took a branch, set fire to it, and typed BURN EVERYONE WITH BRANCH. OK, so the branch burns the first person in the room, then the second, then the third &#150; oh, oh, the third person is carrying gunpowder! Boom! Everyone in the room is killed! So when the dust settles and the command to burn the fourth person in the room is executed, the fourth person is no longer there... The only solution to this is to check before you invoke each command that the objects to which it refers are still around. Well, that or don&#146;t ever destroy or move objects collaterally...<br>
+									<br>
+									English has many compound nouns, which are nouns made up of other nouns. Examples: EMPEROR PENGUIN; POTATO CHIPS; BIRTHDAY CARD; DINNER PARTY; DEPUTY ASSISTANT CHIEF CONSTABLE. Treat the leading nouns as adjectives (or both adjectives and nouns). The adjectives don&#146;t necessarily have to <i>do</i> anything, so long as they parse. The same applies for compound verbs such as PICK UP and PUT DOWN: treat the auxiliary parts as adverbs and then fold them into the verb later when doing the binding ({&nbsp;pick&nbsp;up&nbsp;}:&nbsp;get).<br>
+									<br>
+									Similarly, occasionally you get adjectives that can be used as nouns, eg. THE YOUNG. Don&#146;t bother agonizing over whether it&#146;s an adjective or a noun &#150; make it both! In general, if a word seems to be acting like a part of speech that officially it isn&#146;t, be practical about it. I wouldn&#146;t claim that the word MARKED is a preposition, but if by making it be one I can get my parser to work on GET ENVELOPE MARKED &#147;personal&#148; then I&#146;m quite happy to do so. On the other hand, I wouldn&#146;t recommend changing prepositions into nouns: GO IN should use IN as an adverb, not as a noun (well, not unless you want to drive yourself nuts fixing the weird parses that arise from allowing this).<br>
+									<br>
+									You can help players a lot by abbreviating commands. I don&#146;t mean G for GET, I mean DT for DROP TREASURE and DXT for DROP ALL EXCEPT TREASURE, things like that.<br>
+									<br>
+									Players often want to repeat commands. Although you can hack your grammar to allow stuff like GO WEST 3 TIMES, try using non-standard punctuation. In <i>MUD2</i>, I make each full stop (period) mean &#147;repeat this many times&#148;. Thus W. means &#147;go west once&#148;, but W... means &#147;go west 3 times&#148;. I regularly see command sequences such as W.......N......E.....N.D..... that string together lots of individual commands into one long input line.<br>
+									<br>
+									Commands don&#146;t have to be words. :-) can be a synonym of SMILE.<br>
+									<br>
+									Don&#146;t worry about ambiguity at this stage &#150; it&#146;s too late. Make your choice and be consistent. Trying now to make GET BALL ON TABLE pick up a ball that&#146;s on a table and DROP BALL ON TABLE drop a ball that you&#146;re holding onto the table is pointless. You already decided when you wrote your grammar where the invisible brackets went.<br>
+									<br>
+									Put in synonyms for commands that are used often, so it only takes a few keystrokes to enter them. Don&#146;t insist on the shift button for quotation marks. Words that can be implied, such as THE, can be omitted.<br>
+									<br>
+									When an input line contains an error, give the player as much information as possible about it. I mentioned a few columns ago that you should log it for your own benefit, but listing a broken line isn&#146;t the same as telling people what&#146;s broken with it. For unknown words, tell the player that the word is unknown; for unparsed sentences, tell the player how far you got, what you were expecting to get, and what you did get (for every word in the sentence). Here&#146;s an example from <i>MUD2</i>. You can do better:</p>
+								<pre>*drop the biggest 3 diamonds into the bag then
+I made sense of some of that:
+        drop[verb]   the[definite article]   biggest[superlative]   
+        3[integer]   diamonds[noun]   into[preposition]
+        the[definite article]   bag[noun]   then[sentence conjunction]   
+end-of-line[uh?]
+I was expecting the end-of-line to be a verb.</pre>
+								<p>Note that if you&#146;re not careful you can give away more information in your error messages than you want players to know. Don&#146;t tell them <i>too</i> much!<br>
+									<br>
+									Well, believe it or not, that just about wraps up parsing..! I&#146;ll finish it off next article with a complete example, then I&#146;ll go on to something else.<br>
+									<br>
+									I <i>heard </i>that collective sigh of relief, you know...</p>
+							</div>
+							<div align="left">
+
+												<table width="100%">
+													<tr>
+														<td align="center" valign="middle">
+															<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle">
+															<p><!--#include file="dawnof-last10.php"-->
+															</p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+													</tr>
+												</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

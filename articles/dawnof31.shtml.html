@@ -1,0 +1,88 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #31:</b></font></p>
+							<h2>Ways to Look at Plans: Part 2</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>November 6, 2002</i></b></p>
+							<div class="Section1">
+								<p>I recommend you pull up the previous article when you read this one, as it's a direct continuations of it.</p>
+								<p>OK, so we have Doris the dwarf, and she's made a plan. We can represent her reasoning diagrammatically as follows:</p>
+							</div>
+						</div>
+						<div class="Section1" align="center">
+							<p><img src="artwork/dawnof-31.gif" alt="diagram" height="373" width="391" align="middle" border="1" hspace="5" vspace="5"></p>
+						</div>
+						<div class="Section1">
+							The underlined bits have already been achieved, and the rest are at least partially unachieved.</div>
+						<div align="left">
+							<div class="Section1">
+								<p>This is a <i>goal/action tree</i>. The first line shows a goal, the next line shows the actions to be performed that will achieve the goal, the next line is the goals that must be solved to enable the action to be performed, and so on.</p>
+								<p>So, a player has asked Doris for a quest. Doris has chosen a quest for <i>herself</i> (the Career Quest) but she hasn't yet completed it. The player is to help her. What can she reply?</p>
+								<p>Well, she can reply with any verifiable node from the goal/action tree, so long as it hasn't already been executed and isn't dependent on something else having been done first. She can make her selection based on how powerful the player is and how long the quest is to last, but basically the choices are:</p>
+								<ul type="disc">
+									<li>Get me a job doing childcare.</li>
+									<li>Set up a business for me doing childcare.</li>
+									<li>Get me some premises.</li>
+									<li>Get me some customers.</li>
+								</ul>
+								<p>Leaflet the neighborhood has a precondition of I have premises, therefore it is not an option - it has to be performed after the earlier "Get me some premises" goal has been satisfied. "Get me some fliers" is also not an option, because it's a part of leafleting the neighborhood. "Get me some customers" <i>is</i> am option because there is no assumption that it has to be done before getting premises - enterprising players could achieve it by some mechanism not considered yet by Doris, eg. door-stepping.</p>
+								<p>Assuming the player only wanted a short quest and wasn't all that high a level, Doris would probably ask that they arrange some premises for her. She will pay them 500GP upon completion (therefore the player will probably not want to spend more than 500GP of their own money on obtaining a lease, or they'll make a loss). Should the player perform the task, a new one will naturally follow from it: get some fliers made. If they do that, they can then leaflet the neighborhood, which will satisfy Doris's overall goal of having a career in childcare. Any subsequent quests they demand from her will be generated from a new goal made with her childcare activities borne in mind.</p>
+								<h3>Quest Elements</h3>
+								<p>The quest elements (ie. the actions, in AI planning terms) making up quests must be written carefully. The first precondition for the Career Quest, for example, isn't actually needed, but (assuming preconditions are tackled in order) putting it first makes the rest of the process run quicker - it wouldn't have to be re-run every time Doris's attempts to find a job were unsuccessful. Similarly, the <i>X</i>isn't me precondition for work for <i>X</i> doing <i>Y</i> could be dropped and Doris would still eventually realize that she could work for herself; it's just something of a pain to implement this kind of variable binding efficiently.</p>
+								<p>In designing quest elements, there's an issue of when to stop breaking an action down (via ever-more finicky goals) into sub-actions. Should there be several ways to get fliers (get them printed, make them yourself, change someone else's fliers)? If you made them yourself, would you have to buy the paper and the pencils? If so, how would you get to the stationary store - walk, take your dwarven warhorse, call for a taxi? If you walk, what route do you take? At some stage, you have to stop the planning process and determine that an action can be "just done".</p>
+								<p>Thus, there are three kinds of actions used for quest elements:</p>
+								<ul type="disc">
+									<li>Thinking actions, which change the mobile's world view but don't change the world itself (eg. Having a career).</li>
+									<li>Hardwired actions that the mobile can just do as a single act (eg. posting an ad in the newspaper without having physically to visit its offices).</li>
+									<li>Unexecutable actions, which the mobile can't do itself but that it can tell when a player has done them.</li>
+								</ul>
+								<p>There's a lot more to quest elements than I've written here, and than I could write here if I spent a dozen more articles on it. I haven't mentioned time, I've only alluded vaguely to variable binding, and I've made all kinds of assumptions about hardwiring that will have people who know about AI planning frowning in annoyance.</p>
+								<p>I hope, however, to have given you enough of a taste of this that you'll be tempted to explore the area further when it comes to writing quest systems of your own.</p>
+								<p>Next time, I'll talk about some of the other things you can do with this machinery.</p>
+							</div>
+						</div>
+						<div align="left">
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+									</tr>
+								</table>
+								<p></P>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<link href="article.css" rel="stylesheet">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" text="black" link="#006633" vlink="#cc3300" alink="#990066" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<center>
+			<img src="nav/tnav_dawnof.gif" alt="topnav" height="90" width="531" usemap="#tnav_dawnof" align="BOTTOM" border="0" hspace="10" vspace="10"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table width="90%" border="0" cellpadding="2" height="3455">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" alt="Series Info..." height="334" width="137" align="right" border="0" hspace="10" vspace="10"></a><b>Notes from the Dawn of Time #15:</b></font></p>
+							<h2><span lang="EN-GB">Backtracking</span></h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>March 13, 2002</i></b></p>
+							<div class="Section1">
+								<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Time flies like an arrow, but fruit flies like a banana.
+								<p class="MsoNormal">This is an example of a <i>garden path</i><span style="font-style:normal"> sentence, so called because the reader is led up the garden path (ie. sent in a wrong direction). Here are some more:</span></p>
+								<p class="MsoNormal"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The old man the boats.</p>
+								<p class="MsoNormal"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The horse raced across the heath fell.</p>
+								<p class="MsoNormal"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>When I ran a mile seemed a long distance.</p>
+								<p class="MsoNormal"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The granite rocks in an earthquake.</p>
+								<p class="MsoNormal">Modern computer languages are designed so as to make parsing them easy. They don't have any ambiguity, therefore when part of the input stream has been parsed there's never any reason to go back and reparse it. Natural language, however, is ambiguous. Sometimes a parser has several possible ways to proceed and it chooses the wrong one. When it discovers its mistake, it has to <i>backtrack</i><span style="font-style:normal"> and try another possibility.</span></p>
+								<p class="MsoNormal">A (contrived) MUD example: WITH THE DIAMOND RING THE BELL. Here, DIAMOND can be both an adjective and a noun, and RING can be both a noun and a verb. The parser successfully assigns WITH/preposition THE/article DIAMOND/adjective RING/noun then comes across THE while expecting a verb or an adverb. It can't be solved by having the parser try its rules in a different order, because then WITH THE DIAMOND RING RING THE BELL would fail. There's no way out of it: the parser has to backtrack.</p>
+								<p class="MsoNormal">The parsing strategy I recommended in my previous article was the top-down, implicit approach. This is implemented most naturally as a left-to-right recursive descent, ie. you take each possible | (&quot;or&quot;) choice in order left-to-right and try the next one if the current one fails. Don't let the &quot;recursive&quot; bit put you off &#150; it&#146;s mainly iterative because the grammar you'll use will almost certainly be reducible in most places to tail recursion (which is iteration).</p>
+								<p class="MsoNormal">The tricky bit about this is actually keeping track of where to when you have to backtrack. There are two things you need to know: which token you should consider to be the one currently under consideration; which choice point you are at.</p>
+								<p class="MsoNormal">The token part is easy. You can think of the result of tokenisation being an array of tokens (even if it's actually a stream of them), in the order they appeared in the input line. Advancing by a token is like incrementing a counter, and retreating is like decrementing it. You can store and recover your current position easily, too.</p>
+								<p class="MsoNormal">The backtrack point is hard. I'd better give an example to show you what I'm babbling on about...</p>
+								<h3><span lang="EN-GB">An Example</span></h3>
+								<p class="MsoNormal">Let's take the sentence I constructed earlier and number the tokens:</p>
+								<table width="100%" border="0" cellspacing="3" cellpadding="3">
+									<tr>
+										<td align="left" valign="top"><b>Word</b><span style="font-weight:normal"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">WITH</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">THE</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">DIAMOND</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">RING</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">THE</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">BELL</span></td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><b>Number</b><span style="font-weight:normal"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">1<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td>
+										<td align="left" valign="top">2</td>
+										<td align="left" valign="top">3</td>
+										<td align="left" valign="top">4</td>
+										<td align="left" valign="top">5</td>
+										<td align="left" valign="top">6</td>
+									</tr>
+									<tr>
+										<td align="left" valign="top"><b>PoS</b><span style="font-weight:normal"><span style="mso-tab-count:2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">prep</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">article</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">adjective<br>
+											</span>noun<span style="mso-tab-count:2">&nbsp;</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">noun<br>
+												verb</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">article</span></td>
+										<td align="left" valign="top"><span style="font-weight:normal">noun</span></td>
+									</tr>
+								</table>
+								<p class="MsoNormal">I've marked this with the possible parts of speech (PoS) that the words could take on. Like most nouns, RING could probably also be an adjective (THE RING SHOP) as could BELL (which could additionally be an unlikely verb). However, for the purposes of this example we'll stick with the above simple alternatives.</p>
+								<p class="MsoNormal">To access the token array we'll use a function that returns either false (its parameter does not match the token we're looking at) or true (it does). I've been calling this function current(token), so I'll stick with that. I ought also to use some other functions to manage the index into the token array, but I'm only going to put in the one that advances to the next token; the rest are, for the moment, omitted for brevity.</p>
+								<p class="MsoNormal">First, I'll show you what happens when things are done the same way as in a computer language parser, ie. not how we want to do it. Suppose that for each rule of the grammar (of which there were only 5 in the one I gave a couple of articles ago) we have a separate case of a switch statement in a function called parse(). You could code the rules as individual functions if you liked, as I demonstrated in my previous article, but I'm choosing to do it this way for a reason that will become apparent later. For simple ease of explanation, I'll split the &lt;command&gt; rule in two, one for each side of the | symbol. A skeletal pseudocode for the function that has the &lt;command2&gt; case expanded in full might look as follows:</p>
+								<pre>function parse(rule_type r)
+begin
+   switch r into
+   begin
+   case r_input:
+      ...
+   case r_sentence:
+      ...
+   case r_command:
+      if parse(r_command1) then
+         return true
+      else if parse(r_command2) then
+         return true
+      else
+         return false
+      case r_command1:
+         ...
+      case r_command2:
+         while current(adverb) do advance()
+         if current(preposition) then
+         begin
+            advance()
+            if parse(r_noun_phrase) then
+            begin
+               while current(adverb) do advance()
+               if current(verb) then
+               begin
+                  advance()
+                  while current(adverb) do advance()
+                  if parse(r_noun_phrase) then
+                  begin
+                     while current(adverb) do advance()
+                     return true
+                  end else
+                     return false
+               end else
+                  return false
+            end else
+               return false
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end else
+            return false
+   case r_noun_phrase:
+      ...
+   case r_noun_group:
+      ...
+   end
+end </pre>
+								<p>Yes, sorry that's a little drawn out; I do realise there dotare much more compact ways to code it but I'm trying to be clear here, not clever.This is a one-symbol lookahead approach that works fine when there is no ambiguity. From where you are and how you got there, you always know where to go. Our WITH THE DIAMOND RING THE BELL example completely flummoxes it, though. Here is a trace of how the parse fails (ignoring the tedious adverb checks that in this example never find an adverb anyway). I've marked changes to the current token under consideration when they occur (which is following a successful call to current()):</p>
+								<pre>
+                                            current:<br>    
+                                            WITH<br>
++ parse(r_input)<br>
+| + parse(r_sentence)<br>
+| | + parse(r_command)<br>
+| | | + parse(r_command1)<br>
+| | | | + current(verb)<br>
+| | | | - current(verb) =false<br>
+| | | - parse(r_command1) =false<br>
+| | | + parse(r_command2)<br>
+| | | | + current(preposition)<br>
+| | | | - current(preposition) =true        THE<br>
+| | | | + parse(noun_phrase)<br>
+| | | | | + parse(r_noun_group)<br>
+| | | | | | + current(article)<br>
+| | | | | | - current(article) =true        DIAMOND<br>
+| | | | | | + current(integer)<br>
+| | | | | | - current(integer) =false<br>
+| | | | | | + current(adjective)<br>
+| | | | | | - current(adjective) =true      RING<br>
+| | | | | | + current(adjective)<br>
+| | | | | | - current(adjective) =false<br>
+| | | | | | + current(noun)<br>
+| | | | | | - current(noun) =true           THE<br>
+| | | | | - parse(r_noun_group) =true<br>
+| | | | | + current(preposition)<br>
+| | | | | - current(preposition) =false<br>
+| | | | - parse(r_noun_phrase) =true<br>
+| | | | + current(verb)<br>
+| | | | - current(verb) =false
+</pre>
+								<p class="MsoNormal">Crunch!</p>
+								<p class="MsoNormal">At this point, the parser has found a preposition followed by a &lt;noun phrase&gt; and is now looking for a verb. It doesn't find one. What it <i>ought</i><span style="font-style:normal"> to do is back up through all its previous decisions and try each one again in turn. What it </span><i>actually</i><span style="font-style:normal"> does is:</span></p>
+
+<pre>
+| | | - parse(r_command2) =false    WITH<br>
+| | - parse(r_command) =false<br>
+| - parse(r_sentence) =false<br>
+- parse_input =false
+</pre>
+								<p class="MsoNormal">In other words, it fails to parse an input line. This isn't because it doesn't know where to look in the token stream; rather, it's because it doesn't have access to the right choice point where it can try again. What you really want is for parse(r_command) to be able to call parse(r_noun_phrase) such that it produces a different result from the one it did the first time. Unfortunately, it won't.</p>
+								<p class="MsoNormal">OK, next time I'll show you what parse_noun_group() <i>should</i><span style="font-style:normal"> look like.</span></p>
+							</div>
+							<div align="left">
+								<div align="left">
+									<div align="left">
+										<div align="left">
+											<div align="left">
+												<table width="100%">
+													<tr>
+														<td align="center" valign="middle">
+															<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle">
+															<p><!--#include file="dawnof-last10.php"-->
+															</p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img src="artwork/jumpto.gif" alt="jump" height="20" width="98" align="absmiddle" border="0"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img src="artwork/postnew.gif" alt="new" height="20" width="98" align="absmiddle" border="0"></a></b></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

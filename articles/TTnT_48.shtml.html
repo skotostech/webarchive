@@ -1,0 +1,144 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="../artwork/articles_TTnTlogo.gif" width="215" height="50" align="BOTTOM" alt="masthead" border="0">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><a href="TTnT.shtml.html"><img src="nav/snav_ttnt.gif" width="137" height="371" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#48: Building Blocks: Rooms</b></h2>
+							<p><i><b>by <a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></p>
+							<p><b>November 8, 2001 -</b> Welcome to the first article in a new series that I call <i>Building Blocks</i>. It's intended to be a set of bite-sized discussions about some of the most integral ideas in online games, starting with the most simple. And, the most simple idea that I could come up with, for the first episode in this new series, was <i>the room</i>.</p>
+							<table border=1 bgcolor="#ffffcc">
+								<tr>
+									<td><b>Room</b> <i>n.</i><br>
+										1. <i>Online Games.</i> In a game with nodal geography, a single and discrete location.</td>
+								</tr>
+							</table>
+							<p>Some games offer continuous locations. In an <i>EverQuest</i> or an <i>Asheron's Call</i> you wander a constantly scrolling landscape without edges (until you reach the end of a <i>zone</i>). Such games don't have rooms like the ones I'll be discussing here this week, and thus can be ignored for the nonce.</p>
+							<p>There are other games, however, which feature a nodal geography &#151; which is to say locations split up into singular, discrete locations. <i>Castle Marrach</i> is one of these (as are <i>The Eternal City</i>, and, actually, most any text-dominant games). You have specific locales for &quot;The Practice Room&quot; and &quot;The Grand Passage&quot; and &quot;The Dining Hall East&quot; and many others. You can move around within individual locations, perhaps going from a table to the fireplace in the Dining Hall East, but once you leave one location and enter another, you've clearly entered a different singular place.</p>
+							<p>These singular places, or nodes, or whatever else you prefer to call them, are <i>Rooms</i>. At least, that's the most common nomenclature for them in the world of MUDs, MUSHes, MUXes, and other online text games. However, it's not necessarily an entirely accurate one. A room can be a room, like &quot;The Practice Room&quot;. However it can also be half a room, like &quot;The Dining Hall East&quot;. Or it can be a wide and open area, like &quot;The Eastern Courtyard&quot;. Or it can even be an abstract area that actually covers a wide variety of different places.</p>
+							<p>The core definitions of a room are this: it's singular, it's discrete, and actions and interactions tend to be contained within one.</p>
+							<p><b>Choosing Room Sizes</b></p>
+							<p>When you're starting to lay out rooms, the first thing to do is figure out how big they'll be. This relates pretty closely to the question of <i>maps</i> which I'll get to in two weeks &#151; discussing how rooms interrelate with each other. But, it's also worth discussing a little bit here.</p>
+							<p>I've seen two main approaches to room sizing &#151; utilitarian and mechanical &#151; and as it happens both approaches are used here at Skotos Tech.</p>
+							<p>In the utilitarian building style, <b><i>a room is the size it needs to be</i></b>. This is the approach taken with <i>Castle Marrach</i>. If you wander the Castle you'll note that most of our rooms are approximately the same size; we wanted to keep the scale pretty consistent throughout, so that you could look at the map window and always have some understanding of how you stood in relation to the room you were in. But, we didn't constrain each room to fit into the exact same mold.</p>
+							<p>Some rooms like &quot;The Practice Room&quot; are quite wide while others like &quot;The Gate Machinery Room&quot; are very narrow, but this was OK, because we created rooms based on their functional unity.</p>
+							<p>In the mechanical building style, <b><i>a room is a set size that fits into an overall grid</i></b>. This is the approach taken with <i>The Eternal City</i>. Wandering around that game's landscape you can use the command &quot;sizeup here&quot; to learn whether a particular room is 10, 20, 40, or 80 feet square.</p>
+							<p>The benefit of a mechanical building style is that you can insure that your overall map fits together well, a bigger issue the larger and more complex your gameworld gets. The benefits of a utilitarian building style are that you don't waste space on boring rooms &#151; another topic we'll return to in <i>maps</i> &#151; and that you don't have to fudge room sizes to make them fit into your grid.</p>
+							<p><b>Dividing Room Views</b></p>
+							<p>Once you've figured out what size to make you room, you have to determine how to convey its contents to your players. Graphical games like the aforementioned <i>EverQuest</i> have a slight benefit in this because they take advantage of a powerful coprocessor: the human brain. They can show you a mess of stuff &#151; everything that's in a particular location &#151; and not worry about showing you what's really important. Because hopefully your brain will do that for them.</p>
+							<p>We makers of prose games, on the other hand, need to offer crutches. If we spit out every single thing inside a room whenever a player entered, they'd been totally lost, because the visual cortex can't separate out the importance of words, in the same way they can the concepts that those words symbolize.</p>
+							<p>Thus, textual games tend to allow for several different types of views, divided up by how much attention is required to gain the information of a specific view. At the least most text games have two views: a &quot;look&quot; which everyone always sees, and an &quot;examine&quot; which they see if they spend extra time. The latter view isn't always available, as soon rooms aren't interesting enough to earn a different examine room.</p>
+							<p>The Skotos games actually offer a few more views, which isn't too unusual for prose games:</p>
+							<ul>
+								<li><b>Brief.</b> A noun phrase that describes a room. This is what is seen when the room's name is output by some other command (like &quot;exits&quot;). For example: machinery room.
+								<li><b>Glance.</b> A short sentence that describes what's most important in a room. It's what you see when you come into a room, and is often the room's name. For example: The gate machinery room.
+								<li><b>Look.</b> A long description that hits all of the high points in a room, invoked by typing the &quot;look&quot; command.
+								<li><b>Examine.</b> Often identical to the look description, but sometimes offering more information on small, insignificant, or hidden parts of a room. In Skotos games to date &quot;examining&quot; is visible and takes time.
+							</ul>
+							<p>A fairly common view not part of the Skotos engine currently is &quot;search&quot;, which presumably would take more time than examine and also be more thorough.</p>
+							<p><b>Describing Room Overviews</b></p>
+							<p>So how do you describe a room exactly, now that you've figured out its size and understand the different ways in which it can be viewed? The follow suggestions offer one method, building up from the &quot;look&quot; description to the &quot;examine&quot;, then returning to &quot;brief&quot; and &quot;glance&quot;.</p>
+							<p><b><i>1. Choose the notable elements</i></b></p>
+							<p>Start off by visualizing the room in your head. Pick out the most distinct and notable elements.</p>
+							<p>For example, considering my home office I think the most notable elements would be: the large window and patio door, three different pine wood bookcases, the desk, the chair, the filing cabinet, the printer stand, the cat tree, and the rocking chair.</p>
+							<p>(Some of these objects, like the chair and the rocking chair are actually easy to move and thus I'd classify them as <i>portables</i> and leave them out of the description.<font face="Verdana,Helvetica,Arial" size="2"><sup>(<a href="TTnT_48.shtml.html#footnote">1</a>)</sup></font> I'll talk about portables in a month or so. Everything else, though, is pretty permanent and so they'd go into my room description &#151; and later be described in more depth as <i>details</i>, which I'll talk about next week.)</p>
+							<p>There are some abstract notable elements too, like the size of a room (about ten by ten) how clean it is (somewhat cluttered) and that sort of thing.</p>
+							<p><a href="Thinking.shtml.html"><img src="artwork/tvcallout.gif" width="120" height="88" border="0" alt="TV" align="left" hspace="10" vspace="10"></a><b><i>2. Group any notable elements that you can.</i></b></p>
+							<p>Once you've figured out the notable elements, you should figure out how to whittle them down to a more manageable size, most commonly by grouping multiple elements together. For example, the desk, the chair, the filing cabinet, and the printer stand could be called &quot;a work area&quot;. Rather than listing three different pine wood bookcases, a group of &quot;some bookcases&quot; could be listed. The remaining notable elements &#151; the large window, the patio door, the cat tree, and the rocking chair &#151; can't really be grouped together, but we've done a good job already by reducing the total number of individual items and groups to six.</p>
+							<p>On average, the human brain can recognize five to seven items without having to count them, so that's a good range to stay within when outlining your notable elements in a room.</p>
+							<p><b><i>3. Write a &quot;look&quot; Description</i></b></p>
+							<p>You now have what you need to craft a &quot;look&quot; description: a set of notable elements, grouped together, with the object of totalling five to seven items or groups. So, you can start writing.</p>
+							<p>Here's an example of a &quot;look&quot; description for my office:</p>
+							<blockquote>
+								<code>This cluttered office is approximately ten foot by ten foot. On the far wall a patio door and a large window open up onto opulent greenery beyond. The door is partially blocked by a rocking chair, and the window is somewhat obscured by a cat tree. Some book cases line the other walls, just barely leaving enough space for a work area in the left corner of the room. </code></blockquote>
+							<p><b><i>4. Determine any Other Major Elements</i></b></p>
+							<p>Though you've outlined the most notable elements, you haven't included nearly everything important. Your initial goal was just to mention the really big, grossly important things.</p>
+							<p>There are actually other elements in my office, like the beige walls, the hanging light fixture, the green curtains, and the hardwood floor. They weren't notable elements &#151; the type of thing you'd immediately fixate on when you walk into the room, but they're important enough to reference when you get an overview of the room &#151; at least if a player takes a little time in his examination.</p>
+							<p>When listing major elements, make sure you leave out minor elements &#151; elements which are most frequently sub-elements of things you're already describing. For example, the rocking chair contains cushions, the light fixture contains light bulbs, and the hardwood floor has scratches. These minor elements are almost never described in any overall view of the room itself &#151; rather they're described in <i>details</i>, which we'll get to next week.</p>
+							<p><b><i>5. Write an &quot;examine&quot; Description</i></b></p>
+							<p>You should now have in hand all of your notable elements and all of your major elements. You'll want to include all of these in a more expansive &quot;examine&quot; description. You may also want to expand out the groupings that you made for the &quot;look&quot; description &#151; or perhaps not.</p>
+							<p>It's sometimes convenient to start from your &quot;look&quot; description and rewrite it and expand it until you've included everything you want. Here's another example for my office, this time of an &quot;examine&quot; description:</p>
+							<blockquote>
+								<code>This cluttered office is approximately ten foot by ten foot. The beige walls are slightly lighter in color than the polished hardwood floor. A bare light fixture hangs from the ceiling in the middle of the room, supported only by wires. </code></blockquote>
+							<blockquote>
+								<code>On the far wall a patio door and a large window open up onto opulent greenery beyond, all framed by green curtains. The door is partially blocked by a rocking chair, and the window is somewhat obscured by a cat tree. Three pine book cases line the other walls. </code>
+								<p><code>There is barely enough room in the corner to the left of the door for a work area, consisting of a walnut desk, a kitchen chair, a pressed wood printer stand, and a metal filing cabinet. </code></p>
+							</blockquote>
+							<p><b><i>6. Write a &quot;brief&quot; and &quot;glance&quot; Description</i></b></p>
+							<p>To finish up your overall description of a room, you just need to write &quot;brief&quot; and &quot;glance&quot; descriptions. The brief is essentially a two- or three-word room name. The glance is usually no more than a single sentence, and is what a player sees when he first enters the room.</p>
+							<p>Here's a brief for my office:</p>
+							<blockquote>
+								<code>cluttered office</code></blockquote>
+							<p>Here's a glance for my office:</p>
+							<blockquote>
+								<code>Shannon Appelcline's cluttered office and work area.</code></blockquote>
+							<p><b>That's It!?</b></p>
+							<p>By now you should have a great basic description for a room. But, you'll probably have noted that I've ignored more specific descriptions of individual elements. How can you say just what the desk looks likes how? How do you reveal not only that the hardwood floor has a big scratch, but exactly what that big scratch looks like?</p>
+							<p>The answer is: by using <i>details</i>.</p>
+							<p>I'm expecting some of these <i>Building Block</i> articles to run considerably shorter than my normal pieces, so I'm going to try and keep a weekly pace for a little bit, with the hope of finishing up my <i>Building Blocks</i> before the end of the year.</p>
+							<p>Which means I'll be talking about <i>details</i> in 7 days; see you then.</p>
+							<hr>
+							<ol>
+								<li><font face="Times New Roman,Georgia,Times" size="2"><a name="footnote"></a>11/21/01. As you'll see when you read on, I couldn't help myself and added the kitchen chair and the rocking chair to the room description anyway. This was because I considered them important portions of the room that I didn't want to be removed. Thus, they ended up being classified as <i>details</i> anyway. When you're done go read the article on <i><a href="TTnT_50.shtml.html">details</a></i> for more explanation on this.<br>
+									</font>
+							</ol>
+							<hr>
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Trials, Triumphs &amp; Trivialities</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="TTnT-last10.php"--></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=36"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=36"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

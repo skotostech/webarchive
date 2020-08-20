@@ -1,0 +1,119 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+		<csscriptdict import>
+			<script src="../java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script><!--
+CSAct[/*CMP*/ 'B71DC4A43'] = new Array(CSGoBack1);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="artwork/dawntime_lg.gif" width="282" height="59" align="BOTTOM" alt="masthead" border="0" hspace="8" vspace="8">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#6: The Function Hierarchy</b></h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>November 14, 2001</i></b></p>
+							<p>Last time, I described the advantage of using commands as objects (in an object-oriented programming sense) in a MUD. Actually, this conclusion isn&#146;t strictly true because <i>functions</i> are the true objects &#151; commands are just examples of functions (I&#146;ll explain how come when I get around to talking about parsers).</p>
+							<p>A <i>property</i> is a function of an object that returns the value of a single data item associated with that object. A very simple example might be a property that states player characters have a strength of 50. Rather than tie the code for this property to the PLAYER object (so <code>player.strength(</code>) would return 50), I&#146;m advocating that we tie it to the {&nbsp;STRENGTH&nbsp;PLAYER&nbsp;} object (so <code>{&nbsp;strength&nbsp;player&nbsp;}.code()</code> returns 50). {&nbsp;STRENGTH&nbsp;PLAYER&nbsp;} isn&#146;t a command, it&#146;s a property, and properties themselves are examples of functions.</p>
+							<p>This simple example shows another occasion for which we can utilize inheritance in a broader sense than is usually possible in MUDs. Suppose that a vanilla newbie player character is created with a whole set of attributes &#151; STRENGTH, DEXTERITY, STAMINA etc.. If the default value for all of them is the same (say 50) then normally you&#146;d have to define each one separately &#151; <code>player.strength()</code>=50, <code>player.dexterity()</code>=50, <code>player.stamina()</code>=50 etc.. With the flexible system I&#146;ve been describing, however, you just make STRENGTH, DEXTERITY, STAMINA and so on be instances of a class ATTRIBUTE. You can then define <code>{&nbsp;attribute&nbsp;player&nbsp;}.code()</code>=50 and that&#146;s all you need.</p>
+							<p>Since we&#146;re always going to be using the .code() method for our objects, we can drop it from the syntax &#151; we know it&#146;s always going to be there. We&#146;ll replace it with a colon, to remind us. Thus, we could define <code>{&nbsp;attribute&nbsp;player&nbsp;}: 50</code> to initialize all ATTRIBUTEs for players to be 50. If the default value for goblins were 30, we&#146;d simply add the definition <code>{&nbsp;attribute&nbsp;goblin&nbsp;}: 30</code>.</p>
+							<p><b>Reservations</b></p>
+							<p>If we step back and look what we&#146;ve done here, we&#146;ve effectively divorced the inheritance hierarchy from the code. Although things like SWORD and STRENGTH are objects and classes in the hierarchy, they have no code attached &#151; it&#146;s all been moved over to the OOP objects, namely functions. Although that makes some kind of weird sense (if functions don&#146;t have code, what in the world <i>does</i>?!) it nevertheless leaves the programmer with an uneasy sense of somehow being duped. We have classes, we have objects, we have inheritance, but it&#146;s nothing to do with code. Code is attached to OOP objects that are functions, but they <i>aren&#146;t</i> in a hierarchy and they <i>don&#146;t</i> inherit from each other.</p>
+							<p>Well, actually they are in a hierarchy, only it&#146;s an implicit one defined by the elements of the explicit hierarchy that make up the function&#146;s parameters. They have inheritance, too, although in practice it turns out to be unnecessary. I&#146;ll demonstrate shortly.</p>
+							<p><b>Atoms</b></p>
+							<p>First, though, to get away from tangling ourselves up with two separate notions of classes and objects, let&#146;s call things like SWORD, GOBLIN and STRENGTH <i>atoms</i>. We thus have an explicit hierarchy of atoms, where child atoms have an &quot;is a kind of&quot; relationship with their parents. This is the <i>atom hierarchy</i>. Atoms have no executable code associated with them.</p>
+							<p>Functions are described by ordered lists of atoms, and they do have are pieces of executable code associated with them (e.g. evaluable expressions such as 50 and 6+6). I&#146;m going to show you how, using the atom hierarchy, functions can form the OOP hierarchy we&#146;ll be using.</p>
+							<p>Consider the following set of function/code pairs:</p>
+							<p><code>{ attribute creature }: 50</code></p>
+							<p><code>{ attribute player }: 60</code></p>
+							<p><code>{ dexterity creature}: 40</code></p>
+							<p><code>{ intelligence player }: 100</code></p>
+							<p>The atom hierarchy that goes with this is:</p>
+						<div align="center">
+							<p><img src="artwork/dawnof6a.gif" width="486" height="118" border="0" alt="diagram" hspace="4" vspace="4"></p>
+						</div>
+						<div align="left">
+							<p>I&#146;ve kept this as a simple tree, to make it easier to follow what&#146;s going on &#151; there&#146;s no reason it couldn&#146;t be a full hierarchy. ?? is the universal root.</p>
+							<p>Now, let&#146;s try some function calls and figure out what they evaluate to. I&#146;ll write these as <code>[&nbsp;atom1&nbsp;atom2&nbsp;]()</code> to show that they&#146;re invocations and not definitions.</p>
+							<p><code>[ strength player ]()</code> evaluates to 60</p>
+							<p><code>[ dexterity player ]()</code> evaluates to 40 (NB: not 60. This is significant!)</p>
+							<p><code>[ intelligence player ]()</code> evaluates to 100</p>
+							<p><code>[ strength mobile ]()</code> evaluates to 50</p>
+							<p><code>[ dexterity mobile ]()</code> evaluates to 40</p>
+							<p><code>[ intelligence mobile ]()</code> evaluates to 50</p>
+							<p><code>[ strength intelligence]()</code> is undefined</p>
+							<p>This exercise shows that the functions <i>do</i> have a partial ordering:</p>
+						</div>
+						<div align="center">
+							<p><img src="artwork/dawnof6b.gif" width="477" height="172" border="0" alt="diagram" hspace="4" vspace="4"></p>
+						</div>
+						<div align="left">
+							<p>In theory, { dexterity player } should also have { attribute player } as a parent. I&#146;ll explain why it doesn&#146;t next time...</p>
+							<div align="left">
+								<div align="left">
+									<div align="left">
+										<table width="100%">
+											<tr>
+												<td align="center" valign="middle">
+													<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+												</td>
+											</tr>
+											<tr>
+												<td align="center" valign="middle">
+													<p><!--#include file="dawnof-last10.php"--></p>
+												</td>
+											</tr>
+											<tr>
+												<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

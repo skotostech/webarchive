@@ -1,0 +1,127 @@
+<font size><!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+						<td valign="top"><a href="TTnT.shtml.html"><img src="artwork/snav_ttnt2.gif" width="137" height="368" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b><font color="#006633">Trials, Triumphs &amp; Trivialities #130:</font></b>
+							<h2>Live Updates</h2>
+							<p><i><b>by <a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></p>
+							<p>
+<b>August 14, 2003</b> - More than once in this column, I've talked about administration (see, for example, <a href="TTnT_68.shtml.html"><i>#68</i></a> or <a href="TTnT_96.shtml.html"><i>#96</i></a>). Administration is a big deal &#151; perhaps the biggest deal in the design of any game. Recent books on the subject, such as Jessica Mulligan's <a href="http://www.amazon.com/exec/obidos/tg/detail/-/1592730000/qid=1060829404/sr=8-1/ref=sr_8_1/104-9256583-0758355?v=glance&s=books&n=507846" target="_blank"><i>Developing Online Games</i></a> claim that the post-release work can be up to 90% of the total workload of an online game.
+
+							<p>What recent books perhaps don't lay out is the sheer terror that can go along with post-release fixes &#151; most specifically the terror that attends the occasional necessity to make code changes to live servers that players are currently using.
+							<h3>Why Live Updates? Some Examples.</h3>
+							<p>
+At first the idea of live updates might seem insane. Unfortunately, they're often required in an always-on environment. Last week I had to make live updates to two online communities (one was a game, while the other was a forum), and I think they exemplified well the need for this sort of thing.
+
+<p>
+My game change was the more nerve-wracking one. When <i>Galactic Emperor: Hegemony</i> was originally coded, its lock-file methodology was set up in such a way as to accidently allow a rare race condition. Or, in non-Greek: it was possible for two people to try and change the state of the game at the same time if they happened to hit the game within milliseconds (nanoseconds?) of each other. Caution led me to avoid changing the lock-file methodology for a long time, but then this week someone's play style exacerbated the bug. I don't know why &#151; perhaps they had a style of using two windows at once or perhaps there was just a weird lag in their dial-up line. But, whatever the case, there was a game of <i>Hegemony</i> that got wiped out three times in a day on  Monday. Thus I needed to make a very major change, and I had almost no way of testing out the change beforehand, because the error typically only came up every couple of million game hits.
+
+<p>
+My forum change was less demanding, but also more visible. I spent part of an afternoon mucking around with the HTML templates at <a href="http://forum.rpg.net" target="_blank">the RPGnet forums</a> to make them better match the rest of the site. Unfortunately the VBulletin that we use there doesn't really have a very good HTML previewing system, so I made changes and on occasion the forums on RPGnet looked really ugly for a minute or two. No loss of functionality, but not my preference either.
+
+							<p>
+Finally, to rip an example from the headlines, consider the newest Microsoft worm that's running around due to bad security programming in Windows. Would you, as a potentially affected user, rather wait a month or two while the evil programmers at Microsoft stress-test their newest patch, or would you rather have a patch <i>now</i> as long as it's been tested at least a bit?
+
+							<h3>Why Live Update? The Reasoning.</h3>
+							<p>
+As an administrator, I believe you're going to have to make a constant cost-benefit analysis as to how raw your code can be when you release it to your live servers.
+
+<p>
+On the cost side you have to calculate not just how much time or resources it would take you to more extensively test a system, but also the potential harm it would do to a user if there was a problem with the raw code.
+
+<p>
+On the benefit side you have to calculate how much your players/community-members will benefit from a patch that's released more quickly.
+
+<p>
+When you put all those together, you should have a fairly compelling answer one direction or another.
+
+							<p>
+Looking at my recent <i>Hegemony</i> escapades, I'd lay things out as follows:
+
+							<ul>
+<li><b>Cost for Additional Testing:</b> High. I would have had to build an entire QA system designed to stress test the gaming system over millions of iterations.
+<li><b>Potential Cost to User for Failure:</b> High. If my analysis of the solution was wrong, the games could have become even more unreliable.
+<li><b>Potential Benefit to User for Success:</b> High. Game 620 could be played again, and there wouldn't be any more lost data.
+</ul>
+							<p>
+Because I was very confident in my new algorithms, having researching them quite thoroughly, I went ahead and pushed the system out. And, a few days later, things look good. Whew.
+
+							<p>
+Running the same analysis of my RPGnet changes:
+
+							<ul>
+<li><b>Cost for Additional Testing:</b> Medium. I would have had to build a new VBulletin instance, solely for testing.
+<li><b>Potential Cost to User for Failure:</b> Negligible. Some ugly pages or perhaps a minute or two of lost access were the worst that could happen.
+<li><b>Potential Benefit to User for Success:</b> Low. Nicer looking pages, and an overall better branded site.
+</ul>
+							<p>
+If I'd had more time at RPGnet I probably should have looked into a testing-only VBulletin instance, but given that the potential cost to users was so low, there probably wasn't much harm in going ahead and pushing the changes out.
+
+							<p>
+As an administrator you should always test your code as much as you possibly can before releasing it into the wild. But, eventually, the costs for additional testing will grow high enough that you have to bite the bullet and release. This could be after months of strenuous training or moments after you've written the code and pushed it through a couple of paces. Just be aware that there are options here, and saying that you should never update live code without X months of training is as dumb as saying you always should.
+
+							<h3>Alleviating Live Updates.</h3>
+							<p>
+So, you're getting ready to introduce some partially raw code to your users. What can you do to help alleviate that, so it's not either a gameplay or public relation disaster? Here's a few ideas:
+
+							<p>
+<b><i>Announce in Advance:</i></b> Let people know in advance what you're going to do and why. Not being surprised in and of itself will probably please your users. They'll also be a lot quicker to understand if there is some problem.
+
+<p>
+<b><i>Enforce a Downtime:</i></b> Sometimes, if your live updates will be particularly disruptive as you put them in place, you may want to enforce a (pre-announced) downtime. Don't let any of your users into your service for a set amount of time, so that you can make sure that your new functions are all working correctly on the live environment before your players see the chaos that you've wrought.
+
+<p>
+<b><i>Backup Your Code:</i></b> Make sure that you have a copy of your old code so that you can rollback at a moment's notice, if need be. For the 35 or so distinct changes that I've made to <i>Hegemony</i> since its release, I've only rolled code back once or twice. But, let me assure you, it was very nice to be able to do that rollback and then solve the revealed problems at my leisure, rather than while players were breaking down the doors.
+
+							<p>
+<b><i>Backup Your Data:</i></b> You should already be backing up your user/player data. However, if you're putting in a really big code change, you might want to increase the frequency of that backup to minimize any damage down by problems. For example, as part of my major <i>Hegemony</i> code change this week, I upped data backup from daily to hourly. I'm going to need to back off of that soon, as it's just eating up storage space, but it's been really nice to have that cushion, and feel confident that any damage would be minimal.
+
+							<h3>Conclusion</h3>
+							<p>
+You're never going to be able to test code as much as you'd like, and thus at some point or another you're going to need to put it on a live server. Costly testing or huge benefit might require you to do that push much earlier than you're comfortable with. That's OK, as long as you've carefully measured what the cost and benefit are, and have also considered various ways to alleviate problems.
+
+<p>
+Nerve-wracking? Yeah, but sometimes necessary.
+
+<p>
+One final announcement before I close up this week's column: because of increased busyness at the business end of Skotos my sanity has kindly requested that I relax a bit, and so I've decided to push this column back to biweekly, as I have on occasion before during its run. So, watch for me back here in two weeks, rather than the normal one. 
+
+<p>
+On the bright side, I hope that this change will let me feel a bit more confident about covering some of the more difficult topics I've been avoiding lately due to research and analysis that are required. I hope to change that in 2 weeks, with my delayed consideration of the history of RPGs.
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Trials, Triumphs &amp; Trivialities</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="TTnT-last10.php"-->
+											</p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=36"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=36"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+			</table>
+			<p>
+		</center>
+	</body>
+
+</html></font>

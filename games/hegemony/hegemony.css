@@ -1,0 +1,27 @@
+A:active { color: #FF0000; text-decoration: none }
+A:link { color: #FF0000; text-decoration: none }
+A:visited { color: #8b0000; text-decoration: none }
+A:hover { color: #FFFFFF; text-decoration: underline }
+	
+H1 { color: #00cc33; font-size: bold 24px; font-family: trebuchet ms, verdana, arial, helvetica, sans-serif; background-image: url(artwork/nebulaback.jpg) }
+H2 { color: #00cc33; font-size: bold 18px; font-family: trebuchet ms, verdana, arial, helvetica, sans-serif; background-image: url(artwork/nebulaback.jpg) }
+H3 { color: #00cc33; font-size: bold 14px; font-family: trebuchet ms, verdana, arial, helvetica, sans-serif; background-image: url(artwork/nebulaback.jpg) }
+H4 { color: #00cc33; font-size: bold 12px; font-family: trebuchet ms, verdana, arial, helvetica, sans-serif; background-image: url(artwork/nebulaback.jpg) }
+
+P {font-size: 12px; font-family: trebuchet ms, verdana, helvetica, arial, sans-serif; color: #00CC33}
+T {font-size: 12px; font-family: trebuchet ms, verdana, helvetica, arial, sans-serif; color: #00CC33}
+TD {font-size: 12px; font-family: trebuchet ms, verdana, helvetica, arial, sans-serif; color: #00CC33}
+UL { color: #00cc33; font-size: 12px/150% trebuchet ms, verdana, helvetica, arial, sans-serif; list-style-image: url(artwork/li_hex.gif) }
+OL { font-size: 12px/150% trebuchet ms, verdana, helvetica, arial, sans-serif; color: #00cc33  }
+LI { font-size: 12px/150% trebuchet ms, verdana, helvetica, arial, sans-serif; color: #00cc33 }
+DD {font-size: 12px; font-family: trebuchet ms, verdana, helvetica, arial, sans-serif; color: #00CC33}
+blockquote {font-size: 12px; font-family: verdana, helvetica, arial, sans-serif; color: #00CC33}
+PRE {font-size: 12px; font-family: trebuchet ms, Monaco, Courier New, monospace; color: #00CC33}
+CODE { font-size: 12px; font-family: Monaco, Courier New, monospace; color: #adff2f }
+
+B { font-weight: bold }
+I { font-style: italic }
+U { text-decoration: underline }
+.nav { font-size: 10px; font-weight: bold; text-align: right }
+.smaller { font-size: 10px }
+.larger { font-size: 14px }

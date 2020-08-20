@@ -1,0 +1,128 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Notes from the Dawn of Time #14:</b></font>
+							<h2>Algorithms for Parsing</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>March 13, 2002</i></b></p>
+							<p>In my previous article, I derived a grammar for a subset of English that would be suitable for use in a MUD. This time, I&#146;m going to discuss how a parser for it might be implemented. I&#146;m afraid you won&#146;t be seeing any large pieces of C or C++ or whatever your language of choice happens to be: my aim is to give you enough information that you can have a crack at writing a parser yourself; it isn&#146;t to info-dump a working parser on you and then expand on the comments in the code while deluding myself that anyone is following what&#146;s going on. There&#146;ll be pseudocode, but nothing bordering the executable.</p>
+							<h3>Top-Down versus Bottom-Up</h3>
+							<p>There are essentially two approaches to parsing: top-down and bottom-up. A top-down approach uses the philosophy of &quot;know what you want and see what you&#146;ve got&quot; whereas a bottom-up approach prefers &quot;know what you&#146;ve got and see what you want&quot;.</p>
+							<p>I&#146;ll illustrate this with a simple example. Apply the following rules to the input y x z:</p>
+							<pre><code>&lt;a&gt;::= &lt;b&gt; [ x &lt;b&gt; ]</code></pre>
+							<pre><code>&lt;b&gt;::= y | z</code></pre>
+							<p>A top-down approach says: &quot;I want an &lt;a&gt;, which starts with a &lt;b&gt;. A &lt;b&gt; starts with a y or a z. Is the first character of the sentence a y or a z? If so I have a &lt;b&gt;, so I can look at the next character. If there isn&#146;t one, I&#146;ve found an &lt;a&gt;. Otherwise, the next character had better be an x and be followed by a &lt;b&gt;.&quot;.</p>
+							<p>A bottom-up approach says: &quot;I have a y. Are there any rules that start with a y? Yes, the one for &lt;b&gt;. OK, that&#146;s done the &lt;b&gt;, what&#146;s next? An x. There aren&#146;t any rules that start with y then x. Are there any rules that start with &lt;b&gt; then x? Yes, the first one, but it wants another &lt;b&gt; after the x. I&#146;ll bear that in mind while I look at the next character. Aha, it&#146;s a z, which is a &lt;b&gt;, therefore overall I have an &lt;a&gt;.&quot;.</p>
+<p>In general, bottom-up is faster but gives poorer error messages; people would rather be told by the parser, &quot;This is what I want but I don&#146;t know what I&#146;ve got&quot; rather than, &quot;This is what I&#146;ve got but I don&#146;t know what I want&quot;. Compilers of programming languages tend to mix the two approaches, preferring bottom-up for logical and arithmetic expressions but top-down for everything else.</p>
+<p>For a MUD command parser, you don&#146;t need to worry about mixing top-down and bottom-up as the grammar is small and the parser doesn&#146;t really get to do a lot of work most of the time. I recommend using a top-down parser because it&#146;s easier to give a decent error message when people type in something non-grammatical; it&#146;s also easier to tinker with when you want to write a &quot;special case&quot; to handle something that the players keep on trying but that doesn&#146;t fit your grammar. If you prefer to write a bottom-up parser, that&#146;s fair enough; I&#146;ll be describing the top-down approach here, though.</p>
+							<p>There are, incidentally, tools which will automatically write you a lexical analyser and a <i>recogniser</i> (ie. a parser that will tell you whether an input line is grammatical or not but won&#146;t build a data structure). The best-known ones are <i>lex</i> and <i>yacc</i>, which come with the Unix C development system. Feel free to use these if you want, although it might be a good idea if you knew the general principles involved first so you can make an informed choice.</p>
+							<h3>Implicit versus Explicit</h3>
+							
+							The next decision you have to make is whether to use an <i>implicit</i> grammar or an <i>explicit</i> one. In the implicit approach, you code each BNF rule as a function in a program (your parser). A recognizer for the tiny grammar I gave earlier would look something like the following (in pseudocode); it assumes a function current(token), which returns true if the token the parser is currently looking at matches its parameter:							<pre>
+function parse_a()
+begin
+    if parse_b() then
+        if current(token_x) then
+            if parse_b() then
+                return true
+            else
+            begin
+                return error("&lt;b&gt; expected after x.")
+            end
+        else
+    return true
+    else
+        return error("&lt;b&gt; expected to begin &lt;a&gt;.")
+end
+
+function parse_b()
+begin
+    if current(token_y) or current(token_z) then
+        return true
+    end else
+        return false
+end
+</pre>
+
+							<p>You can see how these things can easily be computer-generated...</p>
+							<p>For clarity, I&#146;ve omitted the advance-to-next-token management, but that could be either encoded as part of current(token) or placed inline directly after a successful call to current(token). Similarly, code to retreat-to-previous-token has also been left out.</p>
+							<p>The explicit approach builds a data structure to represent the grammar and uses a generic function to traverse that. I won&#146;t go into the details here of how to build the data structure, but hopefully you can get a flavour of what it might look like from the pseudocode for a traversal function:</p>
+							<pre>
+function parse(node)
+begin
+    if null(node) then
+        return false
+    else
+    if terminal(type_of(node)) then
+        if current(token_of(node)) then
+            return true
+        else
+            return false
+    else
+    if disjunct(type_of(node)) then     //for | symbols
+        if parse(head_of(node) then
+            return true
+        else
+            return parse(tail_of(node))
+    else
+        if parse(head_of(node)) then
+            return parse(tail_of(node))
+        else
+            return false
+end
+</pre>
+							<p>
+	Parsers using implicit grammars normally run faster than those using explicit ones, but for the size of parser we&#146;re talking here that&#146;s no big deal. Explicit grammars are easier to alter and require less programming; furthermore, the data structure for the grammar has a nice symmetry with the data structure that the parser will build (a <i>parse tree</i>). However, on the whole the implicit approach is probably the better, because the error messages it allows can be more pinpoint and informative &#151; plus it&#146;s easier to force it to accept something non-grammatical (warning: whatever grammar you use, it&#146;s <i>never</i> perfect!).</p>
+							<p>So far, I&#146;ve discussed only about a third of the algorithm you need to write the parsing module. You know what a grammar looks like and you have a few clues as to how to program a recognizer for a grammar. To come is how to interface the tokenizer to the parser and how to obtain the information from the parse tree that you need to pass on to the binder. I&#146;ll start on those next time.</p>
+							<div align="left">
+								<div align="left">
+								<div align="left">
+									<div align="left">
+										<div align="left">
+												<table width="100%">
+													<tr>
+														<td align="center" valign="middle">
+															<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle">
+															<p><!--#include file="dawnof-last10.php"--></p>
+														</td>
+													</tr>
+													<tr>
+														<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+													</tr>
+												</table>
+											</div>
+									</div>
+								</div>
+							</div>
+							</div>
+						
+						
+						
+						
+						
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

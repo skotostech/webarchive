@@ -1,0 +1,103 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Notes from the Dawn of Time #8:</b></font></h2>
+							<h2><b>Inheritance Coda</b></h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>December 12, 2001</i></b></p>
+							<p>There are a few things about inheritance that I really ought to explain for the benefit of people planning on looking at my suggestions in detail. I won&#146;t go into the theory behind these this time or it would take another 3 articles. Instead, I&#146;ll just give you the solutions I use.</p>
+							<h3>Pattern-Matching Issues</h3>
+							<p>When a function is called, the call is matched against definitions to determine what code is to be executed. What happens if the call has a different number of parameters to the definition?</p>
+							<p>For example, suppose that { open door } is defined (it causes the door to open) and { open } is also defined (it displays an error message saying &quot;You didn&#146;t tell me what it was you wanted to open&quot;). Someone wants to OPEN DOOR WITH KEY. What happens?</p>
+							<p>The general rule is that function calls which match partial definitions will continue until the parameters run out. This means that although [ open door key ]() has a spurious third parameter, it will match { open door } before { open }. A call such as [ open box key ]() would match { open }, because BOX is not a kind of DOOR (I trust!).</p>
+							<p>The opposite does not apply. If only { open door } were defined and the call made was [ open ](), it would <i>not</i> execute the code for { open door }.</p>
+							<h3>Parameter Naming</h3>
+							<p>Let&#146;s say that someone wants to open a particular door, perhaps DOOR12. The call [&nbsp;open&nbsp;door12&nbsp;]() would match { open door }. When the associated code gets to run, however, how does it know you meant DOOR12 and not the general concept of DOOR? If it opens DOOR then <i>all</i> doors inheriting their default state from DOOR will be opened!</p>
+							<p>What you do is name the parameters. The long way is like C does it, by giving parameters identifiers: { open door &#145;<i>d</i>&#146; }. The short way is to give all parameters implicit identifiers, as if they were defined as e.g. { open &#145;<i>zeroth</i>&#146; door &#145;<i>first</i>&#146; }. To refer to the door that instantiates the first parameter, you&#146;d use <i>first</i>. In <i>MUD2</i>, I implemented both explicit and implicit naming, but found that I only ever used the implicit form.</p>
+							<p>It&#146;s important that you can access what a parameter is bound to, rather than what it is named.</p>
+							<h3>Data Types</h3>
+							<p>Where do things like integers and strings fit into this?</p>
+							<p>You pre-build their classes into the atom hierarchy. All integers are instances of the class INTEGER, all strings are a STRING, all lists are a LIST and so on. When pattern-matching, you do class membership on the fly (you don&#146;t have to load all integers into the hierarchy, thank goodness &#151; just make sure that if you have an integer then it matches the INTEGER class).</p>
+							<p>The <i>MUD2</i> atom hierarchy is pre-loaded with basic data types as follows:</p>
+						<div align="center">
+							<p><img src="artwork/dawnof8a.gif" width="433" height="183" border="0" alt="diagram"></p>
+						</div>
+						<div align="left">
+							<p>All integers go under INTEGER, all new atoms go under ATOM. BOOLEAN is complete in itself, LIST gives the capacity to produce basic data structures and TABLE is a kind of portable vector/switch that&#146;s only slightly less trouble than it&#146;s worth...</p>
+							<h3>Objects as Functors</h3>
+							<p>Although in general you&#146;ll use action atoms for the <i>zeroth</i> parameter of a definition and object atoms for the rest, you can mix and match. An example is where you might want to use a player name as a verb.</p>
+							<p>Let&#146;s have a diadic operator, !!, which takes an atom on the left and a string on the right. It transmits the string to the terminal attached to the atom (if there is one). In other words, it sends messages to players. We can implement a simple TELL function quite easily:</p>
+							<p><code>{ tell player string }: first !! second</code></p>
+							<p>However, we can also let people omit the TELL:</p>
+							<p><code>{ player string }: zeroth !! first</code></p>
+							In this example, someone is typing FRED &quot;HELLO&quot; rather than TELL FRED &quot;HELLO&quot;, but both work. The player name, FRED, is an object in the first case and a functor in the second. Kinda neat, huh? Hey, Just a Moment..!I just said that if someone types FRED &quot;HELLO&quot; then that invokes [&nbsp;fred&nbsp;&quot;hello&quot;&nbsp;](). If they type TELL FRED &quot;HELLO&quot; then that invokes [&nbsp;tell&nbsp;fred&nbsp;&quot;hello&quot;&nbsp;](). Isn&#146;t that taking rather a lot for granted? What if they&#146;d typed TELL EVERYONE EXCEPT FRED &quot;HELLO&quot;?
+							<p>In my next article I&#146;ll be starting a new topic: parsing.</p>
+							<div align="left">
+								<div align="left">
+									<div align="left">
+										<div align="left">
+											<table width="100%">
+												<tr>
+													<td align="center" valign="middle">
+														<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle">
+														<p><!--#include file="dawnof-last10.php"--></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

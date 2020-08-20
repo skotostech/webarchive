@@ -1,0 +1,75 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #52:</b></font></p>
+							<h2>Thinking Mechanically, Part 10: Systems</h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										January 31, 2003</b></i></p>
+							<p>Over the last several columns, we've looked at some issues of rating characters, and of using those ratings in action resolution. But a game is much more than just resolving individual actions &#151; some things are larger than a single action, and that's where systems come in.
+<p>
+The most typical example of a system, in both paper and computer RPGs, is a combat system.  There are some games in which an entire combat is resolved in one step, but not many.  It's more common for combat to involve multiple actions sequenced over time, from at least two characters and quite often more.
+
+<p>So let's look at combat systems, and how they use action resolution to form a larger whole. We'll start off by considering classical D&amp;D-style combat &#151; both because it's a game which pretty much anyone who's had contact with paper RPGs is familiar with, and because many &#151; I'd dare say even most &#151; computer RPG combat systems are based on it.
+<p>Action resolution in D&amp;D combat resolves around the &quot;to-hit&quot; roll, which determines whether or not one character manages to deal out damage to another. The amount of damage is decided by a separate damage roll. Factors involved in determining whether or not one &quot;hits&quot; include the character's skill (determined mainly by class and level), the opponent's armor and dodging ability, and sometimes situational modifiers.
+<p>(A quick note &#151; I'm using scare-quotes on &quot;to-hit&quot; and &quot;hits&quot; because D&amp;D's combat system is quite abstracted, especially in some of the older versions. With a combat round a minute long, a single &quot;to-hit&quot; roll represents multiple attack attempts, and a &quot;hit&quot; may actually be multiple blows that landed. And, for that matter, a &quot;miss&quot; may be a blow that landed, but did not penetrate the opponent's armor.)
+<p>In terms of my &quot;three R's&quot;, the &quot;to-hit&quot; roll is the Resolution phase, and the damage roll could be either part of Resolution (determining how well a successful attempt did) or part of Representation (determining the effects of success). The damage points generated then come off of the character's hit points &#151; and here's where things start to get woven into a system.
+<p>In game design terms, hit points are what I like to call a &quot;counter&quot; (the term isn't original with me, but I'm afraid I don't know who to credit it to) &#151; a value which changes in the normal course of a game and is used to track the status of some aspect or resource of a character. Hit points are a common example, but others from various games would include magic points and luck points. Harkening back to my piece on unusual mechanics a couple of columns back, there are counters associated with skill levels in The Dying Earth RPG &#151; one has to keep a count of the number of rerolls one has remaining.
+<p>
+To lapse into computer science lingo, a counter adds memory to the system, so we can track the state of something over multiple iterated resolution steps.  In the case of combat, the iterated steps are the opponents making attacks on each other, and whoever runs out of hit points first loses.
+
+							<p>It should be noted that while D&amp;D doesn't use hit points as an active value in resolution (you never factor hit points into a roll), there's no reason why counters can't be used in a roll. An example would be the recent Mutants &amp; Masterminds system, in which damage is treated using a &quot;damage saving throw&quot; where failure can have results varying from being momentarily stunned up to death. Some results generate lasting damage (a counter!) which is then added to the difficulty of later damage saving throws.
+							<h3>Counters that Don't Count</h3>
+							<p>It should also be noted that counters don't necessarily have to be linear; the simplest examples are, but conceptually, anything which tracks &quot;state&quot; can be considered a counter. An example of a more complex system is the wound system used in Pacesetter's RPGs &#151; Time Master, Star Ace, and the first edition of Chill.
+							<p>
+In this system, each wound a character takes is given a level of seriousness: Scratch, Light, Serious, Critical, or Mortal.  For each of these levels except Mortal, a character has two "wound boxes".  When a wound is taken, a wound box on the appropriate level is filled in.  If there are no more wound boxes empty on that level (i.e., you've already taken two wounds on that level), then the wound "bumps up" and is filled in on the lowest level where there's an available box.
+
+<p>The highest level wound that a character has determines what penalties he/she gets for actions &#151; if you've already taken a serious wound under this system, taking a scratch generally isn't going to impair you any more than you're already impaired.
+							<p>This differs from a standard hit point system in that things don't add up linearly. One could try to convert it to a hit point system, saying that a Scratch is one hit point of damage, a Light Wound three (since three scratches will make one Light Wound), a Serious Wound five hit points, and so on &#151; but the system wouldn't work the same way. Someone who takes two serious wounds is still only seriously wounded... but a single scratch can take that second serious wound box if everything lower is filled in.
+							<h3>And Another Way...</h3>
+							<p>Lest I leave the impression that counters are the only way to track state, one can also do it in other ways &#151; e.g., by adding &quot;traits&quot; or &quot;tags&quot; to things. An example of this is Universalis, in which which damage can be represented either by reducing the level of existing traits on something in the game, or by adding new traits to it. An example of the latter would be adding a &quot;has a broken leg&quot; trait to a character.
+							<p>
+This sort of method can be very flexible, and can be combined with a more standard counter system.  One example would be standard "critical hit" systems, which allow characters to have broken bones, sprains, strained muscles, bleeding wounds, and other such things.  One could also look at a modified counter system such as the one described above as combining counters with traits.
+
+							<h3>More To Come</h3>
+							<p>Next time, I'll be continuing the look at building resolution up into systems by stepping &#151; that is, by having multiple steps that do different things in a system, instead of just iterating resolution through a counter. See you in fourteen!
+						</div>
+						<div align="left">
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

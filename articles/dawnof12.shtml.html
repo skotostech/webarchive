@@ -1,0 +1,98 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN"><html>	<head>		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">		<title>Notes from the Dawn of Time</title>		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css"><!--BODY, P, TD {	font-size: 12px;	font-family: Verdana, Helvetica, Arial, sans-serif;}H1 {	font-size: 24px;	font-family: Verdana, Helvetica, Arial, sans-serif;}H2 {	font-size: 18px;	font-family: Verdana, Helvetica, Arial, sans-serif;}H3 {	font-size: 14px;	font-family: Verdana, Helvetica, Arial, sans-serif;}PRE, CODE {	font-size: 12px;	font-family: Courier New, Courier, monospace;}--></style>
+	</head>	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">				<tr>					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Notes from the Dawn of Time #12:</b></font>
+							<h2>Grammar</h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>										</a>February 13, 2002</i></b></p>
+							<p>OK, so where are we?
+							<p>We&#146;re looking at MUD parsers. So far, we&#146;ve examined the first three stages of the process &#151; command line input, pre-processing and tokenisation &#151; and have now finally arrived at the actual parsing phase itself. This is where you wish you&#146;d paid attention in your English lessons at school... 
+							<p>Ah, yes, that <i>is</i> &quot;English lessons&quot;. Parsers are language-specific, and unfortunately so am I. Although the basic ideas I&#146;ll be describing translate into most other languages, the actual machinery is going to vary in each instance, perhaps quite radically. You might say &quot;The red windmill&quot; in English, but in French it&#146;s &quot;Le moulin rouge&quot; &#151; the adjective (rouge/red) comes <i>after</i> the noun (moulin/windmill). Indeed, in French you can&#146;t directly state something like, &quot;The teacher is not here&quot; at all unless you know whether the teacher is male or female.
+							<p>I&#146;m sticking with English, anyway.
+							<h3>Basic English Grammar</h3>
+							<p>A lot of what I&#146;m about to discuss is predicated on an understanding of how English works at a grammatical level. In particular, it relies heavily on an understanding of <i>parts of speech</i>. Because many native English speakers are a little fuzzy in this area, here&#146;s a brief explanation of the concepts involved:
+							<ul>
+								<li><b><i>Noun</i></b>
+								<ul>
+									<li>A word that names a thing, quality, state etc. A <i>proper noun</i> denotes a single person or place and is always capitalized in English.
+									<li>Examples: ball, tree, Joe, hunger, impudence, harmonization, redness.
+								</ul>
+								<li><b><i>Verb</i></b>
+								<ul>
+									<li>A word stating that a thing undergoes or undertakes an action, or exists in a state.
+									<li>Examples: kick, climb, announce, write, ask, harmonize, redden, be.
+								</ul>
+								<li><b><i>Preposition</i></b>
+								<ul>
+									<li>A word indicating a relationship of time, place, case etc..
+									<li>Examples: with, to, by, except, at, on.
+								</ul>
+								<li><b><i>Adjective</i></b>
+								<ul>
+									<li>A word used to qualify, describe or define a noun.
+									<li>Examples: heavy, shiny, kickable, biggest, my, harmonized, red.
+								</ul>
+								<li><b><i>Adverb</i></b>
+								<ul>
+									<li>A word that modifies a verb, adjective or another adverb.
+									<li>Examples: quickly, heavily, happily, very, now, never, reddeningly.
+								</ul>
+								<li><b><i>Article</i></b>
+								<ul>
+									<li>The words &quot;the&quot;, &quot;a&quot; and &quot;an&quot; (which would otherwise be considered adjectives).
+								</ul>
+								<li><b><i>Pronoun</i></b>
+								<ul>
+									<li>A word used in place of a noun.
+									<li>Examples: it, him, her, them, that, this, which, some, any.
+								</ul>
+								<li><i><b>Conjunction</b></i>
+							</ul>
+							<ul>
+								<ul>
+									<li>A word that joins sentences or parts of sentences.
+									<li>Examples: and, or, neither, but, then, although, because.
+								</ul>
+							</ul>
+							<p>There are many more of these, and they may be subdivided further (e.g. nouns can be <i>plural</i> or <i>singular</i>). The above are the ones that are of primary importance to the MUD parsing process, however. Here&#146;s an example of a full sentence broken down into parts of speech, to illustrate:
+							<p>TAKE/verb THE/article GREEN/adjective APPLE/noun FROM/preposition THE/article BOX/noun THEN/conjunction HIT/verb IT/pronoun WITH/preposition MY/adjective SWORD/noun.
+							<p>There are a few other terms I&#146;ll need, but I&#146;ll define them as I introduce them.
+							<h3>Ambiguity</h3>
+							<p>Tempting though it is to &quot;read off&quot; the parts of speech you&#146;re looking for from the flat list of tokens, it&#146;s not generally possible. You can&#146;t simply scan through for the verb, then scan through again for the first noun (if there is one), then scan through a third time for the second noun (ditto). There are several reasons for this, but the main one is ambiguity.
+							<p>Many words in English can take on the role of several parts of speech without changing their spelling. Although the word &quot;kick&quot; is a verb in &quot;kick the door&quot;, it&#146;s a noun in &quot;give the door a kick&quot;. In &quot;give this to her&quot;, &quot;this&quot; is a pronoun; in &quot;give this shield to her&quot; it&#146;s an adjective. Most annoyingly, many nouns can be used as adjectives, as in &quot;get the gold&quot; versus &quot;get the gold watch&quot; or &quot;congratulate the king&quot; versus &quot;congratulate the king dwarf&quot;. Some words have completely unrelated double meanings, e.g. &quot;wind&quot; as a noun is a weather phenomenon but as a verb it&#146;s a rotational movement.
+							<p>In other words, you don&#146;t know at the tokenisation stage what part of speech a word is taking on; you only know what parts it could take on, and there are usually several alternatives. A command thus has to be broken down methodically to discover which of the possible parts of speech that a token <i>can</i> take it actually <i>does</i> take. This is the job of the parser, working to a grammar.
+							<p>Warning: the parser can only attack <i>syntactic ambiguity</i>. There is a much more formidable problem, that of <i>semantic ambiguity</i>. Semantic ambiguity can only be resolved (if indeed it can be resolved at all) by the application of something that people have but computers don&#146;t: common sense. To demonstrate, suppose you were to enter a room and see two men, one of whom had a sneer and the other of whom didn&#146;t. You might take a dislike to the former and HIT THE MAN WITH THE SNEER. Syntactically, though, this is identical to HIT THE MAN WITH THE SWORD. If the man wasn&#146;t carrying a sword but you were, then you&#146;d want to use the sword to hit the man; if the man was carrying a sword but you weren&#146;t, you&#146;d want to hit him (implied: with your hand).
+							<p>Unless you allow people to use parentheses (which <i>is</i> an option), you can&#146;t get your parser to disambiguate between &lt;verb&gt; (&lt;noun&gt; &lt;preposition&gt; &lt;noun&gt;) and &lt;verb&gt; (&lt;noun&gt;) &lt;preposition&gt; (&lt;noun&gt;). Either you have to do a <i>lot</i> of finicky context programming that may still not work (as in the case where both you and the man have swords) or you should choose one option and stick with it. I recommend the latter; at least that way the players <i>know</i> what to expect when they type a sentence containing a preposition, instead of having to second-guess what the parser <i>thinks</i> they might mean.
+							<p>Next article, I&#146;ll explain the basic mechanism by which the parser proceeds.
+							<div align="left">
+								<div align="left">
+								<div align="left">
+									<div align="left">
+										<div align="left">
+											<table width="100%">
+												<tr>
+													<td align="center" valign="middle">
+														<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle">
+														<p><!--#include file="dawnof-last10.php"--></p>
+													</td>
+												</tr>
+												<tr>
+													<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+						
+						
+					</td>				</tr>			</table>
+			<p></p>
+		</center>	</body></html>

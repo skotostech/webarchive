@@ -1,0 +1,115 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #63:</b></font></p>
+							<h2>Combat, Part 5: <i>Combat Systems as User Interface</i></h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										July 18, 2003</b></i></p>
+							<p>
+No, I'm not talking about <A HREF="http://www.cs.unm.edu/~dlchao/flake/doom/" target="_blank"> using Doom for system administration</A>... though that can be fun.  Rather, I'm talking about the problem of making a complex combat system be easy for users to work with.
+</p>
+
+<p>Paper RPGs often have very complicated combat systems &#151; but they have certain advantages in this area over computer RPGs, especially online ones:</p>
+							<p>
+<STRONG>First</STRONG>, the player's &quot;interface&quot; to a paper RPG is usually another human &#151; the gamemaster. Because of this, a player can simply describe what he/she wants a character to do. Indeed, a GM can (and often will) &quot;fill in&quot; things that a player leaves out. For example, take a situation where a sword is on the ground in the game, and the player tells the GM he wants to attack the orc he's fighting with the sword. Trying this with many text-based games will get you something like:</p>
+							<PRE><b>
+&gt; attack orc with sword
+You don't have a sword.
+The orc slices you with his battleaxe.
+
+&gt;
+</b></PRE>
+							<p>
+Most human GMs, however, will understand that the intent is to first pick up the sword... and will further understand that while the player may not be specifically saying it, the character is almost certainly going to try to dodge any attacks that get made while he/she is trying to get the sword.
+</p>
+							<p>
+<STRONG>Second</STRONG>, paper RPGs rarely have any sort of time pressure on the players.  Players tend to have plenty of time to think about what their character is going to do next, and can generally take as long as they need to describe it.  Some single-player computer games provide the same luxury, but most multi-player ones do not.  Combat generally isn't quite real-time, but it continues to progress whether the player is giving input or not.
+</p>
+
+<p>In particular, the issue of restricted time comes up with reactive actions. In many paper RPGs, there are actions which can only be done as a reaction to another character's action &#151; e.g., a character might be able to try to catch a knife thrown at him/her... but the player can't choose that as an action unless and until a knife gets thrown at his/her character.</p>
+
+<p>These sorts of reactive actions require either that there be time between the declaration of an action (&quot;the orc throws a knife at Morgan&quot;) and the effect (the knife missing or hitting), or that the system can &quot;back up&quot; (&quot;The orc throws a knife at Morgan... &lt;roll&gt;... but it misses, flashing past her as she ducks...&quot; &quot;Hey, wait a second there... I want Morgan to try to catch it, instead of just dodging it!&quot;). Most computer RPG systems are designed with neither one of these in mind.</p>
+							<p>
+The combination of time pressure and needing to break down user input into something that a program can easily understand often means that although computer-moderated combat systems can in theory handle much more complexity than human-moderated ones, in practice, the complexity is often limited to "behind the scenes" things, with players having fewer options about <EM>what to do during combat</EM> than in paper games.
+</p>
+							<h3>What's Going On?</h3>
+							<p>
+But let's back up a step here.  In order to make decisions about what you want your character to do, you need information about what's going on around your character.  So let's talk about representation in interfaces.
+</p>
+							<p>
+We'll start with the easy case:  a fully graphical 3-D game.  You see the area either in front of or around your character (depending on the point of view used), and the things in it.  Indicating something tends to be a matter of clicking on it. Seeing that there are four orcs in front of you is... well, you just see them. And you can see such things as the fact that one of them is behind the other three, that they're a short distance away, that they're facing away from you, that two of them have axes and one has a sword, etc.
+</p>
+
+<p>All of this information comes at a cost, though &#151; a cost in CPU cycles and memory spent figuring these things out and representing them, a cost in network bandwidth sending the information back and forth... and also costs in terms of hiring someone to make the art. But it can give a lot as well. Such things as positioning (am I behind this orc?), distance (am I close enough to hit him with a sword?), and line of sight pretty much come &quot;free&quot; with it &#151; you're already keeping the data necessary for them.</p>
+
+<p>Graphical games tend to indicate action through animation &#151; when one of those orcs attacks, you might see it take a swing. To provide additional information, there's often text as well, either in the form of a scrolling text window, or text &quot;tags&quot; on the objects on the screen.</p>
+
+<p>
+On the other end of things, we'll put text-based games using the traditional "room" concept.  Your character is in a particular "room" (which may be an area outdoors, or part of a large room... and I'm going to drop the scare-quotes now that I've said that).  Other objects and characters may be in the room.  Generally you've got a room description and a list of what's in the room with you.  There's no concept of distance or position within a room, nor of facing.
+</p>
+
+<p>
+Action in a text-based game is also indicated with text, of course.  Such things as "The orc slices you with his axe!" or "Orc #3 exits to the north."
+</p>
+
+<p>
+Getting more advanced, a text-based game can implement a way for objects to be "close to" each other.  Skotos' own in-house engine does this through <A HREF="proximitysystem.html">its proximity system</A>. Other games have other solutions &#151; also here at Skotos, but not developed in-house, is <A HREF="../games/eternal-city.html" target="_top">The Eternal City</A>, which allows characters to "approach" in order to enter close-combat range, and "retreat" back out of it.
+</p>
+
+<p>Going still further, one can have grid-based &quot;overhead view&quot; systems &#151; which can either be truly graphical (e.g., the old &quot;Gold Box&quot; AD&amp;D computer games, such as the original <I>Pool of Radiance</I>, or can be implemented using text, as the Roguelike games do.  (If you don't know what a Roguelike is, and wonder how you can do an overhead view with text, there's a <A HREF="http://www.nethack.org/common/index.html" target="_blank">nice screenshot</A> on the site for NetHack, one of the many Roguelikes).  There's no facing here, but there is position and distance.
+</p>
+
+<p>As with a 3-D environment, action can be indicated either through animation (even with a text-based map... there's the things on the map moving to indicate movement, and there may be animation of spell or ranged weapon effects &#151; e.g., drawing a line of dashes from source to target quickly, then erasing it again) or through text messages, or a combination of both.</p>
+
+<p>Of course, this isn't full coverage of the spectrum of possibilities &#151; just a few examples to aid in talking about things.</p>
+
+<p>
+As I noted <A HREF="BSTG_60.shtml.html">a couple of columns back</A>, adding a map and positioning adds a considerable strategic element. In the above examples, both the 3-D and the overhead view games automatically have this. A proximity system can give some things, with clever coding &#151; e.g., the ability to move &quot;in front of&quot; a doorway and thereby block it.</p>
+
+<p>One can create forms of positioning without a proximity system, though, by having special commands for it. E.g., a text-based game could have a &quot;guard&quot; command which allows a character to either guard an exit from a room, or guard an object or another character. Other commands could be implemented to allow different kinds of positioning &#151; e.g., commands to get behind someone or something, or to form a shield wall with other characters, or to fight back-to-back with someone. Doing these sorts of things can be made the subject of skills or special abilities within the game, to add an extra dimension.</p>
+							<p>
+(This is really the same sort of thing that paper RPG GMs often do when they're not using a map.  If a player says he/she wants to guard the north door, most GMs aren't going to say, "you can't do that, we don't have a map". Rather, they'll say "Okay, you're guarding that door, and anyone who tries to go through the door will either have to be let through by that character, defeat him/her, or find some other way through.)
+</p>
+							<h3>To Be Continued...</h3>
+							<p>That's it for this time... but next time I'll be continuing on combat and user interfaces, and, if there's time, following that up with some thoughts on doing something different from the traditional &quot;D&amp;D&quot; style of combat. See you in 14!</p>
+						</div>
+						<div align="left">
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

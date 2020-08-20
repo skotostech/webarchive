@@ -1,0 +1,51 @@
+p,td,tr,ol,ul,li,textarea          {
+	color: #fff;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 11px;
+}
+div,img,body         {
+	color: #fff;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 11px;
+}
+a:active    {
+		color: #f90;
+		text-decoration: none;
+}
+a:link      {
+		color: #00a293;
+		text-decoration: none;
+}
+a:visited    {
+		color: #ffd700;
+		text-decoration: none;
+}
+a:hover     {
+		color: #f90;
+		text-decoration: underline;
+}
+.smaller    {
+		font-size: 10px;
+}
+.larger     {
+		font-size: 12px;
+}
+pre,code        {
+		color: #fff;
+		font: 10px Monaco, Courier New, Courier, Monospace;
+}
+.nav {
+	color: #fff;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 11px;
+}
+.smallblack {
+	color: #000;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 10px;
+}
+.smnav {
+	color: #fff;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 10px;
+}

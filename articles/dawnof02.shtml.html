@@ -1,0 +1,95 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+		<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="artwork/dawntime_lg.gif" width="282" height="59" align="BOTTOM" alt="masthead" border="0" hspace="8" vspace="8">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#2: Simple Inheritance</b></h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>September 20, 2001</i></b></p>
+							<p>Why is inheritance important in MUDs?
+							<p>Let&#146;s say you have a brand &#150; a piece of wood with pitch or something at one end that you can set fire to and use as a torch so as to see in places where there isn&#146;t any natural light. As a coder, you can build the necessary functionality so that LIGHT BRAND causes the brand to burst into flames (emitting light) and DOUSE BRAND extinguishes the flame (handy if you&#146;re going where a naked flame would cause an explosion). You can add a few more bells and whistles, and the result is a fully functioning brand.</p>
+							<p>Now suppose you wanted another 20 of them.</p>
+							<p>Well yes, you could simply cut and paste another 20, but then if you wanted to change the functionality of brands you&#146;d have to alter all 20 definitions. What you <i>really</i> would like is to have a template for a generic &quot;brand&quot; and to be able to print 20 individual brands directly from it. Each of these reproductions would be a brand in its own right, but all its functionality would come from the single definition you gave for the template. In other words, each &quot;brand&quot; copy <i>inherits</i> from the &quot;brand&quot; template.</p>
+							<p>In programming parlance, the template is a <i>class</i> and each entity stamped out from it is a <i>class instance</i> (or just <i>instance</i>). Class instances are also known as <i>object</i>s. The usual way to visualize this is as a tree:</p>
+						<div align="center">
+							<p><img src="artwork/dawn02a.gif" width="395" height="73" border="0" alt="diagram"></p>
+						</div>
+						<div align="left">
+							<p>Because classes are mathematically equivalent to sets, they are often said to <i>contain</i> their <i>members</i>. This doesn&#146;t mean that the members are inside in a physical sense &#150; you can&#146;t walk around carrying the BRAND concept then suddenly open it up and take one out (not unless you want to freak out your players). Rather, the objects are things you come across in the game world and the classes are their definitions. You might be able to kick a ball, but you can&#146;t kick the notion of what a ball is.</p>
+							<p><b>Overriding Inheritance</b></p>
+							<p>Objects don&#146;t have to accept everything that the class gives them: they can selectively override it. You could, for example, have a class FLOWER that provided the functionality for PICK FLOWER, SMELL FLOWER etc., and you could then create instances of it that had their own, particular description: &quot;You see a rose growing off to one side&quot; rather than &quot;You see flower1 growing off to one side&quot;. This allows for programmers to pick and choose what functionality objects inherit. Anything that is individual to an object can be defined explicitly for that object; everything else is inherited implicitly from the object&#146;s <i>parent</i> (i.e. the class of which it is an instance).</p>
+							<p>What I&#146;ve described so far is <i>single-level</i> inheritance, in that each class can be used to stamp out one kind of object and one kind only. <i>MUD1</i> had this form of inheritance. It works up to a point, and it&#146;s certainly efficient, but it&#146;s not without problems.</p>
+							<p>For example, let&#146;s say you&#146;ve created a class HERB that contains objects such as PARSLEY, SAGE and THYME. FLOWERs smell nice, HERBs taste nice. Maybe you also have a WEED class containing THISTLE and NETTLE. WEEDs smell bad, taste bad and hurt when you try to PICK them.</p>
+							<p>Now let&#146;s invent a goat that wanders around eating any small plant it comes across.</p>
+							<p>Ah. You&#146;d need to define separate functions to describe what happens when the goat came across FLOWERs, HERBs and WEEDs &#150; even though it would be the same in all cases (the goat would eat the plant in question &#150; goats aren&#146;t as fussy as humans).</p>
+							<p>What you need is <i>multi-level</i> inheritance:</p>
+						</div>
+						<div align="center">
+							<p><img src="artwork/dawn02b.gif" width="523" height="127" border="0" alt="diagram"></p>
+						</div>
+						<div align="left">
+							<p>This looks more like the classical tree data structure, with classes as branch points and objects as leaves. The highest-level class (SMALLPLANT) defines some functionality; the lower-level classes that are <i>children</i> of it define more. These child classes are <i>derived</i> from their parent class in that they inherit their basic functionality from it, but they also have functionality of their own and may override some of the defaults offered by their parent (e.g. PICK SMALLPLANT is not the same for WEEDs as it is for FLOWERs and HERBs).</p>
+							<p><b>Inheritance Trees</b></p>
+							<p>In practice, inheritance trees can be of arbitrary size. Classes can have any number of children (although if they have 0 then they&#146;re an object, not a class) and therefore any number of descendents. The length of branches (from the <i>root</i> class of the tree to a leaf/object) is unrestricted &#150; they don&#146;t have to be remotely similar. Inheritance is fast and efficient, because all components (<i>nodes</i>) of the tree except for the root have only one parent; to find the precise point at which some piece of functionality is defined is thus a simple case of a node&#146;s asking &quot;Is it defined for me? If so, yay! If not, I&#146;ll pass the query up to my parent&quot;.</p>
+							<p>Many programming languages use inheritance trees. From the point of view of MUDs, by far and away the most important one that does is C++. It forms the basis of LPMUD, and virtually all the MUDs that <a href="http://camelot.cyburbia.net.au/~martin/cgi-bin/mud_tree.cgi?LP" target="_blank">descend</a> from it.</p>
+							<p>It&#146;s therefore something of a shame that this form of inheritance is a dog, too. In my next article, I&#146;ll explain why... </p>
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="dawnof-last10.php"--></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

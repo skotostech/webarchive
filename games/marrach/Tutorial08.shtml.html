@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<meta name="generator" content="Adobe GoLive 6">
+		<title>Manipulation: Advanced Studies</title>
+		<link href="marrach.css" rel="stylesheet" media="screen">
+		<csactions>
+			<csaction name="B90037881" class="Open Window" type="onevent" val0="tutpop.shtml" val1="_blank" val2="300" val3="450" val4="true" val5="true" val6="false" val7="false" val8="false" val9="false" val10="false" urlparams="1"></csaction>
+		</csactions>
+		<csscriptdict import>
+			<script type="text/javascript" src="java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script type="text/javascript"><!--
+CSAct[/*CMP*/ 'B90037881'] = new Array(CSOpenWindow,/*URL*/ 'tutpop.shtml','_blank',300,450,true,true,false,false,false,false,false);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="artwork/cm-backgd.gif" bgcolor="#FCFCE4" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0">
+		<table border="0" cellpadding="0" cellspacing="0" width="675">
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+					<p><img src="artwork/cm-masthd.jpg" alt="Castle Marrach - The Forever Winter" height="78" width="675" border="0"></p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+				<!--#include virtual="snav-guide.incl"-->
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="top">
+					<table width="90%" border="0" cellspacing="4" cellpadding="4">
+						<tr>
+							<td valign="top"><img src="artwork/hdr-tutorial.gif" alt="Tutorial" height="33" width="250" border="0"></td>
+							<td valign="top" width="200">
+								
+							</td>
+							<td rowspan="2" valign="top" width="80">
+							<!--#include virtual="character.incl"-->
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" valign="top">
+								<div align="left">
+									<h2><a name="manipulation-2"></a>8) Manipulation: Advanced Studies</h2>
+									<p>There's a lot more that you can do with objects once you've gotten ahold of them. This includes not just using a variety of objects, but also getting rid of objects once you're done with them.</p>
+									<p><b>Contents:</b></p>
+									<ul>
+										<li><a href="Tutorial08.shtml.html#manipulation-2-1">8.1. Manipulating Other Objects</a>
+										<li><a href="Tutorial08.shtml.html#manipulation-2-2">8.2. Removing Objects</a>
+										<li><a href="Tutorial08.shtml.html#manipulation-2-3">8.3. Throwing and Placing Objects</a>
+										<li><a href="Tutorial08.shtml.html#manipulation-2-4">8.4. Using Ordinals and Cardinals</a>
+										<li><a href="Tutorial08.shtml.html#manipulation-2-5">8.5. Using Possessives</a>
+									</ul>
+									<p><a name="manipulation-2-1"></a></p>
+									<h3>Manipulating Other Objects</h3>
+									<p>The character now has a wand that he's been told to use near the onyx stones, and he's now back in the room with those gems. The question is, how does he <i>use</i> the wand?</p>
+									<p>Every object will have different verbs associated with its activation. You should try and use the verb that makes sense--and usually that will work. In the case of a wand, &quot;wave&quot; seems the best verb to use.</p>
+									<p>But first, it makes sense to try some other things...</p>
+									<pre>      &gt; <b>look at onyx</b>
+      The onyx are strangely cold. They are emitting absolutely no
+      light and in fact seem to sit in little pools of darkness.
+      There are only three onyx in the entire room.
+
+      &gt; <b>take onyx</b>
+      You move from the golden door to the middle of the cavern.
+ 
+      The gems are all embedded in the floor and cannot be taken.</pre>
+									<p>So now the adventurer will try to wave his wand.</p>
+									<pre>      &gt; <b>wave wand</b>
+      For a moment a rainbow of colors appears in the air, but it
+      quickly fades away.
+
+      &gt; <b>look at wand</b>
+      A strange, black wand that looks like it has been cut from 
+      stone. The wand has writing on it.
+
+      &gt; <b>look at writing</b>
+      Written on the wand is: &quot;Marrach-brand onyx attraction wand. Wave
+      to activate. Manufacturer does not guarantee proper operation
+      if wand is within ten feet of metal objects. Operate at your
+      own risk.&quot;
+
+      &gt;</pre>
+									<p><a name="manipulation-2-2"></a></p>
+									<h3>Removing Objects</h3>
+									<p>Taking off clothes and weapons requires the &quot;remove&quot; verb. Once again, we can use a conjunction to manipulate two things at once.</p>
+									<pre>      &gt; <b>inventory</b>
+      You are carrying an onyx wand. You are wielding a black sword.
+      You are wearing a tunic, a pair of sandals, a white gold 
+      earring and a black felt hat.
+
+      &gt; <b>remove sword and earring</b>
+      You remove a black sword and a white gold earring.
+
+      &gt;</pre>
+									<p><a name="manipulation-2-3"></a></p>
+									<h3>Throwing and Placing Objects</h3>
+									<p>&quot;Drop&quot; is the easy way to get rid of objects. You type &quot;drop [object]&quot; and the object ends up on the ground near you. However sometimes you will want to place an object in prox to some other object--like on a table or under a chair. You do this with the &quot;put&quot; command (or &quot;place&quot;) if you want to walk across the room to put your object down. Alternatively, you can use the &quot;throw&quot; command to toss an object across the room.</p>
+									<pre>      &gt; <b>throw sword and earring at golden door</b>
+      You throw the black sword and the white gold earring at the 
+      golden door.
+
+      &gt; <b>look at golden door</b>
+      The golden door is surrounded by rubies which glow bright
+      red. The door is plain, without ornamentation of any type.
+      A black sword and a white gold earring are lying near the
+      golden door.
+
+      The golden door is open.
+
+      &gt; <b>wave wand</b>
+      A rainbow of colors appears in the air for a moment before
+      turning entirely black. Three onyx stones float up into the
+      air.
+
+      &gt;</pre>
+									<p><a name="manipulation-2-4"></a></p>
+									<h3>Using Ordinals and Cardinals</h3>
+									<p>Sometimes you will have multiple objects in a room that all have the same same name--both noun and adjective. In this case you can use ordinals (first, second, third) and cardinals (one, two, three) in order to distinguish which objects you're referring to.</p>
+									<pre>      &gt; <b>look at onyx</b>
+      Which do you mean, the onyx, the onyx or the onyx?
+
+      &gt; <b>look at first onyx</b>
+      The onyx is strangely cold. It is emitting absolutely no
+      light and in fact seems to float in a little pool of darkness.
+      Float isn't just a metaphor: the onyx is four feet off the
+      ground.
+
+      &gt; <b>look at second onyx</b>
+      The onyx is strangely cold. It is emitting absolutely no
+      light and in fact seems to float in a little pool of darkness.
+      Float isn't just a metaphor: the onyx is four feet off the
+      ground.
+
+      &gt; <b>take three onyx</b>
+      You touch the onyx. Suddenly there is a puff of smoke. Cameo
+      emerges from the puff of smoke.
+
+      &gt; <b>look at cameo</b>
+      The onyx prince. A cruel looking man with dark hair and dark
+      eyes. He is wielding an obsidian sword. He is wearing dark
+      pants, a leather vest, leather gloves, leather boots, and a
+      black cape.
+
+      &gt;
+      Cameo arrogantly states, &quot;You shall not be allowed to do my
+      sister's bidding.&quot;
+
+      &gt;</pre>
+									<p><a name="manipulation-2-5"></a></p>
+									<h3>Using Possessives</h3>
+									<p>Sometimes you might want to investigate something held by someone else. The best way to do this is with a possessive. You can always use &quot;my&quot; for your own items. To look at something held by someone else, use their name plus an apostrophe &quot;s&quot;.</p>
+									<pre>      &gt; <b>look at cameo's sword</b>
+      An obsidian sword with ragged edges. Runes carved into the blade
+      seem to bleed black light.
+
+      &gt; <b>gulp</b>
+      You gulp.
+
+      &gt;
+      Cameo smirks.
+      Cameo proclaims haughtily, &quot;It shall be a duel!
+
+      &gt; <b>smile slyly</b>
+      You smile slyly.
+
+      &gt; <b>saunter to golden door</b>
+      You saunter to the golden door.
+
+      &gt; <b>take black sword</b>
+      You take a black sword.
+
+      &gt; <b>wield my sword</b>
+      You wield a black sword.
+
+      &gt;
+      Cameo frowns.
+
+      &gt; <b>approach cameo</b>
+      You move from the golden door to the middle of the cavern.
+
+      &gt;</pre>
+									<p></p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right" valign="top"><a onclick="CSAction(new Array(/*CMP*/'B90037881'));return CSClickReturn();" href="Tutorial08.shtml.html#" csclick="B90037881"><img src="artwork/btn-contents.gif" alt="toc" height="21" width="72" border="0"></a> <a href="Tutorial09.shtml.html"><img src="artwork/btn-more.gif" alt="more" height="21" width="72" border="0"></a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height="40">
+				<td align="center" valign="top" height="40">
+				<!--#include virtual="footer.incl"-->
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Trials, Triumphs and Trivialities Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_ttnt.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_ttnt"><map name="tnav_ttnt"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="TTnT.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top"><a href="TTnT.shtml.html"><img src="nav/snav_ttnt.gif" width="137" height="371" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b><font color="#006633">Trials, Triumphs &amp; Trivialities #96:</font></b>
+						<h2>In Sickness &amp; In Health</h2>
+						<p><i><b>by <a href="mailto:ShannonA@skotos.net">Shannon Appelcline</a></b></i></p>
+						<p><b>November 14, 2002</b> - I've been sick for almost five days now, every since a co-worker brought his Black Plague to last Thursday's strategy game night at my house. It's been annoying for all the normal reasons sickness is: inability to breathe; lack of sleep; onset of weird hallucinations. Actually, the weird hallucinations are kind of fun sometimes.
+
+						<p>
+But, even more, it's been very frustrating because I haven't felt up to fixing some bugs that cropped up in diplomacy code that I recently introduced to Hegemony. They're not huge bugs, granted, but they're annoying, and I know that every day that I'm too muzzy-headed to put on my programmer's hat and pick through the code, those bugs will appear a few more times, and the Hegemony players will be inconvenienced by them.
+
+						<p>
+And that really points to an idea at the core of our online gaming medium, one that we need to constantly be aware of and always plan for: <i>The games are always up and the players are always there.</i> It doesn't matter if I'm sick or on vacation or even if it's Christmas. If you're producing a title for the New World Paradigm of online games, you need to make sure you understand what 24x7 really means, and be prepared for it. 
+						<p>
+This week, in my still somewhat muzzy-headed state, I want to talk a little about what that means, as it relates to hardware, administrators, coders, and even players.
+
+						<h3><b>Always Available Hardware</b></h3>
+						<p>
+Being able to provide a game that will (hopefully) be played 24x7 starts off with the hardware. Computers, power supplies, hard drives, and all the rest usually aren't thought about that much by players, but without a good, stable machine with plenty of backup parts their game could be down for hours or days in case of failure.
+
+						<p>
+Over in fields that <i>actually pay</i> for 24x7 reliability, it's all measured in "9"s. A computer that is 99% reliable has 0 "9"s, a computer that is 99.9% reliable has 1 "9", etc. Visa and similar financial concerns that have critically important hardware try and measure their reliability as 4 "9"s: 99.9999% uptime.
+
+<p>
+It's interesting to list out exactly what this means:
+
+<ul>
+
+<li>Zero "9"s (99% reliability) means only 1 minute of downtime every 2 hours.
+
+<li>One "9" (99.9% reliability) means only 1 minute of downtime every 17 hours.
+
+<li>Two "9"s (99.99% reliability) means only 1 minute of downtime every 7 days.
+
+<li>Three "9"s (99.999% reliability) means only 1 minute of downtime every 10 weeks.
+
+<li>Four "9"s (99.9999% reliability) means only 1 minute of downtime every 2 years.
+
+</ul>
+
+<p>
+Unfortunately, when you produce an online game you'll soon learn that a sizeable percentage of your customers will expect 100% reliability (infinite "9"s). Yet, they won't be willing to pay the (literally) millions of dollars that a Visa puts out for the somewhat lower four-9s level of reliability.
+
+<p>Skotos would like to offer no more than two hours of downtime, on average, per month: one hour for scheduled upgrades and one hour for unscheduled problems. That's two hours out of 720 hours in the month, or about 99.7% reliability &#151; between zero and one &quot;9&quot;. (In actuality, we've traditionally had more like three unscheduled hours of downtime per month, with a lot of the problems stemming from network issues, which would bring us closer to 99.4%) Our own credit card processor has about an hour of downtime for scheduled maintenance every other month, and maybe an hour of unscheduled downtime every year. Pretty good &#151; call it 7 hours of downtime out of 8760 hours in the year or 99.92% uptime &#151; just over 1 &quot;9&quot;.
+<p>
+The point? Without expending millions of dollars in staff time, super-reliable hardware, and plentiful swaps you'll never be to actually approach 100% reliability, and no game company will ever be on the economic scale where a millions of dollar expenditure makes sense. So, <b><i>let your players know what your abilities are in providing reliable hardware, and what they can actually expect for their subscription fee.</i></b>.
+
+<p>
+While on the topic, I should mention that there are ways that you can increase the reliability of your hardware. Here's the top effective measures that we've taken at Skotos:
+
+<ul>
+
+<li><b>Backup Critical Services.</b> Can you provide alternative net connections? Web servers? Login mechanisms? The key here is to find every critical point of failure in the route that it takes players to get to your game, and see if you can make them redundant.
+
+<li><b>Backup Data.</b> This should be obvious, but in case it's not: backup your data files. Corruption of your data can a permanent rather than temporary loss of service. For the highest level of safety the backup should be on a different machine, in a different locale, far enough away that they won't both be compromised by the same physical disaster. (Also be aware that there are issues here; in a live game you can never have a true backup of what's happening. Also, everytime you do a backup, you chance slowing down access of your players to the actual game.)
+
+<li><b>Backup Your Hardware.</b> What might be less obvious is that you should have backup hardware to help you rapidly overcome a hardware failure. We've just put in an order for a new machine for <i>Grendel's Revenge</i> with a cold-swappable power supply. That means that, when the machine is off, we can swap out a burnt-odd power supply in a matter of minutes. Mother boards, fans, hard drives... everything should be easily replaceable in a production machine so that when something does die (and it will) you can fix it quickly.
+<li><b>Test When You Can.</b> Whenever you're introducing a new piece of hardware into your existing setup, test, test, test. It's the only way to improve your chances of not introducing a lemon into your nicely balanced fruit salad. We've recently added some network cable to a new location for Skotos, and we tested things out by putting one administratrator-critical-only machine there. As soon as the first northern Californian rain came along last week, the new network connections went flaky. And so we were quite happy that we hadn't moved our player-critical machines to the new location yet.
+
+</ul>
+
+<p>
+There's a coda to the whole issue of hardware reliance. In the world of a global Internet, much of it will be beyond your control. Our most annoying problems, and the ones most visible to our players, haven't been related to downed machines, but rather to unreliable network connections. We've expended huge amounts of time working with ISPs in an attempt to reduce latency and improve reliability, but often it's not even our ISP at fault, but rather their ISP, or their ISP's ISP, or a player's ISP, or a random "peer" connection. Talk about "beyond your control". All in all this simply suggests more reason to clearly set player expectations in regard to what type of reliability they can reasonably expect.
+
+						<p>
+<font face="sans-serif" size="-1" color="#006633">For more information on setting player expectations see <i>Trials, Triumphs & Trivialities #14</i>, <a href="TTnT_Dec21.html">It's the End of the World as We Know It</a> and <i>Trials, Triumphs & Trivialities #52</i>, <a href="TTnT_52.shtml.html">Courting Misrule</a>.</font>
+						<h3><b>Always Available Administrators</b></h3>
+						<p>If you've read this far, you're probably thinking, &quot;Always available machines... that makes sense.&quot; After all, it's hardware. It doesn't have any feelings. It doesn't mind if it has to miss Thanksgiving or if it's on call over the Christmas holidays.
+						<p>
+People, on the other hand, aren't as easy going. Nonetheless, if you're going to have an online game, and it's going to be available 24x7, you need to figure out some way to keep players entertained <i>all the time</i> and that usually means administration (including plotting, customer support, and any number of other tasks). Fortunately this problem can be approached in a number of different ways.
+
+<p>
+<b><i>Rotate Your Administration.</i></b> If you're trying to build your entertainment entirely around administrators, then you're absolutely going to have to rotate the schedules of your administrators. That could mean lots of different shifts. If you're choosing volunteers from all over the world, it more likely means lots of different time zones. 
+
+<p>
+<b><i>Empower Your Players.</i></b> More effectively, you can give some of your players the ability to entertain through limited administrative powers. Not only does this increase the number of people entertaining, but in a global environment like the Internet it increases the likelihood that someone will always be around.
+
+<p>
+<b><i>Provide Other Entertainment.</i></b> However, even in a social game like Castle Marrach, it's insane to think that you'll always have administrators or empowered players on hand to keep things moving. Thus, you need to provide at least <i>some</i> other systems to help keep that momentum going. These could be actual achievement systems, like the skill system in The Eternal City, or they could simply be "backdrop" systems intended to encourage roleplaying and storytelling, like the dueling or chess systems in Castle Marrach.
+
+<p>
+<b><i>Clearly Denote Your Exceptions.</i></b> With all that said, it's also helpful to let players know when administrators are expected to be around (going back to the topic of setting expectations, above). For example, we've always kept Thanksgiving Day and Christmas Day open to Skotos staff as holidays (the only two Skotos holidays). We've thus let our players know that staff will be less available during those times.
+
+						<p>
+<font face="sans-serif" size="-1" color="#006633">For more information on empowering players see <i>Trials, Triumphs & Trivialities #16</i>, <a href="TTnT_16.html">Guiding Lights</a>, <i>Trials, Triumphs & Trivialities #43</i>, <a href="TTnT_43.html">The Power of the Medium: People</a>, and <i>Trials, Triumphs & Trivialities #67</i>, <a href="TTnT_67.shtml.html">Creativity & The Online Gamer</a>. For more information on building teams of administrators see <i>Trials, Triumphs & Trivialities #30</i>, <a href="TTnT_30.html">The Team's The Thing</a>.</font>
+						<h3><b>Always Available Coders</b></h3>
+						<p>
+At some point, hopefully before you release your game, your code base should settle down to a point where it's <i>stable</i> and bugs that could ruin the entire player experience won't crop up suddenly. Actually, you'll never quite achieve that ideal, but hopefully you'll approach it within a few "9"s.
+
+						<p>
+At that point problems with coder reliability with be of the sort I experienced with Hegemony this last week. A coder will upgrade a system and some minutes, days, hours, or weeks later your pristine game will suddenly spring a "leak". And emergency coder repair will be very quickly needed. Since coders, like administrators, are human beings you won't always be able to guarantee their availability, thus it's best to follow this maxim:
+
+<p>
+<b><i>Make Any Code Easy to Roll Back.</i></b> In other words, if something really doesn't work out, make it easy to go back to the old, previously working code base. Sometimes you won't be able to &#151; I couldn't with my Hegemony upgrade because it required changing the data storage mechanism of the entire diplomacy system, and there was no existing level of data abstraction. But whenever you can make a rollback easy, you should. Because then a coder can spend a minute or ten to revert code, and later tackle the <i>big</i> problem at his leisure.
+
+						<p>
+<font face="sans-serif" size="-1" color="#006633">For another instance of us not quite following this rule, see "More on Programmers and Vacations", the final section of <i>Trials, Triumphs & Trivialities #2</i>, <a href="TTnT_Sept28.html">Keeping Up with the Joneses</a>.</font>
+						<h3><b>Always Available Players</b></h3>
+						<p>Before closing the book on 24x7 games it's worthwhile to note that players won't be available 24x7 any more than administrators, coders, or even hardware really can be. This probably doesn't matter too much in most achievement-based games, but in social games players might be more crucial to society or to plots. (I actually discussed this particular issue in depth two years ago; consider this a synopsis.)
+						<p>
+This problem is hard to entirely correctly, but the following helps:
+
+<p>
+<b><i>Explain Missing Players.</i></b> Don't force players to constantly explain absences from critical events. Instead, have some default explanations for absences built into your backstory. In a previous column I wrote that I wished we'd offered the explanation in Castle Marrach that time worked differently for different players, and thus any missing player could be explained by chrono-difference. In a Castle of the Newly Awakened, just saying missing people were "asleep" would have worked well too. Other explanations (visits to nearby realms, hunts, journeys, whatever) would work equally well in different games.
+
+<p>
+<b><i>Don't Make Individual Players Critical Paths.</i></b> When you're designing plots you also need to make sure that players aren't single points of failure. If the Mystical Goobaz is necessary to finish the Plot of the Goobaz and Thingbob, and you give a single player the Goobaz just before he leaves the game, then you're in trouble. There are lots of possibilities to get around this: make sure any plot has multiple paths at any nodal point; make sure that critical elements can be regenerated if they're not used within a certain time; or don't allow critical objects to be logged out of the game ("The Goobaz falls to the ground as Johndoe disappears."). Whichever you prefer; your mileage may vary.
+
+						<p>
+<font face="sans-serif" size="-1" color="#006633">For more information on vanishing players see <i>Trials, Triumphs & Trivialities #9</i>, <a href="TTnT_Nov16.html">The Puzzle of the Purloined Players</a>.</font>
+						<h3><b>Sometimes Available Columnists</b></h3>
+						<p>
+I think the whole topic of always available games summarizes to this: you need to make allowances for the fact that players will be trying to play your game 24x7. Do what you can to support this, but at the same time let your players know what the real limitations are.
+
+						<p>And that's it this week from this sometimes available columnist. Next week I plan to continue my occasional &quot;Brief History&quot; of Skotos and let you know what changes the past year has wrought. And after that it's Thanksgiving... which this columnist plans to take <i>off</i> this year.
+
+						<p>
+I'll see you in 7.
+
+						<div align="left">
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Trials, Triumphs &amp; Trivialities</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="TTnT-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=36"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=36"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p>
+		</center>
+	</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Engines of Creation</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav-engines.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/strategy.shtml.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/graphical.shtml.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/prose.shtml.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="engines.shtml.html"><area shape="rect" coords="349,6,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><b><a href="engines.shtml.html"><img src="nav/snav_engines.gif" width="137" height="368" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a>Engines of Creation #7:</b></font></p>
+							<h2>Real Intelligence vs. Artificial Stupidity</h2>
+							<p><i><b>by Dave Rickey<br>
+										August 26, 2003</b></i>
+							<P>Right now, I'm wrestling with the problem of how to use AI to improve gameplay.  The problem isn't if it can be done, it's "Where to start?"  AI in MMO games is so primitive right now, it doesn't deserve the term "intelligent".  The only game to have AI much beyond the level of "If someone walks by or hits you, attack them" is SWG.  Other than that, every creature in every game is pretty much the same, a generic set of uniform behaviours that does almost nothing beyond the bare minimum.
+
+The original reason they were so stupid is that there wasn't CPU to spare for anything more.  When you're running tens of thousands of individual creatures you can't give each one a lot of CPU time.  But Moore's Law marches on, and it's now possible to give each one the equivalent CPU of the entire AI allotment for a mid 90's game (say, as good as Warcraft 2 or Command and Conquer).  And it's not that we'd have to break new ground, really, most of what we need could be taken almost off the shelf from RTS games with minimal modification.
+							<p>
+
+So why haven't we seen more significant strides in MMO AI?  Most of the people in the industry will give what seem like reasonable answers: That's it's still too CPU intensive, that smart monsters would be too tough for the players to beat, that there's nothing you can do with AI that can't already be done with scripted encounters.
+							<p>
+
+The first is pretty much bunk.  Not only are CPU's getting faster and faster, with nearly 10 times as many MIPS for the dollar now as 6 years ago when UO was in beta, but the truth is that making them stupid isn't saving us that many cycles.  Most of the memory footprint and CPU overhead required gets burned up just making sure that the mobiles have any awareness of and reaction to their surroundings at all, getting them to actually make decisions based on their surroundings and the actions of the players wouldn't add *that* much.<p>
+
+The second has a grain of truth to it, I've played FPS and RTS games against experimental "learning systems" based on genetic algorithms and neural networks, and it generally doesn't take very long before the system's effectively instantaneous reaction times and attention to detail has it complete slaughtering me on a level playing field.  Mobiles are there to lose, in the end it is the Stuart Smalley rule of game design: "You're good enough, you're smart enough, and doggone it, <b>you killed the Dragon!</b>" But the fact there is that if we as developers didn't cheat like hell in the mobile's favor (by giving them extra hitpoints, infinite Mana, etc.), the players would easily clean their clocks without breaking a sweat.  Even more easily than we can dial up the difficulty by making them smarter, we can dial it back down by taking away some of their built-in advantages. Besides, we can't yet afford the CPU for truly smart "learning" AI, and there's a lot of low-hanging fruit to pick off before we go that far.<p>
+
+The third is the most pernicious of all, because it's true.  There's very little we could do with the kinds of AI that we can currently afford the cycles to make use of that can't be done by handscripting an encounter, given the proper tools.  Many dozens of people at SOE, Mythic, Turbine, Blizzard, etc., have that as their entire jobs, at most companies the teams of "content builders" are so large they are subdivided into smaller teams and have two or three layers of management all their own.  The FPS and RPG "mod" communities give a useful recruiting ground for more personnel, and it's easy enough to bring someone in from customer service and teach them how to use the tools.<p>
+
+And there-in lies the rub: Acceptance of the notion that this is the Right Way to build gameplay for an MMO is very convenient for both those managers, and for their superiors wondering what the barriers to competition are. Dark Age of Camelot felt this in a pronounced fashion, as the amount of PvE content available was compared not to what EverQuest had at EQ's launch, but what they had by Camelot's launch after 3 expansions and years of ongoing updates.  It was a contributory factor in the problems faced by Turbine in the launch of AC2, and even has had a noticable effect on Earth and Beyond and Eve (in spite of being in an entirely different genre, people expected to be able to find the same kind of set-piece-encounter content).<p>
+
+The only way to overcome this "Content Wall" is to throw money at it, and lots of it.  It's expensive to make an MMO under the best of circumstances, mostly because of art assets.  But making an MMO with enough hand-generated content to look competitive with the existing games in the eyes of the players while using the same methods raises the cost of entry well into the 8 digit range.  This is a very expensive neighborhood, which is why most of the upcoming games that are considered credible contenders are from major developers with large budgets.<p>
+
+However, although the tools are more streamlined and the process has been made more efficient, this is in essence exactly the way that content for these games has been built since their days as text MUD's.  No essential feature has changed, only optimized.  The question remains: "Isn't there a better way?"<p>
+
+If there is, it will come from AI.  Most of the work in creating set-piece encounters is in arranging spawn locations and scripted behaviours so that the limited awareness and decision-making ability of the mobiles will allow them to operate in mutual support, most of the gameplay comes from "breaking the spawn", de-constructing the encounter and breaking the pattern of mutual support to make it easier to handle.  It's essentially a cooperative puzzle game.  Now, it's not that there's anything *wrong* with that, but there are a few significant issues:
+
+<ol>
+<li>Neither the developer nor the player is really thinking of what they are doing as having anything to do with a puzzle game.</li>
+<li>They generally are not very <b>good</b> puzzle games.</li>
+</ol>
+
+Number 2 isn't that big a deal, if we accept that what we are creating is really pretty puzzle games attached to really pretty chat clients we can at least treat them as such and do better.  But number 1 may be a very big deal indeed.  We've always thought of these games as worlds, as environments, as adventuring backgrounds.  But if what we actually have is puzzle games dressed up in fancy clothing, it would go a long way towards explaining why certain gameplay types we've expected to do well have not, while activity that was originally seen as peripheral to what was going on has come to dominate: The "hack and slash" portions of the game were good puzzles, while the other portions generally were not.<p>
+
+So, how could AI help us make better puzzles?  There are several possibilities:
+
+<ol>
+<li>It could automate much of the grunt work needed to create "good puzzles" (enjoyable encounters).</li>
+<li>It could add greater depth of play to the puzzles.</li>
+<li>It could allow us to build high-order puzzles requiring greater thought and cooperation to be solved.</li>
+</ol>
+
+The same basic methods that can take an arbitrary list of words and fit them together to make a crossword puzzle could take a set of monsters and fit them into a world location in a way that would make a good encounter (puzzle).  The same methods that allow a platformer game to have near-infinite gameplay could arrange these encounters in nested series to create greater depth.  And the same strategic awareness (build orders, resource management, counter-attack generation, defensive mobilization) that drives RTS games could create a vastly increased potential for cooperative challenges to the players.
+							<p>
+
+All of this is much stew from one small, controversial oyster: That in spite of all our pretensions, we've actually just been creating puzzles with all of the depth of a game of Yahtzee.  But look how most players spend most of their time, and what most developers put most of their effort into, and tell me I'm wrong.  The fact is, a human being trying to do what most of our "content builders" have been doing is a waste of creative potential.  A human trying to follow a small set of rules in order to construct a large number of these puzzles will actually be <b>less</b> creative and <b>less</b> interesting than a well programmed AI.  It's time to move on.
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Engines of Creation</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="engines-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=78"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=78"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+							<p></p>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

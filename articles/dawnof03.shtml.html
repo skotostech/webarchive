@@ -1,0 +1,106 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Notes from the Dawn of Time</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<style TYPE="text/css">
+<!--
+
+BODY, P, TD {	font-size: 12px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H1 {	font-size: 24px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H2 {	font-size: 18px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+H3 {	font-size: 14px;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+PRE, CODE {	font-size: 12px;
+	font-family: Courier New, Courier, monospace;
+}
+-->
+</style>
+		<csscriptdict import>
+			<script src="../java/primary.js"></script>
+		</csscriptdict>
+		<csactiondict>
+			<script><!--
+CSAct[/*CMP*/ 'B71DC4A43'] = new Array(CSGoBack1);
+
+// --></script>
+		</csactiondict>
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_dawnof.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_dawnof"><map name="tnav_dawnof"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="DAWNOF.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<img src="artwork/dawntime_lg.gif" width="282" height="59" align="BOTTOM" alt="masthead" border="0" hspace="8" vspace="8">
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<h2><a href="DAWNOF.shtml.html"><img src="nav/snav_dawnof.gif" width="137" height="334" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>#3: Complicated Inheritance</b></h2>
+							<p><b><i>by <a href="mailto:richard@mud.co.uk">Richard Bartle<br>
+										</a>October 3, 2001</i></b></p>
+							<p>In my previous article, I described inheritance in terms of trees. A tree consists of a set of nodes, with one such node designated the tree&#146;s root. Each node has a set of children, each of which is either the root of its own sub-tree or is a leaf (i.e. it has no children). Non-leaf nodes are classes; leaf nodes are instances of their parent class. Trees are acyclic, in that no node can be its own ancestor (you can&#146;t have X derives from Y, Y derives from Z and Z derives from X), and directed (the relationship between parent and child is non-reflexive).
+							<p>OK, so why is this bad for MUDs?</p>
+							<p><b>Single Inheritance</b></p>
+							<p>In a tree, each node can only have one parent. In a MUD, definitions are <i>so</i> much easier if nodes can have two or more parents.</p>
+							<p>Example: suppose you come across a crocodile, a tiger and an elephant together in the same room. If your character is a sahuagin, you might want to leave your cold-blooded compatriot alone and would therefore wish to KILL MAMMALS; if your character is a minotaur, you might want to leave your fellow herbivore alone and therefore KILL CARNIVORES. In the former case, you&#146;d want to attack the tiger and the elephant; in the latter, the tiger and the crocodile.</p>
+							<p>The thing is, the tiger is both a mammal <i>and</i> a herbivore. In a tree-based, <i>single inheritance</i> system you have to choose just one parent for the TIGER class (MAMMAL or CARNIVORE); you can&#146;t give it two parents as that wouldn&#146;t produce a tree. So which do you choose? They both seem equally valid.</p>
+							<p>Other examples are trivially easy to think of. Is a dollar bill MONEY or PAPER? Is a pitchfork a TOOL or a WEAPON? Is the ace of spades an ACE or a SPADE? Was Shakespeare a PLAYWRIGHT or a POET?</p>
+							<p>What&#146;s needed is <i>multiple inheritance</i>.</p>
+							<p><b>Multiple Inheritance</b></p>
+							<p>In multiple inheritance, you&#146;d say that a tiger was both a MAMMAL <i>and</i> a CARNIVORE. It would inherit from <i>both</i> its parents. You could add other parents too, perhaps JUNGLECREATURE and FIREHATER. It depends what classes you find a need for in your game.</p>
+							<p>This approach also addresses the very common MUD problem of similar objects not having similar methods. In <a href="TTnT_20.html">Trials, Triumphs &amp; Trivialities #20</a>, Shannon Appelcline gives an example where LONGSWORD derives from WEAPONS (because it hurts people) yet BROADSWORD derives from SMITHERY (because it&#146;s made of metal), both via different intermediate classes that happen to share the name SWORD. In a multiple inheritance system, you&#146;d just have the one class, SWORD of which LONGSWORD and BROADSWORD are instances, and make SWORD inherit from both SMITHERY and WEAPON.</p>
+							<p>You&#146;ll have noticed I changed the name from WEAPONS to WEAPON, there. This is because the relationship between child and parent in inheritance systems is &quot;is a kind of&quot;; SWORD is a kind of WEAPON, it&#146;s not a kind of WEAPONS. Strictly speaking, I should probably have used WEAPONRY rather than WEAPON, but let&#146;s not be <i>too</i> pedantic...</p>
+							<p>Other parent/child relationships are also possible, by the way, for example &quot;is made of&quot; and &quot;is a part of&quot;. These have their uses, but in MUDs you almost invariably want to inherit along an &quot;is a kind of&quot; line, so that&#146;s the one that should be hard-coded in.</p>
+							<p>We don&#146;t have a tree any more, of course. What we have is a <i>hierarchy</i>:</p>
+						<div align="center">
+							<p><img src="artwork/dawn03a.gif" width="217" height="127" border="0" alt="diagram"></p>
+						</div>
+						<div align="left">
+							<p>Hierarchies can get very, very complicated to illustrate graphically, with nodes having parents drawn from all over the data structure at wildly different distances from the root. All but one of the basic rules are the same as for trees, though: they&#146;re directed (they have a parent/child relationship), acyclic (there are no loops) graphs. Only the number of parents for non-root nodes has changed, from 1 to whatever takes your fancy.</p>
+							<p>That single change, however, results in a superbly more expressive system. It is just <i>incredibly</i> easier to describe an object in terms of multiple existing classes instead of just one, and they can also inherit far more functionality than they ever could in a single inheritance approach.</p>
+							<p>If it&#146;s that great, then, why doesn&#146;t every MUD have multiple inheritance?</p>
+							<p><b>Issues with Multiple Inheritance</b></p>
+							<p>There are two issues with multiple inheritance.</p>
+							<p>The first issue is what to do about clashes. If, in the above example, the default weight of a WEAPON were 2kg and the default weight of SMITHERY were 5kg, what&#146;s the default weight of a SWORD? It inherits from both, and neither has any more entitlement to win than the other.</p>
+							<p>Actually, it doesn&#146;t really matter! After all, what <i>is</i> the default weight of a sword? So long as the system inherits the same value every time, the fact that there&#146;s another one it could have taken is immaterial. If you&#146;re that bothered about the weight of swords, either explicitly state from which you want to inherit, or overwrite both defaults with a SWORD-specific weight.</p>
+							<p>The second issue?</p>
+							<p>Tsk, I&#146;m all out of space for this article. You&#146;ll have to wait until next time to find out...</p>
+							<div align="left">
+								<table width="100%">
+									<tr>
+										<td align="center" valign="middle">
+											<p><b>Recent Discussions on <i>Notes from the Dawn of Time</i>:</b></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle">
+											<p><!--#include file="dawnof-last10.php"--></p>
+										</td>
+									</tr>
+									<tr>
+										<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=33"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=33"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

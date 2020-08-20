@@ -1,0 +1,86 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #44:</b></font></p>
+							<h2>Thinking Mechanically, Part 2: RPG design in theory and practice</h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										October 11, 2002</b></i></p>
+							<h3>First, a Quick Stop...</h3>
+							<p>Online RPGs aren't paper RPGs... but I'm going to be spending a lot of time in the next few columns talking about the design of paper RPGs. So I'd like to stop for a moment and talk about why.<br>
+								<br>
+								First off, most existing online RPG systems are based on paper RPG systems. That makes the design of paper RPGs relevant at least to analysis of those systems.<br>
+								<br>
+								Second, paper RPGs have fully exposed mechanics. They have to by their very nature; since the players have to understand and enforce the mechanics, those mechanics must be accessible to the players. This stands in contrast to online RPGs, in which the underlying mechanics don't have to be exposed, and often aren't. (Of course, players then work on reverse-engineering them, but that's another story...)<br>
+								<br>
+								Lastly, there's an active community of paper RPG design theorists and practitioners, from whom theories, terminology, etc. can be borrowed. There are designers of online RPGs as well, of course, but my experience is that many online RPG designers simply use a basic D&amp;D-like system without really thinking about it, and spend a lot more time worrying about the mechanics of network connections, spawning events, and the like.<br>
+								<br>
+								For these reasons, it's much easier to take RPG systems as embracing paper RPGs and online ones, rather than trying to talk purely about online RPGs. It should be remembered, though, that online RPGs are not paper RPGs; there are many similarities, but just because something works in one, doesn't mean that it will automatically work in the other.</p>
+							<h3>Brief Stop 2: It's All Math in the End</h3>
+							<p>We're going to have to talk about math in this series of columns. But don't worry; I'm not planning on writing a series about how to calculate probabilities and that sort of thing (at least, not here... if someone else out there wants to pay me to write one, let me know!). What's more important than the nuts and bolts of the math is be aware of certain principles.<br>
+								<br>
+								The first is that small changes can make big differences in a complex system. Complex RPG systems often have results in one stage that &quot;feed into&quot; another stage in handling an action... and because of this, what seems like a small change can cause larger changes further on, and become greatly magnified. This is especially true where a small change applies at multiple stages in a mechanic.<br>
+								<br>
+								The second principle is that what &quot;feels&quot; rare in pure numbers may not be very rare at all once it's applied across a large number of instances. The classic example for RPGs is critical hit and fumble systems. A one-in-one-thousand chance that a character manages to cut off his/her own foot with a sword while attacking might seem small, but consider what would happen in a battle with 500 people on each side, where each gets to make an average of 10 attacks. On average, ten people in the battle would manage to cut off their own feet!<br>
+								<br>
+								The way to watch out for both of these kinds of problems is simple &#151; test your system. And I don't mean just by playing it yourself (although that's very important too) &#151; I mean that you should also do &quot;thought tests&quot; of things like a mass battle, or someone driving back and forth to work every day for a year, or someone shooting a bow at a target from two feet away and a mile away, and other such things. A system that breaks down under these sorts of circumstances can work OK in a paper RPG, where the GM can overrule things that are obviously silly, but they need to be considered for an online system without a GM constantly watching.</p>
+							<h3>And Now, On With the Show</h3>
+							<p>There are two basic kinds of character creation systems that are common among RPGs: class/level-based and skill-based. At least, in theory there are &#151; in practice, the two aren't so much opposites as they are two different points on a spectrum, able to blend into each other in the middle.<br>
+								<br>
+								Dungeons &amp; Dragons and its close derivatives are the classic examples of class/level-based systems. Each character belongs to a class, and has a level in that class. The combination of class and level largely determines what a character can and can't do. Older versions of D&amp;D (before the &quot;third edition&quot; that was released in 2000) are examples of restrictive class systems &#151; ones where there is little opportunity to gain abilities outside of one's class, and where characters generally cannot belong to multiple classes. (Yes, there are exceptions; I'm speaking generally here, since talking about the individual differences in all the half-dozen older versions of D&amp;D would take a few columns by itself.) &quot;Third edition&quot; D&amp;D, in contrast, is an example of an additive class system. In it, it's fairly easy for a character to belong to multiple classes, gaining abilities from each one.<br>
+								<br>
+								The RPG GURPS from Steve Jackson Games is a classic example of a skill-based system. Characters have skills that determine what they can do. Each skill covers a fairly small domain, like &quot;tracking&quot;, &quot;animal handling&quot;, or &quot;riding&quot;. Characters can pretty much take any skill they want to, although some combinations of skills make more sense than others.<br>
+								<br>
+								In the area in-between, there are class-based systems that also have skills. Later versions of D&amp;D are like that, along with several other games. There are also skill-based games that use &quot;templates&quot; or &quot;archetypes&quot; (basically a nearly complete character provided for you, with all the necessary skills for his/her profession taken), and ones which have &quot;packages&quot; (sets of skills related to a specific profession which can be &quot;bought&quot; as a group).<br>
+								<br>
+								Both systems work well, albeit for different purposes. A class-based system, especially a restrictive one, can do well in providing what's sometimes termed &quot;niche protection&quot; &#151; making sure that each character type has some unique skill that other character types can't effectively imitate. A skill-based system can allow a great degree of customization for characters &#151; if you really want to build a character who's a French chef and ex-Marine, you can do it in a good skill-based system.<br>
+								<br>
+								On the minus side, when a class-based system is too restrictive, viable characters can quickly become very stereotyped. This especially happens when there are other choices in the character creation system that work extremely well with one or more classes. For example, in AD&amp;D1, the &quot;really strong and tough, but not very bright&quot; fighter is a very common stereotype, because the Strength and Constitution scores give large bonuses to fighter characters, and low Intelligence affects them almost not at all. Other possibilities, like a clever, dextrous fighter, simply don't work nearly as well. It's one thing to have niche protection &#151; it's another to force a large group of characters all into one small niche.<br>
+								<br>
+								Skill-based systems can suffer from a similar problem when the game is designed in such a way that only a few skills really matter. In such a case, almost all players wind up taking those skills, which can result in a group of characters who are too similar, with only minor variations between them.<br>
+								<br>
+								In a class-based system, it's important to try to keep the different classes balanced with each other in some fashion. If one class is too strong, many players will take it. If one is too weak, many will avoid that one. In a restrictive class system, a particular problem that can arise is if a weak class has a unique skill that's needed. In that case, a player playing that class may quickly start to feel like a one-trick pony &#151; brought out to do his/her one thing when needed, then shuffled back to the back of the group. Careful scenario design may be required to make sure that no one class can dominate a scenario, and that no class is worthless in the scenario.<br>
+								<br>
+								Skill-based systems, particularly ones in which players &quot;buy&quot; their characters' skills, tend towards a natural balance of power &#151; if a skill isn't very useful, people just won't buy it. This can, however, create &quot;blind spots&quot; in player groups, as no one in the group may wind up having a skill that's rarely useful, but is needed in a particular scenario. The major consideration for scenario design is that one cannot assume that a particular group of characters will have any particular skill in a fully-flexible skill-based system.<br>
+								<br>
+								To some extent, these problems will solve themselves in an online massively multiplayer game &#151; with dozens or hundreds of players on at once, the players can go out and find someone with a needed skill if necessary, and someone with a skill that's only useful in a few places can help others go through those places multiple times. However, if either of these outcomes goes to too far an extreme, players are likely to dislike it.<br>
+								<br>
+								Well... I'm about out of space for this time, so we'll be continuing on next week, with more thoughts on character creation, and then getting into action resolution. See you in two weeks!</p>
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

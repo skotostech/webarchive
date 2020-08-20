@@ -1,0 +1,17 @@
+BODY, P, TD, { font-size: 10px; font-family: Verdana, Arial, sans-serif; }
+
+H1 { font-size: 24px; font-family: Trebuchet MS, Verdana, Helvetica, Arial, sans-serif; }
+
+H2 { font-size: 18px; font-family: Trebuchet MS, Verdana, Helvetica, Arial, sans-serif; }
+
+H3 { font-size: 14px; font-family: Trebuchet MS, Verdana, Helvetica, Arial, sans-serif; }
+
+PRE, CODE {	font-size: 12px; font-family: Courier New, Courier, monospace; }
+
+a:link { color: #006633 }
+
+a:visited { color: #cc3300 }
+
+a:active { color: #990066 }
+
+a:hover { color: #990066 }

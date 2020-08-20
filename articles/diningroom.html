@@ -1,0 +1,44 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Article</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_generic.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_generic"><map name="tnav_generic"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="diningroom.html#"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<h2><font face="Verdana,Arial,Helvetica"><b><img src="../artwork/filler_bedroom.gif" width="140" height="516" align="right" border="2" hspace="10" vspace="10">Would a Dining Room By Any Other Name Still Be a Bedroom?</b></font></h2>
+						<p><font size="2" face="Verdana,Arial,Helvetica">This happens a lot where I&#146;m from. Housing is really hard to come by, and, especially in college, a group of students will often get together and rent an apartment.</font></p>
+						<p><font size="2" face="Verdana,Arial,Helvetica">It will be a five-room apartment, with four roommates living there. Since nobody wants to live in the kitchen, the remaining rooms get divvied up between all the housemates. Someone [who usually pays more for the privilege] gets the real bedroom; someone moves into the den; someone makes her space in the living room; and someone sleeps in the dining room. Looking at any of these rooms arranged with bedding and strewn-about clothes and littered with books and pizza boxes, a normal person would see them as bedrooms.</font></p>
+						<p><font size="2" face="Verdana,Arial,Helvetica">Now, traditional interactive fiction games normally have fixed objects. When a room is created as a dining room, the table and chairs are fixed; they cannot be removed from the room and new furniture cannot be added. But with the SkotOS, objects such as tables and chairs can indeed be removed from the dining room and replaced by a bed, bedding, chest of drawers, armoire, clothing&#133; all the obvious indicators that this room is a bedroom, and none of the signs that it is a dining room. Yet the SkotOS can&#146;t possibly know that this room would be seen as a bedroom. Instead you would get a message like this:</font></p>
+						<dir>
+							<p><tt><b>The Dining Room</b></tt></p>
+							<p><tt>This smallish room has a fireplace, an arched ceiling and a window in the northeast corner. There is a large bed near the north wall, an armoire next to the bed, a chest o&#146; drawers near the west wall, clothes on the floor and boots near the bed.</tt></p>
+							<p><tt><b>Obvious Exits:</b> Door in south wall</tt></p>
+						</dir>
+						<p><font size="2" face="Verdana,Arial,Helvetica">You know, by looking, that this room is a bedroom, but wouldn't have any idea why it&#146;s called a dining room. Had we designed the room, it would be simple, but players have the ability to move objects around as they please, and to allow them to do that, we have to make some other compromises.</font></p>
+						<p><font size="2" face="Verdana,Arial,Helvetica">Normally, the location tags are very useful for orienting yourself in interactive fiction, but for us, they are not effective. Instead we must design room descriptions keeping in mind the important, immutable features of the room.</font></p>
+						<dir>
+							<p><tt>This smallish room has a fireplace, an arched ceiling and a window in the north east corner.&#133;</tt></p>
+						</dir>
+						<p><font size="2" face="Verdana,Arial,Helvetica">These elements are fixed and start out the description. The rest of the description is not really <i>written</i> by the StoryBuilder at all, but rather handled by the systems of <i>visual priority</i> and <i>proxes</i>.</font></p>
+						<dir>
+							<p><font face="Verdana,Arial,Helvetica"><tt>&#133;There is a large bed near the north wall, an armoire next to the bed, a chest o&#146; drawers near the west wall, clothes on the floor and boots near the bed.</tt></font></p>
+						</dir>
+						<p><font size="2" face="Verdana,Arial,Helvetica">The bed object is placed in the room by the StoryBuilder. When it is placed there, the StoryBuilder determines what it is next to. Because it is so large, it has a high visual priority. Then each additional object or group of objects are listed by visual priority [in this case these objects are ordered primarily by size], and also described by their proximity to anything else in the room.</font></p>
+						<p><font size="2" face="Verdana,Arial,Helvetica">This system, makes the StoryBuilder&#146;s job both harder and easier. Room descriptions do not need to be as perfectly thorough, as completed objects can be easily added to a room. But tags giving an instant impression of what a player is looking at [or even where they are] are no longer reliable.</font></p>
+						<p><font size="2" face="Verdana,Arial,Helvetica">Of course you may simply go ahead and apply your room tags, which the SkotOS system <i>does</i> allow you to do. It&#146;s easy, and in most cases functions adequately. Tags work best if, when designing a room, you chose to make significant and defining objects <i>details</i> of the room, and therefore fixed. It is easy to justify very large objects such as tables, beds, armoires, etc. to be too large or heavy to be readily removed from a room. Thus the room would <i>always</i> be defined a dining room, bedroom etc.</font></td>
+					<td valign="top"></td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>

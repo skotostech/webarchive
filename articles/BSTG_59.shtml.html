@@ -1,0 +1,152 @@
+<!!!!!!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+		<title>Building Stories, Telling Games</title>
+		<meta name="Author" content="FreeFrog Designs (ffdesigns.com)">
+<link rel="stylesheet" href="article.css">
+	</head>
+
+	<body background="../artwork/skoot_back.jpg" link="#006633" vlink="#cc3300" alink="#990066" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" text="black">
+		<center>
+			<img src="nav/tnav_bstg.gif" width="531" height="90" align="BOTTOM" alt="topnav" border="0" hspace="10" vspace="10" usemap="#tnav_bstg"><map name="tnav_bstg"><area shape="rect" coords="351,65,519,79" href="../games/succession.html" target="_top"><area shape="rect" coords="350,50,519,63" href="../games/eternal-city.html" target="_top"><area shape="rect" coords="348,33,519,48" href="../games/marrach.html" target="_top"><area shape="rect" coords="261,60,328,89" href="../vbulletin/index.html"><area shape="rect" coords="196,4,250,28" href="../storybuilders/Intro.shtml.html" target="_top"><area shape="rect" coords="11,65,181,77" href="bestof.shtml.html"><area shape="rect" coords="11,49,181,63" href="ArticlesArchive.shtml.html"><area shape="rect" coords="11,35,181,47" href="BSTG.shtml.html"><area shape="rect" coords="349,7,517,30" href="../games/m59.html" target="_top"><area shape="rect" coords="10,5,182,32" href="show-column.phtml%3Fcolname=playing.html" target="_top"></map><br>
+			<table border="0" cellpadding="2" width="90%" height="90">
+				<tr>
+					<td valign="top">
+						<div align="left">
+							<p><font color="#006633"><a href="BSTG.shtml.html"><img src="nav/snav_bstg.gif" width="137" height="398" align="right" hspace="10" vspace="10" border="0" alt="Series Info..."></a><b>Building Stories, Telling Games #59:</b></font></p>
+							<h2>Thinking Mechanically, Part 15: <i>Combat Systems</i></h2>
+							<p><i><b>by <a href="http://www.skotos.net/forum/showthread.php?threadid=295" target="contentframe">Travis S. Casey</a><br>
+										May 23, 2003</b></i></p>
+							<p>
+In many games, combat is a primary focus. Indeed, quite often it's 
+<I>the</I> primary focus, with many other mechanics relegated to a supporting role (i.e., &quot;we do these things because they'll let us fight better later on&quot;). Before we get into talking about combat systems, let's look at this &#151; why is combat such a major part of online games?
+							<h3>Why Combat?</h3>
+							<p>One reason is tradition &#151; existing games feature combat heavily, so people designing new games feature it too. The tradition actually goes back to before online games; the paper roleplaying games on which many of the online games are based also have historically given combat a heavy emphasis.
+							<p>Secondly, combat is almost inherently set up to provide both risks and the potential for reward &#151; and from that, we can see why so many players enjoy it. It's a gamble, and people in general seem to love the thrill of gambling. Especially when there's no risk of <I>real</I>
+loss, only of the loss of some "points" or such.
+
+<p>
+Thirdly, combat itself seems to be attractive to the young males who
+form a large part of the audience for these games. If I wanted to get
+deeply psychological, I could talk about instincts to show dominance 
+and establish a territory, and about "play fighting" as being young
+animals learning how to hunt... but you can find plenty of that sort
+of speculation elsewhere. 
+
+<p>
+Fourth, combat can provide a tactical or strategic challenge. In some
+games, the key to getting through the game effectively is knowing 
+<I>how</I> to fight &#151; what items are best to use in what situations, when to use a ranged attack vs. a melee one, what &quot;buffs&quot; or skills or spells to use when, and so on. As one advances through the game and comes across new opponents to fight, the tactics needed may change, or new, more effective tactics may become available.
+<p>The fifth reason is really an extension of the fourth &#151; combat in games tends to demand a degree of player cooperation and coordination that other tasks often don't. Powerful monsters may take the coordinated efforts of several characters to defeat, and the same is true for groups of weaker monsters &#151; a dozen orcs may easily overwhelm one character, even a fairly powerful one, but may be easy prey for a dozen characters working together intelligently.
+							<p>
+Now, combat certainly isn't <I>required</I> for roleplaying games, of
+the online or paper varieties; indeed, the class of text adventure 
+games which are the other primary inspiration for text-based online
+games often feature little or no combat. The emphasis in them is on
+puzzle-solving instead, and where there is combat, it's usually on a
+very simplistic if-then-else level: <B>if</B> you have this item, 
+<B>then</B> you can defeat the guard, <B>else</B> you can't.
+
+							<h3>What to do with combat?</h3>
+							<p>
+Having looked at the whys, now we're ready to start thinking about 
+whats. Specifically, in designing a combat system, you should think
+about <I>why</I> you want to have combat, and then, based on those
+whys, about <I>what</I> your combat system should do. In particular,
+here's some things to think about:
+
+							<UL>
+<LI>Should equipment have a major impact on combat?
+<LI>How big will combats tend to be &#151; that is, how many combatants do you expect to see on a side?<LI>Do you want to have more than one form of combat? For example,
+for some games, it might be desirable to have one "general" combat
+system, and a separate, more detailed system for fighting duels.
+</UL>
+							<p>
+The answers to these questions will vary greatly depending on the 
+setting of the game, and on what sort of game you want. For example,
+in a Wild West game, the major forms of combat are likely to be
+many-on-many gunfights, one-on-one gunfight "duels", and hand-to-hand
+brawling without weapons. Armor will be pretty much nonexistent. 
+
+<p>For an Arthurian game, on the other hand, one-to-one duels with swords and armor will be common. Many-on-many fights will be less common if the game is following the traditional &quot;knights go out on quests alone&quot; idea. A jousting system could be a nice, colorful addition. Hand-to-hand brawling can probably be safely ignored &#151; it's not &quot;knightly&quot;. The designer may be able to get away with simply ignoring the existence of missile weapons entirely &#151; again, they're not &quot;knightly&quot;.
+<p>If you want to have Robin Hood and the Merry Men in a game, on the other hand, handling missile fire will be essential &#151; and you may wish to have a system for handling archery contests as well. (Which isn't really combat <I>per se</I>... but it should have some relation to the
+system for handling missile fire.) Hand-to-hand combat is again a must.
+Most of the player characters will likely wear little or no armor, so
+the way that armor works ought to be significantly different than one
+would expect in the Arthurian game. And Errol Flynn-style one-on-one 
+swordfights on stairs are a great thing to have.
+
+							<p>
+Now, those questions were more from a gameworld stance. Here's a 
+few more, coming from a different point of view:
+
+							<UL>
+<LI>What will be the primary type of combat &#151; player character vs. &quot;monster&quot;, or player character vs. player character?<LI>How important should player skill be in combat? 
+<LI>How about character skill?
+<LI>How long should typical combat take, from the players' point of view?
+</UL>
+							<p>If most combat is going to be player character vs. player character, then part of your work is done for you &#151; there's little need to worry about making &quot;monsters&quot; or NPCs who can fight in interesting ways when players are going to be doing most of the fighting. And you can be sure that players will come up with interesting tactics, if the system makes it at all possible.
+<p>
+On the other hand, however, there is a greater need to worry about 
+potential abuses of a combat system with player vs. player. If a player
+discovers a bug and uses it to rapidly kill lots of monsters, other
+players may grouse about it, and that player (and anyone he/she taught
+the "trick" to) will likely complain about it being fixed... but if a
+player finds a bug and uses it to kill lots of other players' characters,
+you may get the virtual equivalent of a lynch mob.
+
+<p>Player skill is an area where things can vary greatly. Some games, particularly some older muds, involve nearly no player skill &#151; the player tells the character &quot;kill that&quot;, and it's all automatic from there, until the thing is either killed or the players' character gets to an automatic cutoff point and runs away. In others, getting maximal effectiveness in combat requires the player to constantly interact with the game. In a poor setup, this is simply repetitive &quot;make-work&quot; &#151; keep clicking on the target, or keep typing the same command or few commands over and over. No skill required.
+<p>There are combat systems, however, where player skill in choosing what sort of attacks and/or defenses to use and when to use them is important. This is good in one way, since it rewards and encourages practice, and gives players a feeling of accomplishment. It can also be bad if overdone, however &#151; in a <I>roleplaying</I> game, many feel that a character who is 
+supposed to be a great fighter should be a great fighter no matter who
+the <I>player</I> is. Which brings up the next question, about character
+skill.
+
+<p>Player skill vs. character skill is often looked at as a continuum, from games which are all player skill (e.g., something like Doom, where all characters start the same) to ones which are all character skill (e.g., the &quot;kill that&quot; combat of some older muds). In truth, though, it's two-dimensional &#151; both player skill <I>and</I> character skill can be
+very important, or both can be completely unimportant.
+
+<p>
+The last question is about time. It should be noted that this interacts
+with the amount of player skill required. In a pure "kill that" system,
+the only reasons to make combat take any actual time at all are to allow
+the player some vicarious tension as he/she watches the struggle and tries
+to anticipate what will happen, and to limit the rate at which the 
+character can take out foes (and thereby get past them to accomplish
+tasks and, in many systems, get rewards).
+
+							<p>When player skill is involved, though, time becomes a more serious question. Faster combat favors the player with fast typing or mouse skills. Slower combat evens things out for the player who may know the tactics through-and-through, but doesn't have hair-trigger reflexes. If things are too slow, however, they'll become boring, thereby defeating one of the main purposes of requiring player skill &#151; giving the player something interesting to do.
+							<h3>What do you think?</h3>
+							<p>
+What questions do you see as important to consider before starting into
+a combat system? Share your thoughts in the forums! And come back 
+next time, when I find some armor and start getting into the meat of 
+combat!
+
+						</div>
+						<div align="left">
+							<table width="100%">
+								<tr>
+									<td align="center" valign="middle">
+										<p><b>Recent Discussions on <i>Building Stories, Telling Games</i>:</b></p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle">
+										<p><!--#include file="BSTG-last10.php"-->
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="middle"><b><a href="http://forum.skotos.net/forumdisplay.php?s=&forumid=37"><img height="20" width="98" src="artwork/jumpto.gif" border="0" alt="jump" align="absmiddle"></a> <a href="http://forum.skotos.net/newthread.php?s=&action=newthread&forumid=37"><img height="20" width="98" src="artwork/postnew.gif" border="0" alt="new" align="absmiddle"></a></b></td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p></p>
+		</center>
+	</body>
+
+</html>
